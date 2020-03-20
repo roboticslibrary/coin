@@ -34,11 +34,12 @@
   \class SoKeyboardEvent SoKeyboardEvent.h Inventor/events/SoKeyboardEvent.h
   \brief The SoKeyboardEvent class contains information about
   keyboard interaction.
+
   \ingroup events
 
   When the user presses any keys on the keyboard, these will be translated
   from a system specific event into a Coin event and sent to the
-  scenegraph by using instances of this class.
+  scene graph by using instances of this class.
 
   \sa SoEvent, SoButtonEvent, SoMouseButtonEvent, SoSpaceballButtonEvent
   \sa SoEventCallback, SoHandleEventAction
@@ -269,7 +270,7 @@ SoKeyboardEvent::setKey(SoKeyboardEvent::Key keyarg)
   Returns the value of the key which was pressed or released.
 
   Coin adds a new key value called UNDEFINED. This is needed to
-  support GUI toolkits where it's not possible to find exactly which
+  support GUI toolkits where it is not possible to find exactly which
   key is pressed, and/or to support non-US keyboards. The Open
   Inventor design for this class is flawed, since it assumes everybody
   uses a US keyboard. We recommend using getPrintableCharacter() to
@@ -287,7 +288,7 @@ SoKeyboardEvent::getKey(void) const
 
 /*!
   Convenience method for quickly checking if the given event is a
-  keypress on the given key, \c whichKey.
+  key press on the given key, \c whichKey.
 
   \sa isKeyReleaseEvent(), isOfType(), getKey(), getState()
  */

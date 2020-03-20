@@ -33,6 +33,7 @@
 /*!
   \class SoComposeMatrix SoComposeMatrix.h Inventor/engines/SoComposeMatrix.h
   \brief The SoComposeMatrix class is used to compose a matrix from miscellaneous transformations.
+
   \ingroup engines
 */
 
@@ -73,7 +74,9 @@ SO_ENGINE_SOURCE(SoComposeMatrix);
 
 #ifndef DOXYGEN_SKIP_THIS // No need to document these.
 
-// Default constructor.
+/*!
+  Constructor.
+*/
 SoComposeMatrix::SoComposeMatrix()
 {
   SO_ENGINE_INTERNAL_CONSTRUCTOR(SoComposeMatrix);
@@ -87,7 +90,9 @@ SoComposeMatrix::SoComposeMatrix()
   SO_ENGINE_ADD_OUTPUT(matrix,SoMFMatrix);
 }
 
-// Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoComposeMatrix::initClass()
 {
@@ -97,6 +102,9 @@ SoComposeMatrix::initClass()
 //
 // private members
 //
+/*!
+  Destructor.
+*/
 SoComposeMatrix::~SoComposeMatrix()
 {
 }

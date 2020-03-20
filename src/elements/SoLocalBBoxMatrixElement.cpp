@@ -33,6 +33,7 @@
 /*!
   \class SoLocalBBoxMatrixElement Inventor/elements/SoLocalBBoxMatrixElement.h
   \brief The SoLocalBBoxMatrixElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -56,8 +57,7 @@
 SO_ELEMENT_SOURCE(SoLocalBBoxMatrixElement);
 
 /*!
-  This static method initializes static data for the
-  SoLocalBBoxMatrixElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -67,14 +67,17 @@ SoLocalBBoxMatrixElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoLocalBBoxMatrixElement::~SoLocalBBoxMatrixElement(void)
 {
 }
 
-//! FIXME: write doc.
+/*!
+  Initializes the element to its default value. The default
+  value for localMatrix and modelInverseMatrix is the identity matrix.
+*/
 
 void
 SoLocalBBoxMatrixElement::init(SoState * state)
@@ -100,7 +103,7 @@ SoLocalBBoxMatrixElement::push(SoState * state)
      state->getConstElement(SoModelMatrixElement::getClassStackIndex())
      );
   // FIXME: is this really sensible caching? If push() is called more
-  // often than set() (the only place where it's actually used), I
+  // often than set() (the only place where it is actually used), I
   // guess not. 20020905 mortene.
   this->modelInverseMatrix = modelelem->getModelMatrix().inverse();
 }

@@ -33,6 +33,7 @@
 /*!
   \class SoLazyElement Inventor/elements/SoLazyElement.h
   \brief The SoLazyElement class is used to handle material and shape properties.
+
   \ingroup elements
 
   So[GL]LazyElement is, as the name implies, an element that is lazy
@@ -54,7 +55,7 @@
   stack. If this instance is created after you update SoLazyElement
   with a new color, the new color will be sent to OpenGL when you call
   SoMaterialBundle::sendFirst(). This call will also update all other
-  lazy OpenGL state, and it's actually required to either use
+  lazy OpenGL state, and it is actually required to either use
   SoMaterialBundle::sendFirst() or call SoGLLazyElement::send(state,
   SoLazyElement::ALL_MASK) when creating a shape node.
 
@@ -104,7 +105,7 @@ lazyelement_cleanup(void)
 } // extern "C"
 
 // helper functions to handle default diffuse/transp values
-static uint32_t
+static SbUniqueId
 get_diffuse_node_id(SoNode * node, const int numdiffuse,
                     const SbColor * color)
 {
@@ -112,7 +113,7 @@ get_diffuse_node_id(SoNode * node, const int numdiffuse,
   return node->getNodeId();
 }
 
-static uint32_t
+static SbUniqueId
 get_transp_node_id(SoNode * node, const int numtransp,
                    const float * transp)
 {
@@ -124,8 +125,7 @@ get_transp_node_id(SoNode * node, const int numtransp,
 SO_ELEMENT_SOURCE(SoLazyElement);
 
 /*!
-  This static method initializes static data for the
-  SoDiffuseColorElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -149,7 +149,9 @@ SoLazyElement::initClass()
   }
 }
 
-// ! FIXME: write doc
+/*!
+  Destructor.
+*/
 
 SoLazyElement::~SoLazyElement()
 {

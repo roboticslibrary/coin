@@ -33,10 +33,11 @@
 /*!
   \class SoMFVec4i32 SoMFVec4i32.h Inventor/fields/SoMFVec4i32.h
   \brief The SoMFVec4i32 class is a container for SbVec4i32 vectors.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store an array of vectors with four elements.
+  need to store an array of vectors with four elements.
 
   This field supports application data sharing through a
   setValuesPointer() method. See SoMField documentation for
@@ -68,7 +69,9 @@ SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFVec4i32, SbVec4i32, int32_t);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFVec4i32::initClass(void)
 {

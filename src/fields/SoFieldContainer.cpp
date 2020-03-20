@@ -34,6 +34,7 @@
   \class SoFieldContainer SoFieldContainer.h Inventor/fields/SoFieldContainer.h
   \brief The SoFieldContainer class is a base class for all classes that
   contain fields.
+
   \ingroup general
 
   The classes containing fields in Coin are the node and engine
@@ -232,7 +233,10 @@ sofieldcontainer_get_copydict(void)
 
 // *************************************************************************
 
-// Overridden from parent class.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
+
 void
 SoFieldContainer::initClass(void)
 {
@@ -262,6 +266,9 @@ SoFieldContainer_cleanupClass(void)
   SoFieldContainer::cleanupClass();
 }
 
+/*!
+  This static method cleans up static data for the SoFieldContainer class.
+*/
 void
 SoFieldContainer::cleanupClass(void)
 {
@@ -269,7 +276,9 @@ SoFieldContainer::cleanupClass(void)
 }
 
 
-// Overridden from parent class.
+/*!
+  \copybrief SoBase::getClassTypeId(void)
+*/
 SoType
 SoFieldContainer::getClassTypeId(void)
 {
@@ -340,7 +349,7 @@ SoFieldContainer::fieldsAreEqual(const SoFieldContainer * container) const
 
   This method copies the field values from container into this. The
   fields are assumed to be of the same type. The \a copyconnections
-  flag decides whether the field connections are to be copied aswell.
+  flag decides whether the field connections are to be copied as well.
 */
 void
 SoFieldContainer::copyFieldValues(const SoFieldContainer * container,
@@ -564,7 +573,7 @@ SoFieldContainer::set(const char * fielddata, SoInput * in)
   if (!fields) {
 #if COIN_DEBUG
     SoDebugError::postInfo("SoFieldContainer::set",
-                           "tried to set values of non-existant fields");
+                           "tried to set values of non-existent fields");
 #endif // COIN_DEBUG
     // Return TRUE here might seem strange, but I think its correct to
     // do it like this -- we're just supposed to read field values until
@@ -658,7 +667,7 @@ SoFieldContainer::notify(SoNotList * l)
       inherited::notify(l);
     }
     else {
-      // we were notififed from a field. No need to add a new
+      // we were notified from a field. No need to add a new
       // SoNotRec since the base pointer will point to us.
       assert(l->getLastRec()->getType() == SoNotRec::CONTAINER);
       assert(l->getLastRec()->getBase() == coin_assert_cast<SoBase *>(this));
@@ -755,11 +764,11 @@ SoFieldContainer::getFieldData(void) const
 // manipulators, for instance), so keep it general.
 /*!
   Makes a deep copy of all data of \a from into this instance, \e
-  except external scenegraph references if \a copyconnections is \c
+  except external scene graph references if \a copyconnections is \c
   FALSE.
 
   This is the method that should be overridden by extension node /
-  engine / dragger / whatever subclasses which needs to account for
+  engine / dragger / whatever subclasses which need to account for
   internal data that are not handled automatically.
 
   For copying nodes from application code, you should not invoke this
@@ -773,7 +782,7 @@ SoFieldContainer::getFieldData(void) const
 
 
   Make sure that when you override the copyContents() method in your
-  extension class that you also make it call upwards to it's parent
+  extension class that you also make it call upwards to its parent
   superclass in the inheritance hierarchy, as copyContents() in for
   instance SoNode and SoFieldContainer does important work. It should
   go something like this:
@@ -784,7 +793,7 @@ SoFieldContainer::getFieldData(void) const
                                     SbBool copyconnections)
   {
     // let parent superclasses do their thing (copy fields, copy
-    // instance name, etc etc)
+    // instance name, etc.)
     SoNode::copyContents(from, copyconnections);
 
     // [..then copy internal data..]
@@ -820,7 +829,7 @@ SoFieldContainer::copyThroughConnection(void) const
   \COININTERNAL
 
   Initialize a dictionary hash storing pointers for original
-  fieldcontainer instances and their copies during scene graph copy
+  field container instances and their copies during scene graph copy
   operations.
 
   This method is called from the start of SoNode::copy().
@@ -842,7 +851,7 @@ SoFieldContainer::initCopyDict(void)
 
 
 /*!
-  Add a pair of pointers to an original fieldcontainer and a copy of it
+  Add a pair of pointers to an original field container and a copy of it
   to an internal pointer dictionary used during scene graph copy
   operations.
  */
@@ -908,7 +917,7 @@ SoFieldContainer::checkCopy(const SoFieldContainer * orig)
   the copy outside of this method, this will go undetected and the
   guts of \a orig will be copied multiple times into its copy.
 
-  If copyContents() is called directly (instead of using copy()), it's
+  If copyContents() is called directly (instead of using copy()), it is
   assumed that the user only wants to copy the field values, and we
   just return NULL here. This is done to match how it's done in SGI
   Inventor.
@@ -1061,7 +1070,7 @@ SoFieldContainer::readInstance(SoInput * in, unsigned short flags)
 
   Data that is kept in the object memory chunk (that is included when you
   do sizeof(object)) is not included in these values - only the memory that
-  is managed in addtional memory chunks from the object chunk is returned.
+  is managed in additional memory chunks from the object chunk is returned.
 
   Extension field types that are not known to the plain Coin library are
   not accounted for.  This function is therefore virtual, so such extension
@@ -1270,7 +1279,7 @@ SoFieldContainer::setUserData(void * userdata) const
 
 /*!
   Return the generic user data pointer for this field container, or
-  NULL if no user data has been set.
+  NULL if no user data have been set.
 
   \sa setUserData()
   \since Coin 2.0

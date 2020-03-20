@@ -33,6 +33,7 @@
 /*!
   \class SoTextureOverrideElement Inventor/elements/SoTextureOverrideElement.h
   \brief The SoTextureOverrideElement makes it possible to override texture elements.
+
   \ingroup elements
 */
 
@@ -47,8 +48,7 @@
 SO_ELEMENT_SOURCE(SoTextureOverrideElement);
 
 /*!
-This static method initializes static data for the
-SoTextureOverrideElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -58,7 +58,7 @@ SoTextureOverrideElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoTextureOverrideElement::~SoTextureOverrideElement(void)

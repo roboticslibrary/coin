@@ -33,6 +33,7 @@
 /*!
   \class SoDirectionalLight SoDirectionalLight.h Inventor/nodes/SoDirectionalLight.h
   \brief The SoDirectionalLight class is a node type for specifying directional light sources.
+
   \ingroup nodes
 
   A directional light source provides a model of light sources which
@@ -113,7 +114,7 @@
   \var SoSFVec3f SoDirectionalLight::direction
 
   The direction of the light source. Defaults to pointing along the
-  negative z-axis.
+  negative Z-axis.
 */
 
 // *************************************************************************
@@ -139,7 +140,9 @@ SoDirectionalLight::~SoDirectionalLight()
 {
 }
 
-// Doc from superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoDirectionalLight::initClass(void)
 {

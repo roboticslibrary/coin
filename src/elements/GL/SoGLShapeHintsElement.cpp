@@ -33,6 +33,7 @@
 /*!
   \class SoGLShapeHintsElement Inventor/elements/SoGLShapeHintsElement.h
   \brief The SoGLShapeHintsElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -78,8 +79,7 @@
 SO_ELEMENT_SOURCE(SoGLShapeHintsElement);
 
 /*!
-  This static method initializes static data for the
-  SoGLShapeHintsElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -89,7 +89,7 @@ SoGLShapeHintsElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoGLShapeHintsElement::~SoGLShapeHintsElement(void)
@@ -137,8 +137,8 @@ SoGLShapeHintsElement::setElt(VertexOrdering vertexOrderingarg,
 }
 
 /*!
-  Update gl state. Use this is you only want to modify the
-  twoside lighting feature.
+  Update GL state. Use this is you only want to modify the
+  two-side lighting feature.
 */
 
 void

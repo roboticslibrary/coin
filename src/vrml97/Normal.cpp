@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLNormal SoVRMLNormal.h Inventor/VRMLnodes/SoVRMLNormal.h
   \brief The SoVRMLNormal class is used to bind normals to geometry.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -83,7 +84,9 @@ class SoVRMLNormalP {
 
 #define PRIVATE(obj) obj->pimpl
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLNormal::initClass(void)
 {

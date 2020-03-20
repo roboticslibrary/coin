@@ -33,6 +33,7 @@
 /*!
   \class SbCylinder SbCylinder.h Inventor/SbCylinder.h
   \brief The SbCylinder class is a representation of a cylinder.
+
   \ingroup base
 
   This class is used within other classes in Coin. It contains data to
@@ -257,8 +258,8 @@ SbCylinder::intersect(const SbLine& l, SbVec3f& enter, SbVec3f& exit) const
 }
 
 /*!
-  Dump the state of this object to the \a file stream. Only works in
-  debug version of library, method does nothing in an optimized compile.
+  Dump the state of this object to the \a fp file stream. Only works in
+  debug version of library, method does nothing in an optimized build.
  */
 void
 SbCylinder::print(FILE * fp) const

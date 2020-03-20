@@ -33,10 +33,11 @@
 /*!
   \class SoSFDouble SoSFDouble.h Inventor/fields/SoSFDouble.h
   \brief The SoSFDouble class is a container for a double precision floating point value.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a single floating point value.
+  need to store a single floating point value.
 
   \sa SoMFDouble
 */
@@ -59,7 +60,9 @@ SO_SFIELD_SOURCE(SoSFDouble, double, double);
 
 // *************************************************************************
 
-// Override from parent.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFDouble::initClass(void)
 {

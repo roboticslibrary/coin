@@ -33,17 +33,18 @@
 /*!
   \class SoOneShotSensor SoOneShotSensor.h Inventor/sensors/SoOneShotSensor.h
   \brief The SoOneShotSensor class is a sensor which will trigger once.
+
   \ingroup sensors
 
   Since SoOneShotSensor is a subclass of SoDelayQueueSensor, it will
-  trigger as soon as either the run-time system is idle, or if it is
+  trigger as soon as either the runtime system is idle, or if it is
   continually busy it will trigger within a fixed amount of time (this
   is by default 1/12th of a second, see
   SoSensorManager::setDelaySensorTimeout()).
 */
 
 #include <Inventor/sensors/SoOneShotSensor.h>
-#include <assert.h>
+#include <cassert>
 
 /*!
   Constructor.
@@ -54,7 +55,7 @@ SoOneShotSensor::SoOneShotSensor(void)
 
 /*!
   Constructor taking as parameters the sensor callback function and
-  the userdata which will be passed the callback.
+  the userdata which will be passed to the callback.
 
   \sa setFunction(), setData()
  */

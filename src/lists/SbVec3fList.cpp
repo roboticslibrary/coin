@@ -34,7 +34,8 @@
 
 /*!
   \class SbVec3fList SbVec3fList.h Inventor/lists/SbVec3fList.h
-  \brief The SbVec3fList class is a container for arrays of SbVec3f pointers.
+  \brief The SbVec3fList class is a container for pointers to SbVec3f objects.
+
   \ingroup base
 
   Note that upon using the equality and inequality operators, the
@@ -70,23 +71,31 @@ SbVec3fList::~SbVec3fList()
 /*!
   \fn void SbVec3fList::append(const SbVec3f * item)
 
-  Overridden from parent to allocate a new SbVec3f instance when
+  \copydetails SbPList::append()
+
+  Overloaded from parent to allocate a new SbVec3f instance when
   called.
 
   \sa SbPList::append()
- */
+*/
 
 /*!
   \fn void SbVec3fList::insert(const SbVec3f * item, const int insertbefore)
 
-  Overridden from parent to allocate a new SbVec3f instance when
+  \copydetails SbPList::insert(void * item, const int insertbefore)
+
+  Overloaded from parent to allocate a new SbVec3f instance when
   called.
 
   \sa SbPList::insert()
- */
+*/
 
 /*!
   \fn SbVec3f * SbVec3fList::operator[](const int idx) const
 
-  Overridden from parent to return an SbVec3f.
+  \copydetails SbPList::operator[](const int index) const
+
+  Overloaded from parent to return an SbVec3f pointer.
+
+  \sa SbPList::operator[]()
 */

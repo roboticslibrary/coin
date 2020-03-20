@@ -33,6 +33,7 @@
 /*!
   \class SoBumpMapCoordinateElement Inventor/elements/SoBumpMapCoordinateElement.h
   \brief The SoBumpMapCoordinateElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -64,8 +65,7 @@
 SO_ELEMENT_SOURCE(SoBumpMapCoordinateElement);
 
 /*!
-  This static method initializes static data for the
-  SoBumpMapCoordinateElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -75,7 +75,7 @@ SoBumpMapCoordinateElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoBumpMapCoordinateElement::~SoBumpMapCoordinateElement(void)

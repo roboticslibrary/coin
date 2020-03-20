@@ -33,6 +33,7 @@
 /*!
   \class SoAnnoText3RenderPrintElement Inventor/elements/SoAnnoText3RenderPrintElement.h
   \brief The SoAnnoText3RenderPrintElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -52,8 +53,7 @@
 SO_ELEMENT_SOURCE(SoAnnoText3RenderPrintElement);
 
 /*!
-  This static method initializes static data for the
-  SoAnnoText3RenderPrintElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -63,11 +63,10 @@ SoAnnoText3RenderPrintElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
-SoAnnoText3RenderPrintElement::~SoAnnoText3RenderPrintElement(// virtual protected
-    void)
+SoAnnoText3RenderPrintElement::~SoAnnoText3RenderPrintElement()
 {
 }
 

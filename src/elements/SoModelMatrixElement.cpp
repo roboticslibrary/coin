@@ -33,6 +33,7 @@
 /*!
   \class SoModelMatrixElement Inventor/elements/SoModelMatrixElement.h
   \brief The SoModelMatrixElement class is used to manage the current transformation.
+
   \ingroup elements
 
   SoModelMatrixElement contains the object-to-world matrix.
@@ -87,8 +88,7 @@
 SO_ELEMENT_SOURCE(SoModelMatrixElement);
 
 /*!
-  This static method initializes static data for the
-  SoModelMatrixElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -98,7 +98,7 @@ SoModelMatrixElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoModelMatrixElement::~SoModelMatrixElement(void)
@@ -417,7 +417,7 @@ SoModelMatrixElement::pushMatrixElt()
 
 /*!
   virtual method which is called from the static method
-  popMatrix(). Retores model matrix to the matrix returned from
+  popMatrix(). Restores model matrix to the matrix returned from
   pushMatrix().
 */
 void
@@ -426,7 +426,10 @@ SoModelMatrixElement::popMatrixElt(const SbMatrix & matrix)
   this->modelMatrix = matrix;
 }
 
-// doc from parent
+/*!
+  Initializes the element to its default value. The default
+  value for modelMatrix is the identity matrix.
+*/
 void
 SoModelMatrixElement::init(SoState * state)
 {
@@ -460,6 +463,9 @@ SoModelMatrixElement::push(SoState * state)
   this->copyNodeIds(prev);
 }
 
+/*!
+  Returns the current model matrix.
+*/
 const SbMatrix &
 SoModelMatrixElement::getModelMatrix(void) const
 {

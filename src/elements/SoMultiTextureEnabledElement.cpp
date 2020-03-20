@@ -33,6 +33,7 @@
 /*!
   \class SoMultiTextureEnabledElement Inventor/elements/SoMultiTextureEnabledElement.h
   \brief The SoMultiTextureEnabledElement class is an element which stores whether texturing is enabled or not.
+
   \ingroup elements
 
   \COIN_CLASS_EXTENSION
@@ -43,13 +44,13 @@
 /*!
   \fn void SoMultiTextureEnabledElement::set(SoState * state, const SbBool enabled)
   
-  Coin-3 support.
+  \since Coin-3
 */
 
 /*!
   \fn void SoMultiTextureEnabledElement::set(SoState * state, SoNode* node, const SbBool enabled)
   
-  Coin-3 support.
+  \since Coin-3.
 */
 
 #include "SbBasicP.h"
@@ -71,7 +72,9 @@ class SoMultiTextureEnabledElementP {
 
 SO_ELEMENT_CUSTOM_CONSTRUCTOR_SOURCE(SoMultiTextureEnabledElement);
 
-// doc from parent
+/*!
+  \copydetails SoElement::initClass(void)
+*/
 void
 SoMultiTextureEnabledElement::initClass(void)
 {
@@ -79,7 +82,7 @@ SoMultiTextureEnabledElement::initClass(void)
 }
 
 /*!
-  The constructor.
+  Constructor.
 */
 SoMultiTextureEnabledElement::SoMultiTextureEnabledElement(void)
 {
@@ -90,7 +93,7 @@ SoMultiTextureEnabledElement::SoMultiTextureEnabledElement(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 SoMultiTextureEnabledElement::~SoMultiTextureEnabledElement(void)
 {

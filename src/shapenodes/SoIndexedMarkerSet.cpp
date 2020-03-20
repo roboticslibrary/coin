@@ -33,16 +33,17 @@
 /*!
   \class SoIndexedMarkerSet SoIndexedMarkerSet.h Inventor/nodes/SoIndexedMarkerSet.h
   \brief The SoIndexedMarkerSet class is used to display a set of bitmap markers at 3D positions.
+
   \ingroup nodes
 
   This node either uses the coordinates currently on the state
-  (typically set up by a leading SoCoordinate3 node in the scenegraph)
+  (typically set up by a leading SoCoordinate3 node in the scene graph)
   or from a SoVertexProperty node attached to this node to render a
   set of 3D points.
 
   To add new markers, use the static functions in SoMarkerSet.
 
-  Here's a simple usage example of SoIndexedMarkerSet in a scenegraph:
+  Here's a simple usage example of SoIndexedMarkerSet in a scene graph:
 
   \verbatim
   #Inventor V2.1 ascii
@@ -136,7 +137,9 @@ SoIndexedMarkerSet::~SoIndexedMarkerSet()
 {
 }
 
-// doc from parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoIndexedMarkerSet::initClass(void)
 {
@@ -212,13 +215,13 @@ SoIndexedMarkerSet::GLRender(SoGLRenderAction * action)
   // Symptom treatment against the complete marker set vanishing for certain
   // view angles. We'll disable the clipping planes temporarily. Individual
   // markers are still clipped using SoCullElement::cullTest() below.
-  // See https://bitbucket.org/Coin3D/coin/pull-requests/52 for a test case.
-  int numPlanes = 0;
+  // See https://github.com/coin3d/coin/pull-requests/52 for a test case.
+  GLint numPlanes = 0;
   glGetIntegerv(GL_MAX_CLIP_PLANES, &numPlanes);
   SbList<SbBool> planesEnabled;
-  for (int i = 0; i < numPlanes; ++i) {
-    planesEnabled.append(glIsEnabled(GL_CLIP_PLANE0 + (GLuint)i));
-    glDisable(GL_CLIP_PLANE0 + (GLuint)i);
+  for (GLint i = 0; i < numPlanes; ++i) {
+    planesEnabled.append(glIsEnabled(GL_CLIP_PLANE0 + i));
+    glDisable(GL_CLIP_PLANE0 + i);
   }
 
   glMatrixMode(GL_MODELVIEW);
@@ -297,9 +300,9 @@ SoIndexedMarkerSet::GLRender(SoGLRenderAction * action)
     glBitmap(size[0], size[1], 0, 0, 0, 0, bytes);
   }
 
-  for (int i = 0; i < numPlanes; ++i) {
+  for (GLint i = 0; i < numPlanes; ++i) {
     if (planesEnabled[i]) {
-      glEnable(GL_CLIP_PLANE0 + (GLuint)i);
+      glEnable(GL_CLIP_PLANE0 + i);
     }
   }
 

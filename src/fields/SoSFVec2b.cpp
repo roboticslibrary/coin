@@ -33,10 +33,11 @@
 /*!
   \class SoSFVec2b SoSFVec2b.h Inventor/fields/SoSFVec2b.h
   \brief The SoSFVec2b class is a container for an SbVec2b vector.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a single vector with two elements.
+  need to store a single vector with two elements.
 
   \sa SbVec2b, SoMFVec2b
   \COIN_CLASS_EXTENSION
@@ -60,7 +61,9 @@ SO_SFIELD_SOURCE(SoSFVec2b, SbVec2b, SbVec2b);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFVec2b::initClass(void)
 {

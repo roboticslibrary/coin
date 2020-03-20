@@ -33,6 +33,7 @@
 /*!
   \class SoClipPlaneElement Inventor/elements/SoClipPlaneElement.h
   \brief The SoClipPlaneElement class is used to manage the clip plane stack.
+
   \ingroup elements
 */
 
@@ -64,7 +65,10 @@ SoClipPlaneElement::so_plane_data::so_plane_data(const SbPlane &planeref, const 
 
 SO_ELEMENT_SOURCE(SoClipPlaneElement);
 
-// doc from parent
+/*!
+  \copydetails SoElement::initClass(void)
+*/
+
 void
 SoClipPlaneElement::initClass(void)
 {
@@ -72,7 +76,7 @@ SoClipPlaneElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 SoClipPlaneElement::~SoClipPlaneElement()
 {
@@ -120,7 +124,7 @@ SoClipPlaneElement::getNum() const
 }
 
 /*!
-  Returns the \index'th plane.
+  Returns the \a index'th plane.
 */
 const SbPlane &
 SoClipPlaneElement::get(const int index,

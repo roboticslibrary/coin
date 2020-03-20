@@ -33,6 +33,7 @@
 /*!
   \class SoCamera SoCamera.h Inventor/nodes/SoCamera.h
   \brief The SoCamera class is the abstract base class for camera definition nodes.
+
   \ingroup nodes
 
   To be able to view a scene, one needs to have a camera in the scene
@@ -115,7 +116,7 @@
 
 #include <Inventor/nodes/SoCamera.h>
 
-#include <float.h> // for FLT_EPSILON
+#include <cfloat> // for FLT_EPSILON
 
 #include <Inventor/elements/SoCacheElement.h>
 #include <Inventor/actions/SoCallbackAction.h>
@@ -176,10 +177,10 @@
   \var SoSFRotation SoCamera::orientation
 
   Camera orientation specified as a rotation value from the default
-  orientation where the camera is pointing along the negative z-axis,
-  with "up" along the positive y-axis.
+  orientation where the camera is pointing along the negative Z-axis,
+  with "up" along the positive Y-axis.
 
-  E.g., to rotate the camera to point along the X axis:
+  E.g., to rotate the camera to point along the X-axis:
 
   \code
   mycamera->orientation.setValue(SbRotation(SbVec3f(0, 1, 0), M_PI / 2.0f));
@@ -231,7 +232,7 @@
   construct a valid viewing volume.
 
   Note that the range [nearDistance, farDistance] decides the dynamic
-  range of the Z-buffer in the underlying polygon-rendering
+  range of the z-buffer in the underlying polygon-rendering
   rasterizer.  What this means is that if the near and far clipping
   planes of the camera are wide apart, the possibility of visual
   artifacts will increase. The artifacts will manifest themselves in
@@ -371,6 +372,9 @@ SoCamera::~SoCamera()
 }
 
 // Doc in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoCamera::initClass(void)
 {
@@ -475,9 +479,9 @@ SoCamera::getViewVolume(const SbViewportRegion & vp,
 
 /*!
   Reorients the camera so that it points towards \a targetpoint.
-  The positive y-axis is used as the up vector of the camera, unless
+  The positive Y-axis is used as the up vector of the camera, unless
   the new camera direction is parallel to this axis, in which case the
-  positive z-axis will be used instead.
+  positive Z-axis will be used instead.
 */
 void
 SoCamera::pointAt(const SbVec3f & targetpoint)
@@ -820,9 +824,7 @@ void
 SoCamera::jitter(int numpasses, int curpass, const SbViewportRegion & vpreg,
                  SbVec3f & jitteramount) const
 {
-  int vpsize[2];
-  vpsize[0] = vpreg.getViewportSizePixels()[0];
-  vpsize[1] = vpreg.getViewportSizePixels()[1];
+  const int vpsize[2] = { vpreg.getViewportSizePixels()[0], vpreg.getViewportSizePixels()[1] };
   coin_viewvolume_jitter(numpasses, curpass, vpsize, (float*) jitteramount.getValue());
 }
 
@@ -1075,12 +1077,12 @@ SoCamera::getStereoMode(void) const
   simplified, how much the camera is translated along the local X-axis
   between the left and the right view.
 
-  The default distance is 0.1, which is chosen since it's the
+  The default distance is 0.1, which is chosen since it is the
   approximate distance between the human eyes.
 
   To create a nice looking and visible stereo effect, the application
   programmer will often have to adjust this value. If all you want to
-  do is examine simple stand-alone 3D objects, it is possible to
+  do is examine simple standalone 3D objects, it is possible to
   calculate a stereo offset based on the bounding box of the 3D model
   (or scale the model down to an appropriate size).
 
@@ -1090,7 +1092,7 @@ SoCamera::getStereoMode(void) const
   of the scene, but rather use a stereo offset based on the scale of
   the individual objects/details you want to examine.
 
-  Please note that it's important to set a sensible focal distance
+  Please note that it is important to set a sensible focal distance
   when doing stereo rendering. See setBalanceAdjustment() for
   information about how the focal distance affects the stereo
   rendering.

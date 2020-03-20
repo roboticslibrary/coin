@@ -32,10 +32,10 @@
 
 #include "fonts/glyph3d.h"
 
-#include <float.h> /* FLT_MIN */
-#include <string.h>
-#include <assert.h>
-#include <stdio.h>
+#include <cfloat> /* FLT_MIN */
+#include <cstring>
+#include <cassert>
+#include <cstdio>
 
 #include <Inventor/C/basic.h>
 #include <Inventor/C/base/list.h>
@@ -50,8 +50,7 @@
 #include "coindefs.h"
 
 #ifndef COIN_WORKAROUND_NO_USING_STD_FUNCS
-using std::malloc;
-using std::free;
+using namespace std;
 #endif // !COIN_WORKAROUND_NO_USING_STD_FUNCS
 
 /* ********************************************************************** */
@@ -272,7 +271,7 @@ cc_glyph3d_getcoords(const cc_glyph3d * g)
 {
   const float * ptr = cc_flw_get_vector_glyph_coords(g->vectorglyph);
   if (ptr == NULL) {    
-    assert(g->vectorglyph->vertices && "Default vertices has not been initialized as expected!");
+    assert(g->vectorglyph->vertices && "Default vertices have not been initialized as expected!");
     return g->vectorglyph->vertices;
   }
   return ptr;  
@@ -283,7 +282,7 @@ cc_glyph3d_getfaceindices(const cc_glyph3d * g)
 {
   const int * ptr = cc_flw_get_vector_glyph_faceidx(g->vectorglyph);
   if (ptr == NULL) {      
-    assert(g->vectorglyph->faceindices && "Default face indices has not been initialized as expected!");
+    assert(g->vectorglyph->faceindices && "Default face indices have not been initialized as expected!");
     return g->vectorglyph->faceindices; 
   }
   return ptr;
@@ -294,7 +293,7 @@ cc_glyph3d_getedgeindices(const cc_glyph3d * g)
 {
   const int * ptr = cc_flw_get_vector_glyph_edgeidx(g->vectorglyph);
   if (ptr == NULL) {    
-    assert(g->vectorglyph->edgeindices && "Default edge indices has not been initialized as expected!");
+    assert(g->vectorglyph->edgeindices && "Default edge indices have not been initialized as expected!");
     return g->vectorglyph->edgeindices; 
   }
   return ptr;
@@ -383,7 +382,7 @@ glyph3d_calcboundingbox(cc_glyph3d * g)
     g->bbox[2] = cc_max(coordptr[(*edgeptr)*2], g->bbox[2]);
     g->bbox[3] = cc_max(coordptr[(*edgeptr)*2 + 1], g->bbox[3]);
 
-    *edgeptr++;
+    edgeptr++;
   }
 
 }

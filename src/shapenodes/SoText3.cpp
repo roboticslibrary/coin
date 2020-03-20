@@ -33,6 +33,7 @@
 /*!
   \class SoText3 SoText3.h Inventor/nodes/SoText3.h
   \brief The SoText3 class renders extruded 3D text.
+
   \ingroup nodes
 
   Render text as 3D geometry.
@@ -46,7 +47,7 @@
   This node will create 3D geometry from a specified font defined by a
   preceding SoFont node. The complexity of the glyphs is controlled by
   a preceding SoComplexity node with \e Type set to OBJECT_SPACE.
-  Please note that the default builtin 3D font will not be affected by
+  Please note that the default built-in 3D font will not be affected by
   the SoComplexity node.
 
   This is a simple example of an extruded SoText3 string:
@@ -105,7 +106,7 @@
 
   Beware that using a lot of SoText3 text characters in a scene will
   usually have severe impact on the rendering performance, as each and
-  every character of the text increases the polygon-count a lot. This
+  every character of the text increases the polygon count a lot. This
   makes SoText3 nodes most suitable in situations where you just need
   a few characters to be placed in your scene, rather than to
   visualize complete sentences.
@@ -120,15 +121,15 @@
     }
   \endcode
 
-  \sa SoText2, SoAsciiText, SoProfile
+  \sa SoFont, SoFontStyle, SoText2, SoAsciiText, SoProfile
 */
 
 // *************************************************************************
 
 #include <Inventor/nodes/SoText3.h>
 
-#include <string.h>
-#include <float.h> // FLT_MAX, FLT_MIN
+#include <cstring>
+#include <cfloat> // FLT_MAX, FLT_MIN
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -210,28 +211,44 @@
 */
 /*!
   \var SoText3::Justification SoText3::CENTER
-  Strings are centered.
+  Centers of strings are aligned.
 */
 
 
 /*!
   \var SoMFString SoText3::string
 
-  The strings to render.
+  The set of strings to render.  Each string in the multiple value
+  field will be rendered on a separate line.
 
-  Array defaults to contain a single empty string.
+  The default value of the field is a single empty string.
 */
 /*!
   \var SoSFFloat SoText3::spacing
-  Vertical spacing. 1.0 is the default spacing.
+
+  Vertical spacing between the baselines of two consecutive horizontal lines.
+  Default value is 1.0, which means that it is equal to the vertical size of
+  the highest character in the bitmap alphabet.
 */
 /*!
   \var SoSFEnum SoText3::justification
-  Horizontal justification. Default is alignment at the left border.
+
+  Determines horizontal alignment of text strings.
+
+  If justification is set to SoText3::LEFT, the left edge of the first string
+  is at the origin and all strings are aligned with their left edges.
+  If set to SoText3::RIGHT, the right edge of the first string is
+  at the origin and all strings are aligned with their right edges. Otherwise,
+  if set to SoText3::CENTER, the center of the first string is at the
+  origin and all strings are aligned with their centers.
+  The origin is always located at the baseline of the first line of text.
+
+  Default value is SoText3::LEFT.
 */
 /*!
   \var SoSFBitMask SoText3::parts
-  Character parts. Default is to show only the front-facing part.
+
+  Character parts. Default is to show only the front facing part.
 */
 
 // FIXME: missing features, pederb 20000224
@@ -267,7 +284,7 @@ public:
 private:
 #ifdef COIN_THREADSAFE
   // FIXME: a mutex for every instance seems a bit excessive,
-  // especially since MSWindows might have rather strict limits on the
+  // especially since Microsoft Windows might have rather strict limits on the
   // total amount of mutex resources a process (or even a user) can
   // allocate. so consider making this a class-wide instance instead.
   // -mortene.
@@ -317,7 +334,9 @@ SoText3::~SoText3()
   delete PRIVATE(this);
 }
 
-// doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoText3::initClass(void)
 {
@@ -446,7 +465,7 @@ SoText3::computeBBox(SoAction * action, SbBox3f & box, SbVec3f & center)
 
 
 /*!
-  Not implemented. Should probably have been private in OIV. Let us
+  Not implemented. Should probably have been private in Open Inventor API. Let us
   know if you need this method for anything, and we'll implement it.
 */
 SbBox3f
@@ -880,7 +899,7 @@ SoText3P::render(SoState * state, const cc_font_specification * fontspec,
                 vc[1] = startb[1] + (profcoords[k][1] * normala[1]);
                 vc[2] = -profcoords[k][0];
 
-                // The windows tesselation sometimes return
+                // The windows tessellation sometimes return
                 // illegal/empty tris. A test must be done to
                 // prevent stdout from being flooded with
                 // normalize() warnings from inside the normal
@@ -914,7 +933,7 @@ SoText3P::render(SoState * state, const cc_font_specification * fontspec,
 
           // NOTE: We add the xpos and ypos to each vertex at this
           // point because Linux systems seems to accumulate an error
-          // when calculating the normals (ie. two 'o's in a row
+          // when calculating the normals (i.e. two 'o's in a row
           // doesn't get the same normals due to the xpos
           // difference). This doesn't happen on Windows so it is
           // probably a floating point precision issue linked to the
@@ -1332,7 +1351,7 @@ SoText3P::generate(SoAction * action, const cc_font_specification * fontspec,
                 vc[1] = startb[1] + (profcoords[k][1] * normala[1]);
                 vc[2] = -profcoords[k][0];
 
-                // The windows tesselation sometimes return
+                // The windows tessellation sometimes return
                 // illegal/empty tris. A test must be done to prevent
                 // stdout from being flooded with normalize() warnings
                 // from inside the normal generator.

@@ -33,6 +33,7 @@
 /*!
   \class SoNodeSensor SoNodeSensor.h Inventor/sensors/SoNodeSensor.h
   \brief The SoNodeSensor class detects changes to nodes.
+
   \ingroup sensors
 
   Attach a node to a sensor of this type to put it under surveillance,
@@ -60,7 +61,7 @@ SoNodeSensor::SoNodeSensor(void)
 
 /*!
   Constructor taking as parameters the sensor callback function and
-  the userdata which will be passed the callback.
+  the userdata which will be passed to the callback.
 
   \sa setFunction(), setData()
 */
@@ -80,7 +81,7 @@ SoNodeSensor::~SoNodeSensor(void)
 
 /*!
   Attach sensor to a node. Whenever any data in the node (or its
-  children, if it's an SoGroup or SoGroup derived node) changes, the
+  children, if it is an SoGroup or SoGroup derived node) changes, the
   sensor will be triggered and call the callback function.
 
   Attaching a node sensor to a node will \e not increase the node's

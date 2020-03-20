@@ -33,6 +33,7 @@
 /*!
   \class SoTimeCounter SoTimeCounter.h Inventor/engines/SoTimeCounter.h
   \brief The SoTimeCounter class is an integer counter engine.
+
   \ingroup engines
 
   The SoTimeCounter engine is by default connected to the realTime
@@ -159,7 +160,9 @@ SoTimeCounter::SoTimeCounter(void)
   this->timeIn.connectFrom(realtime);
 }
 
-// Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoTimeCounter::initClass(void)
 {
@@ -200,7 +203,7 @@ SoTimeCounter::writeInstance(SoOutput * out)
   // Re-connect to realTime field.
   if (connectfromrealTime) {
     // Don't send notification when reconnecting to preserve the state
-    // of the scenegraph between write passes.
+    // of the scene graph between write passes.
     this->timeIn.connectFrom(connectfield, TRUE);
     this->timeIn.setDefault(defaultflag);
   }

@@ -33,14 +33,15 @@
 /*!
   \class SoGLColorIndexElement Inventor/elements/SoGLColorIndexElement.h
   \brief The SoGLColorIndexElement class sets the current OpenGL color.
+
   \ingroup elements
 
-  This element is only used when the OpenGL canvas is in colorindex
-  mode, ie where colors for individual pixels are fetched from a color
+  This element is only used when the OpenGL canvas is in color index
+  mode, i.e. where colors for individual pixels are fetched from a color
   lookup table ("CLUT"). The usual thing to do is to set up a canvas
-  in RGBA truecolor mode.
+  in RGBA true color mode.
 
-  One common use for colorindex mode OpenGL canvases is to use one in
+  One common use for color index mode OpenGL canvases is to use one in
   the overlay planes (which are usually limited to only 2 or 4
   available colors), if supported by the OpenGL hardware and / or
   driver.
@@ -61,7 +62,9 @@
 
 SO_ELEMENT_SOURCE(SoGLColorIndexElement);
 
-// doc in parent
+/*!
+  \copydetails SoElement::initClass(void)
+*/
 void
 SoGLColorIndexElement::initClass(void)
 {
@@ -69,7 +72,7 @@ SoGLColorIndexElement::initClass(void)
 }
 
 
-// doc in parent
+// doc in superclass
 void
 SoGLColorIndexElement::init(SoState * stateptr)
 {
@@ -78,7 +81,7 @@ SoGLColorIndexElement::init(SoState * stateptr)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 SoGLColorIndexElement::~SoGLColorIndexElement()
 {
@@ -123,6 +126,9 @@ SoGLColorIndexElement::getInstance(SoState *state)
     state->getElementNoPush(classStackIndex);
 }
 
+/*!
+  Returns the index'th color index in element.
+*/
 int32_t
 SoGLColorIndexElement::get(const int index) const
 {
@@ -130,6 +136,9 @@ SoGLColorIndexElement::get(const int index) const
   return SoLazyElement::getColorIndices(this->state)[index];
 }
 
+/*!
+  Returns the default color index in element.
+*/
 int32_t
 SoGLColorIndexElement::getDefault(void)
 {

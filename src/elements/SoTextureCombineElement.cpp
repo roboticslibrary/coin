@@ -33,6 +33,7 @@
 /*!
   \class SoTextureCombineElement Inventor/elements/SoTextureCombineElement.h
   \brief The SoTextureCombineElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -82,8 +83,7 @@ SoTextureCombineElement::SoTextureCombineElement(void)
 }
 
 /*!
-  This static method initializes static data for the
-  SoTextureCombineElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -93,7 +93,7 @@ SoTextureCombineElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoTextureCombineElement::~SoTextureCombineElement()
@@ -101,7 +101,7 @@ SoTextureCombineElement::~SoTextureCombineElement()
   delete PRIVATE(this);
 }
 
-//! FIXME: write doc.
+// Doc from superclass.
 
 void
 SoTextureCombineElement::init(SoState * state)
@@ -233,7 +233,7 @@ SoTextureCombineElement::copyMatchInfo(void) const
 
 void
 SoTextureCombineElement::setElt(const int unit,
-                                const uint32_t nodeid,
+                                const SbUniqueId nodeid,
                                 const Operation rgboperation,
                                 const Operation alphaoperation,
                                 const Source * rgbsource,

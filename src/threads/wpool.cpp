@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 \**************************************************************************/
 
-/*! \file common.h */
+/*! \file Inventor/C/threads/common.h */
 
 /*!
   \struct cc_wpool common.h Inventor/C/threads/common.h
@@ -47,8 +47,8 @@
 /*! \file wpool.h */
 #include <Inventor/C/threads/wpool.h>
 
-#include <stdlib.h>
-#include <assert.h>
+#include <cstdlib>
+#include <cassert>
 
 #include <Inventor/C/threads/worker.h>
 #include <Inventor/C/threads/mutex.h>
@@ -243,11 +243,11 @@ cc_wpool_wait_all(cc_wpool * pool)
 
   Locks the pool so that workers can be started using the
   cc_wpool_start_worker() method. \a numworkersneeded should contain
-  the minumum number of workers that is needed. If \a numworkersneeded
+  the minimum number of workers that is needed. If \a numworkersneeded
   workers are available, the pool will be locked and TRUE is returned.
   Otherwise FALSE is returned.
 
-  Usage pseudocode:
+  Usage pseudo code:
 
   \code
 

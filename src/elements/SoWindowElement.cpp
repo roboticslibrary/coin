@@ -33,6 +33,7 @@
 /*!
   \class SoWindowElement Inventor/elements/SoWindowElement.h
   \brief The SoWindowElement class is used to store current window attributes.
+
   \ingroup elements
 
   In Coin, this element is not API-compatible with SGI Inventor, since
@@ -74,7 +75,9 @@
 
 SO_ELEMENT_SOURCE(SoWindowElement);
 
-// doc in parent
+/*!
+  \copydetails SoElement::initClass(void)
+*/
 void
 SoWindowElement::initClass(void)
 {
@@ -82,7 +85,7 @@ SoWindowElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 SoWindowElement::~SoWindowElement(void)
 {

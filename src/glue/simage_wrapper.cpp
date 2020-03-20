@@ -44,10 +44,10 @@
 #endif /* !HAVE_CONFIG_H */
 
 #include "coindefs.h"
-#include <assert.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
+#include <cassert>
+#include <cstdlib>
+#include <cstring>
+#include <cstdio>
 
 #ifdef HAVE_LIBSIMAGE /* In case we're _not_ doing runtime linking. */
 #define SIMAGEWRAPPER_ASSUME_SIMAGE
@@ -279,7 +279,7 @@ simage_wrapper(void)
 #ifdef SIMAGE_RUNTIME_LINKING
     {
       int idx;
-      char * simage_dll_name = "simage1";
+      const char * simage_dll_name = "simage1";
 
 #ifdef COIN_SYSTEM_LIBRARY_NAME
       {
@@ -298,7 +298,7 @@ simage_wrapper(void)
         "simage", "libsimage", "libsimage.so",
         /* Mach dynamic library name */
         "libsimage.dylib",
-        /* MSWindows DLL names for the simage library */
+        /* Microsoft Windows DLL names for the simage library */
         simage_dll_name,
         NULL
       };

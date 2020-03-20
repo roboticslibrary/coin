@@ -123,13 +123,13 @@
   these nodes haven't got index arrays, and the only bindings supported
   are PER_VERTEX and OVERALL.
 
-  If it's inconvenient to create vertex array ready scene graphs
+  If it is inconvenient to create vertex array ready scene graphs
   directly from your application, it's also possible to use
   SoReorganizeAction to reorganize the geometry before rendering.
 */
 
 /*!
-  \class SoReorganizeAction Inventor/actions/SoReorganizeAction.h
+  \class SoReorganizeAction SoReorganizeAction.h Inventor/actions/SoReorganizeAction.h
   \ingroup actions
   \brief The SoReorganizeAction class reorganizes your scene graph to optimize traversal/rendering.
 
@@ -383,7 +383,9 @@ class SoReorganizeActionP {
 
 SO_ACTION_SOURCE(SoReorganizeAction);
 
-// Override from parent class.
+/*!
+  \copydetails SoAction::initClass(void)
+*/
 void
 SoReorganizeAction::initClass(void)
 {

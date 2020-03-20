@@ -51,6 +51,7 @@
   \class SbVec3s SbVec3s.h Inventor/SbVec3s.h
   \brief The SbVec3s class is a 3 dimensional vector with short integer
   coordinates.
+
   \ingroup base
 
   This vector class provides storage for a 3 dimensional vector
@@ -153,7 +154,7 @@
 */
 
 /*!
-  SbVec3s & SbVec3s::setValue(short x, short y, short z)
+  \fn SbVec3s & SbVec3s::setValue(short x, short y, short z)
 
   Set new coordinates for the vector. Returns reference to self.
 
@@ -408,7 +409,7 @@ SbVec3s::toString() const
 }
 
 /*!
-  Convert from a string representation, return wether this is a valid conversion
+  Convert from a string representation, return whether this is a valid conversion
 */
 SbBool
 SbVec3s::fromString(const SbString & str)
@@ -419,9 +420,8 @@ SbVec3s::fromString(const SbString & str)
 }
 
 /*!
-  Dump the state of this object to the \a file stream. Only works in
-  debug version of library, method does nothing in an optimized
-  compile.
+  Dump the state of this object to the \a fp file stream. Only works in
+  debug version of library, method does nothing in an optimized build.
 */
 void
 SbVec3s::print(FILE * fp) const

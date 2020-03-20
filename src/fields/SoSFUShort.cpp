@@ -33,10 +33,11 @@
 /*!
   \class SoSFUShort SoSFUShort.h Inventor/fields/SoSFUShort.h
   \brief The SoSFUShort class is a container for a unsigned short integer value.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a single short unsigned integer value.
+  need to store a single short unsigned integer value.
 
   \sa SoMFUShort
 */
@@ -57,7 +58,9 @@ SO_SFIELD_SOURCE(SoSFUShort, unsigned short, unsigned short);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFUShort::initClass(void)
 {

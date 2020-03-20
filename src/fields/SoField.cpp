@@ -33,6 +33,7 @@
 /*!
   \class SoField SoField.h Inventor/fields/SoField.h
   \brief The SoField class is the top-level abstract base class for fields.
+
   \ingroup fields
 
   Fields is the mechanism used throughout Coin for encapsulating basic
@@ -41,7 +42,7 @@
 
   Almost all public properties in nodes are stored in fields, and so
   are the inputs and outputs of engines. So fields can be viewed as
-  the major mechanism for scenegraph nodes and engines to expose their
+  the major mechanism for scene graph nodes and engines to expose their
   public API.
 
   Forcing data modification to go through a public function interface
@@ -50,20 +51,20 @@
   application programmer.
 
   E.g. the default behavior when changing the value of a field in a
-  scenegraph node is that there'll automatically be a chain of
+  scene graph node is that there'll automatically be a chain of
   notifications -- from the field to the owner node, from that node to
-  it's parent node, etc all the way through to the top-most root node,
-  where the need for a rendering update will be signalled to the
+  its parent node, etc all the way through to the top-most root node,
+  where the need for a rendering update will be signaled to the
   application.
 
   (This notification mechanism is the underlying feature that makes the
-  Coin library classify as a so-called \e data-driven scenegraph API.
+  Coin library classify as a so-called \e data-driven scene graph API.
 
   The practical consequences of this is that rendering and many other
   processing actions is default scheduled to \e only happen when
   something has changed in the retained data structures, making the
   Coin library under normal circumstances \e much less CPU intensive
-  than so-called "application-driven" scenegraph API, like for
+  than so-called "application-driven" scene graph API, like for
   instance SGI IRIS Performer, which are continuously re-rendering
   even when nothing has changed in the data structures or with the
   camera viewport.)
@@ -72,7 +73,7 @@
   the application programmer:
 
   \li Fields can be connected to other fields. This makes it for
-      instance possible to have "self-updating" scenes, ie you can set
+      instance possible to have "self-updating" scenes, i.e. you can set
       up scenes where entities \e automatically react to changes in
       other entities. This also provides a necessary mechanism for
       having "auto-animating" scenes, as it is possible to connect any
@@ -83,7 +84,7 @@
       mechanisms for automatically converting between different field
       types.
 
-  \li Fields provide persistance for scenegraph import (and export)
+  \li Fields provide persistence for scene graph import (and export)
       operations. This includes animating entities, so animations can
       be stored within ordinary Inventor format files.
 
@@ -96,7 +97,7 @@
       much higher level interface abstraction than standard C/C++
       arrays.
 
-  Note: there are some field classes which has been obsoleted from the
+  Note: there are some field classes which have been obsoleted from the
   Open Inventor API. They are: SoSFLong, SoSFULong, SoMFLong and
   SoMFULong. You should use these classes instead (respectively):
   SoSFInt32, SoSFUInt32, SoMFInt32 and SoMFUInt32.
@@ -229,7 +230,7 @@ public:
 
   void removeConverter(const void * item)
   {
-    SbBool ok = this->maptoconverter.erase(item);
+    size_t ok = this->maptoconverter.erase(item);
     assert(ok);
   }
 
@@ -410,7 +411,7 @@ SoFieldP::hashRealloc(void * bufptr, size_t size)
   CC_MUTEX_LOCK(sofield_mutex);
 
   char ** bufptrptr = NULL;
-  int ok = SoFieldP::ptrhash->get(static_cast<char *>(bufptr), bufptrptr);
+  SbBool ok = SoFieldP::ptrhash->get(static_cast<char *>(bufptr), bufptrptr);
   assert(ok);
 
   // If *bufptrptr contains a NULL pointer, this is the first
@@ -426,8 +427,8 @@ SoFieldP::hashRealloc(void * bufptr, size_t size)
     newbuf = static_cast<char *>(realloc(bufptr, size));
   }
   if (newbuf != bufptr) {
-    ok = SoFieldP::ptrhash->erase(static_cast<char *>(bufptr));
-    assert(ok);
+    size_t isok = SoFieldP::ptrhash->erase(static_cast<char *>(bufptr));
+    assert(isok);
     *bufptrptr = newbuf;
     SoFieldP::ptrhash->put(newbuf, bufptrptr);
   }
@@ -642,6 +643,9 @@ SoField_cleanupClass(void)
   SoField::cleanupClass();
 }
 
+/*!
+  This static method cleans up static data of the SoField class.
+*/
 void
 SoField::cleanupClass(void)
 {
@@ -702,7 +706,7 @@ SoField::setDefault(SbBool def)
 }
 
 /*!
-  Check if the field contains its default value. Fields which has
+  Check if the field contains its default value. Fields which have
   their default value intact will normally not be included in the
   output when writing scene graphs out to a file, for instance.
 
@@ -851,16 +855,28 @@ SoField::connectFrom(SoField * master, SbBool notnotify, SbBool append)
 
     if (!append) this->disconnect();
 
+    SoField * converterinput = conv->getInput(mastertype);
+    SoEngineOutput * converteroutput = conv->getOutput(thistype);
+
+#if COIN_DEBUG
+    if (converterinput == NULL) {
+      SoDebugError::post("SoField::connectFrom",
+                         "input field returned from field converter is NULL");
+      return FALSE;
+    } else if (converteroutput == NULL) {
+      SoDebugError::post("SoField::connectFrom",
+                         "output returned from field converter is NULL");
+      return FALSE;
+    }
+#endif // COIN_DEBUG
+
     // Link up the input SoField of the SoFieldConverter to the master
     // field by recursively calling connectFrom().
-    SoField * converterinput = conv->getInput(mastertype);
     // the converter engine should always be notified upon connection
     // as it will never have a default value read in from a file.
     converterinput->connectFrom(master, FALSE);
 
     // Connect from the SoFieldConverter output to the slave field.
-    SoEngineOutput * converteroutput =
-      conv->getOutput(SoType::badType()); // dummy type
     converteroutput->addConnection(this);
 
     // Remember the connection from the slave field to the
@@ -966,16 +982,28 @@ SoField::connectFrom(SoEngineOutput * master, SbBool notnotify, SbBool append)
 
     if (!append) this->disconnect();
 
+    SoField * converterinput = conv->getInput(mastertype);
+    SoEngineOutput * converteroutput = conv->getOutput(thistype);
+
+#if COIN_DEBUG
+    if (converterinput == NULL) {
+      SoDebugError::post("SoField::connectFrom",
+                         "input field returned from field converter is NULL");
+      return FALSE;
+    } else if (converteroutput == NULL) {
+      SoDebugError::post("SoField::connectFrom",
+                         "output returned from field converter is NULL");
+      return FALSE;
+    }
+#endif // COIN_DEBUG
+
     // Link up the input SoField of the SoFieldConverter to the master
     // SoEngineOutput by recursively calling connectFrom().
-    SoField * converterinput = conv->getInput(mastertype);
     // the converter engine should always be notified upon connection
     // as it will never have a default value read in from a file
     converterinput->connectFrom(master, FALSE);
 
     // Connect from the SoFieldConverter output to the slave field.
-    SoEngineOutput * converteroutput =
-      conv->getOutput(SoType::badType()); // dummy type
     converteroutput->addConnection(this);
 
     // Remember the connection from the slave field to the
@@ -1351,7 +1379,7 @@ SoField::get(SbString & valuestring)
   char * bufferptr = NULL; // indicates that initial buffer is on the stack
 
   CC_MUTEX_LOCK(sofield_mutex);
-  int ok = SoFieldP::getReallocHash()->put(initbuffer, &bufferptr);
+  SbBool ok = SoFieldP::getReallocHash()->put(initbuffer, &bufferptr);
   assert(ok);
   CC_MUTEX_UNLOCK(sofield_mutex);
 
@@ -1378,8 +1406,8 @@ SoField::get(SbString & valuestring)
   if (bufferptr) { free(bufferptr); }
 
   CC_MUTEX_LOCK(sofield_mutex);
-  ok = SoFieldP::getReallocHash()->erase(bufferptr ? bufferptr : initbuffer);
-  assert(ok);
+  size_t isok = SoFieldP::getReallocHash()->erase(bufferptr ? bufferptr : initbuffer);
+  assert(isok);
   CC_MUTEX_UNLOCK(sofield_mutex);
 }
 
@@ -1463,7 +1491,7 @@ SoField::notify(SoNotList * nlist)
   // In Inventor it is legal to have circular field connections. This
   // test stops the notification from entering into an infinite
   // recursion because of such connections. The flag is set/cleared
-  // before/after progagating the notification.
+  // before/after propagating the notification.
   if (this->getStatus(FLAG_ISNOTIFIED)) return;
 
   // needed because of the So[SF|MF]Node fields. When a node inside
@@ -1614,7 +1642,7 @@ SoField::operator ==(const SoField & f) const
 }
 
 /*!
-  Returns \c TRUE if the fields are of different type or has different
+  Returns \c TRUE if the fields are of different type or have different
   value.
 */
 int
@@ -1626,8 +1654,8 @@ SoField::operator !=(const SoField & f) const
 /*!
   Returns \c TRUE if it is necessary to write the field when dumping a
   scene graph. This needs to be done if the field is not default (it
-  has been changed from its default value), if it's ignored, or if
-  it's connected from another field or engine.
+  has been changed from its default value), if it is ignored, or if
+  it is connected from another field or engine.
 */
 SbBool
 SoField::shouldWrite(void) const
@@ -1680,7 +1708,7 @@ SoField::shouldWrite(void) const
   negative number).
 
   The default method is empty. Override in subclasses if you want do
-  something special on connections/deconnections.
+  something special on connections/disconnections.
 */
 void
 SoField::connectionStatusChanged(int COIN_UNUSED_ARG(numconnections))
@@ -1728,7 +1756,7 @@ SoField::fixCopy(SbBool COIN_UNUSED_ARG(copyconnections))
   operations.
 
   See also the note about the relevance of the fixCopy() method for
-  application programmers, as it is applicable on this method aswell.
+  application programmers, as it is applicable on this method as well.
 */
 SbBool
 SoField::referencesCopy(void) const
@@ -1836,7 +1864,7 @@ READ_VAL(SoInput * in, Type & val)
 
 /*!
   Reads and sets the value of this field from the given SoInput
-  instance.  Returns \c FALSE if the field value can not be parsed
+  instance.  Returns \c FALSE if the field value cannot be parsed
   from the input.
 
   The second argument is the field's context-specific \a name, which
@@ -1972,7 +2000,7 @@ SoField::read(SoInput * in, const SbName & name)
       // we called setDirty(FALSE) in the beginning of the function.
       // Since this field is read without a value (just connected to
       // some other field/engine), we need to mark the field as dirty
-      // so that it's evaluated the next time the field is read
+      // so that it is evaluated the next time the field is read
       this->setDirty(TRUE);
       this->startNotify();
     }
@@ -2016,7 +2044,7 @@ SoField::write(SoOutput * out, const SbName & name) const
     if (writeconnection) {
       writeconnection = FALSE;
       this->storage->add_vrml2_routes(out, this);
-      // if no value has been set, don't write field even if it's
+      // if no value has been set, don't write field even if it is
       // connected
       if (this->isDefault()) return;
     }
@@ -2136,7 +2164,7 @@ SoField::evaluateField(void) const
 
   // lock _before_ testing FLAG_ISEVALUATING to be thread safe
   SOFIELD_RECLOCK;
-  // Recursive calls to SoField::evalute() should _absolutely_ not
+  // Recursive calls to SoField::evaluate() should _absolutely_ not
   // happen, as the state of the field variables might not be
   // consistent while evaluating.
   //
@@ -2402,9 +2430,9 @@ SoField::writeConnection(SoOutput * out) const
 }
 
 // Check if this field should write a connection upon export. Returns
-// a pointer to the fieldcontainer with the master field we're
+// a pointer to the field container with the master field we're
 // connected to (or NULL if none, or if the master field's container
-// is not within the scenegraph). If the return value is non-NULL, the
+// is not within the scene graph). If the return value is non-NULL, the
 // name of the master field is copied to the mastername argument.
 SoFieldContainer *
 SoField::resolveWriteConnection(SbName & mastername) const

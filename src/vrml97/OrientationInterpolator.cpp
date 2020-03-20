@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLOrientationInterpolator SoVRMLOrientationInterpolator.h Inventor/VRMLnodes/SoVRMLOrientationInterpolator.h
   \brief The SoVRMLOrientationInterpolator class is used to interpolate orientations.
+
   \ingroup VRMLnodes
   
   \WEB3DCOPYRIGHT
@@ -69,7 +70,7 @@
   5.0) is equivalent to the rotation between the orientations (0, 1,
   0, 2) and (0, 1, 0, 5.0).  A more detailed discussion of
   interpolators is contained in 4.6.8, Interpolator nodes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.8>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.8>).
 
 */
 
@@ -91,7 +92,9 @@
 
 SO_NODEENGINE_SOURCE(SoVRMLOrientationInterpolator);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLOrientationInterpolator::initClass(void)
 {

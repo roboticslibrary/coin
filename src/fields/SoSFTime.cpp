@@ -33,10 +33,11 @@
 /*!
   \class SoSFTime SoSFTime.h Inventor/fields/SoSFTime.h
   \brief The SoSFTime class is a container for an SbTime value.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a single time representation.
+  need to store a single time representation.
 
   A field of this type stores its value to file as a floating
   point number.
@@ -59,11 +60,13 @@
 
 // *************************************************************************
 
-SO_SFIELD_SOURCE(SoSFTime, SbTime, SbTime);
+SO_SFIELD_SOURCE(SoSFTime, SbTime, const SbTime &);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFTime::initClass(void)
 {

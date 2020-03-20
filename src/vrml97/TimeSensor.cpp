@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLTimeSensor SoVRMLTimeSensor.h Inventor/VRMLnodes/SoVRMLTimeSensor.h
   \brief The SoVRMLTimeSensor class is a multi-purpose time event generator.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -91,7 +92,7 @@
   The e\ loop, \e startTime, and \e stopTime exposedFields and the
   isActive eventOut and their effects on the TimeSensor node are discussed
   in detail in 4.6.9, Time-dependent nodes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.9>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.9>).
   The "cycle" of a TimeSensor node lasts for cycleInterval
   seconds. The value of cycleInterval shall be greater than zero.  
 
@@ -244,7 +245,9 @@ public:
 
 SO_NODEENGINE_SOURCE(SoVRMLTimeSensor);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLTimeSensor::initClass(void) // static
 {
@@ -342,7 +345,7 @@ SoVRMLTimeSensor::write(SoWriteAction * action)
   // Re-connect to realTime field.
   if (connectfromrealTime) {
     // Don't send notification when reconnecting to preserve the state
-    // of the scenegraph between write passes.
+    // of the scene graph between write passes.
     this->timeIn.connectFrom(connectfield, TRUE);
     this->timeIn.setDefault(defaultflag);
   }

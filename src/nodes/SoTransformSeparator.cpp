@@ -33,12 +33,13 @@
 /*!
   \class SoTransformSeparator SoTransformSeparator.h Inventor/nodes/SoTransformSeparator.h
   \brief The SoTransformSeparator class is a group node preserving the current transformations.
+
   \ingroup nodes
 
   This node works like the SoSeparator group node, except that it only
   stores and restores the current model matrix transformation. Other
   appearance settings, like materials, textures, cameras, lights, etc,
-  will affect the remaining parts of the scenegraph after traversal,
+  will affect the remaining parts of the scene graph after traversal,
   just like as for the SoGroup node.
 
   <b>FILE FORMAT/DEFAULTS:</b>
@@ -102,6 +103,9 @@ SoTransformSeparator::~SoTransformSeparator()
 }
 
 // Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoTransformSeparator::initClass(void)
 {

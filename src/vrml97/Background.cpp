@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLBackground SoVRMLBackground.h Inventor/VRMLnodes/SoVRMLBackground.h
   \brief The SoVRMLBackground class is used for specifying a viewer panorama.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -67,7 +68,7 @@
   local coordinate system and are affected by the accumulated rotation
   of their ancestors as described below.  Background nodes are
   bindable nodes as described in 4.6.10, Bindable children nodes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.10>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.10>).
   There exists a Background stack, in which the top-most Background on
   the stack is the currently active Background. To move a Background
   to the top of the stack, a TRUE value is sent to the set_bind
@@ -75,7 +76,7 @@
   view. A FALSE value sent to set_bind removes the Background from the
   stack and unbinds it from the browser's view. More detail on the
   bind stack is described in 4.6.10, Bindable children nodes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.10>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.10>).
 
   The backdrop is conceptually a partial sphere (the ground) enclosed
   inside of a full sphere (the sky) in the local coordinate system
@@ -115,7 +116,7 @@
   colour value is for the nadir which is not specified in the
   groundAngle field. If the last groundAngle is less than pi/2, the
   region between the last groundAngle and the equator is
-  non-existant. The ground colour is linearly interpolated between the
+  non-existent. The ground colour is linearly interpolated between the
   specified groundColor values.
 
   The backUrl, bottomUrl, frontUrl, leftUrl, rightUrl, and topUrl
@@ -140,7 +141,7 @@
   orientation as if the image were displayed normally in 2D.
 
   <center>
-  <img src="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/Images/background.gif">
+  <img src="http://www.web3d.org/documents/specifications/14772/V2.0/Images/background.gif">
   Figure 6.1
   </center>
 
@@ -158,7 +159,7 @@
   GIF (see E.[GIF]) format is recommended (including transparency).
   More detail on the url fields can be found in 4.5, VRML and the
   World Wide Web
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.5>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.5>).
 
 
 */
@@ -168,9 +169,9 @@
 #include <Inventor/VRMLnodes/SoVRMLBackground.h>
 #include "coindefs.h"
 
-#include <assert.h>
-#include <string.h>
-#include <stdio.h>
+#include <cassert>
+#include <cstring>
+#include <cstdio>
 
 #include <Inventor/SbRotation.h>
 #include <Inventor/SoDB.h>
@@ -368,7 +369,9 @@ background_bbfix(SoAction * action, SoNode * COIN_UNUSED_ARG(node))
   SoCacheElement::invalidate(action->getState());
 }
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLBackground::initClass(void) // static
 {
@@ -514,7 +517,7 @@ SoVRMLBackground::GLRender(SoGLRenderAction * action)
   SbRotation rot(tmp);
 
   if (vrmlbackground_viewup_set) {
-    // create a rotation from the positive Y axis to the new view up
+    // create a rotation from the positive Y-axis to the new view up
     SbRotation r2(SbVec3f(0.0f, 1.0f, 0.0f), 
                   SbVec3f(vrmlbackground_viewup[0],
                           vrmlbackground_viewup[1],
@@ -1025,7 +1028,7 @@ background_bindingchangeCB(void * data, SoSensor * sensor)
   // FIXME: Support for 'set_bind' and 'isBound' must be implemented.
   // But first, a Coin viewer must support this kind of special node
   // treatment (this applies to 'Fog', 'NavigationInfo' and 'Viewport'
-  // nodes aswell) (11Aug2003 handegar)
+  // nodes as well) (11Aug2003 handegar)
 
   if (sensor == pimpl->setbindsensor) {
     SoDebugError::postWarning("background_bindingchangeCB", "'set_bind' event not implemented yet");

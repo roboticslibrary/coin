@@ -39,22 +39,22 @@
 /*!
   \class SoTrackballManip SoTrackballManip.h Inventor/manips/SoTrackballManip.h
   \brief The SoTrackballManip wraps an SoTrackballDragger for convenience.
+
   \ingroup manips
 
   The manipulator class takes care of wrapping up the
   SoTrackballDragger in a simple and convenient API for the
   application programmer, making it automatically surround the
   geometry it influences and taking care of the book-keeping routines
-  for it's interaction with the relevant fields of an SoTransformation
+  for its interaction with the relevant fields of an SoTransformation
   node.
 
   <center>
   \image html trackball.png "Example of Trackball Manipulator"
-  <img src="http://doc.coin3d.org/images/Coin/draggers/trackball.png">
   </center>
 
-  Here's a dead simple, stand-alone example on how to set up an
-  SoTrackballManip in a scenegraph:
+  Here's a dead simple, standalone example on how to set up an
+  SoTrackballManip in a scene graph:
 
   \code
   #include <Inventor/Qt/SoQt.h>
@@ -88,8 +88,8 @@
   }
   \endcode
 
-  Compile and hit 'ESC' to go into scenegraph interaction mode in the
-  examinerviewer, then change the rotation of the cone by interacting
+  Compile and hit 'ESC' to go into scene graph interaction mode in the
+  examiner viewer, then change the rotation of the cone by interacting
   with the dragger bands.
 
   <center>
@@ -111,7 +111,9 @@ public:
 SO_NODE_SOURCE(SoTrackballManip);
 
 
-// doc in super
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoTrackballManip::initClass(void)
 {
@@ -121,7 +123,7 @@ SoTrackballManip::initClass(void)
 /*!
   Default constructor. Allocates an SoTrackballDragger and an
   SoSurroundScale node to surround the geometry within our part of the
-  scenegraph.
+  scene graph.
 */
 SoTrackballManip::SoTrackballManip(void)
 {

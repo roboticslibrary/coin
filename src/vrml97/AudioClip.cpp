@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLAudioClip SoVRMLAudioClip.h Inventor/VRMLnodes/SoVRMLAudioClip.h
   \brief The SoVRMLAudioClip class is used to load and store audio data.
+
   \ingroup VRMLnodes
   \ingroup sound
 
@@ -69,20 +70,20 @@
   sound.  The url field specifies the URL from which the sound is
   loaded.  Browsers shall support at least the wavefile format in
   uncompressed PCM format (see
-  http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/bibliography.html#[WAV]).
+  http://www.web3d.org/documents/specifications/14772/V2.0/part1/bibliography.html#[WAV]).
   It is recommended that browsers also support the MIDI file type 1
   sound format
-  (see http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/references.html#[MIDI]);
+  (see http://www.web3d.org/documents/specifications/14772/V2.0/part1/references.html#[MIDI]);
   MIDI files are presumed to use the
   General MIDI patch set. Subclause 4.5, VRML and the World Wide Web
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.5>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.5>),
   contains details on the url field. The results are undefined when no
   URLs refer to supported data types.
 
   The loop, startTime, and stopTime exposedFields and the isActive
   eventOut, and their effects on the AudioClip node, are discussed in
   detail in 4.6.9, Time-dependent nodes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.9>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.9>).
   The "cycle" of an AudioClip is the length of time in seconds for one
   playing of the audio at the specified pitch.  The pitch field
   specifies a multiplier for the rate at which sampled sound is
@@ -99,11 +100,11 @@
   achieve the proper pitch change.  A duration_changed event is sent
   whenever there is a new value for the "normal" duration of the
   clip. Typically, this will only occur when the current url in use
-  changes and the sound data has been loaded, indicating that the clip
+  changes and the sound data have been loaded, indicating that the clip
   is playing a different sound source.  The duration is the length of
   time in seconds for one cycle of the audio for a pitch set to
   1.0. Changing the pitch field will not trigger a duration_changed
-  event. A duration value of "-1" implies that the sound data has not
+  event. A duration value of "-1" implies that the sound data have not
   yet loaded or the value is unavailable for some reason. A
   duration_changed event shall be generated if the AudioClip node is
   loaded when the VRML file is read or the AudioClip node is added to
@@ -163,8 +164,8 @@
 #include <Inventor/VRMLnodes/SoVRMLAudioClip.h>
 #include "coindefs.h"
 
-#include <string.h>
-#include <stdio.h> // for EOF
+#include <cstring>
+#include <cstdio> // for EOF
 
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
 #include <Inventor/actions/SoAudioRenderAction.h>
@@ -314,7 +315,9 @@ cleanup_audioclip(void)
 
 SO_NODE_SOURCE(SoVRMLAudioClip);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLAudioClip::initClass(void) // static
 {
@@ -482,7 +485,7 @@ SoVRMLAudioClip::getSampleRate()
 /*! Sets callbacks for opening, reading, seeking, telling and closing
  an audio source. Specifying NULL for a function is OK, except for the
  read function. If a function set to NULL is later called, a default
- implementation doing nothing is called in it's place. */
+ implementation doing nothing is called in its place. */
 
 void
 SoVRMLAudioClip::setCallbacks(open_func *opencb, read_func *readcb, 
@@ -634,7 +637,7 @@ SoVRMLAudioClipP::simageVersionOK(const char *functionName)
       SoDebugError::postWarning(functionName,
                                 "This function needs a version of simage that supports"
                                 "the stream interface and parameter access to be able "
-                                "to read audio files. Please visit www.coin3d.org "
+                                "to read audio files. Please visit https://github.com/coin3d/ "
                                 "and download the latest version of simage.");
       SoVRMLAudioClipP::staticdata->warnAboutMissingSimage = FALSE;
     }
@@ -1122,7 +1125,7 @@ SoVRMLAudioClipP::openFile(const char *filename)
   // of SoInput::getDirectories() (make a copy of the returned
   // SbStringList from when the SoVRMLAudioClip was read).  20050113 mortene.
   //
-  // FIXME: this is attempted again and again when the file can not be
+  // FIXME: this is attempted again and again when the file cannot be
   // opened. Once should be sufficient, and subsequent attempts should
   // be short-cutted somewhere before this in the call-chain. 20050627 mortene.
   this->stream = simage_wrapper()->s_stream_open(filename, NULL);

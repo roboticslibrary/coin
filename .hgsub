@@ -1,2 +1,0 @@
-build/general = ../generalmsvcgeneration
-include/boost = ../boost-header-libs-full

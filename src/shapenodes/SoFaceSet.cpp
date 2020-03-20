@@ -33,9 +33,10 @@
 /*!
   \class SoFaceSet SoFaceSet.h Inventor/nodes/SoFaceSet.h
   \brief The SoFaceSet class is used to render and organize non-indexed polygonal face data.
+
   \ingroup nodes
 
-  Faces are specified using the numVertices field. Coordinates,
+  Facesets are specified using the numVertices field. Coordinates,
   normals, materials and texture coordinates are fetched in order from
   the current state or from the vertexProperty node if set. For
   example, if numVertices is set to [3, 4, 5, 3], this node would
@@ -136,7 +137,7 @@ public:
 
 #ifdef COIN_THREADSAFE
   // FIXME: a mutex for every instance seems a bit excessive,
-  // especially since MSWindows might have rather strict limits on the
+  // especially since Microsoft Windows might have rather strict limits on the
   // total amount of mutex resources a process (or even a user) can
   // allocate. so consider making this a class-wide instance instead.
   // -mortene.
@@ -400,7 +401,9 @@ namespace { namespace SoGL { namespace FaceSet {
 
 } } } // namespace
 
-// doc from parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoFaceSet::initClass(void)
 {
@@ -569,8 +572,8 @@ SoFaceSet::GLRender(SoGLRenderAction * action)
 
     // check if we can render things using glDrawArrays
     if (SoGLDriverDatabase::isSupported(sogl_glue_instance(state), SO_GL_VERTEX_ARRAY) &&
-        (PRIVATE(this)->primitivetype == GL_TRIANGLES) ||
-        (PRIVATE(this)->primitivetype == GL_QUADS) &&
+        ((PRIVATE(this)->primitivetype == GL_TRIANGLES) ||
+        (PRIVATE(this)->primitivetype == GL_QUADS)) &&
         (nbind != PER_FACE) &&
         (mbind != PER_FACE) &&
         !tb.isFunction()) {

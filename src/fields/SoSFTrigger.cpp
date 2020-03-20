@@ -33,6 +33,7 @@
 /*!
   \class SoSFTrigger SoSFTrigger.h Inventor/fields/SoSFTrigger.h
   \brief The SoSFTrigger class is the "void" class used for detecting field changes.
+
   \ingroup fields
 
   Connect this field to a master field (or engine output) to detect
@@ -71,7 +72,7 @@ SoSFTrigger::operator=(const SoSFTrigger & COIN_UNUSED_ARG(field))
 
 /*!
   This field class does not actually contain any value, so we
-  just triggers an update by calling touch() within this method.
+  just trigger an update by calling touch() within this method.
  */
 void
 SoSFTrigger::setValue(void)
@@ -88,7 +89,9 @@ SoSFTrigger::getValue(void) const
   // Does nothing.
 }
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFTrigger::initClass(void)
 {

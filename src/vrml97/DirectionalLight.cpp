@@ -38,7 +38,8 @@
 
 /*!
   \class SoVRMLDirectionalLight SoVRMLDirectionalLight.h Inventor/VRMLnodes/SoVRMLDirectionalLight.h
-  \brief The SoVRMLDirectionalLight class is a node type for specifying directional light sources
+  \brief The SoVRMLDirectionalLight class is a node type for specifying directional light sources.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -57,7 +58,7 @@
   illuminates along rays parallel to a given 3-dimensional vector. A
   description of the ambientIntensity, color, intensity, and on fields
   is in 4.6.6, Light sources
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.6>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.6>).
 
   The direction field specifies the direction vector of the
   illumination emanating from the light source in the local coordinate
@@ -69,7 +70,7 @@
   the parent nodes affect the light.  DirectionalLight nodes do not
   attenuate with distance. A precise description of VRML's lighting
   equations is contained in 4.14, Lighting model
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.14>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.14>).
   
 */
 
@@ -95,7 +96,9 @@
 
 SO_NODE_SOURCE(SoVRMLDirectionalLight);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLDirectionalLight::initClass(void) // static
 {

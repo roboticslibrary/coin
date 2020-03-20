@@ -33,10 +33,11 @@
 /*!
   \class SoMFVec4d SoMFVec4d.h Inventor/fields/SoMFVec4d.h
   \brief The SoMFVec4d class is a container for SbVec4d vectors.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store an array of vectors with four elements.
+  need to store an array of vectors with four elements.
 
   This field supports application data sharing through a
   setValuesPointer() method. See SoMField documentation for
@@ -68,7 +69,9 @@ SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFVec4d, SbVec4d, double);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFVec4d::initClass(void)
 {

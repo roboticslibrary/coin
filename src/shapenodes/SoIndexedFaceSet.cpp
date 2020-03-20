@@ -33,9 +33,10 @@
 /*!
   \class SoIndexedFaceSet SoIndexedFaceSet.h Inventor/nodes/SoIndexedFaceSet.h
   \brief The SoIndexedFaceSet class is used to handle generic indexed facesets.
+
   \ingroup nodes
 
-  Faces are specified using the coordIndex field. Each face must be
+  Facesets are specified using the coordIndex field. Each face must be
   terminated by a negative (-1) index. Coordinates, normals, materials
   and texture coordinates from the current state (or from the
   vertexProperty node if set), can be indexed to create triangles,
@@ -181,7 +182,7 @@
 
 #include <Inventor/nodes/SoIndexedFaceSet.h>
 
-#include <assert.h>
+#include <cassert>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -255,7 +256,7 @@ public:
 
 #ifdef COIN_THREADSAFE
   // FIXME: a mutex for every instance seems a bit excessive,
-  // especially since MSWindows might have rather strict limits on the
+  // especially since Microsoft Windows might have rather strict limits on the
   // total amount of mutex resources a process (or even a user) can
   // allocate. so consider making this a class-wide instance instead.
   // -mortene.
@@ -314,7 +315,9 @@ SoIndexedFaceSet::~SoIndexedFaceSet()
   delete PRIVATE(this);
 }
 
-// doc from parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoIndexedFaceSet::initClass(void)
 {
@@ -410,10 +413,8 @@ SoIndexedFaceSet::notify(SoNotList * list)
   if (f == &this->coordIndex) {
     PRIVATE(this)->concavestatus = STATUS_UNKNOWN;
     LOCK_VAINDEXER(this);
-    if (PRIVATE(this)->vaindexer) {
-      delete PRIVATE(this)->vaindexer;
-      PRIVATE(this)->vaindexer = NULL;
-    }
+    delete PRIVATE(this)->vaindexer;
+    PRIVATE(this)->vaindexer = NULL;
     UNLOCK_VAINDEXER(this);
   }
   inherited::notify(list);

@@ -39,6 +39,7 @@
 /*!
   \class SoTransformerDragger SoTransformerDragger.h Inventor/draggers/SoTransformerDragger.h
   \brief The SoTransformerDragger provides geometry for translation, scaling and rotations.
+
   \ingroup draggers
 
   \DRAGGER_DEFAULT_SCREENSHOT
@@ -78,7 +79,7 @@
   For the application programmer's convenience, the Coin library also
   provides a manipulator class called SoTransformerManip, which wraps
   the SoTransformerDragger into the necessary mechanisms for making
-  direct insertion of this dragger into a scenegraph possible with
+  direct insertion of this dragger into a scene graph possible with
   very little effort.
 
   \sa SoTransformerManip
@@ -230,7 +231,9 @@ int SoTransformerDraggerP::colinearThreshold = 3; // FIXME: find default value f
 
 SO_KIT_SOURCE(SoTransformerDragger);
 
-// doc in superclass
+/*!
+  \copydetails SoDragger::initClass(void)
+*/
 void
 SoTransformerDragger::initClass(void)
 {
@@ -407,7 +410,7 @@ SoTransformerDragger::build_catalog6(void)
 #define THISP(d) static_cast<SoTransformerDragger *>(d)
 
 // FIXME: document which parts need to be present in the geometry
-// scenegraph, and what role they play in the dragger. 20010913 mortene.
+// scene graph, and what role they play in the dragger. 20010913 mortene.
 /*!
   \DRAGGER_CONSTRUCTOR
 
@@ -1206,7 +1209,6 @@ SoTransformerDragger::dragStart(void)
       t->translation = myline.getClosestPoint(startpt);
 
       this->setAllPartSwitches(SO_SWITCH_NONE, SO_SWITCH_NONE, SO_SWITCH_NONE);
-      SbString str;
       str.sprintf("translator%dSwitch", PRIVATE(this)->whatnum);
       this->setSwitchValue(str.getString(), 1);
       this->setSwitchValue("translateBoxFeedbackSwitch", SO_SWITCH_ALL);
@@ -1246,7 +1248,6 @@ SoTransformerDragger::dragStart(void)
         PRIVATE(this)->constraintState = CONSTRAINT_WAIT;
       }
 
-      SbString str;
       str.sprintf("scale%dSwitch", PRIVATE(this)->whatnum);
       this->setAllPartSwitches(0, SO_SWITCH_NONE, SO_SWITCH_NONE);
       this->setSwitchValue(str.getString(), 1);
@@ -2063,7 +2064,6 @@ SoTransformerDragger::setDynamicScaleSwitches(const SoEvent *event)
     changed = TRUE;
     PRIVATE(this)->shiftDown = !PRIVATE(this)->shiftDown;
   }
-  SbString str;
   if (PRIVATE(this)->constraintState == CONSTRAINT_WAIT) {
     this->setSwitchValue("xAxisFeedbackSwitch", 1);
     this->setSwitchValue("yAxisFeedbackSwitch", 1);
@@ -2072,6 +2072,7 @@ SoTransformerDragger::setDynamicScaleSwitches(const SoEvent *event)
   }
   else if (PRIVATE(this)->constraintState >= CONSTRAINT_X) {
     int which = PRIVATE(this)->constraintState - CONSTRAINT_X;
+    SbString str;
     str.sprintf("%cAxisFeedbackSwitch", 'x' + which);
     this->setSwitchValue(str.getString(), 0);
     str.sprintf("%cAxisFeedbackSwitch", 'x' + (which+1)%3);

@@ -33,9 +33,10 @@
 /*!
   \class SoShape SoShape.h Inventor/nodes/SoShape.h
   \brief The SoShape class is the superclass for geometry shapes.
+
   \ingroup nodes
 
-  The node types which have actual geometry to render inherits this
+  The node types which have actual geometry to render inherit this
   class. For convenience, the SoShape class contains various common
   code used by the subclasses.
 */
@@ -44,8 +45,8 @@
 
 #include <Inventor/nodes/SoShape.h>
 
-#include <string.h>
-#include <stdlib.h>
+#include <cstring>
+#include <cstdlib>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -225,7 +226,7 @@ public:
   }
 
   // we can use a per-instance mutex here instead of this class-wide
-  // one, but we go for the class-wide one since at least MSWindows
+  // one, but we go for the class-wide one since at least Microsoft Windows
   // might have a rather strict limit on the total amount of mutex
   // resources a process / user can hold at any one time.
   //
@@ -360,7 +361,9 @@ SoShape::~SoShape()
   delete PRIVATE(this);
 }
 
-// Doc in parent.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoShape::initClass(void)
 {

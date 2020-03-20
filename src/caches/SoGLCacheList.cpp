@@ -31,8 +31,9 @@
 \**************************************************************************/
 
 /*!
-  \class SoGLCacheList include/Inventor/caches/SoGLCacheList.h
+  \class SoGLCacheList SoGLCacheList.h Inventor/caches/SoGLCacheList.h
   \brief The SoGLCacheList class is used to store and manage OpenGL caches.
+
   \ingroup caches
 */
 
@@ -62,7 +63,7 @@
 
 // SGI Inventor uses an LRU/MRU strategy or something here. We're not
 // quite sure we should support multiple caches per SoSeparator
-// though. After all, there is some overhead in cheching for valid
+// though. After all, there is some overhead in checking for valid
 // caches etc. If a situation occurs where multiple caches would help
 // the performance, the user should probably redesign the scene graph
 // and enable caching further down the scene graph instead. We will

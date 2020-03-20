@@ -33,6 +33,7 @@
 /*!
   \class SoEmissiveColorElement Inventor/elements/SoEmissiveColorElement.h
   \brief The SoEmissiveColorElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -51,8 +52,7 @@
 SO_ELEMENT_SOURCE(SoEmissiveColorElement);
 
 /*!
-  This static method initializes static data for the SoEmissiveColorElement
-  class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -62,15 +62,14 @@ SoEmissiveColorElement::initClass()
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoEmissiveColorElement::~SoEmissiveColorElement()
 {
 }
 
-//! FIXME: write doc.
-
+// doc from superclass
 void
 SoEmissiveColorElement::init(SoState * stateptr)
 {
@@ -92,7 +91,7 @@ SoEmissiveColorElement::set(SoState * const state, SoNode * const COIN_UNUSED_AR
                               "Multiple emissive colors not supported. "
                               "All color except the first will be ignored.");
   }
-#endif // COIN_DEBIG
+#endif // COIN_DEBUG
 }
 
 

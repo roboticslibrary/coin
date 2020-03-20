@@ -32,9 +32,9 @@
 
 #include "fonts/fontlib_wrapper.h"
 
-#include <string.h>
-#include <assert.h>
-#include <stdio.h>
+#include <cstring>
+#include <cassert>
+#include <cstdio>
 
 #include <Inventor/C/base/string.h>
 
@@ -46,7 +46,7 @@
 #include "coindefs.h"
 
 #ifndef COIN_WORKAROUND_NO_USING_STD_FUNCS
-using std::malloc;
+using namespace std;
 #endif // !COIN_WORKAROUND_NO_USING_STD_FUNCS
 
 static SbBool glyph2d_specmatch(const cc_font_specification * spec1, const cc_font_specification * spec2);

@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 \**************************************************************************/
 
-/*! \file common.h */
+/*! \file Inventor/C/threads/common.h */
 
 /*!
   \struct cc_barrier common.h Inventor/C/threads/common.h
@@ -47,9 +47,9 @@
 /*! \file barrier.h */
 #include <Inventor/C/threads/barrier.h>
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <assert.h>
+#include <cstdlib>
+#include <cstdio>
+#include <cassert>
 
 #include <Inventor/C/threads/mutex.h>
 #include <Inventor/C/threads/condvar.h>
@@ -58,7 +58,7 @@
 
 /* ********************************************************************** */
 
-/*! Constucts a new thread barrier. */
+/*! Constructs a new thread barrier. */
 
 cc_barrier *
 cc_barrier_construct(unsigned int count)

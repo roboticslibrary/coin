@@ -34,6 +34,7 @@
   \class SbBox2f SbBox2f.h Inventor/SbBox2f.h
   \brief The SbBox2f class is a 2 dimensional box with floating
   point corner coordinates.
+
   \ingroup base
 
   This box class is used by many other classes in Coin for data
@@ -79,6 +80,30 @@
 
   The coordinates of \a min should be less than the coordinates of
   \a max if you want to make a valid box.
+*/
+
+/*!
+  \fn SbBox2f::SbBox2f(const SbBox2d & box)
+
+  Constructs an SbBox2f instance from the value in an SbBox2d instance.
+
+  \since Coin 2.5
+*/
+
+/*!
+  \fn SbBox2f::SbBox2f(const SbBox2s & box)
+
+  Constructs an SbBox2f instance from the value in an SbBox2s instance.
+
+  \since Coin 2.5
+*/
+
+/*!
+  \fn SbBox2f::SbBox2f(const SbBox2i32 & box)
+
+  Constructs an SbBox2f instance from the value in an SbBox2i32 instance.
+
+  \since Coin 2.5
 */
 
 /*!
@@ -186,8 +211,10 @@ SbBox2f::makeEmpty(void)
 /*!
   \fn SbBool SbBox2f::hasArea(void) const
 
-  Check if the box has "positive" area, i.e. the lower left corner is
-  actually lower and more to the left than the other corner point.
+  Check if the box has been correctly specified and by that virtue
+  has "positive" area, i.e. all coordinates of its upper right corner
+  (the maximum point) are greater than the corresponding coordinates 
+  of its lower left corner (the minimum point).
 */
 
 /*!
@@ -208,6 +235,14 @@ SbBox2f::makeEmpty(void)
 
 /*!
   \fn const SbVec2f & SbBox2f::getMax(void) const
+
+  Returns the upper right corner of the box.
+
+  \sa getMin().
+*/
+
+/*!
+  \fn SbVec2f & SbBox2f::getMax(void)
 
   Returns the upper right corner of the box.
 
@@ -261,7 +296,7 @@ SbBox2f::intersect(const SbVec2f & point) const
 }
 
 /*!
-  Check if \a box lies wholly or partly within the boundaries
+  Check if \a box lies entirely or partially within the boundaries
   of this box.
  */
 SbBool
@@ -329,6 +364,14 @@ SbBox2f::getClosestPoint(const SbVec2f & p) const
   \fn void SbBox2f::getSize(float & sizeX, float & sizeY) const
 
   Returns width and height of box.
+*/
+
+/*!
+  \fn SbVec2f SbBox2f::getSize(void) const
+
+  Returns width and height of box as a 2D vector.
+
+  \since Coin 3.0
 */
 
 /*!

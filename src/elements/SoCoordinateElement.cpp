@@ -33,6 +33,7 @@
 /*!
   \class SoCoordinateElement Inventor/elements/SoCoordinateElement.h
   \brief The SoCoordinateElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -79,8 +80,7 @@ SbVec3f * SoCoordinateElement::initialdefaultcoords = NULL;
 SO_ELEMENT_SOURCE(SoCoordinateElement);
 
 /*!
-  This static method initializes static data for the
-  SoCoordinateElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -103,7 +103,7 @@ SoCoordinateElement::clean(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoCoordinateElement::~SoCoordinateElement(void)

@@ -33,10 +33,11 @@
 /*!
   \class SoMFVec3i32 SoMFVec3i32.h Inventor/fields/SoMFVec3i32.h
   \brief The SoMFVec3i32 class is a container for SbVec3i32 vectors.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store an array of vectors with three elements.
+  need to store an array of vectors with three elements.
 
   This field supports application data sharing through a
   setValuesPointer() method. See SoMField documentation for
@@ -68,7 +69,9 @@ SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFVec3i32, SbVec3i32, int32_t);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFVec3i32::initClass(void)
 {

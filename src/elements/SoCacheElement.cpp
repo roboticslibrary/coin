@@ -33,6 +33,7 @@
 /*!
   \class SoCacheElement Inventor/elements/SoCacheElement.h
   \brief The SoCacheElement class stores and manages the open caches.
+
   \ingroup elements
 */
 
@@ -83,7 +84,10 @@ SO_ELEMENT_SOURCE(SoCacheElement);
 
 // *************************************************************************
 
-// Doc in superclass.
+/*!
+  \copydetails SoElement::initClass(void)
+*/
+
 void
 SoCacheElement::initClass(void)
 {
@@ -98,7 +102,7 @@ SoCacheElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoCacheElement::~SoCacheElement(void)

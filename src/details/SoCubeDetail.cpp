@@ -33,6 +33,7 @@
 /*!
   \class SoCubeDetail SoCubeDetail.h Inventor/details/SoCubeDetail.h
   \brief The SoCubeDetail class contains information about the parts of a SoCube shape.
+
   \ingroup details
 
   Instances of this class are used for storing information about hit
@@ -70,7 +71,9 @@ SoCubeDetail::~SoCubeDetail()
 {
 }
 
-// doc in super
+/*!
+  \copybrief SoDetail::initClass(void)
+*/
 void
 SoCubeDetail::initClass(void)
 {
@@ -88,7 +91,7 @@ SoCubeDetail::copy(void) const
 
 /*!
   Set the part of a cube which was selected. A cube has of course six
-  different conceptual parts -- it's sides.
+  different conceptual parts -- its sides.
   */
 void
 SoCubeDetail::setPart(const int partarg)

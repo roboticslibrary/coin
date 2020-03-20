@@ -39,6 +39,7 @@
 /*!
   \class SoWrapperKit SoWrapperKit.h Inventor/nodekits/SoWrapperKit.h
   \brief The SoWrapperKit class is a simple kit for wrapping a transform and a sub-graph.
+
   \ingroup nodekits
 
   
@@ -114,7 +115,9 @@ SoWrapperKit::~SoWrapperKit()
 {
 }
 
-// Documented in superclass.
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoWrapperKit::initClass(void)
 {

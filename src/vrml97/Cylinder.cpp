@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLCylinder SoVRMLCylinder.h Inventor/VRMLnodes/SoVRMLCylinder.h
   \brief The SoVRMLCylinder class is used to represent a cylinder object.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -69,7 +70,7 @@
   activation).
 
   <center>
-  <img src="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/Images/cylinder.gif">
+  <img src="http://www.web3d.org/documents/specifications/14772/V2.0/Images/cylinder.gif">
   Figure 6.4
   </center>
 
@@ -118,7 +119,7 @@
 #include <Inventor/VRMLnodes/SoVRMLCylinder.h>
 #include "coindefs.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
 #include <Inventor/actions/SoGLRenderAction.h>
@@ -140,7 +141,9 @@
 
 SO_NODE_SOURCE(SoVRMLCylinder);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLCylinder::initClass(void)
 {

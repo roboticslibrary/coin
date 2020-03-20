@@ -33,10 +33,11 @@
 /*!
   \class SoEngineOutputData SoOutputData.h Inventor/engines/SoOutputData.h
   \brief The SoEngineOutputData class is a container for a prototype set of outputs.
+
   \ingroup engines
 
   This class is instantiated once for each class of objects which use
-  outputs, and which needs to be able to import and export them.
+  outputs, and which need to be able to import and export them.
 
   Each output of a class is stored with the name and type it has been
   given within its "owner" class and a pointer offset to the dynamic
@@ -125,7 +126,7 @@ SoEngineOutputData::SoEngineOutputData(const SoEngineOutputData *data)
 
 /*!
   Constructor. Supply the approximated number of outputs in the engine
-  ot optimize memory allocation.
+  to optimize memory allocation.
 */
 SoEngineOutputData::SoEngineOutputData(int approxnum)
   : outputlist(approxnum)

@@ -33,6 +33,7 @@
 /*!
   \class SbPList SbPList.h Inventor/lists/SbPList.h
   \brief The SbPList class is a container class for void pointers.
+
   \ingroup base
 
 */
@@ -187,7 +188,7 @@ SbPList::operator=(const SbPList & l)
 
 /*!
   Fit the allocated array exactly around the length of the list,
-  descarding memory spent on unused pre-allocated array cells.
+  discarding memory spent on unused pre-allocated array cells.
 
   You should normally not need or want to call this method, and it is
   only available for the sake of having the option to optimize memory
@@ -218,7 +219,7 @@ SbPList::fit(void)
   item is not present.
 */
 int
-SbPList::find(void * item) const
+SbPList::find(const void * item) const
 {
   for (int i = 0; i < this->numitems; i++)
     if (this->itembuffer[i] == item) return i;

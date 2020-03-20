@@ -33,10 +33,11 @@
 /*!
   \class SoMFVec3b SoMFVec3b.h Inventor/fields/SoMFVec3b.h
   \brief The SoMFVec3b class is a container for SbVec3b vectors.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store an array of vectors with three elements.
+  need to store an array of vectors with three elements.
 
   This field supports application data sharing through a
   setValuesPointer() method. See SoMField documentation for
@@ -68,7 +69,9 @@ SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFVec3b, SbVec3b, int8_t);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFVec3b::initClass(void)
 {

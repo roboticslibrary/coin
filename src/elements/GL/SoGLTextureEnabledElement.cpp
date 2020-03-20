@@ -31,8 +31,9 @@
 \**************************************************************************/
 
 /*!
-  \class SoGLTextureEnabledElement SoGLTextureEnabledElement.h Inventor/elements/SoGLTextureEnabledElement.h
+  \class SoGLTextureEnabledElement Inventor/elements/SoGLTextureEnabledElement.h
   \brief The SoGLTextureEnabledElement class is an element which controls whether texturing is enabled or not.
+
   \ingroup elements
 
   \sa SoGLTexture3EnabledElement
@@ -65,7 +66,10 @@
 
 SO_ELEMENT_SOURCE(SoGLTextureEnabledElement);
 
-// doc from parent
+/*!
+  \copydetails SoElement::initClass(void)
+*/
+
 void
 SoGLTextureEnabledElement::initClass(void)
 {
@@ -73,13 +77,13 @@ SoGLTextureEnabledElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 SoGLTextureEnabledElement::~SoGLTextureEnabledElement(void)
 {
 }
 
-/*
+/*!
   Sets the state of this element. Used for enabling GL_TEXTURE_2D and
   disabling GL_TEXTURE_2D, GL_TEXTURE_RECTANGLE_EXT or
   GL_TEXTURE_CUBE_MAP.
@@ -95,7 +99,7 @@ SoGLTextureEnabledElement::set(SoState * const state,
 
 /*!
   Enables GL_TEXTURE_RECTANGLE_EXT/NV. GL_TEXTURE_2D/GL_TEXTURE_CUBE_MAP will be
-  disabled if it's enabled earlier.
+  disabled if it is enabled earlier.
 
   \since Coin 2.2
 */
@@ -108,7 +112,7 @@ SoGLTextureEnabledElement::enableRectangle(SoState * state, SoNode * node)
 
 /*!
   Enables GL_TEXTURE_CUBE+MAP. GL_TEXTURE_2D and/or
-  GL_TEXTURE_RECTANGLE will be disabled if it's enabled earlier.
+  GL_TEXTURE_RECTANGLE will be disabled if it is enabled earlier.
 */
 void
 SoGLTextureEnabledElement::enableCubeMap(SoState * state, SoNode * node)

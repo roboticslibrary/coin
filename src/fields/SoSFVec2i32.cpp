@@ -33,10 +33,11 @@
 /*!
   \class SoSFVec2i32 SoSFVec2i32.h Inventor/fields/SoSFVec2i32.h
   \brief The SoSFVec2i32 class is a container for an SbVec2i32 vector.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a single vector with two elements.
+  need to store a single vector with two elements.
 
   \sa SbVec2i32, SoMFVec2i32
   \COIN_CLASS_EXTENSION
@@ -60,7 +61,9 @@ SO_SFIELD_SOURCE(SoSFVec2i32, SbVec2i32, const SbVec2i32 &);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFVec2i32::initClass(void)
 {

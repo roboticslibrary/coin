@@ -39,6 +39,7 @@
 /*!
   \class SoClipPlaneManip SoClipPlaneManip.h Inventor/manips/SoClipPlaneManip.h
   \brief The SoClipPlaneManip class is used to manipulate clip planes.
+
   \ingroup manips
 
   A manipulator is used by replacing the node you want to edit in the
@@ -80,7 +81,7 @@
   #include <Inventor/actions/SoGetBoundingBoxAction.h>
   #include <Inventor/SoInput.h>
   #include <Inventor/manips/SoClipPlaneManip.h>
-  #include <assert.h>
+  #include <cassert>
   
   // *************************************************************************
   
@@ -188,7 +189,9 @@ SO_NODE_SOURCE(SoClipPlaneManip);
 
 // *************************************************************************
 
-// Documented in superclass
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoClipPlaneManip::initClass(void)
 {

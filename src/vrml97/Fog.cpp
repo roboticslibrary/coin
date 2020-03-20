@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLFog SoVRMLFog.h Inventor/VRMLnodes/SoVRMLFog.h
   \brief The SoVRMLFog class is used to specify a global scene fog.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -71,7 +72,7 @@
 
   Since Fog nodes are bindable children nodes (see 4.6.10, Bindable
   children nodes
-  http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.10),
+  http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.10),
   a Fog node stack exists, in which the top- most Fog node on the
   stack is currently active. To push a Fog node onto the top of the
   stack, a TRUE value is sent to the set_bind eventIn. Once active,
@@ -79,7 +80,7 @@
   set_bind, pops the Fog node from the stack and unbinds it from the
   browser viewer.  More details on the Fog node stack can be found in
   4.6.10, Bindable children nodes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.10>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.10>).
 
   The fogType field controls how much of the fog colour is blended
   with the object as a function of distance. If fogType is "LINEAR",
@@ -88,7 +89,7 @@
   exponential increase in blending is used, resulting in a more
   natural fog appearance.  The effect of fog on lighting calculations
   is described in 4.14, Lighting model
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.14>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.14>).
   
 
 */
@@ -121,7 +122,7 @@
 
 #include <Inventor/VRMLnodes/SoVRMLFog.h>
 
-#include <string.h>
+#include <cstring>
 
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
 #include <Inventor/sensors/SoFieldSensor.h>
@@ -164,7 +165,9 @@ public:
 };
 
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLFog::initClass(void)
 {
@@ -282,7 +285,7 @@ fog_bindingchangeCB(void * data, SoSensor * sensor)
   // FIXME: Support for 'set_bind' and 'isBound' must be implemented.
   // But first, a Coin viewer must support this kind of special node
   // treatment (this applies to 'Background', 'NavigationInfo' and
-  // 'Viewport' nodes aswell) (20030811 handegar)
+  // 'Viewport' nodes as well) (20030811 handegar)
 
   if (sensor == pimpl->setbindsensor) {
     SoDebugError::postWarning("fog_bindingchangeCB", "'set_bind' event not implemented yet");

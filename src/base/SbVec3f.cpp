@@ -33,6 +33,7 @@
 /*!
   \class SbVec3f SbVec3f.h Inventor/SbVec3f.h
   \brief The SbVec3f class is a 3 dimensional vector with floating point coordinates.
+
   \ingroup base
 
   This vector class is used by many other classes in
@@ -600,7 +601,7 @@ SbVec3f::toString() const
 }
 
 /*!
-  Convert from a string representation, return wether this is a valid conversion
+  Convert from a string representation, return whether this is a valid conversion
 */
 SbBool
 SbVec3f::fromString(const SbString & str)
@@ -611,9 +612,8 @@ SbVec3f::fromString(const SbString & str)
 }
 
 /*!
-  Dump the state of this object to the \a file stream. Only works in
-  debug version of library, method does nothing in an optimized
-  compile.
+  Dump the state of this object to the \a fp file stream. Only works in
+  debug version of library, method does nothing in an optimized build.
 */
 void
 SbVec3f::print(FILE * fp) const
@@ -629,7 +629,7 @@ SbVec3f::print(FILE * fp) const
 
 typedef SbVec3f ToTest;
 BOOST_AUTO_TEST_CASE(toString) {
-  ToTest val(1.0/3,2,3);
+  ToTest val(1.0f/3,2,3);
   SbString str("0.33333334 2 3");
   BOOST_CHECK_MESSAGE(str == val.toString(),
                       std::string("Mismatch between ") +  val.toString().getString() + " and control string " + str.getString());
@@ -639,7 +639,7 @@ BOOST_AUTO_TEST_CASE(toString) {
 BOOST_AUTO_TEST_CASE(fromString) {
   ToTest foo;
   SbString test = "0.333333343 -2 -3.0";
-  ToTest trueVal(0.333333343,-2,-3);
+  ToTest trueVal(0.333333343f,-2,-3);
   SbBool conversionOk = foo.fromString(test);
   BOOST_CHECK_MESSAGE(conversionOk && trueVal == foo,
                       std::string("Mismatch between ") +  foo.toString().getString() + " and control " + trueVal.toString().getString());

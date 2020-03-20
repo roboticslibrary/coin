@@ -33,6 +33,7 @@
 /*!
   \class SoLightModel SoLightModel.h Inventor/nodes/SoLightModel.h
   \brief The SoLightModel class is a node for specifying the model for geometry lighting.
+
   \ingroup nodes
 
   Use nodes of this type to set up how lighting should affect
@@ -67,20 +68,20 @@
   \var SoLightModel::Model SoLightModel::BASE_COLOR
 
   Use the current diffuse material color for subsequent geometry, and
-  do not let any lightsources influence the appearance of the
+  do not let any light sources influence the appearance of the
   rendering primitives.
 */
 /*!
   \var SoLightModel::Model SoLightModel::PHONG
 
-  Use Phong-style shading for the geometry.
+  Use Phong style shading for the geometry.
 */
 
 
 /*!
   \var SoSFEnum SoLightModel::model
 
-  Lightmodel to use. Defaults to SoLightModel::PHONG.
+  Light model to use. Defaults to SoLightModel::PHONG.
 */
 
 // *************************************************************************
@@ -107,7 +108,9 @@ SoLightModel::~SoLightModel()
 {
 }
 
-// Doc from superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoLightModel::initClass(void)
 {

@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLProximitySensor SoVRMLProximitySensor.h Inventor/VRMLnodes/SoVRMLProximitySensor.h
   \brief The SoVRMLProximitySensor class is used to generate events when the viewer enters or exits a region.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -210,7 +211,9 @@ prox_get_current_time(void)
   return SbTime::getTimeOfDay();
 }
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLProximitySensor::initClass(void)
 {
@@ -277,7 +280,7 @@ SoVRMLProximitySensor::doAction(SoAction * action)
   const SbMatrix & mm = SoModelMatrixElement::get(state);
   const SbMatrix & vm = SoViewingMatrixElement::get(state);
 
-  // FIXME: if it's not possible to invert the matrix, move proximity
+  // FIXME: if it is not possible to invert the matrix, move proximity
   // area to world space and do the testing there.
 
   SbVec3f viewer = vv.getProjectionPoint(); // world space

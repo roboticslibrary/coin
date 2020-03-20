@@ -33,6 +33,7 @@
 /*!
   \class SoLightAttenuationElement Inventor/elements/SoLightAttenuationElement.h
   \brief The SoLightAttenuationElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -69,8 +70,7 @@ SoLightAttenuationElement_cleanup_func(void)
 SO_ELEMENT_SOURCE(SoLightAttenuationElement);
 
 /*!
-  This static method initializes static data for the
-  SoLightAttenuationElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -83,7 +83,7 @@ SoLightAttenuationElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoLightAttenuationElement::~SoLightAttenuationElement(void)

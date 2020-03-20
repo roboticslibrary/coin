@@ -42,8 +42,8 @@
 
 #include <Inventor/misc/SoProtoInstance.h>
 
-#include <stdlib.h>
-#include <assert.h>
+#include <cstdlib>
+#include <cassert>
 
 #include <Inventor/SoInput.h>
 #include <Inventor/SoOutput.h>
@@ -110,6 +110,9 @@ SoProtoInstance::initClass(void)
   coin_atexit((coin_atexit_f*) SoProtoInstance::cleanupClass, CC_ATEXIT_NORMAL);
 }
 
+/*!
+  This static method cleans up static data of the SoProtoInstance class.
+*/
 void
 SoProtoInstance::cleanupClass(void)
 {
@@ -166,7 +169,7 @@ SoProtoInstance::getProtoDefinition(void) const
 }
 
 /*!
-  Returns the PROTO defintion name.
+  Returns the PROTO definition name.
 */
 SbName
 SoProtoInstance::getProtoName(void) const

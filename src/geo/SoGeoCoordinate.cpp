@@ -33,6 +33,7 @@
 /*!
   \class SoGeoCoordinate SoGeoCoordinate.h Inventor/nodes/SoGeoCoordinate.h
   \brief The SoGeoCoordinate class is used to specify a list of geographical coordinates.
+
   \ingroup nodes
 
   <b>FILE FORMAT/DEFAULTS:</b>
@@ -80,8 +81,8 @@
 
 class SoGeoCoordinateP {
 public:
-  uint32_t originid;
-  uint32_t thisid;
+  SbUniqueId originid;
+  SbUniqueId thisid;
   SbList <SbVec3f> coords;
 };
 
@@ -117,7 +118,9 @@ SoGeoCoordinate::~SoGeoCoordinate(void)
 {
 }
 
-// Doc from superclass.
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoGeoCoordinate::initClass(void)
 {

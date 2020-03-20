@@ -33,10 +33,11 @@
 /*!
   \class SoMFShort SoMFShort.h Inventor/fields/SoMFShort.h
   \brief The SoMFShort class is a container for short integer values.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a group of multiple short integer values.
+  need to store a group of multiple short integer values.
 
   This field supports application data sharing through a
   setValuesPointer() method. See SoMField documentation for
@@ -65,7 +66,9 @@ SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFShort, short, short);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFShort::initClass(void)
 {

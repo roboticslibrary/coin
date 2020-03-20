@@ -33,6 +33,7 @@
 /*!
   \class SoOverrideElement Inventor/elements/SoOverrideElement.h
   \brief The SoOverrideElement maintains a list of overridable elements and a list over which elements should be overridden.
+
   \ingroup elements
 
   Only certain elements can be overridden.
@@ -61,7 +62,7 @@
   SoVertexProperty node is used to specify diffuse color and
   transparency -- only with the SoMaterial node.)
 
-  Here is a complete, stand-alone example which demonstrates how to
+  Here is a complete, standalone example which demonstrates how to
   accomplish this:
 
   \code
@@ -187,8 +188,7 @@ FIXME: write doc.
 SO_ELEMENT_SOURCE(SoOverrideElement);
 
 /*!
-This static method initializes static data for the
-SoOverrideElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -198,14 +198,17 @@ SoOverrideElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoOverrideElement::~SoOverrideElement(void)
 {
 }
 
-//! FIXME: write doc.
+/*!
+  Initializes the element to its default value. The default
+  value for flags is 0.
+*/
 
 void
 SoOverrideElement::init(SoState * state)
@@ -478,7 +481,7 @@ SoOverrideElement::getPolygonOffsetOverride(SoState * const state)
 /*!
   Returns normal vector override value.
 
-  \CLASS_FUNCTION_EXTENSION
+  \COIN_FUNCTION_EXTENSION
 
   \since Coin 2.0
 */
@@ -491,7 +494,7 @@ SoOverrideElement::getNormalVectorOverride(SoState * const state)
 /*!
   Returns normal binding override value.
 
-  \CLASS_FUNCTION_EXTENSION
+  \COIN_FUNCTION_EXTENSION
 
   \since Coin 2.0
 */
@@ -564,7 +567,7 @@ SoOverrideElement::setCreaseAngleOverride(SoState * const state,
 /*!
   Can be used to set diffuse color override. This will also set the
   transparency override. Since we feel this is a design flaw,
-  it is possible to override this behaviour by setting an environement
+  it is possible to override this behaviour by setting an environment
   value called COIN_SEPARATE_DIFFUSE_TRANSPARENCY_OVERRIDE to 1.
 
   Please note that separate override will not work for the PackedColor
@@ -780,7 +783,7 @@ SoOverrideElement::setTransparencyTypeOverride(SoState * const state,
 /*!
   Can be used to set normal vector override.
 
-  \CLASS_FUNCTION_EXTENSION
+  \COIN_FUNCTION_EXTENSION
 
   \since Coin 2.0
 */
@@ -795,7 +798,7 @@ SoOverrideElement::setNormalVectorOverride(SoState * const state,
 /*!
   Can be used to set normal binding override.
 
-  \CLASS_FUNCTION_EXTENSION
+  \COIN_FUNCTION_EXTENSION
 
   \since Coin 2.0
 */

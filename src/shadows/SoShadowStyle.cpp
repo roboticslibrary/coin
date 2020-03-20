@@ -50,7 +50,7 @@
 
 #include <Inventor/annex/FXViz/nodes/SoShadowStyle.h>
 
-#include <stdio.h>
+#include <cstdio>
 
 #include <Inventor/actions/SoGLRenderAction.h>
 #include <Inventor/elements/SoShapeStyleElement.h>
@@ -75,12 +75,12 @@
 
 /*!
   \var SoShadowStyle::Style SoShadowStyle::NO_SHADOWING
-  Neither casts or recieves shadows.
+  Neither casts or receives shadows.
 */
 
 /*!
   \var SoShadowStyle::Style SoShadowStyle::CASTS_SHADOW
-  Casts shadow, but will no recieve any shadows.
+  Casts shadow, but will no receive any shadows.
 */
 
 /*!
@@ -90,7 +90,7 @@
 
 /*!
   \var SoShadowStyle::Style SoShadowStyle::CASTS_SHADOW_AND_SHADOWED
-  Will cast and recieve shadows.
+  Will cast and receive shadows.
 */
 
 // *************************************************************************
@@ -121,7 +121,9 @@ SoShadowStyle::~SoShadowStyle()
 {
 }
 
-// Doc from superclass.
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoShadowStyle::initClass(void)
 {

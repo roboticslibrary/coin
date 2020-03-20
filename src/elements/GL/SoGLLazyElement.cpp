@@ -33,6 +33,7 @@
 /*!
   \class SoGLLazyElement Inventor/elements/SoGLLazyElement.h
   \brief The SoGLLazyElement class is meant to optimize GL rendering.
+
   \ingroup elements
 
   This is just a wrap-around implementation for compatibility. It should
@@ -175,8 +176,7 @@ create_matrix_bitmap(int intensity, unsigned char * bitmap,
 SO_ELEMENT_SOURCE(SoGLLazyElement);
 
 /*!
-  This static method initializes static data for the
-  SoDiffuseColorElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -195,7 +195,9 @@ SoGLLazyElement::initClass()
   }
 }
 
-// ! FIXME: write doc
+/*!
+  Destructor.
+*/
 
 SoGLLazyElement::~SoGLLazyElement()
 {
@@ -1232,12 +1234,12 @@ void
 SoGLLazyElement::updateColorVBO(SoVBO * vbo)
 {
   if (this->colorpacker) {
-    uint32_t maxid = this->colorpacker->getDiffuseId();
-    uint32_t tid = this->colorpacker->getTranspId();
+    SbUniqueId maxid = this->colorpacker->getDiffuseId();
+    SbUniqueId tid = this->colorpacker->getTranspId();
     if (tid > maxid) {
       maxid = tid;
     }
-    uint32_t vboid = vbo->getBufferDataId();
+    SbUniqueId vboid = vbo->getBufferDataId();
     if (vboid != maxid) {
       const int n = this->coinstate.numdiffuse;
       // need to update the VBO

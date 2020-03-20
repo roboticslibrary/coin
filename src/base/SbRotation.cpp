@@ -33,6 +33,7 @@
 /*!
   \class SbRotation SbRotation.h Inventor/SbRotation.h
   \brief The SbRotation class represents a rotation in 3D space.
+
   \ingroup base
 
   SbRotation is used extensively throughout the Coin library.
@@ -97,7 +98,7 @@
   actual value is unspecified, and you should not depend on it.
 */
 SbRotation::SbRotation(void)
-  // This translates to zero rotation around the positive Z axis.
+  // This translates to zero rotation around the positive Z-axis.
   : quat(0.0f, 0.0f, 0.0f, 1.0f)
 {
 }
@@ -124,7 +125,7 @@ SbRotation::SbRotation(const SbVec3f & axis, const float radians)
   The array must be ordered as follows:
 
   q[0] = x, q[1] = y, q[2] = z and q[3] = w, where the quaternion is
-  specified by q=w+xi+yj+zk.
+  specified by q = w + xi + yj + zk.
  */
 SbRotation::SbRotation(const float q[4])
 {
@@ -502,9 +503,9 @@ SbRotation::setValue(const SbVec3f & rotateFrom, const SbVec3f & rotateTo)
     // Ok, so they are parallel and pointing in the opposite direction
     // of each other.
     else {
-      // Try crossing with x axis.
+      // Try crossing with X-axis.
       SbVec3f t = from.cross(SbVec3f(1.0f, 0.0f, 0.0f));
-      // If not ok, cross with y axis.
+      // If not ok, cross with Y-axis.
       if (t.normalize() == 0.0f) {
         t = from.cross(SbVec3f(0.0f, 1.0f, 0.0f));
         (void) t.normalize();
@@ -575,7 +576,7 @@ operator==(const SbRotation & q1, const SbRotation & q2)
 /*!
   \relates SbRotation
 
-  Check if the two rotations are unequal.
+  Check if the two rotations are not equal.
 
   \sa equals().
  */
@@ -714,7 +715,7 @@ SbRotation::toString() const
 }
 
 /*!
-  Convert from a string representation, return wether this is a valid conversion
+  Convert from a string representation, return whether this is a valid conversion
 */
 SbBool
 SbRotation::fromString(const SbString & str)
@@ -725,9 +726,8 @@ SbRotation::fromString(const SbString & str)
 }
 
 /*!
-  Dump the state of this object to the \a fp file stream. Only works
-  in debug version of library, method does nothing in an optimized
-  compile.
+  Dump the state of this object to the \a fp file stream. Only works in
+  debug version of library, method does nothing in an optimized build.
  */
 void
 SbRotation::print(FILE * fp) const
@@ -740,14 +740,16 @@ SbRotation::print(FILE * fp) const
 #ifdef COIN_TEST_SUITE
 #include <Inventor/SbTypeInfo.h>
 #include <Inventor/SbVec3f.h>
+#include <Inventor/SbVec4f.h>
 #include <boost/lexical_cast.hpp>
 #include <cassert>
+#include <cstdio>
 
 typedef SbRotation ToTest;
 BOOST_AUTO_TEST_CASE(operatorBrackets)
 {
   const int FLOAT_SENSITIVITY = 1;
-  const float SQRT2 = sqrt(2)/2;
+  const float SQRT2 = sqrt(2.f)/2.f;
   SbRotation rot(0,-SQRT2,0,SQRT2);
 
   for (int i=0;i<4;++i) {
@@ -768,7 +770,9 @@ BOOST_AUTO_TEST_CASE(operatorBrackets)
 BOOST_AUTO_TEST_CASE(toString) {
   ToTest val(SbVec3f(0, -1, 0),  1);
   SbString str("0 -1 0  1");
-  BOOST_CHECK_MESSAGE(str == val.toString(),
+  SbVec4f expected(0.f, -1.f, 0.f, 1.f), actual;
+  sscanf(val.toString().getString(), "%f %f %f  %f", &actual[0], &actual[1], &actual[2], &actual[3]);
+  BOOST_CHECK_MESSAGE(actual.equals(expected, 0.000001f),
                       std::string("Mismatch between ") +  val.toString().getString() + " and control string " + str.getString());
 
 }

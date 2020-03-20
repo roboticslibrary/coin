@@ -33,6 +33,7 @@
 /*!
   \class SoViewportRegionElement Inventor/elements/SoViewportRegionElement.h
   \brief The SoViewportRegionElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -53,8 +54,7 @@
 SO_ELEMENT_SOURCE(SoViewportRegionElement);
 
 /*!
-  This static method initializes static data for the SoViewportregionElement
-  class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -64,15 +64,14 @@ SoViewportRegionElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoViewportRegionElement::~SoViewportRegionElement(void)
 {
 }
 
-//! FIXME: write doc.
-
+// Doc from superclass
 void
 SoViewportRegionElement::init(SoState * state)
 {

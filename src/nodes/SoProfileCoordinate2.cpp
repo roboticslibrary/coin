@@ -33,6 +33,7 @@
 /*!
   \class SoProfileCoordinate2 SoProfileCoordinate2.h Inventor/nodes/SoProfileCoordinate2.h
   \brief The SoProfileCoordinate2 class is a node specifying a set of 2D coordinates for profiles.
+
   \ingroup nodes
 
   Use nodes of this type to provide coordinates to profiles.
@@ -93,6 +94,9 @@ SoProfileCoordinate2::~SoProfileCoordinate2()
 }
 
 // doc in super
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoProfileCoordinate2::initClass(void)
 {

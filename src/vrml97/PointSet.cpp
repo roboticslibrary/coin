@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLPointSet SoVRMLPointSet.h Inventor/VRMLnodes/SoVRMLPointSet.h
   \brief The SoVRMLPointSet class is used to represent a set of 3D points.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -69,7 +70,7 @@
   this PointSet node, the emissiveColor of the Material node shall be
   used to draw the points. More details on lighting equations can be
   found in 4.14, Lighting model
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.14>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.14>).
 
 */
 
@@ -124,7 +125,9 @@ is_material_per_vertex(SoVRMLPointSet * ps, SoState * state)
 
 SO_NODE_SOURCE(SoVRMLPointSet);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLPointSet::initClass(void)
 {

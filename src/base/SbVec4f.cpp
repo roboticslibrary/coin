@@ -49,10 +49,11 @@
 /*!
   \class SbVec4f SbVec4f.h Inventor/SbVec4f.h
   \brief The SbVec4f class is a 4 dimensional vector with floating point coordinates.
+
   \ingroup base
 
   This vector class is used by many other classes in
-  Coin. It provides storage for a 3 dimensional homogeneoues
+  Coin. It provides storage for a 3 dimensional homogeneous
   vector (with the 4 components usually referred to as <x, y, z, w>)
   as well as simple floating point arithmetic operations.
 
@@ -408,8 +409,8 @@ SbVec4f::setValue(const SbVec4i32 & v)
 */
 
 /*!
-  Dump the state of this object to the \a file stream. Only works in
-  debug version of library, method does nothing in an optimized compile.
+  Dump the state of this object to the \a fp file stream. Only works in
+  debug version of library, method does nothing in an optimized build.
  */
 void
 SbVec4f::print(FILE * fp) const
@@ -424,7 +425,7 @@ SbVec4f::print(FILE * fp) const
 
 BOOST_AUTO_TEST_CASE(noNormalizingNormalized)
 {
-  const float SQRT2 = sqrt(2)/2;
+  const float SQRT2 = sqrt(2.f)/2.f;
   SbVec4f vec(0,-SQRT2,0,SQRT2);
 
   vec.normalize();
@@ -447,7 +448,7 @@ BOOST_AUTO_TEST_CASE(noNormalizingNormalized)
 BOOST_AUTO_TEST_CASE(normalizingDeNormalized)
 {
   const int FLOAT_SENSITIVITY = 1;
-  const float SQRT2 = sqrt(2)/2;
+  const float SQRT2 = sqrt(2.f)/2.f;
   SbVec4f vec(0,-1,0,1);
 
   vec.normalize();

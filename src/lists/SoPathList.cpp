@@ -33,6 +33,7 @@
 /*!
   \class SoPathList SoPathList.h Inventor/lists/SoPathList.h
   \brief The SoPathList class is a container for pointers to SoPath objects.
+
   \ingroup general
 
   As this class inherits SoBaseList, referencing and dereferencing
@@ -44,7 +45,7 @@
 #include <Inventor/SoPath.h>
 #include <Inventor/SoFullPath.h>
 #include <Inventor/C/tidbits.h>
-#include <assert.h>
+#include <cassert>
 
 
 /*!

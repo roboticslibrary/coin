@@ -33,6 +33,7 @@
 /*!
   \class SoReversePerspectiveCamera SoReversePerspectiveCamera.h Inventor/nodes/SoReversePerspectiveCamera.h
   \brief The SoReversePerspectiveCamera class defines a camera node with reverse perspective rendering.
+
   \ingroup nodes
 
   For realistic looking 3D scene, the geometry should be rendered with
@@ -44,8 +45,8 @@
   observer appear larger than closer objects. A reverse perspective projection
   is defined by
     - setting the perspective camera position to the projection point behind the scene
-	- setting near / far distance to negative values
-    - rotating the camera orientation by 180 degree around the camera z axis
+    - setting near / far distance to negative values
+    - rotating the camera orientation by 180 degrees around the camera Z-axis
   to compensate the image flip induced by the negative near / far values.
 
   The view volume of the default reverse perspective camera is defined as shown below.
@@ -70,7 +71,7 @@
 
 #include <Inventor/nodes/SoReversePerspectiveCamera.h>
 
-#include <assert.h>
+#include <cassert>
 
 #include <Inventor/errors/SoDebugError.h>
 
@@ -111,6 +112,9 @@ SoReversePerspectiveCamera::~SoReversePerspectiveCamera()
 }
 
 // Doc in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoReversePerspectiveCamera::initClass(void)
 {

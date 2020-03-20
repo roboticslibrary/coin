@@ -33,10 +33,11 @@
 /*!
   \class SoMFBool SoMFBool.h Inventor/fields/SoMFBool.h
   \brief The SoMFBool class is a container for SbBool values.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store multiple boolean on/off or TRUE/FALSE values.
+  need to store multiple boolean on/off or TRUE/FALSE values.
 
   This field supports application data sharing through a
   setValuesPointer() method. See SoMField documentation for
@@ -64,7 +65,9 @@ SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFBool, SbBool, SbBool);
 
 // *************************************************************************
 
-// Override from parent.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFBool::initClass(void)
 {

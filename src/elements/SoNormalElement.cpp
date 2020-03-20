@@ -33,6 +33,7 @@
 /*!
   \class SoNormalElement Inventor/elements/SoNormalElement.h
   \brief The SoNormalElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -57,7 +58,7 @@
 SO_ELEMENT_SOURCE(SoNormalElement);
 
 /*!
-  This static method initializes static data for the SoNormalElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -67,7 +68,7 @@ SoNormalElement::initClass()
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoNormalElement::~SoNormalElement()
@@ -97,7 +98,11 @@ SoNormalElement::set(SoState * const state,
   }
 }
 
-//! FIXME: write doc.
+/*!
+  Initializes the element to its default value. The default
+  values are: for normals NULL, for numNormals 0, and for the
+  unitLength flag FALSE.
+*/
 
 void
 SoNormalElement::init(SoState *state)

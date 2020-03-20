@@ -33,9 +33,10 @@
 /*!
   \class SoEnabledElementsList SoEnabledElementsList.h Inventor/lists/SoEnabledElementsList.h
   \brief The SoEnabledElementsList class is a container for type info for element types that are enabled in actions.
+
   \ingroup actions
 
-  This class is probably not interesting for the application
+  This class is probably not of interest for the application
   programmer.
 */
 
@@ -44,7 +45,7 @@
 // 20000305 mortene.
 
 #include <Inventor/lists/SoEnabledElementsList.h>
-#include <assert.h>
+#include <cassert>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -125,7 +126,7 @@ SoEnabledElementsList::getElements(void) const
 }
 
 /*!
-  Add an \a elementtype to the list of enabled elements if it's not
+  Add an \a elementtype to the list of enabled elements if it is not
   enabled already.
 */
 void

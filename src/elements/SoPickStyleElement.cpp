@@ -33,6 +33,7 @@
 /*!
   \class SoPickStyleElement Inventor/elements/SoPickStyleElement.h
   \brief The SoPickStyleElement is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -52,7 +53,7 @@
 SO_ELEMENT_SOURCE(SoPickStyleElement);
 
 /*!
-  This static method initializes static data for the SoPickStyleElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -62,7 +63,7 @@ SoPickStyleElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoPickStyleElement::~SoPickStyleElement(void)
@@ -80,7 +81,10 @@ SoPickStyleElement::set(SoState * const state,
   SoInt32Element::set(classStackIndex, state, node, style);
 }
 
-//! FIXME: write doc.
+/*!
+  Initializes the element to its default value. The default
+  value for normalBinding is SoPickStyleElement::SHAPE.
+*/
 
 void
 SoPickStyleElement::init(SoState * state)

@@ -42,8 +42,9 @@
 */
 
 /*!
-  \class SoBundle include/Inventor/bundles/SoBundle.h
+  \class SoBundle SoBundle.h Inventor/bundles/SoBundle.h
   \brief The SoBundle class is the superclass for all bundle classes.
+
   \ingroup bundles
 */
 // FIXME: document class properly (write general explanation of what
@@ -51,7 +52,7 @@
 
 
 /*!
-  Constructor with action being the action applied to the node.
+  Constructor with \a action being the action applied to the node.
 */
 SoBundle::SoBundle(SoAction *action)
 {

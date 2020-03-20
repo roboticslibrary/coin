@@ -65,7 +65,7 @@ using std::free;
   The type definition for the rbptree node structure.
 */
 
-/*
+/*!
   \struct cc_rbptree rbptree.h Inventor/C/base/rbptree.h
 
   The structure for the whole rbptree.
@@ -655,7 +655,7 @@ cc_rbptree_debug(const cc_rbptree * t)
 
 #ifdef COIN_TEST_SUITE
 
-#include <math.h>
+#include <cmath>
 #include <Inventor/lists/SbList.h>
 
 #define FILL_TIMES (50)
@@ -667,11 +667,11 @@ BOOST_AUTO_TEST_CASE(rbptree_stress)
   cc_rbptree tree;
   cc_rbptree_init(&tree);
 
-  int i, c;
+  int i;
   for (int c = 0; c < FILL_TIMES; ++c) {
     SbList<void *> values;
     for (i = 0; i < FILL_COUNT; ++i) {
-      void * entry = reinterpret_cast<void *>(rand());
+      void * entry = reinterpret_cast<void *>(static_cast<uintptr_t>(rand()));
       cc_rbptree_insert(&tree, entry, NULL);
       values.append(entry);
     }
@@ -688,7 +688,7 @@ BOOST_AUTO_TEST_CASE(rbptree_stress)
   for (int c = 0; c < FILL_TIMES; ++c) {
     SbList<void *> values;
     for (i = 0; i < FILL_COUNT; ++i) {
-      void * entry = reinterpret_cast<void *>(((c & 2) == 0) ? i : (FILL_COUNT - i));
+      void * entry = reinterpret_cast<void *>(static_cast<uintptr_t>(((c & 2) == 0) ? i : (FILL_COUNT - i)));
       cc_rbptree_insert(&tree, entry, NULL);
       values.append(entry);
     }

@@ -33,6 +33,7 @@
 /*!
   \class SoDataSensor SoDataSensor.h Inventor/sensors/SoDataSensor.h
   \brief The SoDataSensor class is the abstract base class for sensors monitoring changes in a scene graph.
+
   \ingroup sensors
 
   If you need to know when a particular entity (as a field or a node)
@@ -79,7 +80,7 @@ SoDataSensor::SoDataSensor(void)
 
 /*!
   Constructor taking as parameters the sensor callback function and
-  the userdata which will be passed the callback.
+  the userdata which will be passed to the callback.
 
   \sa setFunction(), setData()
 */
@@ -207,7 +208,7 @@ SoDataSensor::getTriggerPathFlag(void) const
 }
 
 /*!
-  Returns the type of the scenegraph operation on the node that caused
+  Returns the type of the scene graph operation on the node that caused
   the sensor to trigger.
 
   \sa getTriggerNode(), getTriggerField(), getTriggerGroupChild()
@@ -301,7 +302,7 @@ SoDataSensor::trigger(void)
 
   If this is an immediate sensor, the field and node (if any) causing
   the change will be stored and can be fetched by getTriggerField()
-  and getTriggerNode(). If the triggerpath flag has been set, the path
+  and getTriggerNode(). If the trigger path flag has been set, the path
   down to the node is also found and stored for later retrieval by
   getTriggerPath().
 
@@ -319,30 +320,30 @@ SoDataSensor::notify(SoNotList * l)
 
   if (this->getPriority() == 0) {
     this->triggerfield = l->getLastField();
-    SoNotRec * record = l->getFirstRecAtNode();
-    this->triggernode = (SoNode *) (record ? record->getBase() : NULL);
+    SoNotRec * firstrecord = l->getFirstRecAtNode();
+    this->triggernode = (SoNode *) (firstrecord ? firstrecord->getBase() : NULL);
 
     if (this->findpath && this->triggernode) {
-      const SoNotRec * record = l->getLastRec();
+      const SoNotRec * lastrecord = l->getLastRec();
       // find last record with node base (we know there's at least one
       // because of triggernode)
-      while (!record->getBase()->isOfType(SoNode::getClassTypeId())) {
-        record = record->getPrevious();
+      while (!lastrecord->getBase()->isOfType(SoNode::getClassTypeId())) {
+        lastrecord = lastrecord->getPrevious();
       }
       // create path down to triggernode
-      this->triggerpath = new SoPath((SoNode*)record->getBase());
+      this->triggerpath = new SoPath((SoNode*)lastrecord->getBase());
       this->triggerpath->ref();
-      while (record->getBase() != this->triggernode) {
-        record = record->getPrevious();
-        this->triggerpath->append((SoNode*) record->getBase());
+      while (lastrecord->getBase() != this->triggernode) {
+        lastrecord = lastrecord->getPrevious();
+        this->triggerpath->append((SoNode*) lastrecord->getBase());
       }
     }
 
-    this->triggeroperationtype = record ? record->getOperationType() : SoNotRec::UNSPECIFIED;
-    this->triggerindex = record ? record->getIndex() : -1;
-    this->triggerfieldnumindices = record ? record->getFieldNumIndices() : 0;
-    this->triggergroupchild = (SoNode *) (record ? record->getGroupChild() : NULL);
-    this->triggergroupprevchild = (SoNode *) (record ? record->getGroupPrevChild() : NULL);
+    this->triggeroperationtype = firstrecord ? firstrecord->getOperationType() : SoNotRec::UNSPECIFIED;
+    this->triggerindex = firstrecord ? firstrecord->getIndex() : -1;
+    this->triggerfieldnumindices = firstrecord ? firstrecord->getFieldNumIndices() : 0;
+    this->triggergroupchild = (SoNode *) (firstrecord ? firstrecord->getGroupChild() : NULL);
+    this->triggergroupprevchild = (SoNode *) (firstrecord ? firstrecord->getGroupPrevChild() : NULL);
   }
   this->schedule();
 }

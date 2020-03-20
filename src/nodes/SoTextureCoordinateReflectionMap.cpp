@@ -33,6 +33,7 @@
 /*!
   \class SoTextureCoordinateReflectionMap SoTextureCoordinateReflectionMap.h Inventor/nodes/SoTextureCoordinateReflectionMap.h
   \brief The SoTextureCoordinateReflectionMap class generates 3D reflection texture coordinates.
+
   \ingroup nodes
 
   This node is usually used along with a SoCubeMapTexture node...
@@ -51,8 +52,8 @@
 #include <Inventor/nodes/SoTextureCoordinateReflectionMap.h>
 #include "coindefs.h"
 
-#include <stdlib.h>
-#include <float.h>
+#include <cstdlib>
+#include <cfloat>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -105,6 +106,9 @@ SoTextureCoordinateReflectionMap::~SoTextureCoordinateReflectionMap()
 }
 
 // doc in super
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoTextureCoordinateReflectionMap::initClass(void)
 {

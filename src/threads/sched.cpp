@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 \**************************************************************************/
 
-/*! \file common.h */
+/*! \file Inventor/C/threads/common.h */
 
 /*!
   \struct cc_sched common.h Inventor/C/threads/common.h
@@ -41,13 +41,13 @@
 /*!
   \typedef struct cc_sched cc_sched
   \ingroup threads
-  \brief The type definition for the thread schduler structure.
+  \brief The type definition for the thread scheduler structure.
 */
 
 /*! \file sched.h */
 #include <Inventor/C/threads/sched.h>
 
-#include <assert.h>
+#include <cassert>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -92,7 +92,7 @@ void cc_sched_change_priority(cc_sched * sched,
 
 #else /* HAVE_THREADS && DOXYGEN_SKIP_THIS*/
 
-#include <stdlib.h>
+#include <cstdlib>
 
 #include <Inventor/C/errors/debugerror.h>
 #include <Inventor/C/threads/mutex.h>
@@ -199,7 +199,7 @@ cc_sched_construct(int numthreads)
   Destruct the scheduler.
 
   This method will block until all currently executing jobs have finished.
-  Any remaining scheduled jobs will be cancelled.
+  Any remaining scheduled jobs will be canceled.
 
   Note that this differs from Coin-2. To emulate Coin-2 behavior, call
   cc_sched_wait_all() before calling this method.

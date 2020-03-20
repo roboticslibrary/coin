@@ -221,6 +221,9 @@ SoSceneTextureCubeMap::~SoSceneTextureCubeMap()
 }
 
 // Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoSceneTextureCubeMap::initClass(void)
 {
@@ -396,10 +399,8 @@ SoSceneTextureCubeMapP::updatePBuffer(SoState * state, const float quality)
       this->glcontextsize.setValue(-1,-1);
       this->glcontext = NULL;
     }
-    if (this->glaction) {
-      delete this->glaction; 
-      this->glaction = NULL;
-    }
+    delete this->glaction; 
+    this->glaction = NULL;
     this->glimagevalid = FALSE;
   }
   if (size == SbVec2s(0,0)) return;

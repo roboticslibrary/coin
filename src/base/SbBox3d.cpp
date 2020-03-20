@@ -31,8 +31,9 @@
 \**************************************************************************/
 
 /*!
-  \class SbBox3d Inventor/SbBox3d.h
+  \class SbBox3d SbBox3d.h Inventor/SbBox3d.h
   \brief The SbBox3d class is an abstraction for an axis aligned 3 dimensional box.
+
   \ingroup base
 
   This box abstraction class is used by other entities in the Coin
@@ -79,6 +80,30 @@
 
   The coordinates of \a min should be less than the coordinates of \a
   max if you want to make a valid box.
+*/
+
+/*!
+  \fn SbBox3d::SbBox3d(const SbBox3f & box)
+
+  Constructs an SbBox3d instance from the value in an SbBox3f instance.
+
+  \since Coin 2.5
+*/
+
+/*!
+  \fn SbBox3d::SbBox3d(const SbBox3s & box)
+
+  Constructs an SbBox3d instance from the value in an SbBox3s instance.
+
+  \since Coin 2.5
+*/
+
+/*!
+  \fn SbBox3d::SbBox3d(const SbBox3i32 & box)
+
+  Constructs an SbBox3d instance from the value in an SbBox3i32 instance.
+
+  \since Coin 2.5
 */
 
 /*!
@@ -259,7 +284,7 @@ SbBox3d::intersect(const SbVec3d & point) const
 }
 
 /*!
-  Check if the given \a box lies wholly or partly within the boundaries
+  Check if the given \a box lies entirely or partially within the boundaries
   of this box.
  */
 SbBool
@@ -335,14 +360,15 @@ SbBox3d::makeEmpty(void)
   \fn SbBool SbBox3d::hasVolume(void) const
 
   Check if the box has been correctly specified and by that virtue
-  has volume.
+  has "positive" volume, i.e. all coordinates of its upper right corner
+  (the maximum point) are greater than the corresponding coordinates 
+  of its lower left corner (the minimum point).
 */
 
 /*!
   \fn double SbBox3d::getVolume(void) const
 
-  Check if the box has "positive" volume, i.e. the lower left corner is
-  actually lower and more left than the maximum point.
+  Returns the volume of the box.
 */
 
 /*!
@@ -427,8 +453,8 @@ SbBox3d::transform(const SbDPMatrix & matrix)
 }
 
 /*!
-  Dump the state of this object to the \a file stream. Only works in
-  debug version of library, method does nothing in an optimized compile.
+  Dump the state of this object to the \a fp file stream. Only works in
+  debug version of library, method does nothing in an optimized build.
  */
 void
 SbBox3d::print(FILE * fp) const

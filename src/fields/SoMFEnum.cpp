@@ -33,10 +33,11 @@
 /*!
   \class SoMFEnum SoMFEnum.h Inventor/fields/SoMFEnum.h
   \brief The SoMFEnum class is a container for a set of enumerated values.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store values constrained to be from an enumerated set.
+  need to store values constrained to be from an enumerated set.
 
   A field of this type stores its values to file as the symbolic
   names, rather than the actual integer values.
@@ -111,7 +112,9 @@ SoMFEnum::~SoMFEnum()
 #endif // DOXYGEN_SKIP_THIS
 
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFEnum::initClass(void)
 {

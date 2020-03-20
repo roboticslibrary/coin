@@ -33,13 +33,14 @@
 /*!
   \class SoNormal SoNormal.h Inventor/nodes/SoNormal.h
   \brief The SoNormal class is a node for providing normals to the state.
+
   \ingroup nodes
 
   Coin will automatically calculate normals for you if no SoNormal
   nodes are present in the scene graph, but explicitly setting normals
-  is useful for at least two purposes: 1) a potential increase in
-  performance, 2) you can calculate and use "incorrect" normals to do
-  various special effects.
+  is useful for at least two purposes:
+    1. a potential increase in performance
+    2. you can calculate and use "incorrect" normals to do various special effects.
 
   <b>FILE FORMAT/DEFAULTS:</b>
   \code
@@ -107,6 +108,9 @@ SoNormal::~SoNormal()
 }
 
 // Doc in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoNormal::initClass(void)
 {

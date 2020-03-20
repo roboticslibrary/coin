@@ -30,6 +30,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 \**************************************************************************/
 
+/*!
+  \class SoScrollingGraphKit SoScrollingGraphKit.h Inventor/annex/Profiler/nodekits/SoScrollingGraphKit.h
+  \brief The SoScrollingGraphKit element class is yet to be documented.
+
+  \ingroup profiler
+*/
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif // HAVE_CONFIG_H
@@ -38,8 +45,8 @@
 
 #include <Inventor/annex/Profiler/nodekits/SoScrollingGraphKit.h>
 
-#include <stdlib.h>
-#include <stdio.h>
+#include <cstdlib>
+#include <cstdio>
 
 #include <boost/scoped_ptr.hpp>
 #include <boost/scoped_array.hpp>

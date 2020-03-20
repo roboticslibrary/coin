@@ -39,6 +39,7 @@
 /*!
   \class SoScale1Dragger SoScale1Dragger.h Inventor/draggers/SoScale1Dragger.h
   \brief The SoScale1Dragger class provides a mechanism for the end-user to scale in one dimension.
+
   \ingroup draggers
 
   \DRAGGER_DEFAULT_SCREENSHOT
@@ -76,7 +77,7 @@
   the X, Y and Z axes.
 
   For the SoScale1Dragger, only the X component is used, the Y and Z
-  components will always be equal to 1 (ie no scaling).
+  components will always be equal to 1 (i.e. no scaling).
 */
 
 /*!
@@ -97,7 +98,9 @@ public:
 SO_KIT_SOURCE(SoScale1Dragger);
 
 
-// doc in superclass
+/*!
+  \copydetails SoDragger::initClass(void)
+*/
 void
 SoScale1Dragger::initClass(void)
 {
@@ -105,7 +108,7 @@ SoScale1Dragger::initClass(void)
 }
 
 // FIXME: document which parts need to be present in the geometry
-// scenegraph, and what role they play in the dragger. 20010913 mortene.
+// scene graph, and what role they play in the dragger. 20010913 mortene.
 /*!
   \DRAGGER_CONSTRUCTOR
 
@@ -175,7 +178,7 @@ SoScale1Dragger::SoScale1Dragger(void)
   this->setPartAsDefault("feedback", "scale1Feedback");
   this->setPartAsDefault("feedbackActive", "scale1FeedbackActive");
 
-  // initialize swich values
+  // initialize switch values
   SoSwitch *sw;
   sw = SO_GET_ANY_PART(this, "scalerSwitch", SoSwitch);
   SoInteractionKit::setSwitchValue(sw, 0);

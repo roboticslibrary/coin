@@ -32,11 +32,11 @@
 
 #include <SoDebug.h>
 
-#include <stdarg.h>
-#include <assert.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdarg>
+#include <cassert>
+#include <cstring>
+#include <cstdio>
+#include <cstdlib>
 
 #include <Inventor/C/tidbits.h>
 #include <Inventor/nodes/SoNode.h>
@@ -58,7 +58,7 @@ inline unsigned int SbHashFunc(const void * key)
 
 /*!
   \class SoDebug SoDebug.h SoDebug.h
-  The SoDebug class is a small collection of debugging-related functions.
+  The SoDebug class is a small collection of debugging related functions.
 */
 
 // *************************************************************************

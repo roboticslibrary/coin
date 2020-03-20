@@ -34,7 +34,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#if defined (_POSIX_SOURCE) || defined(__APPLE__)
+#if defined (_POSIX_SOURCE) || defined(__APPLE__) || defined(__FreeBSD__)
 #define USE_POSIX
 #elif defined(_WIN32)
 #define USE_WIN32
@@ -53,6 +53,9 @@
 #include <Inventor/nodes/SoSeparator.h>
 
 #include <TestSuiteUtils.h>
+
+#define BOOST_TEST_NO_LIB 1
+#include <boost/test/unit_test.hpp>
 
 
 
@@ -77,7 +80,7 @@ should_filter(const SbString & msg)
   filterset * filters = messagefilters;
   while (filters != NULL) {
     for (int i = 0; filters->filters[i] != NULL; ++i) {
-      if (msg.find(filters->filters[i])) {
+      if (msg.find(filters->filters[i]) >= 0) {
         return 1;
       }
     }
@@ -298,9 +301,9 @@ namespace {
 
   bool
   compare_suffix(const std::string & input ,const std::string & suffix) {
-    int suffixLength = suffix.size();
+    size_t suffixLength = suffix.size();
 
-    int n = input.size();
+	size_t n = input.size();
     if (n<suffixLength)
       return false;
 
@@ -385,6 +388,24 @@ namespace {
 }
 
 void
+TestSuite::test_file(const std::string & filename,
+                          test_files_CB * testFunction)
+{
+  std::string basepath = coin_getcwd();
+  size_t n = filename.find_last_of(DIRECTORY_SEPARATOR);
+  std::string dir = filename.substr(0,n);
+  std::string file = filename.substr(n+1,filename.size()-n-1);
+  coin_chdir(dir);
+  SoNode * fileroot = TestSuite::ReadInventorFile(file.c_str());
+  testFunction(fileroot, filename);
+  if (fileroot != NULL) {
+    fileroot->ref();
+    fileroot->unref();
+  }
+  coin_chdir(basepath);
+}
+
+void
 TestSuite::test_all_files(const std::string & search_directory,
                           std::vector<std::string> & suffixes,
                           test_files_CB * testFunction)
@@ -405,18 +426,26 @@ TestSuite::test_all_files(const std::string & search_directory,
        it != paths.end();
        ++it)
     {
-      std::string filename;
-      filename = *it;
-      int n = filename.find_last_of(DIRECTORY_SEPARATOR);
-      std::string dir = filename.substr(0,n);
-      std::string file = filename.substr(n+1,filename.size()-n-1);
-      coin_chdir(dir);
-      SoNode * fileroot = TestSuite::ReadInventorFile(file.c_str());
-      testFunction(fileroot, filename);
-      if (fileroot != NULL) {
-        fileroot->ref();
-        fileroot->unref();
-      }
-      coin_chdir(basepath);
+      test_file(*it, testFunction);
     }
+}
+
+bool
+TestSuite::testCorrectFile(SoNode * root, const std::string & filename) {
+    BOOST_CHECK_MESSAGE((root != NULL) && (GetReadErrorCount() == 0), (std::string("failed to read file ") + filename).c_str());
+    ResetReadErrorCount();
+    return root != NULL;
+}
+
+bool
+TestSuite::testIncorrectFile(SoNode * root, const std::string & filename) {
+    BOOST_CHECK_MESSAGE((root == NULL) || (GetReadErrorCount() > 0), (std::string("Managed to read an incorrect file ") + filename).c_str());
+    ResetReadErrorCount();
+    return root != NULL;
+}
+
+bool
+TestSuite::testOutOfSpecFile(SoNode * root, const std::string & filename) {
+    BOOST_CHECK_MESSAGE(root != NULL, (std::string("This out of spec file could be read in an earlier version ") + filename).c_str());
+    return root != NULL;
 }

@@ -31,8 +31,9 @@
 \**************************************************************************/
 
 /*!
-  \class SoMaterialBundle include/Inventor/bundles/SoMaterialBundle.h
+  \class SoMaterialBundle SoMaterialBundle.h Inventor/bundles/SoMaterialBundle.h
   \brief The SoMaterialBundle class simplifies material handling.
+
   \ingroup bundles
 
   Every shape node should create (on the stack) an instance of this
@@ -111,7 +112,7 @@ SoMaterialBundle::sendFirst(void)
   Sends material values with index \a index to GL. Will test
   whether the current index equals \a index before sending.
 
-  \a betweenBeginEnd should be \c TRUE if your program is
+  \a betweenbeginend should be \c TRUE if your program is
   between a glBegin() and glEnd() (it is illegal to change the
   polygon stipple between a glBegin() and glEnd()).
 */

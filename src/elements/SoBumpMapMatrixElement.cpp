@@ -33,6 +33,7 @@
 /*!
   \class SoBumpMapMatrixElement Inventor/elements/SoBumpMapMatrixElement.h
   \brief The SoBumpMapMatrixElement class is used to manage the bump map matrix stack.
+
   \ingroup elements
 
   The bump map matrix is used to transform bump map coordinates before
@@ -51,7 +52,10 @@
 
 SO_ELEMENT_SOURCE(SoBumpMapMatrixElement);
 
-// doc from parent
+/*!
+  \copydetails SoElement::initClass(void)
+*/
+
 void
 SoBumpMapMatrixElement::initClass(void)
 {
@@ -59,7 +63,7 @@ SoBumpMapMatrixElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 SoBumpMapMatrixElement::~SoBumpMapMatrixElement(void)
 {

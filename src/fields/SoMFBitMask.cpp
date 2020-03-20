@@ -33,10 +33,11 @@
 /*!
   \class SoMFBitMask SoMFBitMask.h Inventor/fields/SoMFBitMask.h
   \brief The SoMFBitMask class is a container for a set of bitmasks.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store multiple bitmasks with values from an enumerated set.
+  need to store multiple bitmasks with values from an enumerated set.
 
   \sa SoSFBitMask
 
@@ -55,7 +56,9 @@
 
 SO_MFIELD_DERIVED_SOURCE(SoMFBitMask, not_used, not_used);
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFBitMask::initClass(void)
 {

@@ -33,6 +33,7 @@
 /*!
   \class SoOneShot SoOneShot.h Inventor/engines/SoOneShot.h
   \brief The SoOneShot class is a timer that runs for a configurable time and then stops.
+
   \ingroup engines
 */
 
@@ -105,7 +106,9 @@
 
 SO_ENGINE_SOURCE(SoOneShot);
 
-// Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoOneShot::initClass(void)
 {
@@ -227,7 +230,7 @@ SoOneShot::inputChanged(SoField * which)
     }
   }
 
-  // Only enabled when running (as an optimization to avoid continous
+  // Only enabled when running (as an optimization to avoid continuous
   // notification).
   this->timeOut.enable(this->running || do_evaluate);
   this->ramp.enable(this->running || do_evaluate);
@@ -259,7 +262,7 @@ SoOneShot::writeInstance(SoOutput * out)
   // Re-connect to realTime field.
   if (connectfromrealTime) {
     // Don't send notification when reconnecting to preserve the state
-    // of the scenegraph between write passes.
+    // of the scene graph between write passes.
     this->timeIn.connectFrom(connectfield, TRUE);
     this->timeIn.setDefault(defaultflag);
   }

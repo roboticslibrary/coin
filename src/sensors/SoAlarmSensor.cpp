@@ -33,6 +33,7 @@
 /*!
   \class SoAlarmSensor SoAlarmSensor.h Inventor/sensors/SoAlarmSensor.h
   \brief The SoAlarmSensor class is a sensor which will trigger once at a specified time.
+
   \ingroup sensors
 
   SoAlarmSensor provides a convenient way of setting up triggers for
@@ -40,7 +41,7 @@
  */
 
 #include <Inventor/sensors/SoAlarmSensor.h>
-#include <assert.h>
+#include <cassert>
 
 #if COIN_DEBUG
 #include <Inventor/errors/SoDebugError.h>
@@ -55,7 +56,7 @@ SoAlarmSensor::SoAlarmSensor(void)
 
 /*!
   Constructor taking as parameters the sensor callback function and
-  the userdata which will be passed the callback.
+  the userdata which will be passed to the callback.
 
   \sa setFunction(), setData()
  */
@@ -86,7 +87,7 @@ SoAlarmSensor::setTime(const SbTime & abstime)
 }
 
 /*!
-  Set the alarm to be at a specified offset from the current time.
+  Set the alarm to be triggered at a specified offset from the current time.
 
   Note that you must manually schedule() the sensor after calling this
   method.

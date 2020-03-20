@@ -33,6 +33,7 @@
 /*!
   \class SoComposeVec4f SoComposeVec4f.h Inventor/engines/SoComposeVec4f.h
   \brief The SoComposeVec4f class is used to compose 4D vectors from four floats.
+
   \ingroup engines
 */
 
@@ -78,7 +79,9 @@ SoComposeVec4f::SoComposeVec4f()
   SO_ENGINE_ADD_OUTPUT(vector,SoMFVec4f);
 }
 
-// Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoComposeVec4f::initClass()
 {
@@ -113,7 +116,7 @@ SoComposeVec4f::evaluate()
     xVal=i<numX?x[i]:x[numX-1];
     yVal=i<numY?y[i]:y[numY-1];
     zVal=i<numZ?z[i]:z[numZ-1];
-    wVal=i<numW?w[i]:w[numZ-1];
+    wVal=i<numW?w[i]:w[numW-1];
 
     SO_ENGINE_OUTPUT(vector,SoMFVec4f,set1Value(i,xVal,yVal,zVal,wVal));
   }

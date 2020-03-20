@@ -39,6 +39,7 @@
 /*!
   \class SoTabBoxDragger SoTabBoxDragger.h Inventor/draggers/SoTabBoxDragger.h
   \brief The SoTabBoxDragger wraps a box around geometry you can then translate and scale.
+
   \ingroup draggers
 
   \DRAGGER_DEFAULT_SCREENSHOT
@@ -106,7 +107,9 @@ public:
 SO_KIT_SOURCE(SoTabBoxDragger);
 
 
-// doc in superclass
+/*!
+  \copydetails SoDragger::initClass(void)
+*/
 void
 SoTabBoxDragger::initClass(void)
 {
@@ -114,7 +117,7 @@ SoTabBoxDragger::initClass(void)
 }
 
 // FIXME: document which parts need to be present in the geometry
-// scenegraph, and what role they play in the dragger. 20010913 mortene.
+// scene graph, and what role they play in the dragger. 20010913 mortene.
 /*!
   \DRAGGER_CONSTRUCTOR
 

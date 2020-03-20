@@ -33,10 +33,11 @@
 /*!
   \class SoSFFloat SoSFFloat.h Inventor/fields/SoSFFloat.h
   \brief The SoSFFloat class is a container for a floating point value.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a single floating point value.
+  need to store a single floating point value.
 
   \sa SoMFFloat
 */
@@ -59,7 +60,9 @@ SO_SFIELD_SOURCE(SoSFFloat, float, float);
 
 // *************************************************************************
 
-// Override from parent.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFFloat::initClass(void)
 {

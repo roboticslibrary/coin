@@ -66,10 +66,10 @@
 #include <Inventor/misc/SoGLBigImage.h>
 #include "coindefs.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <assert.h>
+#include <cstdlib>
+#include <cstdio>
+#include <cstring>
+#include <cassert>
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -227,6 +227,7 @@ SoGLBigImage::~SoGLBigImage()
   delete PRIVATE(this);
 }
 
+// Doc in superclass.
 void
 SoGLBigImage::unref(SoState * state)
 {
@@ -235,7 +236,7 @@ SoGLBigImage::unref(SoState * state)
 }
 
 /*!
-  \COININTERNAL
+  This static method initializes static data for the SoGLBigImage class.
 */
 void
 SoGLBigImage::initClass(void)
@@ -246,7 +247,10 @@ SoGLBigImage::initClass(void)
   coin_atexit((coin_atexit_f*) soglbigimagep_cleanup, CC_ATEXIT_NORMAL);
 }
 
-// Doc in superclass.
+/*!
+  This static method returns the SoType object associated with
+  objects of this class.
+*/
 SoType
 SoGLBigImage::getClassTypeId(void)
 {
@@ -607,7 +611,7 @@ SoGLBigImageP::copySubImage(SoGLBigImageTls * tls,
   if ((div == 1) || (this->cache && level < this->numcachelevels && this->cache[level])) {
     SbVec2s pos(idx % tls->dim[0], idx / tls->dim[0]);
 
-    // FIXME: investigate if it's possible to set the pixel transfer
+    // FIXME: investigate if it is possible to set the pixel transfer
     // mode so that we don't have to copy the data into a temporary
     // image. This is probably fast enough though.  pederb?.
 

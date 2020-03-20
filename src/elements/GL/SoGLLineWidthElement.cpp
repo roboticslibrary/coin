@@ -32,19 +32,20 @@
 
 /*!
   \class SoGLLineWidthElement Inventor/elements/SoGLLineWidthElement.h
-  \brief The SoGLLineWidthElement class changes the linewidth setting of the OpenGL render state.
+  \brief The SoGLLineWidthElement class changes the line width setting of the OpenGL render state.
+
   \ingroup elements
 
-  Requests from the scenegraph to change the linewidth when rendering
+  Requests from the scene graph to change the line width when rendering
   OpenGL line primitives will be made through this element, which
   forwards it to the appropriate native OpenGL call.
 
   The Coin library does not place any bounds on the values of the
-  linewidths, but be aware that the range and granularity of what is
-  valid linewidths depends on the underlying OpenGL
+  line widths, but be aware that the range and granularity of what is
+  valid line widths depends on the underlying OpenGL
   implementation. Application programmers using line primitives
   (typically through the SoLineSet or SoIndexedLineSet nodes) should
-  heed these boundary values. They can be acquired by running the
+  consider these boundary values. They can be acquired by running the
   following code from within a valid OpenGL context:
 
   \code
@@ -55,8 +56,8 @@
   \endcode
 
   Another, perhaps more convenient, way of acquiring the OpenGL
-  implementation limits with regard to pointsizes is to use the
-  So*GLWidget::getPointSizeLimits() method in the GUI "glue" interface
+  implementation limits with regard to point sizes is to use the
+  So\@Gui\@GLWidget\::getPointSizeLimits() method in the GUI "glue" interface
   library you are using (SoQt, SoXt, SoGtk, SoWin, ...).
 */
 
@@ -83,7 +84,10 @@ float SoGLLineWidthElement::sizerange[2] = { RANGE_NOT_CHECKED, -1.0f};
 
 SO_ELEMENT_SOURCE(SoGLLineWidthElement);
 
-// doc in super
+/*!
+  \copydetails SoElement::initClass(void)
+*/
+
 void
 SoGLLineWidthElement::initClass(void)
 {
@@ -97,14 +101,14 @@ SoGLLineWidthElement::~SoGLLineWidthElement(void)
 {
 }
 
-// doc in super
+// doc in superclass
 void
 SoGLLineWidthElement::init(SoState * stateptr)
 {
   inherited::init(stateptr);
 }
 
-// doc in super
+// doc in superclass
 void
 SoGLLineWidthElement::push(SoState * stateptr)
 {
@@ -115,7 +119,7 @@ SoGLLineWidthElement::push(SoState * stateptr)
   prev->capture(stateptr);
 }
 
-// doc in super
+// doc in superclass
 void
 SoGLLineWidthElement::pop(SoState * COIN_UNUSED_ARG(stateptr), const SoElement * prevTopElement)
 {
@@ -125,7 +129,7 @@ SoGLLineWidthElement::pop(SoState * COIN_UNUSED_ARG(stateptr), const SoElement *
   }
 }
 
-// doc in super
+// doc in superclass
 void
 SoGLLineWidthElement::setElt(float width)
 {
@@ -145,7 +149,7 @@ SoGLLineWidthElement::updategl(void)
 
     // Matthias Koenig reported on coin-discuss that the OpenGL
     // implementation on SGI Onyx 2 InfiniteReality returns 0 for the
-    // lowest linewidth, but it will still set the return value of
+    // lowest line width, but it will still set the return value of
     // glGetError() to GL_INVALID_VALUE if this size is attempted
     // used. This is a workaround for what looks like an OpenGL bug.
 
@@ -159,7 +163,7 @@ SoGLLineWidthElement::updategl(void)
 
   // 0.0f is used as a "dummy" default value by our superclass and by
   // SoDrawStyle::lineWidth, so handle that case outside of the
-  // rangecheck below.
+  // range check below.
 
   if (this->data == 0.0f) { useval = 1.0f; }
 

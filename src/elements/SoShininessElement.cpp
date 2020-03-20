@@ -33,11 +33,12 @@
 /*!
   \class SoShininessElement Inventor/elements/SoShininessElement.h
   \brief The SoShininessElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
 
-  This element is part of the SoLazyElement in some other OI implementetions.
+  This element is part of the SoLazyElement in some other OI implementations.
 */
 
 #include <Inventor/elements/SoShininessElement.h>
@@ -53,7 +54,7 @@
 SO_ELEMENT_SOURCE(SoShininessElement);
 
 /*!
-  This static method initializes static data for the SoShininessElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -63,14 +64,14 @@ SoShininessElement::initClass()
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoShininessElement::~SoShininessElement()
 {
 }
 
-//! FIXME: write doc.
+// Doc from superclass
 
 void
 SoShininessElement::init(SoState * stateptr)

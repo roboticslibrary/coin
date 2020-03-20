@@ -33,10 +33,11 @@
 /*!
   \class SoSFVec4ub SoSFVec4ub.h Inventor/fields/SoSFVec4ub.h
   \brief The SoSFVec4ub class is a container for an SbVec4ub vector.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a single vector with four elements.
+  need to store a single vector with four elements.
 
   \sa SbVec4ub, SoMFVec4ub
   \COIN_CLASS_EXTENSION
@@ -61,7 +62,9 @@ SO_SFIELD_SOURCE(SoSFVec4ub, SbVec4ub, SbVec4ub);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFVec4ub::initClass(void)
 {

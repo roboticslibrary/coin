@@ -33,6 +33,7 @@
 /*!
   \class SoGLPolygonOffsetElement Inventor/elements/SoGLPolygonOffsetElement.h
   \brief The SoGLPolygonOffsetElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -53,8 +54,7 @@
 SO_ELEMENT_SOURCE(SoGLPolygonOffsetElement);
 
 /*!
-  This static method initializes static data for the
-  SoGLPolygonOffsetElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -64,7 +64,7 @@ SoGLPolygonOffsetElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoGLPolygonOffsetElement::~SoGLPolygonOffsetElement(void)

@@ -32,11 +32,11 @@
 
 /*!
   \class SbImage SbImage.h Inventor/SbImage.h
-  \brief The SbImage class is an abstract datatype for 2D and 3D images.
+  \brief The SbImage class is an abstract data type for 2D and 3D images.
+
   \ingroup base
 
   \COIN_CLASS_EXTENSION
-
   \since Coin 1.0
 */
 
@@ -456,7 +456,7 @@ SbImage::searchForFile(const SbString & basename,
 /*!
   Reads image data from \a filename. In Coin, simage is used to
   load image files, and several common file formats are supported.
-  simage can be downloaded from our webpages.  If loading
+  simage can be downloaded from our web pages.  If loading
   fails for some reason this method returns FALSE, and the instance
   is set to an empty image. If the file is successfully loaded, the
   file image data is copied into this class.
@@ -481,7 +481,7 @@ SbImage::readFile(const SbString & filename,
   SbString finalname = SbImage::searchForFile(filename, searchdirectories,
                                               numdirectories);
 
-  // use callback to load the image if it's set
+  // use callback to load the image if it is set
   if (SbImageP::readimagecallbacks) {
     for (int i = 0; i < SbImageP::readimagecallbacks->getLength(); i++) {
       SbImageP::ReadImageCBData cbdata = (*SbImageP::readimagecallbacks)[i];
@@ -503,7 +503,7 @@ SbImage::readFile(const SbString & filename,
   if (!simage_wrapper()->available) {
     SoDebugError::postWarning("SbImage::readFile",
                               "The simage library is not available, "
-                              "can not import any images from disk.");
+                              "cannot import any images from disk.");
     return FALSE;
   }
 
@@ -744,15 +744,15 @@ BOOST_AUTO_TEST_CASE(copyConstruct)
   int tmp2;
 
 
-  for (int i=0;i<sizeof(buf); ++i) {
+  for (size_t i=0;i<sizeof(buf); ++i) {
     BOOST_CHECK_MESSAGE(foo.getValue(tmp1,tmp2)[i]==bar.getValue(tmp1,tmp2)[i],"Input value error");
   }
 
-  for (int i=0;i<sizeof(buf); ++i) {
+  for (size_t i=0;i<sizeof(buf); ++i) {
     foo.getValue(tmp1,tmp2)[i]=sizeof(buf)-i;
   }
 
-  for (int i=0;i<sizeof(buf); ++i) {
+  for (size_t i=0;i<sizeof(buf); ++i) {
     BOOST_CHECK_MESSAGE(foo.getValue(tmp1,tmp2)[i]==sizeof(buf)-bar.getValue(tmp1,tmp2)[i],"Error after changing second buffer");
   }
 

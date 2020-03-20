@@ -33,10 +33,11 @@
 /*!
   \class SoMFColorRGBA SoMFColorRGBA.h Inventor/fields/SoMFColorRGBA.h
   \brief The SoMFColorRGBA class is a container for SbColor4f values.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store multiple color values (i.e. "Red Green Blue"
+  need to store multiple color values (i.e. "Red Green Blue"
   triplets).
 
   This field supports application data sharing through a
@@ -66,7 +67,9 @@ SO_MFIELD_SOURCE(SoMFColorRGBA, SbColor4f, const SbColor4f &);
 SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFColorRGBA, SbColor4f, float);
 SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFColorRGBA, SbColor4f, SbColor4f);
 
-// Override from parent.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFColorRGBA::initClass(void)
 {

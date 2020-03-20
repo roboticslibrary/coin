@@ -33,6 +33,7 @@
 /*!
   \class SoPackedColor SoPackedColor.h Inventor/nodes/SoPackedColor.h
   \brief The SoPackedColor class is a node for setting diffuse and transparency material values.
+
   \ingroup nodes
 
   This node provides a convenient way of setting diffuse colors and
@@ -77,10 +78,10 @@
 
   Set of packed 32-bit RGBA vectors.
 
-  The most significant 24 bits specifies 8 bits each for the red,
+  The most significant 24 bits specify 8 bits each for the red,
   green and blue components.
 
-  The least significant 8 bits specifies the transparency value, where
+  The least significant 8 bits specify the transparency value, where
   0x00 means completely transparent, and 0xff completely opaque.
 */
 
@@ -121,7 +122,9 @@ SoPackedColor::~SoPackedColor()
   delete PRIVATE(this);
 }
 
-// Doc from superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoPackedColor::initClass(void)
 {

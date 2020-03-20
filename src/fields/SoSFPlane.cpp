@@ -33,12 +33,13 @@
 /*!
   \class SoSFPlane SoSFPlane.h Inventor/fields/SoSFPlane.h
   \brief The SoSFPlane class is a container for an SbPlane value.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a single definition of a 3D plane.
+  need to store a single definition of a 3D plane.
 
-  Fields of this type stores their value to file as a normalvector
+  Fields of this type stores their value to file as a normal vector
   plus an offset from origo: "v0 v1 v2 offset".
 
   \sa SoMFPlane
@@ -62,7 +63,9 @@ SO_SFIELD_SOURCE(SoSFPlane, SbPlane, const SbPlane &);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFPlane::initClass(void)
 {

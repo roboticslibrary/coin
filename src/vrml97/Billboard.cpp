@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLBillboard SoVRMLBillboard.h Inventor/VRMLnodes/SoVRMLBillboard.h
   \brief The SoVRMLBillboard class is used for rotating geometry towards the viewpoint.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -97,7 +98,7 @@
   undefined.  Multiple instances of Billboard nodes (DEF/USE) operate
   as expected: each instance rotates in its unique coordinate system
   to face the viewer.  Subclause 4.6.5, Grouping and children nodes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.5>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.5>),
   provides a description of the children, addChildren, and
   removeChildren fields and eventIns.  The bboxCenter and bboxSize
   fields specify a bounding box that encloses the Billboard node's
@@ -108,7 +109,7 @@
   is not specified and if needed shall be calculated by the browser. A
   description of the bboxCenter and bboxSize fields is contained in
   4.6.4, Bounding boxes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.4>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.4>),
 
   \ENDWEB3D
 
@@ -168,8 +169,8 @@
 
 #include <Inventor/VRMLnodes/SoVRMLBillboard.h>
 
-#include <math.h>
-#include <float.h>
+#include <cmath>
+#include <cfloat>
 
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
 #include <Inventor/actions/SoSearchAction.h>
@@ -199,7 +200,9 @@ SO_NODE_SOURCE(SoVRMLBillboard);
 
 // *************************************************************************
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLBillboard::initClass(void)
 {
@@ -469,9 +472,9 @@ SoVRMLBillboard::computeRotation(SbMatrix const & invMM, SbViewVolume const & vv
     right = up.cross(look);
     up = look.cross(right);
   } else { 
-    // The VRML97 spec calls for rotating the local z-axis of the
+    // The VRML97 spec calls for rotating the local Z-axis of the
     // billboard to face the viewer, pivoting around the axis of
-    // rotation. If the axis of rotation is the z axis, this angle
+    // rotation. If the axis of rotation is the Z-axis, this angle
     // will be zero, and no rotation can happen. We don't actually
     // bother to compute this angle at all, but set up = rotaxis and
     // use cross products from there to construct the rotation matrix.

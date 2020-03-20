@@ -37,10 +37,10 @@
 #include <config.h>
 #endif // HAVE_CONFIG_H
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <assert.h>
+#include <cstdlib>
+#include <cstdio>
+#include <cstring>
+#include <cassert>
 
 #include <Inventor/C/base/string.h>
 #include <Inventor/lists/SbList.h>
@@ -65,7 +65,7 @@ struct cc_xml_elt {
 // *************************************************************************
 
 /*!
-  Creates a new element with no type, no attributes, and no children elements.
+  Creates a new element with no type, no attributes, and no child elements.
 */
 
 cc_xml_elt *
@@ -130,9 +130,9 @@ void
 cc_xml_elt_delete_x(cc_xml_elt * elt)
 {
   assert(elt);
-  if (elt->type) delete [] elt->type;
-  if (elt->data) delete [] elt->data;
-  if (elt->cdata) delete [] elt->cdata;
+  delete [] elt->type;
+  delete [] elt->data;
+  delete [] elt->cdata;
   if (elt->attributes.getLength() > 0) {
     const int num = elt->attributes.getLength();
     for (int i = 0; i < num; ++i) {
@@ -159,10 +159,8 @@ void
 cc_xml_elt_set_type_x(cc_xml_elt * elt, const char * type)
 {
   assert(elt);
-  if (elt->type) {
-    delete [] elt->type;
-    elt->type = NULL;
-  }
+  delete [] elt->type;
+  elt->type = NULL;
   if (type) elt->type = cc_xml_strdup(type);
 }
 
@@ -198,15 +196,11 @@ cc_xml_elt_set_cdata_x(cc_xml_elt * elt, const char * cdata)
       // but we can run through anyways
     }
   }
-  if ( elt->cdata ) {
-    delete [] elt->cdata;
-    elt->cdata = NULL;
-  }
+  delete [] elt->cdata;
+  elt->cdata = NULL;
   if ( cdata ) elt->cdata = cc_xml_strdup(cdata);
-  if ( elt->data ) {
-    delete [] elt->data;
-    elt->data = NULL;
-  }
+  delete [] elt->data;
+  elt->data = NULL;
   // Update data to whitespace-stripped cdata
   if( cdata) {
     const char * startptr = elt->cdata;
@@ -566,7 +560,7 @@ cc_xml_elt_get_integer(const cc_xml_elt * elt, int * value)
   assert(value != NULL);
   if ( data == NULL ) return FALSE;
   if ( sscanf(data, "%d", value) == 1 ) return TRUE;
-  return false;
+  return FALSE;
 }
 
 int
@@ -951,7 +945,7 @@ cc_xml_elt_get_traversal_next(const cc_xml_elt * root, cc_xml_elt * here)
           ++idx;
           here = cc_xml_elt_get_child(parent, idx);
 
-          // return this element if it's not a "cdata" element.
+          // return this element if it is not a "cdata" element.
           if (strcmp(COIN_XML_CDATA_TYPE, here->type) != 0) return here;
 
       } while (idx != (cc_xml_elt_get_num_children(parent) - 1));
@@ -1065,7 +1059,7 @@ cc_xml_elt_calculate_size(const cc_xml_elt * elt, int indent, int indentincremen
 #define ADVANCE_STRING_LITERAL(str) \
   do { static const char strobj[] = str; bytes += (sizeof(strobj) - 1); } while (0)
 
-// macro to increment bytecount for run-time string
+// macro to increment bytecount for runtime string
 #define ADVANCE_STRING(str) \
   do { bytes += strlen(str); } while (0)
 
@@ -1142,7 +1136,7 @@ cc_xml_elt_write_to_buffer(const cc_xml_elt * elt, char * buffer, size_t bufsize
        strncpy(hereptr, strobj, strlength);        \
        ADVANCE_NUM_BYTES(strlength); } while (0)
 
-// macro to copy in a run-time string and advance pointers
+// macro to copy in a runtime string and advance pointers
 #define ADVANCE_STRING(str)                                 \
   do { const int strlength = static_cast<int>(strlen(str)); \
        strncpy(hereptr, str, strlength);                    \

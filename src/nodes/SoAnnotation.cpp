@@ -33,15 +33,16 @@
 /*!
   \class SoAnnotation SoAnnotation.h Inventor/nodes/SoAnnotation.h
   \brief The SoAnnotation node draws all its child geometry on top of other geometry.
+
   \ingroup nodes
 
   This group-type node uses delayed rendering in combination with
-  Z-buffer disabling to let its children transparently render their
+  z-buffer disabling to let its children transparently render their
   geometry on top of the other geometry in the scene.
 
-  Since the Z-buffer needs to be disabled, the childrens' geometry
+  Since the z-buffer needs to be disabled, the children's geometry
   will not be rendered back-to-front sorted, but rather in the order
-  they are present in the scenegraph.
+  they are present in the scene graph.
 
   <b>FILE FORMAT/DEFAULTS:</b>
   \code
@@ -87,6 +88,9 @@ SoAnnotation::~SoAnnotation()
 }
 
 // Doc in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoAnnotation::initClass(void)
 {

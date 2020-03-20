@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLSound SoVRMLSound.h Inventor/VRMLnodes/SoVRMLSound.h
   \brief The SoVRMLSound class is used to represent a sound source.
+
   \ingroup VRMLnodes
   \ingroup sound
 
@@ -91,7 +92,7 @@
   sounds to play when there are more active Sound nodes than can be
   played at once due to either limited system resources or system
   load. 7.3.4, Sound priority, attenuation, and spatialization
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#7.3.4>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#7.3.4>),
   describes a recommended algorithm for determining which sounds to
   play under such circumstances. The priority field ranges from 0.0 to
   1.0, with 1.0 being the highest priority and 0.0 the lowest
@@ -144,7 +145,7 @@
   boundary (see Figure 6.14).
 
   <center>
-  <img src="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/Images/Sound.gif">
+  <img src="http://www.web3d.org/documents/specifications/14772/V2.0/Images/Sound.gif">
   Figure 6.14 -- Sound node geometry
   </center>
 
@@ -156,7 +157,7 @@
   playback. Details outlining the minimum required spatialization
   functionality can be found in 7.3.4, Sound priority, attenuation,
   and spatialization
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#7.3.4>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#7.3.4>),
   If the spatialize field is FALSE, then directional effects are
   ignored, but the ellipsoid dimensions and intensity will still
   affect the loudness of the sound.  If the sound source is
@@ -224,7 +225,7 @@
 #include <Inventor/VRMLnodes/SoVRMLSound.h>
 #include "coindefs.h"
 
-#include <stddef.h>
+#include <cstddef>
 
 #include <Inventor/VRMLnodes/SoVRMLAudioClip.h>
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
@@ -328,7 +329,9 @@ double SoVRMLSoundP::defaultSleepTime = 0.100; // 100ms
 
 SO_NODE_SOURCE(SoVRMLSound);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLSound::initClass(void)
 {
@@ -341,7 +344,7 @@ SoVRMLSound::initClass(void)
      www.openal.org is slightly buggy when it comes to buffer
      handling, and for mysterious reasons, if the buffer size is a
      multiple of 4096, everything works almost as it should.  The
-     problem (and this quick-fix) has been aknowledged by the guy in
+     problem (and this quick-fix) has been acknowledged by the guy in
      charge of the Linux version of OpenAL, and it is being worked
      at. 2003-03-10 thammer */
   const char * env = coin_getenv("COIN_SOUND_BUFFER_LENGTH");
@@ -486,7 +489,7 @@ SoVRMLSound::SoVRMLSound(void)
             "manufacturer of "
             "your soundcard for a native OpenAL driver (several soundcard"
             "manufacturers offer this).",
-            openal_wrapper()->runtime ? "run-time" : "link-time");
+            openal_wrapper()->runtime ? "runtime" : "link-time");
           if (openal_wrapper()->runtime) {
             SoDebugError::postInfo("SoVRMLSound::SoVRMLSound",
                                    "To get more debug information, "
@@ -530,8 +533,7 @@ SoVRMLSound::~SoVRMLSound(void)
     PRIVATE(this)->currentAudioClip->unref();
   PRIVATE(this)->currentAudioClip = NULL;
 
-  if (PRIVATE(this)->audioBuffer != NULL)
-    delete[] PRIVATE(this)->audioBuffer;
+  delete[] PRIVATE(this)->audioBuffer;
 
 #ifdef HAVE_SOUND
   assert(!PRIVATE(this)->hasValidAlSource());
@@ -714,7 +716,7 @@ void SoVRMLSound::audioRender(SoAudioRenderAction *action)
   }
 
   if ( PRIVATE(this)->playing &&
-       ( (!isactive) ) || (!SoSoundElement::isPartOfActiveSceneGraph(state))) {
+       ( (!isactive) || (!SoSoundElement::isPartOfActiveSceneGraph(state)) ) ) {
 #ifdef HAVE_THREADS
       PRIVATE(this)->syncmutex.unlock();
 #endif
@@ -725,7 +727,7 @@ void SoVRMLSound::audioRender(SoAudioRenderAction *action)
     return;
   }
 
-  // if we got here then we're either allready playing, or we should be
+  // if we got here then we're either already playing, or we should be
 
   if (!PRIVATE(this)->hasValidAlSource())
     PRIVATE(this)->generateAlSource();

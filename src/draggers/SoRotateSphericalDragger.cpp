@@ -39,6 +39,7 @@
 /*!
   \class SoRotateSphericalDragger SoRotateSphericalDragger.h Inventor/draggers/SoRotateSphericalDragger.h
   \brief The SoRotateSphericalDragger class is for rotating geometry in any direction.
+
   \ingroup draggers
 
   \DRAGGER_DEFAULT_SCREENSHOT
@@ -47,13 +48,13 @@
   \image html rotatespherical.png "Screen Shot of Default Dragger"
   </center>
 
-  Use an instance of this dragger class in your scenegraph to let the
+  Use an instance of this dragger class in your scene graph to let the
   end-users of your application rotate geometry freely in any
   direction.
 
   For the initial dragger orientation and the dragger geometry
   positioning itself, use some kind of transformation node in your
-  scenegraph, as usual.
+  scene graph, as usual.
 */
 
 #include <Inventor/draggers/SoRotateSphericalDragger.h>
@@ -77,7 +78,7 @@
   This field is continuously updated to contain the rotation of the
   current direction vector of the dragger.
 
-  The application programmer using this dragger in his scenegraph
+  The application programmer using this dragger in his scene graph
   should connect the relevant node fields in the scene to this field
   to make them follow the dragger orientation.
 */
@@ -112,7 +113,9 @@ public:
 SO_KIT_SOURCE(SoRotateSphericalDragger);
 
 
-// doc in superclass
+/*!
+  \copydetails SoDragger::initClass(void)
+*/
 void
 SoRotateSphericalDragger::initClass(void)
 {
@@ -120,7 +123,7 @@ SoRotateSphericalDragger::initClass(void)
 }
 
 // FIXME: document which parts need to be present in the geometry
-// scenegraph, and what role they play in the dragger. 20010913 mortene.
+// scene graph, and what role they play in the dragger. 20010913 mortene.
 /*!
   \DRAGGER_CONSTRUCTOR
 
@@ -189,7 +192,7 @@ SoRotateSphericalDragger::SoRotateSphericalDragger(void)
   this->setPartAsDefault("feedback", "rotateSphericalFeedback");
   this->setPartAsDefault("feedbackActive", "rotateSphericalFeedbackActive");
 
-  // initialize swich values
+  // initialize switch values
   SoSwitch *sw;
   sw = SO_GET_ANY_PART(this, "rotatorSwitch", SoSwitch);
   SoInteractionKit::setSwitchValue(sw, 0);

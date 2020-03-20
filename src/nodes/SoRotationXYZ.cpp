@@ -33,6 +33,7 @@
 /*!
   \class SoRotationXYZ SoRotationXYZ.h Inventor/nodes/SoRotationXYZ.h
   \brief The SoRotationXYZ class is a node type for specifying rotation around a particular axis.
+
   \ingroup nodes
 
   Application programmers can use nodes of this type instead of
@@ -66,6 +67,18 @@
 /*!
   \enum SoRotationXYZ::Axis
   Enumerated values for the 3 axes.
+*/
+/*!
+  \var SoRotationXYZ::Axis SoRotationXYZ::X
+  Rotation around X-axis.
+*/
+/*!
+  \var SoRotationXYZ::Axis SoRotationXYZ::Y
+  Rotation around Y-axis.
+*/
+/*!
+  \var SoRotationXYZ::Axis SoRotationXYZ::Z
+  Rotation around Z-axis.
 */
 
 /*!
@@ -105,7 +118,9 @@ SoRotationXYZ::~SoRotationXYZ()
 {
 }
 
-// Doc from superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoRotationXYZ::initClass(void)
 {

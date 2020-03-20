@@ -33,6 +33,7 @@
 /*!
   \class SoSensorManager SoSensorManager.h Inventor/sensors/SoSensorManager.h
   \brief The SoSensorManager class handles the sensor queues.
+
   \ingroup sensors
 
   There are two major sensor types in Coin, "delay" sensors and
@@ -40,14 +41,14 @@
 
   \li Delay sensors trigger when the application is otherwise idle. In
       addition, to avoid starvation in applications that are
-      continually busy, the delay-sensor queue also has a timeout
+      continually busy, the delay sensor queue also has a timeout
       which, when reached, will empty the queue anyhow.
 
   \li Timer sensors are set up to trigger at specific, absolute times.
 
   Each of these two types has its own queue, which is handled by the
   SoSensorManager. The queues are kept in sorted order by
-  SoSensorManager, either according to trigger-time (for
+  SoSensorManager, either according to trigger time (for
   timer sensors) or by priority (for delay sensors).
 
   The SoSensorManager provides methods for managing these queues, by
@@ -55,15 +56,15 @@
   queues.
 
   The sensor mechanism is crucial in Coin for a number of important
-  features, most notably automatic scheduling redrawal upon changes,
-  and for making it possible to set up animations in the scenegraph
+  features, most notably automatic scheduling redraw upon changes,
+  and for making it possible to set up animations in the scene graph
   which does \e not need any additional book-keeping from the
   application code.
 
   SoSensorManager should usually be considered as an internal class in
   the Coin API. It is only interesting for application programmers
-  when \e implementing new windowsystem-specific libraries (like
-  Kongsberg Oil & Gas Technologies's SoQt, SoXt, SoGtk, SoWin or Sc21)
+  when \e implementing new window system specific libraries (like
+  Kongsberg Oil & Gas Technologies SoQt, SoXt, SoGtk, SoWin or Sc21)
   or wrappers. Then one has to set up code to empty the queues at the correct
   intervals. For detailed information on how to do that, we would
   advise you to look at the implementation of said mechanisms in the
@@ -83,7 +84,7 @@
 
 #include <Inventor/sensors/SoSensorManager.h>
 
-#include <assert.h>
+#include <cassert>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -121,7 +122,7 @@
 // This can be any "magic" bitpattern of 32 bits which seems unlikely
 // to be randomly assigned to a memory word upon destruction.
 //
-// The 32 bits allocated for the "alive" bitpattern is used to try to
+// The 32 bits allocated for the "alive" bitpattern are used to try to
 // detect when the instance has been prematurely destructed. This
 // should prove useful to catch errors related to when SoSensorManager
 // is destructed (on exit) while there are still live SoSensor-derived
@@ -331,7 +332,7 @@ SoSensorManager::insertDelaySensor(SoDelayQueueSensor * newentry)
 }
 
 /*!
-  Add a new entry to the timer queue of sensors. The queue will be sorted in
+  Add a new entry to the queue of timer sensors. The queue will be sorted in
   order of supposed trigger time.
 
   \sa removeFromQueue()
@@ -439,7 +440,7 @@ SoSensorManager::removeTimerSensor(SoTimerQueueSensor * entry)
 }
 
 /*!
-  Trigger all the timers which has expired.
+  Trigger all the timers which have expired.
  */
 void
 SoSensorManager::processTimerQueue(void)
@@ -454,8 +455,25 @@ SoSensorManager::processTimerQueue(void)
                          "start: %d elements", PRIVATE(this)->timerqueue.getLength());
 #endif // debug
 
+  // Make sure that the PRIVATE(this)->processingtimerqueue
+  // is reset even when the function is left after an unhandled exception
+  // from the sensor's callback function.
+  class FlagReset {
+  public:
+    FlagReset(SbBool& flag) : myflag(flag) {}
+    ~FlagReset() {
+      if (this->myflag) {
+        SoDebugError::post("SoSensorManager::processTimerQueue",
+                           "Unexpected function exit. Unhandled Exception?");
+        this->myflag = FALSE;
+      }
+    }
+    SbBool& myflag;
+  };
+
   assert(PRIVATE(this)->reschedulelist.getLength() == 0);
   PRIVATE(this)->processingtimerqueue = TRUE;
+  FlagReset fr(PRIVATE(this)->processingtimerqueue);
 
   LOCK_TIMER_QUEUE(this);
 
@@ -535,9 +553,26 @@ SoSensorManager::processDelayQueue(SbBool isidle)
                          "start: %d elements", PRIVATE(this)->delayqueue.getLength());
 #endif // debug
 
-  PRIVATE(this)->processingdelayqueue = TRUE;
+  // Make sure that the PRIVATE(this)->processingdelayqueue
+  // is reset even when the function is left after an unhandled exception
+  // from the sensor's callback function.
+  class FlagReset {
+  public:
+    FlagReset(SbBool& flag) : myflag(flag) {}
+    ~FlagReset() {
+      if (this->myflag) {
+        SoDebugError::post("SoSensorManager::processDelayQueue",
+                           "Unexpected function exit. Unhandled Exception?");
+        this->myflag = FALSE;
+      }
+    }
+    SbBool& myflag;
+  };
 
-  // triggerdict is used to store sensors that has already been
+  PRIVATE(this)->processingdelayqueue = TRUE;
+  FlagReset fr(PRIVATE(this)->processingdelayqueue);
+
+  // triggerdict is used to store sensors that have already been
   // triggered. A sensor should only be triggered once during a call
   // to processDelayQueue(), otherwise we might risk never returning
   // from this function. E.g. SoSceneManager::scheduleRedraw()
@@ -626,7 +661,24 @@ SoSensorManager::processImmediateQueue(void)
                          PRIVATE(this)->immediatequeue.getLength());
 #endif // debug
 
+  // Make sure that the PRIVATE(this)->processingimmediatequeue
+  // is reset even when the function is left after an unhandled exception
+  // from the sensor's callback function.
+  class FlagReset {
+  public:
+    FlagReset(SbBool& flag) : myflag(flag) {}
+    ~FlagReset() {
+      if (this->myflag) {
+        SoDebugError::post("SoSensorManager::processImmediateQueue",
+                           "Unexpected function exit. Unhandled Exception?");
+        this->myflag = FALSE;
+      }
+    }
+    SbBool& myflag;
+  };
+
   PRIVATE(this)->processingimmediatequeue = TRUE;
+  FlagReset fr(PRIVATE(this)->processingimmediatequeue);
 
   // FIXME: implement some better logic to break out of the
   // processing loop. Right now we break out if more than 10000
@@ -821,7 +873,7 @@ SoSensorManager::notifyChanged(void)
 
   The void* arguments must be valid pointers to fd_set
   structures. We've changed this from the original SGI Inventor API to
-  avoid messing up the header file with system-specific includes.
+  avoid messing up the header file with system specific includes.
 
   NOTE: THIS METHOD IS OBSOLETED. DON'T USE IT.
 */

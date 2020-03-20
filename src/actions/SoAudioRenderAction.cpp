@@ -33,10 +33,11 @@
 /*!
   \class SoAudioRenderAction SoAudioRenderAction.h Inventor/actions/SoAudioRenderAction.h
   \brief The SoAudioRenderAction class renders the aural parts of the scene graph.
+
   \ingroup actions
 
   Applying this method at a root node for a scene graph, path or
-  pathlist will render all sound-related nodes contained within that instance to
+  path list will render all sound-related nodes contained within that instance to
   the current SoAudioDevice.
  */
 
@@ -78,6 +79,9 @@ public:
 
 SO_ACTION_SOURCE(SoAudioRenderAction);
 
+/*!
+  \copybrief SoAction::initClass(void)
+*/
 void SoAudioRenderAction::initClass()
 {
   SO_ACTION_INTERNAL_INIT_CLASS(SoAudioRenderAction, SoAction);

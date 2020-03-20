@@ -39,6 +39,7 @@
 /*!
   \class SoDragPointDragger SoDragPointDragger.h Inventor/draggers/SoDragPointDragger.h
   \brief The SoDragPointDragger class provides mechanisms for moving a point in 3D.
+
   \ingroup draggers
 
   \DRAGGER_DEFAULT_SCREENSHOT
@@ -55,8 +56,8 @@
   SoTranslate2Dragger) and another part on the axis normal to the
   plane.
 
-  While the dragger is inactive (ie the user is not currently grabbing
-  and / or dragging it's parts), the CTRL keys on the keyboard can be
+  While the dragger is inactive (i.e. the user is not currently grabbing
+  and / or dragging its parts), the CTRL keys on the keyboard can be
   used to switch the orientation of the 2D-plane part and the
   normal-axis part so the normal-axis part points along one of the
   other principal axes.  This is done by position the mouse pointer
@@ -107,7 +108,9 @@ public:
 
 SO_KIT_SOURCE(SoDragPointDragger);
 
-// Doc in superclass.
+/*!
+  \copydetails SoDragger::initClass(void)
+*/
 void
 SoDragPointDragger::initClass(void)
 {
@@ -115,7 +118,7 @@ SoDragPointDragger::initClass(void)
 }
 
 // FIXME: document which parts need to be present in the geometry
-// scenegraph, and what role they play in the dragger. 20010913 mortene.
+// scene graph, and what role they play in the dragger. 20010913 mortene.
 /*!
   \DRAGGER_CONSTRUCTOR
 

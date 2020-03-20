@@ -35,11 +35,11 @@
 #include "coindefs.h"
 #include "fonts/fontlib_wrapper.h"
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <assert.h>
-#include <stddef.h>
+#include <cstdio>
+#include <cstring>
+#include <cstdlib>
+#include <cassert>
+#include <cstddef>
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -218,7 +218,7 @@ using_win32api(void)
                              fontlib_win32_available ? "" : " not");
     }
 
-    /* Allow only one of the availability flags to be set, as it's too
+    /* Allow only one of the availability flags to be set, as it is too
        easy to get bugs in our code in this file if we depend on
        always checking one particular flag before the other.
 
@@ -263,7 +263,7 @@ get_default_bitmap(unsigned int character, float wantedsize)
     bm = (struct cc_font_bitmap *) malloc(sizeof(struct cc_font_bitmap));
     bm->buffer = fontdata + fontheight * 4 * character;
     bm->bearingX = 0;
-    bm->bearingY = fontheight;
+    bm->bearingY = coin_default2dfont_get_bearing(wantedsize);
     bm->rows = fontheight;
     bm->width = coin_default2dfont_get_width(wantedsize);
     bm->pitch = 4;
@@ -518,7 +518,7 @@ cc_flw_unref_font(int fontid)
 
   \a fontname is the name and style \e requested. The actual font
   created will typically differ slightly, depending on what is
-  available on the run-time system.  If a font has already been
+  available on the runtime system.  If a font has already been
   created for this \a fontname and size, the function will not create
   a duplicate, but simply return that font.
 
@@ -662,8 +662,8 @@ cc_flw_get_glyph(int font, unsigned int character)
         /* Create glyph from default font, mark as default. */
 
         /* FIXME: shouldn't it rather be handled by making an empty
-           rectangle glyph of the correct size, like it's at least done
-           for X11 (and probably other systems aswell)?
+           rectangle glyph of the correct size, like it is at least done
+           for X11 (and probably other systems as well)?
 
            Or perhaps this strategy _is_ better, but then we should at
            least scale the defaultfont glyph to the correct size.
@@ -881,6 +881,7 @@ cc_flw_get_bitmap(int font, unsigned int glyph)
       /* glyph handle == char value in default font. &255 to avoid
          index out of range. */
       bm = get_default_bitmap(gs->nativeglyphidx & 0xff, (float)fs->sizey);
+      gs->fromdefaultfont = TRUE;
     }
     else if (bm && bm->buffer) {
       buf = (unsigned char *)malloc(bm->pitch * bm->rows);

@@ -33,6 +33,7 @@
 /*!
   \class SoTextureUnit SoTextureUnit.h Inventor/nodes/SoTextureUnit.h
   \brief The SoTextureUnit class is a node for setting the active texture unit.
+
   \ingroup nodes
 
   When an SoTextureUnit node is inserted into the scene graph, all
@@ -84,7 +85,7 @@
 
   The mapping method for this unit. Default is IMAGE_MAPPING.
 
-  This field is not currently supported in Coin. It's included to
+  This field is not currently supported in Coin. It is included to
   support TGS' API. We might support the field in the future.
 */
 
@@ -128,7 +129,9 @@ SoTextureUnit::~SoTextureUnit()
 {
 }
 
-// Doc from superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoTextureUnit::initClass(void)
 {

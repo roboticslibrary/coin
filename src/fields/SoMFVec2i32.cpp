@@ -33,10 +33,11 @@
 /*!
   \class SoMFVec2i32 SoMFVec2i32.h Inventor/fields/SoMFVec2i32.h
   \brief The SoMFVec2i32 class is a container for SbVec2i32 vectors.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store an array of vectors with two elements.
+  need to store an array of vectors with two elements.
 
   This field supports application data sharing through a
   setValuesPointer() method. See SoMField documentation for
@@ -68,7 +69,9 @@ SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFVec2i32, SbVec2i32, int32_t);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFVec2i32::initClass(void)
 {

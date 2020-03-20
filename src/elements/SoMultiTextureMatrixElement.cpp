@@ -32,7 +32,8 @@
 
 /*!
   \class SoMultiTextureMatrixElement Inventor/elements/SoMultiTextureMatrixElement.h
-  \brief The SoMultiTextureMatrixElement class is used to manage the texture matrix stack for texture units > 0.
+  \brief The SoMultiTextureMatrixElement class is used to manage the texture matrix stack for texture units &gt; 0.
+
   \ingroup elements
 
   The texture matrix is used to transform texture coordinates before
@@ -60,7 +61,9 @@ public:
 
 SO_ELEMENT_CUSTOM_CONSTRUCTOR_SOURCE(SoMultiTextureMatrixElement);
 
-// doc from parent
+/*!
+  \copydetails SoElement::initClass(void)
+*/
 void
 SoMultiTextureMatrixElement::initClass(void)
 {
@@ -68,7 +71,7 @@ SoMultiTextureMatrixElement::initClass(void)
 }
 
 /*!
-  The constructor.
+  Constructor.
  */
 SoMultiTextureMatrixElement::SoMultiTextureMatrixElement(void)
 {
@@ -79,7 +82,7 @@ SoMultiTextureMatrixElement::SoMultiTextureMatrixElement(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 SoMultiTextureMatrixElement::~SoMultiTextureMatrixElement(void)
 {
@@ -158,7 +161,7 @@ SoMultiTextureMatrixElement::multElt(const int unit, const SbMatrix & matrix)
 
 /*!
   virtual method which is called from set(). Sets \a matrix
-  intp element matrix.
+  into element matrix.
 */
 void
 SoMultiTextureMatrixElement::setElt(const int unit, const SbMatrix & matrix)

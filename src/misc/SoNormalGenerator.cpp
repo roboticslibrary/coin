@@ -31,8 +31,9 @@
 \**************************************************************************/
 
 /*!
-  \class SoNormalGenerator include/Inventor/misc/SoNormalGenerator.h
+  \class SoNormalGenerator SoNormalGenerator.h include/Inventor/misc/SoNormalGenerator.h
   \brief The SoNormalGenerator class is used to generate normals.
+
   \ingroup general
 
   FIXME: document properly
@@ -40,7 +41,7 @@
 
 #include <Inventor/misc/SoNormalGenerator.h>
 
-#include <stdio.h>
+#include <cstdio>
 
 #include <Inventor/errors/SoDebugError.h>
 
@@ -49,7 +50,7 @@
 
 /*!
   Constructor with \a isccw indicating if polygons are specified
-  in counter clockwise order. The \a approxVertices can be used
+  in counterclockwise order. The \a approxVertices can be used
   to optimize normal generation.
 */
 SoNormalGenerator::SoNormalGenerator(const SbBool isccw,

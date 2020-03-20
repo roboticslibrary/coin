@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 \**************************************************************************/
 
-/*! \file common.h */
+/*! \file Inventor/C/threads/common.h */
 
 /*!
   \struct cc_worker common.h Inventor/C/threads/common.h
@@ -47,8 +47,8 @@
 /*! \file worker.h */
 #include <Inventor/C/threads/worker.h>
 
-#include <stdlib.h>
-#include <assert.h>
+#include <cstdlib>
+#include <cassert>
 
 #include <Inventor/C/threads/thread.h>
 #include <Inventor/C/threads/mutex.h>

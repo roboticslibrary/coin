@@ -41,9 +41,9 @@
 
 #include "rendering/SoVBO.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cassert>
 
 #include <Inventor/misc/SoContextHandler.h>
 #include <Inventor/misc/SoGLDriverDatabase.h>
@@ -202,7 +202,7 @@ SoVBO::init(void)
   \sa setBufferData()
 */
 void *
-SoVBO::allocBufferData(intptr_t size, uint32_t dataid)
+SoVBO::allocBufferData(intptr_t size, SbUniqueId dataid)
 {
   // schedule delete for all allocated GL resources
   for(
@@ -236,11 +236,11 @@ SoVBO::allocBufferData(intptr_t size, uint32_t dataid)
 
 /*!
   Sets the buffer data. \a dataid is a unique id used to identify
-  the buffer data. In Coin it's possible to use the node id
+  the buffer data. In Coin it is possible to use the node id
   (SoNode::getNodeId()) to test if a buffer is valid for a node.
 */
 void
-SoVBO::setBufferData(const GLvoid * data, intptr_t size, uint32_t dataid)
+SoVBO::setBufferData(const GLvoid * data, intptr_t size, SbUniqueId dataid)
 {
   // schedule delete for all allocated GL resources
   for(
@@ -274,7 +274,7 @@ SoVBO::setBufferData(const GLvoid * data, intptr_t size, uint32_t dataid)
 
   \sa setBufferData()
 */
-uint32_t
+SbUniqueId
 SoVBO::getBufferDataId(void) const
 {
   return this->dataid;

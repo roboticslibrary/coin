@@ -33,6 +33,7 @@
 /*!
   \class SoIndexedLineSet SoIndexedLineSet.h Inventor/nodes/SoIndexedLineSet.h
   \brief The SoIndexedLineSet class is used to render and otherwise represent indexed lines.
+
   \ingroup nodes
 
   The indexed counterpart of SoLineSet. Lines can specified using
@@ -60,7 +61,7 @@
 
 #include <Inventor/nodes/SoIndexedLineSet.h>
 
-#include <assert.h>
+#include <cassert>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -133,7 +134,9 @@ SoIndexedLineSet::~SoIndexedLineSet()
   delete PRIVATE(this);
 }
 
-// doc from parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoIndexedLineSet::initClass(void)
 {
@@ -776,10 +779,8 @@ SoIndexedLineSet::notify(SoNotList * list)
   SoField *f = list->getLastField();
   if (f == &this->coordIndex) {
     LOCK_VAINDEXER(this);
-    if (PRIVATE(this)->vaindexer) {
-      delete PRIVATE(this)->vaindexer;
-      PRIVATE(this)->vaindexer = NULL;
-    }
+    delete PRIVATE(this)->vaindexer;
+    PRIVATE(this)->vaindexer = NULL;
     UNLOCK_VAINDEXER(this);
   }
   inherited::notify(list);

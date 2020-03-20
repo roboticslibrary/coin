@@ -33,6 +33,7 @@
 /*!
   \class SoAnnoText3FontSizeHintElement Inventor/elements/SoAnnoText3FontSizeHintElement.h
   \brief The SoAnnoText3FontSizeHintElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -52,8 +53,7 @@
 SO_ELEMENT_SOURCE(SoAnnoText3FontSizeHintElement);
 
 /*!
-  This static method initializes static data for the
-  SoAnnoText3FontSizeHintElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -63,11 +63,10 @@ SoAnnoText3FontSizeHintElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
-SoAnnoText3FontSizeHintElement::~SoAnnoText3FontSizeHintElement(// virtual protected
-    void)
+SoAnnoText3FontSizeHintElement::~SoAnnoText3FontSizeHintElement()
 {
 }
 

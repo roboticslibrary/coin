@@ -33,6 +33,7 @@
 /*!
   \class SoUnitsElement Inventor/elements/SoUnitsElement.h
   \brief The SoUnitsElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -52,7 +53,7 @@
 SO_ELEMENT_SOURCE(SoUnitsElement);
 
 /*!
-  This static method initializes static data for the SoUnitsElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -62,7 +63,7 @@ SoUnitsElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoUnitsElement::~SoUnitsElement(void)
@@ -81,7 +82,10 @@ SoUnitsElement::set(SoState * const state,
   SoInt32Element::set(classStackIndex, state, node, unit);
 }
 
-//! FIXME: write doc.
+/*!
+  Initializes the element to its default value. The default
+  value is SoUnitsElement::METERS.
+*/
 
 void
 SoUnitsElement::init(SoState * state)

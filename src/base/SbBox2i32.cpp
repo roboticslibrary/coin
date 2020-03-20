@@ -34,6 +34,7 @@
   \class SbBox2i32 SbBox2i32.h Inventor/SbBox2i32.h
   \brief The SbBox2i32 class is a 2 dimensional box with 32-bit
   integer coordinates.
+
   \ingroup base
 
   This box class is used by other classes in Coin for data
@@ -80,6 +81,30 @@
 
   The coordinates of \a min should be less than the coordinates of
   \a max if you want to make a valid box.
+*/
+
+/*!
+  \fn SbBox2i32::SbBox2i32(const SbBox2s & box)
+
+  Constructs an SbBox2i32 instance from the value in an SbBox2s instance.
+
+  \since Coin 2.5
+*/
+
+/*!
+  \fn SbBox2i32::SbBox2i32(const SbBox2f & box)
+
+  Constructs an SbBox2i32 instance from the value in an SbBox2f instance.
+
+  \since Coin 2.5
+*/
+
+/*!
+  \fn SbBox2i32::SbBox2i32(const SbBox2d & box)
+
+  Constructs an SbBox2i32 instance from the value in an SbBox2d instance.
+
+  \since Coin 2.5
 */
 
 /*!
@@ -199,6 +224,24 @@ SbBox2i32::makeEmpty(void)
 */
 
 /*!
+  \fn SbVec2i32 & SbBox2i32::getMin(void)
+
+  Returns a modifiable reference to the minimum point.
+*/
+
+/*!
+  \fn SbVec2i32 & SbBox2i32::getMax(void)
+
+  Returns a modifiable reference to the maximum point.
+*/
+
+/*!
+  \fn SbVec2i32 SbBox2i32::getCenter(void) const
+
+  Returns the center point of the box.
+*/
+
+/*!
   Extend the boundaries of the box by the given point, i.e. make the
   point fit inside the box if it isn't already within it.
 */
@@ -236,7 +279,7 @@ SbBox2i32::intersect(const SbVec2i32 & point) const
 }
 
 /*!
-  Check if \a box lies wholly or partly within the boundaries
+  Check if \a box lies entirely or partially within the boundaries
   of this box.
 */
 SbBool
@@ -280,14 +323,35 @@ SbBox2i32::intersect(const SbBox2i32 & box) const
 */
 
 /*!
+  \fn SbVec2i32 SbBox2i32::getSize(void) const
+
+  Returns width and height of box as a 2D vector.
+
+  \since Coin 3.0
+*/
+
+/*!
   \fn float SbBox2i32::getAspectRatio(void) const
 
-  Returns aspect ratio of box, which is defined as box width divided on
+  Returns aspect ratio of box, which is defined as box width divided by
   box height.
 */
 
 /*!
+  \fn SbBool SbBox2i32::isEmpty(void) const
+
+  Check if this has been marked as an empty box.
+
+  \sa makeEmpty().
+*/
+
+/*!
   \fn SbBool SbBox2i32::hasArea(void) const
+
+  Check if the box has been correctly specified and by that virtue
+  has "positive" area, i.e. all coordinates of its upper right corner
+  (the maximum point) are greater than the corresponding coordinates 
+  of its lower left corner (the minimum point).
 */
 
 /*!

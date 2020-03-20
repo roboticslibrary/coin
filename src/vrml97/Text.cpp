@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLText SoVRMLText.h Inventor/VRMLnodes/SoVRMLText.h
   \brief The SoVRMLText class is used to represent text in a scene.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -63,7 +64,7 @@
   values defined in the fontStyle field (see SoVRMLFontStyle).
   Text nodes may contain multiple text strings specified using the
   UTF-8 encoding as specified by ISO 10646-1:1993 (see
-  <http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/references.html#[UTF8]>).
+  <http://www.web3d.org/documents/specifications/14772/V2.0/part1/references.html#[UTF8]>).
   The text strings are stored in the order in which the text mode
   characters are to be produced as defined by the parameters in the
   FontStyle node.
@@ -121,9 +122,9 @@
 #include <Inventor/VRMLnodes/SoVRMLText.h>
 #include "coindefs.h"
 
-#include <float.h> // FLT_MIN
-#include <stddef.h>
-#include <string.h>
+#include <cfloat> // FLT_MIN
+#include <cstddef>
+#include <cstring>
 
 #include <Inventor/SoPrimitiveVertex.h>
 #include <Inventor/VRMLnodes/SoVRMLFontStyle.h>
@@ -201,7 +202,9 @@ SO_NODE_SOURCE(SoVRMLText);
 
 // *************************************************************************
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLText::initClass(void)
 {

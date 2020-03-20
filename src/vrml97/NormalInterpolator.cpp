@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLNormalInterpolator SoVRMLNormalInterpolator.h Inventor/VRMLnodes/SoVRMLNormalInterpolator.h
   \brief The SoVRMLNormalInterpolator class is used to interpolate normals.
+
   \ingroup VRMLnodes
   
   \WEB3DCOPYRIGHT
@@ -67,7 +68,7 @@
   equal length. The results are undefined if P and Q are diagonally
   opposite.  A more detailed discussion of interpolators is provided
   in 4.6.8, Interpolator nodes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.8>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.8>).
   
 */
 
@@ -98,7 +99,9 @@ public:
 
 SO_NODEENGINE_SOURCE(SoVRMLNormalInterpolator);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLNormalInterpolator::initClass(void)
 {

@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLCoordinateInterpolator SoVRMLCoordinateInterpolator.h Inventor/VRMLnodes/SoVRMLCoorinateInterpolator.h
   \brief The SoVRMLCoordinateInterpolator class is used to interpolate 3D coordinates.
+
   \ingroup VRMLnodes
   
   \WEB3DCOPYRIGHT
@@ -57,7 +58,7 @@
   multiple of the number of keyframes in the key field. That integer
   multiple defines how many coordinates will be contained in the
   value_changed events.  4.6.8, Interpolator nodes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.8>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.8>),
   contains a more detailed discussion of interpolators.
 
 */
@@ -80,6 +81,9 @@ public:
 
 SO_NODEENGINE_SOURCE(SoVRMLCoordinateInterpolator);
 
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLCoordinateInterpolator::initClass(void) // static
 {

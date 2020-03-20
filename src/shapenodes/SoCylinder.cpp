@@ -38,15 +38,16 @@
 /*!
   \class SoCylinder SoCylinder.h Inventor/nodes/SoCylinder.h
   \brief The SoCylinder class is for rendering cylinder shapes.
+
   \ingroup nodes
 
-  Insert a cylinder shape into the scenegraph. The cylinder is
-  rendered with the current material, texture and drawstyle settings
+  Insert a cylinder shape into the scene graph. The cylinder is
+  rendered with the current material, texture and draw style settings
   (if any, otherwise the default settings are used).
 
   The SoCylinder node class is provided as a convenient abstraction
   for the application programmer to use "complex" shapes of this type
-  without having to do the tessellation to polygons and other low-level
+  without having to do the tessellation to polygons and other low level
   programming herself.
 
   A cylinder is visualized by the underlying rendering system by first
@@ -92,7 +93,7 @@
 #include <Inventor/nodes/SoCylinder.h>
 #include "coindefs.h"
 
-#include <math.h>
+#include <cmath>
 
 #if COIN_DEBUG
 #include <Inventor/errors/SoDebugError.h>
@@ -120,7 +121,24 @@
 
 /*!
   \enum SoCylinder::Part
-  The parts of a cylinder shape.
+  Enumerates the various parts of the cylinder, for setting inclusion or
+  exclusion from the shape.
+*/
+/*!
+  \var SoCylinder::Part SoCylinder::SIDES
+  Sides of cylinder.
+*/
+/*!
+  \var SoCylinder::Part SoCylinder::TOP
+  Top of cylinder.
+*/
+/*!
+  \var SoCylinder::Part SoCylinder::BOTTOM
+  Bottom of cylinder.
+*/
+/*!
+  \var SoCylinder::Part SoCylinder::ALL
+  All parts.
 */
 
 
@@ -168,7 +186,9 @@ SoCylinder::~SoCylinder()
 {
 }
 
-// Doc in parent.
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoCylinder::initClass(void)
 {

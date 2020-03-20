@@ -33,13 +33,14 @@
 /*!
   \class SoLabel SoLabel.h Inventor/nodes/SoLabel.h
   \brief The SoLabel class is a node for holding label information in a scene graph.
+
   \ingroup nodes
 
   Use this node as a convenient way of labeling nodes or subgraphs
   within a scene graph.
 
   SoLabel nodes does not influence traversal in any way for any of the
-  builtin actions.
+  built-in actions.
 
   <b>FILE FORMAT/DEFAULTS:</b>
   \code
@@ -83,7 +84,9 @@ SoLabel::~SoLabel()
 {
 }
 
-// Doc from superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoLabel::initClass(void)
 {

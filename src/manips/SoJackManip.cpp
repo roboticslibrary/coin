@@ -39,12 +39,13 @@
 /*!
   \class SoJackManip SoJackManip.h Inventor/manips/SoJackManip.h
   \brief The SoJackManip wraps an SoJackDragger for convenience.
+
   \ingroup manips
 
   The manipulator class takes care of wrapping up the SoJackDragger in
   a simple and convenient API for the application programmer, making
   it automatically surround the geometry it influences and taking care
-  of the book-keeping routines for it's interaction with the relevant
+  of the book-keeping routines for its interaction with the relevant
   fields of an SoTransformation node.
 
   <center>
@@ -66,7 +67,9 @@ public:
 SO_NODE_SOURCE(SoJackManip);
 
 
-// doc in super
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoJackManip::initClass(void)
 {
@@ -74,9 +77,9 @@ SoJackManip::initClass(void)
 }
 
 /*!
-  Default constructor. Allocates an SoCenterballDragger and an
+  Default constructor. Allocates an SoJackDragger and an
   SoSurroundScale node to surround the geometry within our part of the
-  scenegraph.
+  scene graph.
 */
 SoJackManip::SoJackManip(void)
 {

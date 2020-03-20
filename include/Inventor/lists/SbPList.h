@@ -34,8 +34,8 @@
 \**************************************************************************/
 
 #include <Inventor/SbBasic.h>
-#include <assert.h>
-#include <stddef.h> // NULL definition
+#include <cassert>
+#include <cstddef> // NULL definition
 
 class COIN_DLL_API SbPList {
   enum { DEFAULTSIZE = 4 };
@@ -50,7 +50,7 @@ public:
   void fit(void);
 
   void append(void * item);
-  int find(void * item) const;
+  int find(const void * item) const;
   void insert(void * item, const int insertbefore);
   void removeItem(void * item);
   void remove(const int index);

@@ -39,6 +39,7 @@
 /*!
   \class SoTrackballDragger SoTrackballDragger.h Inventor/draggers/SoTrackballDragger.h
   \brief The SoTrackballDragger provides the end-user with rotation and scaling interaction possibilities.
+
   \ingroup draggers
 
   \DRAGGER_DEFAULT_SCREENSHOT
@@ -55,7 +56,7 @@
   will be then be added.
 
   Free-form rotation on the sphere can be done by clicking and
-  dragging \e outside the pre-defined "rotation bands".
+  dragging \e outside the predefined "rotation bands".
 
   Scale operations are made available by holding down a CTRL key when
   clicking with the left mouse button. The dragger is then in scaling
@@ -65,7 +66,7 @@
   For the application programmer's convenience, the Coin library also
   provides a manipulator class called SoTrackballManip, which wraps
   the SoTrackballDragger into the necessary mechanisms for making
-  direct insertion of this dragger into a scenegraph possible with
+  direct insertion of this dragger into a scene graph possible with
   very little effort.
 
   \sa SoTrackballManip
@@ -181,7 +182,9 @@ get_current_time(void)
 
 SO_KIT_SOURCE(SoTrackballDragger);
 
-// doc in superclass
+/*!
+  \copydetails SoDragger::initClass(void)
+*/
 void
 SoTrackballDragger::initClass(void)
 {
@@ -192,7 +195,7 @@ SoTrackballDragger::initClass(void)
 #define THISP(d) static_cast<SoTrackballDragger *>(d)
 
 // FIXME: document which parts need to be present in the geometry
-// scenegraph, and what role they play in the dragger. 20010913 mortene.
+// scene graph, and what role they play in the dragger. 20010913 mortene.
 /*!
   \DRAGGER_CONSTRUCTOR
 
@@ -762,7 +765,7 @@ SoTrackballDragger::timerSensorCB(void *d, SoSensor *)
 
 /*!
   If the input argument is \c TRUE, all the geometry parts of the
-  dragger will become highligthed, as when active.
+  dragger will become highlighted, as when active.
 
   Used internally during scaling operations and free-form rotations.
 */

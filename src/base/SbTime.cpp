@@ -33,6 +33,7 @@
 /*!
   \class SbTime SbTime.h Inventor/SbTime.h
   \brief The SbTime class instances represents time values.
+
   \ingroup base
 
   SbTime is a convenient way of doing system independent
@@ -72,14 +73,6 @@
 #include <Inventor/C/threads/thread.h>
 
 #include "coindefs.h"
-
-#ifndef SIM_TIMEVAL_TV_SEC_T
-#define SIM_TIMEVAL_TV_SEC_T time_t
-#endif // !SIM_TIMEVAL_TV_SEC_T
-
-#ifndef SIM_TIMEVAL_TV_USEC_T
-#define SIM_TIMEVAL_TV_USEC_T time_t
-#endif // !SIM_TIMEVAL_TV_USEC_T
 
 #ifndef COIN_WORKAROUND_NO_USING_STD_FUNCS
 using std::strlen;
@@ -206,7 +199,7 @@ SbTime::maxTime(void)
   Returns an SbTime instance representing the maximum representable
   time/date.
 
-  This method is not available under MSWindows, as max() crashes with
+  This method is not available under Microsoft Windows, as max() crashes with
   a define macro Microsoft has polluted the global namespace with.
 
   \sa zero().
@@ -312,12 +305,6 @@ SbTime::getValue(time_t & sec, long & usec) const
 void
 SbTime::getValue(struct timeval * tv) const
 {
-  // FIXME: the below gives a warning with MSVC 7 on 64-bit Windows,
-  // as the struct timeval::tv_sec value seems to be of type long
-  // there. Ditto for the tv_usec value further below.
-  //
-  // I guess we need a configure check to find the correct type to
-  // cast to here, but investigate. 20050525 mortene.
   tv->tv_sec = static_cast<SIM_TIMEVAL_TV_SEC_T>(this->dtime);
   double us = fmod(this->dtime, 1.0) * 1000000.0;
   tv->tv_usec = static_cast<SIM_TIMEVAL_TV_USEC_T>(us + (us < 0.0 ? -0.5 : 0.5));
@@ -331,7 +318,7 @@ SbTime::getValue(struct timeval * tv) const
   Inventor design). The problem is that an unsigned long wraps around
   in a fairly short time when used for counting milliseconds: in less
   than 50 days. (And since SbTime instances are often initialized to
-  be the time since the start of the epoch (ie 1970-01-01 00:00), the
+  be the time since the start of the epoch (i.e. 1970-01-01 00:00), the
   value will have wrapped around many, many times.)
 
   You are probably better off using the getValue() method which
@@ -621,7 +608,7 @@ SbTime::parsedate(const char * const date)
 
   const char * dateptr = date;
   while (*dateptr != ' ' && *dateptr != '\t' && *dateptr != '\0')
-    dateptr++; // we don't care if it's wednesday
+    dateptr++; // we don't care if it is wednesday
   if (*dateptr == '\0') return FALSE;
   dateptr -= 2; // step back
   if ( dateptr < date ) return FALSE;
@@ -688,7 +675,8 @@ SbTime::parsedate(const char * const date)
     dateptr += 2;
     while (*dateptr == ' ' || *dateptr == '\t') dateptr++;
     time.tm_mday = atoi(dateptr);
-    while (*dateptr != '-') dateptr++; dateptr++;
+    while (*dateptr != '-') dateptr++;
+    dateptr++;
 
     int i;
     for (i=0; i < 12; i++) {
@@ -1064,8 +1052,8 @@ SbTime::addToString(SbString & str, const double v) const
 
 
 /*!
-  Dump the state of this object to the \a file stream. Only works in
-  debug version of library, method does nothing in an optimized compile.
+  Dump the state of this object to the \a fp file stream. Only works in
+  debug version of library, method does nothing in an optimized build.
  */
 void
 SbTime::print(FILE * fp) const
@@ -1079,6 +1067,3 @@ SbTime::print(FILE * fp) const
                static_cast<long int>(tm.tv_usec));
 #endif // COIN_DEBUG
 }
-
-#undef SIM_TIMEVAL_TV_SEC_T
-#undef SIM_TIMEVAL_TV_USEC_T

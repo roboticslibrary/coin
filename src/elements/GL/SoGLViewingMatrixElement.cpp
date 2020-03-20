@@ -33,6 +33,7 @@
 /*!
   \class SoGLViewingMatrixElement Inventor/elements/SoGLViewingMatrixElement.h
   \brief The SoGLViewingMatrixElement class is used to store the current viewing matrix.
+
   \ingroup elements
 
   The viewing matrix contains the inverse camera coordinate system
@@ -61,7 +62,10 @@
 
 SO_ELEMENT_SOURCE(SoGLViewingMatrixElement);
 
-// doc in parent
+/*!
+  \copydetails SoElement::initClass(void)
+*/
+
 void
 SoGLViewingMatrixElement::initClass(void)
 {
@@ -70,7 +74,7 @@ SoGLViewingMatrixElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 SoGLViewingMatrixElement::~SoGLViewingMatrixElement(void)
 {
@@ -107,7 +111,7 @@ SoGLViewingMatrixElement::pop(SoState * stateptr,
   SoGLModelMatrixElement to detect a change in the viewing matrix
   inside an SoTransformSeparator node.
 */
-uint32_t
+SbUniqueId
 SoGLViewingMatrixElement::getNodeId(SoState * const state)
 {
   const SoReplacedElement *elem = (const SoReplacedElement*)

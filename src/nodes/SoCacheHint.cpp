@@ -33,13 +33,14 @@
 /*!
   \class SoCacheHint SoCacheHint.h Inventor/nodes/SoCacheHint.h
   \brief The SoCacheHint class is a node containing hints about how to cache geometry.
+
   \ingroup nodes
 
   The SoCacheHint node is used to set up clues to the rendering
   subsystem about how Coin should cache vertex data.
 
   Please note that this is an experimental class. The API might change
-  a lot before/if it's included in any official Coin release.
+  a lot before/if it is included in any official Coin release.
 
   <b>FILE FORMAT/DEFAULTS:</b>
   \code
@@ -100,6 +101,9 @@ SoCacheHint::~SoCacheHint()
 }
 
 // doc in super
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoCacheHint::initClass(void)
 {

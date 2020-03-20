@@ -38,10 +38,10 @@
 #define OPENALWRAPPER_ASSUME_OPENAL 0
 #endif /* !HAVE_CONFIG_H */
 
-#include <assert.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
+#include <cassert>
+#include <cstdlib>
+#include <cstring>
+#include <cstdio>
 
 #include <Inventor/C/basic.h>
 #include <Inventor/C/glue/dl.h>
@@ -201,7 +201,7 @@ openal_wrapper(void)
       const char * debug = coin_getenv("COIN_DEBUG_AUDIO");
       if (debug && atoi(debug)) {
         cc_debugerror_postinfo("openal_wrapper", "OpenAL using %s linking.", 
-                               oal->runtime ? "run-time" : "build-time");
+                               oal->runtime ? "runtime" : "build-time");
         
         str = oal->alGetString(AL_VENDOR);
         cc_debugerror_postinfo("openal_wrapper", "AL_VENDOR=='%s'", str);

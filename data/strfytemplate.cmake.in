@@ -1,6 +1,3 @@
-#ifndef COIN_MATH_UNDEFS_H
-#define COIN_MATH_UNDEFS_H
-
 /**************************************************************************\
  * Copyright (c) Kongsberg Oil & Gas Technologies AS
  * All rights reserved.
@@ -34,50 +31,13 @@
 \**************************************************************************/
 
 #ifndef COIN_INTERNAL
-#error This header is only included while building Coin, and this is not while building Coin it seems.
-#endif // !COIN_INTERNAL
+#error this is a private header file
+#endif /* !COIN_INTERNAL */
 
-/* *********************************************************************** */
+#ifndef @COIN_HEADER_DEF@
+#define @COIN_HEADER_DEF@
 
-/*
-  The float-version of the math functions below did not come about
-  until C99, so we don't want to use them internally, for portability
-  reasons.
+static const char @COIN_TEXTVAR_NAME@[] =
+  "@COIN_STR_SOURCE_CODE@";
 
-  This block was originally part of Inventor/C/basic.h, but since the
-  #undef's were mangled by the config.status process, it did not really
-  work as intended.  20070518 larsa
- 
- cmath from "The LLVM Compiler Infrastructure" uses float-versions of the
- math functions below. Therefore don't undefine them when __clang__ is
- defined.
- 
- */
-
-#ifndef __clang__
-
-#undef cosf
-#define cosf(x) NO_SINGLEPREC /* whatever that'll give us a compile error... */
-#undef sinf
-#define sinf(x) NO_SINGLEPREC
-#undef tanf
-#define tanf(x) NO_SINGLEPREC
-#undef powf
-#define powf(x) NO_SINGLEPREC
-#undef sqrtf
-#define sqrtf(x) NO_SINGLEPREC
-#undef acosf
-#define acosf(x) NO_SINGLEPREC
-#undef asinf
-#define asinf(x) NO_SINGLEPREC
-#undef atanf
-#define atanf(x) NO_SINGLEPREC
-#undef atan2f
-#define atan2f(x) NO_SINGLEPREC
-
-#endif // !__clang__
-
-
-/* *********************************************************************** */
-
-#endif // !COIN_MATH_UNDEFS_H
+#endif /* ! @COIN_HEADER_DEF@ */

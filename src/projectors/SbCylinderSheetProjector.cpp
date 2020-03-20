@@ -33,16 +33,17 @@
 /*!
   \class SbCylinderSheetProjector SbCylinderSheetProjector.h Inventor/projectors/SbCylinderSheetProjector.h
   \brief The SbCylinderSheetProjector class projects 2D points to 3D points on a sheet covering a cylindrical shape.
+
   \ingroup projectors
  */
 
 // FIXME: we do not use a hyperbolic sheet, as we're supposed to do,
 // for this class. Instead we use a straight plane. This should hardly
-// be noticable for the user, but for correctness, a hyperbolic sheet
+// be noticeable for the user, but for correctness, a hyperbolic sheet
 // should of course be used. 20000308 mortene.
 
 #include <Inventor/projectors/SbCylinderSheetProjector.h>
-#include <float.h> // FLT_EPSILON
+#include <cfloat> // FLT_EPSILON
 
 #if COIN_DEBUG
 #include <Inventor/errors/SoDebugError.h>
@@ -61,7 +62,7 @@
 
 
 /*!
-  Constructor. Uses default cylinder defintion, see
+  Constructor. Uses default cylinder definition, see
   SbCylinderProjector::SbCylinderProjector().
 
   \a orienttoeye decides whether or not the cylinder and sheet should
@@ -100,14 +101,14 @@ SbCylinderSheetProjector::project(const SbVec2f & point)
   // FIXME: add code to intersect hyperbolic sheet (see code in
   // SbSphereSheetProjector).
   //
-  // Here's a complete, stand-alone example that can be used while
+  // Here's a complete, standalone example that can be used while
   // testing projection. It projects a grid on top of the
   // SbCylinderSheetProjector and spits out an iv-file with an
   // SoPointSet that shows off how the sheet will look:
   //
   //
   // -----8<--- [snip] -----8<--- [snip] -----8<--- [snip] ---
-  // #include <stdio.h>
+  // #include <cstdio>
   // #include <Inventor/SbLinear.h>
   // #include <Inventor/projectors/SbCylinderSheetProjector.h>
   // #include <Inventor/SoDB.h>

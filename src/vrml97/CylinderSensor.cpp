@@ -38,7 +38,8 @@
 
 /*!
   \class SoVRMLCylinderSensor SoVRMLCylinderSensor.h Inventor/VRMLnodes/SoVRMLCylinderSensor
-  \brief The SoVRMLCylinderSensor class maps pointer motion into rotations around the Y axis.
+  \brief The SoVRMLCylinderSensor class maps pointer motion into rotations around the Y-axis.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -75,7 +76,7 @@
   activated while the pointer is indicating any descendent geometry
   nodes of the sensor's parent group. See 4.6.7.5, Activating and
   manipulating sensors
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.7.5>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.7.5>),
   for more details on using the pointing device to activate the
   CylinderSensor.
 
@@ -98,7 +99,7 @@
   When the pointing device is deactivated and autoOffset is TRUE,
   offset is set to the last value of rotation_changed and an
   offset_changed event is generated. See 4.6.7.4, Drag sensors
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.7.4>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.7.4>),
   for a more general description of autoOffset and offset fields.
  
   If the initial acute angle between the bearing vector and the local
@@ -117,7 +118,7 @@
   TRUE, offset is set to the last rotation angle and an offset_changed
   event is generated.  More details are available in 4.6.7.4, Drag
   sensors
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.7.4>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.7.4>).
 
   When the sensor generates an isActive TRUE event, it grabs all
   further motion events from the pointing device until it is released
@@ -150,9 +151,9 @@
   The minAngle and maxAngle fields are restricted to the range [-2,
   2].  More information about this behaviour is described in 4.6.7.3,
   Pointing-device sensors, 4.6.7.4, Drag sensors
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.7.4>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.7.4>),
   and 4.6.7.5
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.7.5>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.7.5>),
   Activating and manipulating sensors.
 
 */
@@ -169,7 +170,7 @@
 
 /*!
   \var SoSFFloat SoVRMLCylinderSensor::minAngle
-  Minimum angle around Y axis.
+  Minimum angle around Y-axis.
 */
 
 /*!
@@ -193,7 +194,9 @@
 
 SO_NODE_SOURCE(SoVRMLCylinderSensor);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLCylinderSensor::initClass(void)
 {
@@ -263,7 +266,7 @@ SoVRMLCylinderSensor::dragFinish(void)
 }
 
 //
-// Private method that finds the angle around the Y axis.
+// Private method that finds the angle around the Y-axis.
 //
 float
 SoVRMLCylinderSensor::findAngle(const SbRotation & rot)

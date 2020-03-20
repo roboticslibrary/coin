@@ -33,13 +33,14 @@
 /*!
   \class SoTexture3 SoTexture3.h Inventor/nodes/SoTexture3.h
   \brief The SoTexture3 class is used to map a 3D texture onto geometry.
+
   \ingroup nodes
 
-  Shape nodes within the scope of SoTexture3 nodes in the scenegraph
-  (ie below the same SoSeparator and to the righthand side of the
+  Shape nodes within the scope of SoTexture3 nodes in the scene graph
+  (i.e. below the same SoSeparator and to the right hand side of the
   SoTexture3) will have the texture applied according to each shape
   type's individual characteristics.  See the documentation of the
-  various shape types (SoFaceSet, SoCube, SoSphere, etc etc) for
+  various shape types (SoFaceSet, SoCube, SoSphere, etc.) for
   information about the specifics of how the textures will be applied.
   An SoTexture3 node will override any previous encountered SoTexture2 nodes
   and vice versa. Mixing of SoTexture3 and SoTextureCoordinate2 (or the other
@@ -74,8 +75,8 @@
 
 #include <Inventor/nodes/SoTexture3.h>
 
-#include <assert.h>
-#include <string.h>
+#include <cassert>
+#include <cstring>
 
 #include <Inventor/SoInput.h>
 #include <Inventor/actions/SoCallbackAction.h>
@@ -134,7 +135,7 @@
 /*!
   \var SoMFString SoTexture3::filenames
   Texture filename(s). Specify either this or use SoTexture3::images, not both.
-  The depth of the volume is specifies by the number of filenames specified.
+  The depth of the volume is specified by the number of filenames specified.
   All images must have the same dimensions and number of components.
   NB! A field sensor is attached to this field internally and reloads all
   images when this field changes. You must therefore be careful when
@@ -232,6 +233,9 @@ SoTexture3::~SoTexture3()
 }
 
 // doc from parent
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoTexture3::initClass(void)
 {
@@ -538,9 +542,8 @@ SoTexture3::filenameSensorCB(void * data, SoSensor *)
   SoTexture3 *thisp = (SoTexture3 *)data;
 
   thisp->setReadStatus(TRUE);
-  if (thisp->filenames.getNum()<0 ||
-      thisp->filenames[0].getLength() &&
-      !thisp->loadFilenames()) {
+  if ((thisp->filenames.getNum()<=0) ||
+      (thisp->filenames[0].getLength() && !thisp->loadFilenames())) {
     thisp->setReadStatus(FALSE);
   }
 }

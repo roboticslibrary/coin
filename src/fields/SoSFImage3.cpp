@@ -33,6 +33,7 @@
 /*!
   \class SoSFImage3 SoSFImage3.h Inventor/fields/SoSFImage3.h
   \brief The SoSFImage3 class is used to store 3D (volume) images.
+
   \ingroup fields
 
   The SoSFImage3 class provides storage for inline 3D image maps. 3D
@@ -158,7 +159,9 @@ SoSFImage3::operator=(const SoSFImage3 & field)
 #endif // DOXYGEN_SKIP_THIS
 
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFImage3::initClass(void)
 {
@@ -341,7 +344,7 @@ SoSFImage3::startEditing(SbVec3s & size, int & nc)
 }
 
 /*!
-  Notify the field's auditors that the image data has been
+  Notify the field's auditors that the image data have been
   modified.
 */
 void

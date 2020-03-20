@@ -33,10 +33,11 @@
 /*!
   \class SoSFName SoSFName.h Inventor/fields/SoSFName.h
   \brief The SoSFName class is a container for an SbName.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a single name string.
+  need to store a single name string.
 
   Fields of this type stores their value to file as a the name string
   within quotes.
@@ -62,7 +63,9 @@ SO_SFIELD_SOURCE(SoSFName, SbName, const SbName &);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFName::initClass(void)
 {

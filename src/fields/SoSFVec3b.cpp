@@ -33,10 +33,11 @@
 /*!
   \class SoSFVec3b SoSFVec3b.h Inventor/fields/SoSFVec3b.h
   \brief The SoSFVec3b class is a container for an SbVec3b vector.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a single vector with three elements.
+  need to store a single vector with three elements.
 
   \sa SbVec3b, SoMFVec3b
   \COIN_CLASS_EXTENSION
@@ -61,7 +62,9 @@ SO_SFIELD_SOURCE(SoSFVec3b, SbVec3b, SbVec3b);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFVec3b::initClass(void)
 {

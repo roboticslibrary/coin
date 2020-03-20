@@ -33,6 +33,7 @@
 /*!
   \class SoDecomposeVec4f SoDecomposeVec4f.h Inventor/engines/SoDecomposeVec4f.h
   \brief The SoDecomposeVec4f class is used to decompose 4D vectors into four floats.
+
   \ingroup engines
 */
 
@@ -80,7 +81,9 @@ SoDecomposeVec4f::SoDecomposeVec4f()
   SO_ENGINE_ADD_OUTPUT(w,SoMFFloat);
 }
 
-// Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoDecomposeVec4f::initClass()
 {

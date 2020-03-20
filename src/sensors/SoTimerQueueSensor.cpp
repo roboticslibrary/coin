@@ -33,6 +33,7 @@
 /*!
   \class SoTimerQueueSensor SoTimerQueueSensor.h Inventor/sensors/SoTimerQueueSensor.h
   \brief The SoTimerQueueSensor class is the abstract base class for sensors triggering on certain timer events.
+
   \ingroup sensors
 
   Timer sensors triggers upon specific points in time.
@@ -44,7 +45,7 @@
   repeated triggers, etc.
 
   Note that Coin timer sensors should in no way be considered "hard
-  real-time". That is, you can \e not expect a timer to always trigger
+  real time". That is, you \e cannot expect a timer to always trigger
   at the exact moment it was set up for. Delays in triggering could be
   due to other activities in Coin, a task suspended, or heavy load
   from other applications on the system. These situations could all
@@ -53,20 +54,20 @@
   sensor triggering.
 
   On modern systems, a timer will usually trigger within a few
-  milliseconds of it's designated time, though.
+  milliseconds of its designated time, though.
 
-  If a timer sensor can not trigger at the exact moment it has been
+  If a timer sensor cannot trigger at the exact moment it has been
   scheduled, it will be triggered at the first opportunity after the
   scheduled time has passed.
 
-  Here's a simple usage example. It's a stand-alone example, which
+  Here's a simple usage example. It's a standalone example, which
   only demonstrates how to set up a repeating timer sensor with a
   callback:
 
   \code
   #include <Inventor/Xt/SoXt.h>
   #include <Inventor/sensors/SoTimerSensor.h>
-  #include <stdio.h>
+  #include <cstdio>
   
   static void
   timeSensorCallback(void * data, SoSensor * sensor)
@@ -96,7 +97,7 @@
 
 #include <Inventor/sensors/SoTimerQueueSensor.h>
 #include <Inventor/SoDB.h>
-#include <assert.h>
+#include <cassert>
 
 #if COIN_DEBUG
 #include <Inventor/errors/SoDebugError.h>
@@ -150,7 +151,7 @@ SoTimerQueueSensor::getTriggerTime(void) const
 }
 
 /*!
-  Set absolute time at which to trigger sensor.
+  Set absolute time at which to trigger the sensor.
 
   \sa getTriggerTime()
  */

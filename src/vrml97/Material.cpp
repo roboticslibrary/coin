@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLMaterial SoVRMLMaterial.h Inventor/VRMLnodes/SoVRMLMaterial.h
   \brief The SoVRMLMaterial class is used to assign a material to geometry.
+
   \ingroup VRMLnodes
   
   \WEB3DCOPYRIGHT
@@ -57,7 +58,7 @@
   The Material node specifies surface material properties for
   associated geometry nodes and is used by the VRML lighting equations
   during rendering.  Subclause 4.14, Lighting model
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.14>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.14>),
   contains a detailed description of the VRML lighting model
   equations.  All of the fields in the Material node range from 0.0 to
   1.0.  The fields in the Material node determine how light reflects
@@ -123,7 +124,7 @@
 
 #include <Inventor/VRMLnodes/SoVRMLMaterial.h>
 
-#include <stdlib.h>
+#include <cstdlib>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -191,7 +192,9 @@ private:
 
 SO_NODE_SOURCE(SoVRMLMaterial);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLMaterial::initClass(void)
 {

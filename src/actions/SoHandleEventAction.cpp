@@ -33,6 +33,7 @@
 /*!
   \class SoHandleEventAction SoHandleEventAction.h Inventor/actions/SoHandleEventAction.h
   \brief The SoHandleEventAction class distributes user events to the scene.
+
   \ingroup actions
 
   This is the action used by the GUI viewer classes to pass
@@ -73,7 +74,7 @@ public:
 
   void doPick(SoRayPickAction * ra);
   SoRayPickAction * getPickAction(void);
-
+  const SoRayPickAction * getPickAction(void) const;
   // Hidden private variables.
 
   SbViewportRegion viewport;
@@ -93,7 +94,9 @@ public:
 
 SO_ACTION_SOURCE(SoHandleEventAction);
 
-// Overridden from parent class.
+/*!
+  \copydetails SoAction::initClass(void)
+*/
 void
 SoHandleEventAction::initClass(void)
 {
@@ -110,7 +113,7 @@ SoHandleEventAction::initClass(void)
   Constructor.
 
   SoHandleEventAction needs a \a viewportregion to pass on to the
-  raypick action instance it uses for being able to track objects
+  ray pick action instance it uses for being able to track objects
   under the mouse cursor.
 */
 SoHandleEventAction::SoHandleEventAction(const SbViewportRegion & viewportregion)
@@ -236,7 +239,7 @@ SoHandleEventAction::isHandled(void) const
   Set a \a node pointer which will get all future events handled by
   this action until releaseGrabber() is called.
 
-  Note that since later SoHandleEventAction invokations are just applied
+  Note that since later SoHandleEventAction invocations are just applied
   directly on the grabber node, using SoHandleEventAction methods like
   getCurPath() will return bogus data.
 */
@@ -316,6 +319,20 @@ SoHandleEventAction::setPickRadius(const float radiusinpixels)
 }
 
 /*!
+  Gets the pick radius for cursor tracking.
+*/
+float
+SoHandleEventAction::getPickRadius(void) const
+{
+  const SoRayPickAction *pickAction = PRIVATE(this)->getPickAction();
+  if (pickAction)
+    return pickAction->getRadius();
+  else
+    return 0.0f;
+
+}
+
+/*!
   Returns the SoPickedPoint information for the intersection point
   below the cursor.
 */
@@ -377,6 +394,13 @@ SoHandleEventActionP::getPickAction(void)
   if (this->pickaction == NULL) {
     this->pickaction = new SoRayPickAction(this->viewport);
   }
+  return this->pickaction;
+}
+
+// Singleton pattern for the pick action instance.
+const SoRayPickAction * 
+SoHandleEventActionP::getPickAction(void) const
+{
   return this->pickaction;
 }
 

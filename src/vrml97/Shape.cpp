@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLShape SoVRMLShape.h Inventor/VRMLnodes/SoVRMLShape.h
   \brief The SoVRMLShape class holds geometry and geometry appearance nodes.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -57,11 +58,11 @@
   geometry. The geometry field contains a geometry node. The specified
   geometry node is rendered with the specified appearance nodes
   applied. See 4.6.3, Shapes and geometry
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.3>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.3>),
   and SoVRMLAppearance, for more information.
 
   4.14, Lighting model
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.14>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.14>),
   contains details of the VRML lighting model and the interaction
   between Appearance nodes and geometry nodes.  If the geometry field
   is NULL, the object is not drawn.
@@ -110,7 +111,7 @@
 
 #include <Inventor/VRMLnodes/SoVRMLShape.h>
 
-#include <stddef.h>
+#include <cstddef>
 
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
 #include <Inventor/VRMLnodes/SoVRMLAppearance.h>
@@ -174,6 +175,9 @@ static void sovrmlshape_cleanup(void) {
 
 // *************************************************************************
 
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLShape::initClass(void) // static
 {

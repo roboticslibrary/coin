@@ -33,6 +33,7 @@
 /*!
   \class SoFontNameElement Inventor/elements/SoFontNameElement.h
   \brief The SoFontNameElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -58,8 +59,7 @@ SbName * SoFontNameElement::defaultfontname = NULL;
 SO_ELEMENT_SOURCE(SoFontNameElement);
 
 /*!
-  This static method initializes static data for the SoFontNameElement
-  class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -79,7 +79,7 @@ SoFontNameElement::clean(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoFontNameElement::~SoFontNameElement()
@@ -153,7 +153,7 @@ SoFontNameElement::print(FILE * file) const
            this->fontName.getString());
 }
 
-//! FIXME: write doc.
+// Doc from superclass.
 
 void
 SoFontNameElement::init(SoState * state)

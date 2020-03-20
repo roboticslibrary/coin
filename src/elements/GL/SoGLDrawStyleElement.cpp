@@ -33,6 +33,7 @@
 /*!
   \class SoGLDrawStyleElement Inventor/elements/SoGLDrawStyleElement.h
   \brief The SoGLDrawStyleElement updates the current draw style in OpenGL.
+
   \ingroup elements
 */
 
@@ -49,13 +50,18 @@
 
 SO_ELEMENT_SOURCE(SoGLDrawStyleElement);
 
-// doc in superclass
+/*!
+  \copydetails SoElement::initClass(void)
+*/
 void
 SoGLDrawStyleElement::initClass(void)
 {
   SO_ELEMENT_INIT_CLASS(SoGLDrawStyleElement, inherited);
 }
 
+/*!
+  Destructor.
+*/
 SoGLDrawStyleElement::~SoGLDrawStyleElement(void)
 {
 }

@@ -34,7 +34,7 @@
 // through callback-plugins, for maximum flexibility. 20050606 mortene.
 
 // FIXME: another idea; factor out all the internal Javascript
-// handling, connecting up to fields, etc etc to a more generic
+// handling, connecting up to fields, etc. to a more generic
 // internal interface -- as thammer's project would like to connect
 // Javascript programs/routines to any scene graph field. 20050606 mortene.
 
@@ -54,6 +54,7 @@
 /*!
   \class SoVRMLScript SoVRMLScript.h Inventor/VRMLnodes/SoVRMLScript.h
   \brief The SoVRMLScript class is used to control the scene using scripts.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -83,11 +84,11 @@
   Script node's function. That code is referred to as the "script" in
   the rest of this description. Details on the url field can be found
   in 4.5, VRML and the World Wide Web
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.5>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.5>).
 
   Browsers are not required to support any specific language. Detailed
   information on scripting languages is described in 4.12, Scripting
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.12>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.12>).
 
   Browsers supporting a scripting language for which a language
   binding is specified shall adhere to that language binding.
@@ -157,7 +158,7 @@
 #include <Inventor/VRMLnodes/SoVRMLScript.h>
 #include "coindefs.h"
 
-#include <assert.h>
+#include <cassert>
 
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
 #include <Inventor/SbName.h>
@@ -305,7 +306,9 @@ SoVRMLScriptP::useSpiderMonkey(void)
 
 SoType SoVRMLScript::classTypeId STATIC_SOTYPE_INIT;
 
-// Doc in superclass
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLScript::initClass(void) // static
 {
@@ -319,6 +322,9 @@ SoVRMLScript::initClass(void) // static
 
 // *************************************************************************
 
+/*!
+  Constructor.
+*/
 SoVRMLScript::SoVRMLScript(void)
   : fielddata(NULL)
 {
@@ -360,6 +366,9 @@ SoVRMLScript::SoVRMLScript(void)
   this->initFieldData();
 }
 
+/*!
+  Destructor.
+*/
 SoVRMLScript::~SoVRMLScript()
 {
   delete PRIVATE(this);
@@ -376,14 +385,18 @@ SoVRMLScript::~SoVRMLScript()
 
 // *************************************************************************
 
-// Doc in superclass
+/*!
+  \copydetails SoNode::getClassTypeId(void)
+*/
 SoType
 SoVRMLScript::getClassTypeId(void)
 {
   return SoVRMLScript::classTypeId;
 }
 
-// Doc in superclass
+/*!
+  \copydetails SoNode::getTypeId(void) const
+*/
 SoType
 SoVRMLScript::getTypeId(void) const
 {
@@ -730,7 +743,7 @@ SoVRMLScript::readInstance(SoInput * in, unsigned short COIN_UNUSED_ARG(flags))
 void
 SoVRMLScript::initFieldData(void)
 {
-  if (this->fielddata) delete this->fielddata;
+  delete this->fielddata;
   this->fielddata = new SoFieldData;
   this->fielddata->addField(this, "url", &this->url);
   this->fielddata->addField(this, "directOutput", &this->directOutput);
@@ -770,7 +783,7 @@ SoVRMLScriptP::initialize(void)
         if (SoVRMLScriptP::debug()) {
           SoDebugError::postInfo("SoVRMLScriptP::initialize",
                                  "Only the SpiderMonkey Javascript engine "
-                                 "currently supported.");
+                                 "is currently supported.");
         }
         continue;
       }

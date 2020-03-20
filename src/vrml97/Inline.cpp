@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLInline SoVRMLInline.h Inventor/VRMLnodes/SoVRMLInline.h
   \brief The SoVRMLInline class is used to insert VRML files into a scene.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -71,7 +72,7 @@
   to obtain, the higher preference VRML file. Details on the url field
   and preference order can be found in 4.5, VRML and the World Wide
   Web
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.5>).  
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.5>).  
 
   The results are undefined if the contents of the URL change after it
   has been loaded.  
@@ -84,7 +85,7 @@
   implies that the bounding box is not specified and if needed shall
   be calculated by the browser. A description of the bboxCenter and
   bboxSize fields is in 4.6.4, Bounding boxes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.4>).  
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.4>).  
 
 */
 
@@ -127,7 +128,7 @@
 #include <Inventor/VRMLnodes/SoVRMLInline.h>
 #include "coindefs.h"
 
-#include <stdlib.h>
+#include <cstdlib>
 
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
 #include <Inventor/nodes/SoSeparator.h>
@@ -177,7 +178,9 @@ sovrmlinline_cleanup(void)
 
 SO_NODE_SOURCE(SoVRMLInline);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLInline::initClass(void)
 {
@@ -273,7 +276,7 @@ SoVRMLInline::requestURLData(void)
 }
 
 /*!
-  Returns TRUE if the URL data has been requested.
+  Returns TRUE if the URL data have been requested.
 */
 SbBool
 SoVRMLInline::isURLDataRequested(void) const
@@ -282,7 +285,7 @@ SoVRMLInline::isURLDataRequested(void) const
 }
 
 /*!
-  Returns TRUE if the data has been loaded.
+  Returns TRUE if the data have been loaded.
 */
 SbBool
 SoVRMLInline::isURLDataHere(void) const
@@ -313,7 +316,7 @@ SoVRMLInline::setChildData(SoNode * urldata)
 }
 
 /*!
-  Returns the child data (the scene loaded from the url).
+  Returns the child data (the scene loaded from the URL).
 */
 SoNode *
 SoVRMLInline::getChildData(void) const
@@ -381,7 +384,7 @@ SoVRMLInline::setReadAsSoFile(SbBool enable)
 }
 
 /*!
-  Returns whether Inline nodes is read as SoFile nodes.
+  Returns whether Inline nodes are read as SoFile nodes.
 */
 SbBool
 SoVRMLInline::getReadAsSoFile(void)

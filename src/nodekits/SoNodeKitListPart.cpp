@@ -39,6 +39,7 @@
 /*!
   \class SoNodeKitListPart SoNodeKitListPart.h Inventor/nodekits/SoNodeKitListPart.h
   \brief The SoNodeKitListPart class is a container node.
+
   \ingroup nodekits
 
   This node is basically just a container node with these differences versus
@@ -67,7 +68,7 @@
 
 #include <Inventor/nodekits/SoNodeKitListPart.h>
 
-#include <assert.h>
+#include <cassert>
 
 #include <Inventor/misc/SoChildList.h>
 #include <Inventor/nodes/SoGroup.h>
@@ -197,7 +198,7 @@ SoNodeKitListPart::setContainerType(SoType newContainerType)
 
 /*!
   Return a list of all types which are allowed as children of this node.
-  Default is to allow all nodetypes.
+  Default is to allow all node types.
 */
 const SoTypeList &
 SoNodeKitListPart::getChildTypes(void) const
@@ -568,7 +569,7 @@ SoNodeKitListPart::getChildren(void) const
 
 /*!
   Return the SoGroup container which is the parent of all the children
-  which has been added.
+  which have been added.
 */
 SoGroup *
 SoNodeKitListPart::getContainerNode(void)
@@ -635,7 +636,7 @@ SoNodeKitListPart::canCreateDefaultChild(void) const
 }
 
 // create, add and return a new default child. Should not be called if default
-// child can not be created.
+// child cannot be created.
 SoNode *
 SoNodeKitListPart::createAndAddDefaultChild(void)
 {

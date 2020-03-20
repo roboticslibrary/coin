@@ -39,6 +39,7 @@
 /*!
   \class SoTabBoxManip SoTabBoxManip.h Inventor/manips/SoTabBoxManip.h
   \brief The SoTabBoxManip class wraps an SoTabBoxDragger.
+
   \ingroup manips
 
   The SoTabBoxManip provides a convenient mechanism for the
@@ -51,7 +52,7 @@
 
   The interaction from the end-user with the manipulator will then
   automatically influence the transformation matrix for the geometry
-  following it in the scenegraph.
+  following it in the scene graph.
 */
 
 #include <Inventor/manips/SoTabBoxManip.h>
@@ -67,7 +68,9 @@ public:
 
 SO_NODE_SOURCE(SoTabBoxManip);
 
-// Doc in superclass.
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoTabBoxManip::initClass(void)
 {
@@ -94,7 +97,7 @@ SoTabBoxManip::SoTabBoxManip(void)
 
 /*!
   Protected destructor. (SoHandleBoxManip is automatically destructed
-  when it's reference count goes to 0.)
+  when its reference count goes to 0.)
  */
 SoTabBoxManip::~SoTabBoxManip()
 {

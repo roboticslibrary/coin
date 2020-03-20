@@ -110,7 +110,7 @@ struct CoinVrmlJs {
 struct CoinVrmlJs_SensorInfo {
   SbList <JSObject *> objects;
 };
-SbHash<unsigned long, void *> * CoinVrmlJs_sensorinfohash = NULL;
+SbHash<uintptr_t, void *> * CoinVrmlJs_sensorinfohash = NULL;
 
 
 const char * CoinVrmlJs_SFColorAliases[] = {"r", "g", "b"};
@@ -674,7 +674,7 @@ static void SFNode_deleteCB(void * COIN_UNUSED_ARG(data), SoSensor * sensor)
 {
   SoNode * node = ((SoNodeSensor *) sensor)->getAttachedNode();
   void * tmp;
-  if(!CoinVrmlJs_sensorinfohash->get((unsigned long) node, tmp)) {
+  if(!CoinVrmlJs_sensorinfohash->get(reinterpret_cast<uintptr_t>(node), tmp)) {
     assert(FALSE && "Trying to delete an unregistered SoNodeSensor. Internal error.");
     return;
   }
@@ -690,7 +690,7 @@ static void SFNode_deleteCB(void * COIN_UNUSED_ARG(data), SoSensor * sensor)
 
   // Store the sensor-pointer so that it can be properly deleted later
   nodesensorstobedeleted->append((SoNodeSensor *) sensor);
-  CoinVrmlJs_sensorinfohash->erase((unsigned long) node);
+  CoinVrmlJs_sensorinfohash->erase(reinterpret_cast<uintptr_t>(node));
   delete si;
 }
 
@@ -1399,7 +1399,7 @@ static JSBool SFNode_set(JSContext * cx, JSObject * obj, jsval id, jsval * rval)
 
 static void SFNodeDestructor(JSContext * cx, JSObject * obj)
 {
-  // Delete all SoNodeSensors which no longer has a node attached.
+  // Delete all SoNodeSensors which no longer have a node attached.
   cleanupObsoleteNodeSensors();
   if(garbagecollectedobjects->find(obj) != -1) { // Pointer is marked as garbage-collected
     garbagecollectedobjects->removeItem(obj);
@@ -1428,13 +1428,13 @@ static void attachSensorToNode(SoNode * node, JSObject * obj)
 {
   // Has the hash-table been initialized?
   if (!CoinVrmlJs_sensorinfohash) {
-    CoinVrmlJs_sensorinfohash = new SbHash<unsigned long, void *>;
+    CoinVrmlJs_sensorinfohash = new SbHash<uintptr_t, void *>;
     coin_atexit(deleteSensorInfoHash, CC_ATEXIT_NORMAL);
   }
 
   // Is a sensor already attached to this SoNode?
   void * tmp;
-  if (CoinVrmlJs_sensorinfohash->get((unsigned long) node, tmp)) {
+  if (CoinVrmlJs_sensorinfohash->get(reinterpret_cast<uintptr_t>(node), tmp)) {
     CoinVrmlJs_SensorInfo * si = (CoinVrmlJs_SensorInfo *) tmp;
     si->objects.append(obj);
   }
@@ -1444,13 +1444,13 @@ static void attachSensorToNode(SoNode * node, JSObject * obj)
     ns->attach(node);
     CoinVrmlJs_SensorInfo * si = new CoinVrmlJs_SensorInfo;
     si->objects.append(obj);
-    CoinVrmlJs_sensorinfohash->put((unsigned long) node, si);
+    CoinVrmlJs_sensorinfohash->put(reinterpret_cast<uintptr_t>(node), si);
   }
 }
 
 static JSObject * SFNodeFactory(JSContext * cx, SoNode * container)
 {
-  // Delete all SoNodeSensors which no longer has a node attached.
+  // Delete all SoNodeSensors which no longer have a node attached.
   cleanupObsoleteNodeSensors();
 
   JSObject * obj = spidermonkey()->JS_NewObject(cx, &CoinVrmlJs::SFNode.cls, NULL, NULL);
@@ -1474,7 +1474,7 @@ static JSObject * SFNodeFactory(JSContext * cx, SoNode * container)
 static JSBool SFNodeConstructor(JSContext * cx, JSObject * obj,
                                 uintN argc, jsval * argv, jsval *rval)
 {
-  // Delete all SoNodeSensors which no longer has a node attached.
+  // Delete all SoNodeSensors which no longer have a node attached.
   cleanupObsoleteNodeSensors();
 
   // spidermonkey ignores the return value
@@ -1982,7 +1982,7 @@ JS_addVRMLclasses(SoJavaScriptEngine * engine)
     coin_atexit((coin_atexit_f *)js_vrmlclasses_cleanup, CC_ATEXIT_NORMAL);
 
     // set up default function stubs for Spidermonkey classes we
-    // make. must be done at run-time to avoid calling spidermonkey()
+    // make. must be done at runtime to avoid calling spidermonkey()
     // early (i.e. not on demand).
     const size_t NRELEMENTS = sizeof(CLASSDESCRIPTORS) / sizeof(CLASSDESCRIPTORS[0]);
     for (size_t i=0; i < NRELEMENTS; i++) {

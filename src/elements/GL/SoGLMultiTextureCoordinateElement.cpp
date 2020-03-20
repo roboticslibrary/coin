@@ -33,10 +33,10 @@
 /*!
   \class SoGLMultiTextureCoordinateElement Inventor/elements/SoGLMultiTextureCoordinateElement.h
   \brief The SoGLMultiTextureCoordinateElement class stores the current gltexture coordinates for several units.
+
   \ingroup elements
 */
 
-/*! \file SoGLMultiTextureCoordinateElement.h */
 #include <Inventor/elements/SoGLMultiTextureCoordinateElement.h>
 #include <Inventor/elements/SoMultiTextureEnabledElement.h>
 #include <Inventor/actions/SoGLRenderAction.h>
@@ -82,8 +82,7 @@ public:
 SO_ELEMENT_CUSTOM_CONSTRUCTOR_SOURCE(SoGLMultiTextureCoordinateElement);
 
 /*!
-  This static method initializes static data for the
-  SoGLMultiTextureCoordinateElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -93,7 +92,7 @@ SoGLMultiTextureCoordinateElement::initClass(void)
 }
 
 /*!
-  The constructor.
+  Constructor.
 */
 SoGLMultiTextureCoordinateElement::SoGLMultiTextureCoordinateElement(void)
 {
@@ -104,7 +103,7 @@ SoGLMultiTextureCoordinateElement::SoGLMultiTextureCoordinateElement(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoGLMultiTextureCoordinateElement::~SoGLMultiTextureCoordinateElement()

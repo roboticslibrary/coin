@@ -50,7 +50,7 @@
 
 #include <Inventor/annex/FXViz/nodes/SoShadowCulling.h>
 
-#include <stdio.h>
+#include <cstdio>
 
 #include <Inventor/elements/SoShapeStyleElement.h>
 #include <Inventor/elements/SoShapeHintsElement.h>
@@ -84,7 +84,7 @@
 /*!
   \var SoShadowCulling::Style SoShadowCulling::NO_CULLING
 
-  Render both backfacing and frontfacting triangles into the shadow map.
+  Render both back facing and front facing triangles into the shadow map.
 */
 
 
@@ -114,7 +114,9 @@ SoShadowCulling::~SoShadowCulling()
 {
 }
 
-// Doc from superclass.
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoShadowCulling::initClass(void)
 {

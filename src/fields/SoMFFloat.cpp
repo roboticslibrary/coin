@@ -33,10 +33,11 @@
 /*!
   \class SoMFFloat SoMFFloat.h Inventor/fields/SoMFFloat.h
   \brief The SoMFFloat class is a container for floating point values.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a group of multiple floating point values.
+  need to store a group of multiple floating point values.
 
   This field supports application data sharing through a
   setValuesPointer() method. See SoMField documentation for
@@ -65,7 +66,9 @@ SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFFloat, float, float);
 
 // *************************************************************************
 
-// Override from parent.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFFloat::initClass(void)
 {

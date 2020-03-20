@@ -39,6 +39,7 @@
 /*!
   \class SoTranslate1Dragger SoTranslate1Dragger.h Inventor/draggers/SoTranslate1Dragger.h
   \brief The SoTranslate1Dragger class provides a mechanism for the end-user to translate along an axis.
+
   \ingroup draggers
 
   \DRAGGER_DEFAULT_SCREENSHOT
@@ -48,7 +49,7 @@
   </center>
 
   Use this dragger to allow the end-user of your application to
-  translate along the X-axis, ie freely along a line. (Use a
+  translate along the X-axis, i.e. freely along a line. (Use a
   transformation node in front of the dragger to position it and
   re-orient it to translate along any line.)
 
@@ -96,7 +97,7 @@
 /*!
   \var SoSFFloat SoTranslate1Dragger::minTranslation
 
-  Sets the minimum value allowed in the x component of the translaton
+  Sets the minimum value allowed in the x component of the translation
   field.  This is only active if minTranslation <= maxTranslation.
 
   Default value is 1.0
@@ -107,7 +108,7 @@
 /*!
   \var SoSFFloat SoTranslate1Dragger::maxTranslation
 
-  Sets the maximum value allowed in the x component of the translaton
+  Sets the maximum value allowed in the x component of the translation
   field.  This is only active if minTranslation <= maxTranslation.
 
   Default value is 0.0.
@@ -136,7 +137,9 @@ public:
 SO_KIT_SOURCE(SoTranslate1Dragger);
 
 
-// doc in superclass
+/*!
+  \copydetails SoDragger::initClass(void)
+*/
 void
 SoTranslate1Dragger::initClass(void)
 {
@@ -144,7 +147,7 @@ SoTranslate1Dragger::initClass(void)
 }
 
 // FIXME: document which parts need to be present in the geometry
-// scenegraph, and what role they play in the dragger. 20010913 mortene.
+// scene graph, and what role they play in the dragger. 20010913 mortene.
 /*!
   \DRAGGER_CONSTRUCTOR
 
@@ -216,7 +219,7 @@ SoTranslate1Dragger::SoTranslate1Dragger(void)
   this->setPartAsDefault("feedback", "translate1Feedback");
   this->setPartAsDefault("feedbackActive", "translate1FeedbackActive");
 
-  // initialize swich values
+  // initialize switch values
   SoSwitch *sw;
   sw = SO_GET_ANY_PART(this, "translatorSwitch", SoSwitch);
   SoInteractionKit::setSwitchValue(sw, 0);

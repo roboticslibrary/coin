@@ -33,6 +33,7 @@
 /*!
   \class SoDiffuseColorElement Inventor/elements/SoDiffuseColorElement.h
   \brief The SoDiffuseColorElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -50,8 +51,19 @@
 SO_ELEMENT_SOURCE(SoDiffuseColorElement);
 
 /*!
-  This static method initializes static data for the
-  SoDiffuseColorElement class.
+  \fn static SoType SoDiffuseColorElement::getClassTypeId(void)
+
+  This static method returns the class type.
+*/
+
+/*!
+  \fn static int SoDiffuseColorElement::getClassStackIndex(void)
+
+  This static method returns the state stack index for the class.
+*/
+
+/*!
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -70,7 +82,7 @@ SoDiffuseColorElement::init(SoState * stateptr)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoDiffuseColorElement::~SoDiffuseColorElement()

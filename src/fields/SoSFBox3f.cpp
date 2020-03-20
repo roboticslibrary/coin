@@ -33,10 +33,11 @@
 /*!
   \class SoSFBox3f SoSFBox3f.h Inventor/fields/SoSFBox3f.h
   \brief The SoSFBox3f class is a container for an SbBox3f vector.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a box.
+  need to store a box.
 
   \COIN_CLASS_EXTENSION
   \since Coin 2.0
@@ -59,7 +60,9 @@ SO_SFIELD_SOURCE(SoSFBox3f, SbBox3f, const SbBox3f &);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFBox3f::initClass(void)
 {

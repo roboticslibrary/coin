@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLPositionInterpolator SoVRMLPositionInterpolator.h Inventor/VRMLnodes/SoVRMLPositionInterpolator.h
   \brief The SoVRMLPositionInterpolator class is used to interpolate 3D points.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -55,7 +56,7 @@
   The PositionInterpolator node linearly interpolates among a list of
   3D vectors. The keyValue field shall contain exactly as many values
   as in the key field.  4.6.8, Interpolator nodes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.8>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.8>),
   contains a more detailed discussion of interpolators.
 
 */
@@ -78,7 +79,9 @@
 
 SO_NODEENGINE_SOURCE(SoVRMLPositionInterpolator);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLPositionInterpolator::initClass(void) // static
 {

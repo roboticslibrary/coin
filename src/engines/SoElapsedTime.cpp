@@ -33,6 +33,7 @@
 /*!
   \class SoElapsedTime SoElapsedTime.h Inventor/engines/SoElapsedTime.h
   \brief The SoElapsedTime class is a controllable time source engine.
+
   \ingroup engines
 
   The additional functionality provided by this engine versus just
@@ -113,7 +114,9 @@ SO_ENGINE_SOURCE(SoElapsedTime);
 
 // *************************************************************************
 
-// Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoElapsedTime::initClass(void)
 {
@@ -233,7 +236,7 @@ SoElapsedTime::writeInstance(SoOutput * out)
   // Re-connect to realTime field.
   if (connectfromrealTime) {
     // Don't send notification when reconnecting to preserve the state
-    // of the scenegraph between write passes.
+    // of the scene graph between write passes.
     this->timeIn.connectFrom(connectfield, TRUE);
     this->timeIn.setDefault(defaultflag);
   }

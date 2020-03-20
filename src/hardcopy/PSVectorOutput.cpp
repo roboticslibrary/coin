@@ -32,7 +32,8 @@
 
 /*!
   \class SoPSVectorOutput SoPSVectorOutput.h Inventor/Annex/HardCopy/SoPSVectorOutput.h
-  \brief The SoPSVectorOutput class is used for writing Postscript.
+  \brief The SoPSVectorOutput class is used for writing PostScript.
+
   \ingroup hardcopy
 
   \since Coin 2.1

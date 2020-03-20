@@ -33,11 +33,12 @@
 /*!
   \class SoProfileCoordinate3 SoProfileCoordinate3.h Inventor/nodes/SoProfileCoordinate3.h
   \brief The SoProfileCoordinate3 class is a node specifying a set of 3D coordinates for profiles.
+
   \ingroup nodes
 
   Use nodes of this type to provide coordinates to profiles.
 
-  The third element of the coordinate vectors is used for
+  The third element of the coordinate vector is used for
   normalization. A node of this type where all the normalization
   values are equal to 1.0 is the equivalent of setting up an
   SoProfileCoordinate2 node.
@@ -98,6 +99,9 @@ SoProfileCoordinate3::~SoProfileCoordinate3()
 }
 
 // doc in super
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoProfileCoordinate3::initClass(void)
 {

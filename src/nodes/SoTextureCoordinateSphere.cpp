@@ -32,7 +32,8 @@
 
 /*!
   \class SoTextureCoordinateSphere include/Inventor/nodes/SoTextureCoordinateSphere.h
-  \brief The SoTextureCoordinateSphere class autogenerates spheremapped texture coordinated for shapes.
+  \brief The SoTextureCoordinateSphere class generates sphere mapped texture coordinates for shapes.
+
   \ingroup nodes
 
   <b>FILE FORMAT/DEFAULTS:</b>
@@ -150,6 +151,9 @@ SoTextureCoordinateSphere::~SoTextureCoordinateSphere()
 }
 
 // Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoTextureCoordinateSphere::initClass(void)
 {

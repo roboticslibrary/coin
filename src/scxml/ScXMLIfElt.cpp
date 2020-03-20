@@ -106,7 +106,7 @@ ScXMLIfEltReader::read(ScXMLElt * container, cc_xml_elt * xmlelt, ScXMLDocument 
     if (strcmp(elementtype, "elseif") == 0) {
       if (unlikely(ifelt->getElse())) {
         SoDebugError::post("ScXMLIfEltReader::read",
-                           "<if> can not contain <elseif> after and <else> element");
+                           "<if> cannot contain <elseif> after an <else> element");
         delete ifelt;
         return NULL;
       }
@@ -124,7 +124,7 @@ ScXMLIfEltReader::read(ScXMLElt * container, cc_xml_elt * xmlelt, ScXMLDocument 
     else if (strcmp(elementtype, "else") == 0) {
       if (unlikely(ifelt->getElse())) {
         SoDebugError::post("ScXMLIfEltReader::read",
-                           "<if> can not contain multiple <else> elements");
+                           "<if> cannot contain multiple <else> elements");
         delete ifelt;
         return NULL;
       }
@@ -452,8 +452,8 @@ ScXMLIfElt::execute(ScXMLStateMachine * statemachine) const
       if (res->isOfType(ScXMLBoolDataObj::getClassTypeId())) {
         boolres = static_cast<ScXMLBoolDataObj *>(res);
         if (boolres->getBool()) {
-          for (int i = 0; i < this->getNumExecutables(elseif); ++i) {
-            ScXMLExecutableElt * executable = this->getExecutable(elseif, i);
+          for (int j = 0; j < this->getNumExecutables(elseif); ++j) {
+            ScXMLExecutableElt * executable = this->getExecutable(elseif, j);
             executable->execute(statemachine);
           }
           return;

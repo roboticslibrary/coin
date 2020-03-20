@@ -33,6 +33,7 @@
 /*!
   \class SoBaseList SoBaseList.h Inventor/lists/SoBaseList.h
   \brief The SoBaseList class is a container for pointers to SoBase derived objects.
+
   \ingroup general
 
   The additional capability of the SoBaseList class over its parent
@@ -42,7 +43,7 @@
 
 #include <Inventor/lists/SoBaseList.h>
 #include <Inventor/misc/SoBase.h>
-#include <assert.h>
+#include <cassert>
 
 // Convenience macro for casting array element from void * to SoBase *.
 #define GET_BASEPTR(idx) ((SoBase *)SbPList::get(idx))
@@ -97,6 +98,8 @@ SoBaseList::~SoBaseList()
   Append \a ptr to list, adding to the reference count of the object
   (unless addReferences() has been set to \c FALSE).
 
+  Overloaded from parent to support reference counting on the SoBase object.
+
   \sa SbPList::append()
 */
 void
@@ -111,6 +114,8 @@ SoBaseList::append(SoBase * ptr)
   reference count of the object (unless addReferences() has been set
   to \c FALSE).
 
+  Overloaded from parent to support reference counting on the SoBase object.
+
   \sa SbPList::insert()
 */
 void
@@ -123,6 +128,8 @@ SoBaseList::insert(SoBase * ptr, const int addbefore)
 /*!
   Removes item at \a index from the list, dereferencing the object
   (unless addReferences() has been set to \c FALSE).
+
+  Overloaded from parent to support reference counting on the SoBase object.
 
   \sa SbPList::remove()
 */
@@ -138,6 +145,8 @@ SoBaseList::remove(const int index)
 /*!
   Removes \a item from the list, dereferencing the object (unless
   addReferences() has been set to \c FALSE).
+
+  Overloaded from parent to support reference counting on the SoBase object.
 
   \sa SbPList::removeItem()
 */
@@ -158,6 +167,8 @@ SoBaseList::removeItem(SoBase * item)
   items from index \a length and onwards to the end of the
   list. Dereferences the objects to be removed (unless addReferences()
   has been set to \c FALSE).
+
+  Overloaded from parent to support reference counting on the SoBase object.
 
   \sa SbPList::truncate()
 */
@@ -202,11 +213,11 @@ SoBaseList::operator=(const SoBaseList & l)
 }
 
 /*!
-  Returns element at \a idx.
+  \copydetails SbPList::operator[](const int idx) const
 
-  Will automatically expand the size of the internal array if \a idx
-  is outside the current bounds of the list. The values of any
-  additional pointers are then set to \c NULL.
+  Overloaded from parent to return an SoBase pointer.
+
+  \sa SbPList::operator[]()
 */
 SoBase *
 SoBaseList::operator[](const int idx) const
@@ -272,15 +283,15 @@ SoBaseList::isReferencing(void) const
 }
 
 /*!
-  Index operator to set element at \a i. Does \e not expand array
-  bounds if \a i is outside the list.
+  \copydetails SbPList::set(const int idx, void * item)
+
+  Overloaded from parent to support reference counting on the SoBase object.
+
+  \sa SbPList::set(const int idx, void * item)
 */
 void
 SoBaseList::set(const int i, SoBase * const ptr)
 {
-  // Overridden from parent class to provide referencing on the SoBase
-  // object.
-
   if (this->referencing) {
     // Note: it's important to ref() before we unref(), in case the
     // value of ptr is equal to the old value (otherwise we could

@@ -33,6 +33,7 @@
 /*!
   \class SoLockManager SoLockMgr.h Inventor/lock/SoLockMgr.h
   \brief The SoLockManager is a defunct software license lock mechanism.
+
   \ingroup general
 
   This is just a dummy implementation of the TGS Inventor class used
@@ -43,13 +44,13 @@
   If you are looking for information about using Coin in proprietary
   applications for commercial distribution, read about the Coin
   Professional Edition License on the Coin web-pages <a
-  href="http://www.coin3d.org">here</a>.
+  href="http://coin3d.github.io">here</a>.
 */
 
 
 #include <Inventor/lock/SoLockMgr.h>
 
-#include <string.h>
+#include <cstring>
 
 #include <Inventor/SbString.h>
 
@@ -72,7 +73,7 @@ static void solockmanager_cleanup(void)
 }
 
 /*!
-  A void method provided just for sourcecode compatibility in client
+  A void method provided just for source code compatibility in client
   applications with TGS Inventor.
 
   It just stores the \a unlockstr argument internally to be able to
@@ -91,7 +92,7 @@ SoLockManager::SetUnlockString(char * unlockstr)
 }
 
 /*!
-  A void method provided just for sourcecode compatibility in client
+  A void method provided just for source code compatibility in client
   applications with TGS Inventor.
 
   Returns the string set through SetUnlockString().

@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLSphere SoVRMLSphere.h Inventor/VRMLnodes/SoVRMLSphere.h
   \brief The SoVRMLSphere class is used to represent a spherical 3D object.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -55,7 +56,7 @@
   fields of the Sphere node.
 
   <center>
-  <img src="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/Images/sphere.gif">
+  <img src="http://www.web3d.org/documents/specifications/14772/V2.0/Images/sphere.gif">
   Figure 6.15 -- Sphere node
   </center>
 
@@ -100,7 +101,9 @@
 
 SO_NODE_SOURCE(SoVRMLSphere);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLSphere::initClass(void)
 {

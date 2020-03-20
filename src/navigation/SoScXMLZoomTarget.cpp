@@ -34,7 +34,7 @@
 
 /*!
   \class SoScXMLZoomTarget SoScXMLZoomTarget.h Inventor/scxml/SoScXMLZoomTarget.h
-  \brief SCXML event target service for zoom-behaviour.
+  \brief SCXML event target service for zoom behaviour.
 
   Events:
 
@@ -72,7 +72,7 @@
       _sessionid {string}
 
   \ingroup navigation
-  \since 2008-02-14
+  \since Coin 3.1
 */
 
 #include <cassert>

@@ -67,12 +67,12 @@
 
 /*!
   \var SoMFNode SoVRMLParent::addChildren
-  An event in that is used to add children to this node.
+  An eventIn that is used to add children to this node.
 */
 
 /*!
   \var SoMFNode SoVRMLParent::removeChildren
-  An event in that is used to remove children from this node.
+  An eventIn that is used to remove children from this node.
 */
 
 // *************************************************************************
@@ -125,7 +125,9 @@ SO_NODE_ABSTRACT_SOURCE(SoVRMLParent);
 
 // *************************************************************************
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLParent::initClass(void)
 {
@@ -406,7 +408,7 @@ SoVRMLParent::updateChildList(const SoNode * const * nodes,
 {
   int i;
   SbBool needcopy = TRUE;
-  unsigned int numChildren = cl.getLength();
+  int numChildren = cl.getLength();
   if (numChildren && (numnodes == numChildren)) {
     const SoNode ** clarr = (const SoNode**) cl.getArrayPtr();
     for (i = 0; i < numnodes; i++) {

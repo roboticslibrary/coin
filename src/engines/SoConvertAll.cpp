@@ -604,7 +604,7 @@ static void time2string(const SbTime & t, SbString & s)
   // and time.
 #if 0 // Don't default to ISO 8601 conformant string, ...
   // Note: if this is ever enabled, remember that the format string
-  // need to be different on MSWindows systems.
+  // need to be different on Microsoft Windows systems.
   else s = t.formatDate("%A %Y-%m-%d %H:%M:%S");
 #else // .. follow Open Inventor instead.
   else s = t.formatDate();
@@ -677,7 +677,9 @@ static void convertall_cleanup_dict(void)
 
 } // extern "C"
 
-// doc in super
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoConvertAll::initClass(void)
 {

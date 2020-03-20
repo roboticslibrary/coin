@@ -33,6 +33,7 @@
 /*!
   \class SoGLEnvironmentElement Inventor/elements/SoGLEnvironmentElement.h
   \brief The SoGLEnvironmentElement class is for setting GL fog etc.
+
   \ingroup elements
 */
 
@@ -53,10 +54,8 @@
 SO_ELEMENT_SOURCE(SoGLEnvironmentElement);
 
 /*!
-  This static method initializes static data for the
-  SoGLEnvironmentElement class.
+  \copydetails SoElement::initClass(void)
 */
-
 void
 SoGLEnvironmentElement::initClass()
 {
@@ -64,19 +63,20 @@ SoGLEnvironmentElement::initClass()
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
-
 SoGLEnvironmentElement::~SoGLEnvironmentElement()
 {
 }
 
+// doc in superclass
 void
 SoGLEnvironmentElement::init(SoState * state)
 {
   inherited::init(state);
 }
 
+// doc in superclass
 void
 SoGLEnvironmentElement::pop(SoState * COIN_UNUSED_ARG(state),
                            const SoElement * prevTopElement)
@@ -85,6 +85,7 @@ SoGLEnvironmentElement::pop(SoState * COIN_UNUSED_ARG(state),
   this->updategl(state);
 }
 
+// doc in superclass
 void
 SoGLEnvironmentElement::setElt(SoState * const stateptr,
                                const float ambientIntensityarg,

@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 \**************************************************************************/
 
-/*! \file common.h */
+/*! \file Inventor/C/threads/common.h */
 
 /*!
   \struct cc_fifo common.h Inventor/C/threads/common.h
@@ -47,8 +47,8 @@
 /*! \file fifo.h */
 #include <Inventor/C/threads/fifo.h>
 
-#include <stdlib.h>
-#include <assert.h>
+#include <cstdlib>
+#include <cassert>
 
 #include <Inventor/C/threads/mutex.h>
 #include <Inventor/C/threads/condvar.h>

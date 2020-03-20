@@ -39,6 +39,7 @@
 /*!
   \class SoRotateDiscDragger SoRotateDiscDragger.h Inventor/draggers/SoRotateDiscDragger.h
   \brief The SoRotateDiscDragger class is for rotating geometry around a single axis.
+
   \ingroup draggers
 
   \DRAGGER_DEFAULT_SCREENSHOT
@@ -47,8 +48,8 @@
   \image html rotatedisc.png "Screen Shot of Default Dragger"
   </center>
 
-  Use an instance of this dragger class in your scenegraph to let the
-  end-users of your application rotate geometry around a pre-defined
+  Use an instance of this dragger class in your scene graph to let the
+  end-users of your application rotate geometry around a predefined
   axis vector in 3D.
 
   The special feature of this dragger that sets it apart from the
@@ -59,7 +60,7 @@
   with for instance something like a "volume" knob.
 
   For the dragger orientation and positioning itself, use some kind of
-  transformation node in your scenegraph, as usual.
+  transformation node in your scene graph, as usual.
 */
 
 #include <Inventor/draggers/SoRotateDiscDragger.h>
@@ -83,7 +84,7 @@
   This field is continuously updated to contain the rotation of the
   current direction vector of the dragger.
 
-  The application programmer using this dragger in his scenegraph
+  The application programmer using this dragger in his scene graph
   should connect the relevant node fields in the scene to this field
   to make them follow the dragger orientation.
 */
@@ -106,7 +107,9 @@ public:
 SO_KIT_SOURCE(SoRotateDiscDragger);
 
 
-// doc in superclass
+/*!
+  \copydetails SoDragger::initClass(void)
+*/
 void
 SoRotateDiscDragger::initClass(void)
 {
@@ -114,7 +117,7 @@ SoRotateDiscDragger::initClass(void)
 }
 
 // FIXME: document which parts need to be present in the geometry
-// scenegraph, and what role they play in the dragger. 20010913 mortene.
+// scene graph, and what role they play in the dragger. 20010913 mortene.
 /*!
   \DRAGGER_CONSTRUCTOR
 
@@ -183,7 +186,7 @@ SoRotateDiscDragger::SoRotateDiscDragger(void)
   this->setPartAsDefault("feedback", "rotateDiscFeedback");
   this->setPartAsDefault("feedbackActive", "rotateDiscFeedbackActive");
 
-  // initialize swich values
+  // initialize switch values
   SoSwitch *sw;
   sw = SO_GET_ANY_PART(this, "rotatorSwitch", SoSwitch);
   SoInteractionKit::setSwitchValue(sw, 0);

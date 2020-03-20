@@ -48,7 +48,7 @@
       solve. The outline of my problem is as follows:
       
         * I'm using LoadLibrary() to bind to the symbols of a DLL at
-          run-time.
+          runtime.
       
         * This DLL was generated outside of my control.
       
@@ -107,12 +107,12 @@
 #include "config.h"
 #endif /* HAVE_CONFIG_H */
 
-#include <assert.h>
-#include <stddef.h> /* NULL definition. */
-#include <stdlib.h> /* atoi() */
-#include <errno.h>
-#include <string.h> /* strlen(), strcpy(), strerror() */
-#include <stdio.h>  /* snprintf() */
+#include <cassert>
+#include <cstddef> /* NULL definition. */
+#include <cstdlib> /* atoi() */
+#include <cerrno>
+#include <cstring> /* strlen(), strcpy(), strerror() */
+#include <cstdio>  /* snprintf() */
 #ifdef HAVE_LIBGEN_H
 #include <libgen.h> /* dirname() */
 #endif /* HAVE_LIBGEN_H */
@@ -199,7 +199,7 @@ Type cstyle_cast(FARPROC procaddr)
 
   First of all, Coin requires \b OpenGL. Depending on the OpenGL
   version, features in Coin are turned on and off. If a feature Coin
-  is supposed to suport does not seem to produce any result, make sure
+  is supposed to support does not seem to produce any result, make sure
   to check that the underlying OpenGL version does support that
   feature. OpenGL is linked into Coin both at linktime and runtime.
   Features added to OpenGL later than the oldest version of OpenGL we
@@ -210,50 +210,50 @@ Type cstyle_cast(FARPROC procaddr)
   OpenGL is accompanied with a set of auxiliary libraries we also use.
   These are libraries like \b GLext, \b GLU (for NURBS tessellation
   and texture mipmaping amongst others), \b CgGL (for shaders that use
-  Cg (we recommend using GLSL instead BTW)).  Of these libraries, CgGL
+  Cg (we recommend using GLSL instead by the way)).  Of these libraries, CgGL
   is loaded at runtime if needed, while the others are linked with
   Coin at linktime.
 
   Some platforms have GLU libraries that don't behave properly in certain
   respects, and some Coin users have particular needs wrt Coin's use of GLU.
   For these users, we (at Kongsberg Oil & Gas Technologies) have created a fork
-  og GLU that we have named \b SuperGLU that we have tweaked in certain ways.
+  of GLU that we have named \b SuperGLU that we have tweaked in certain ways.
   This library can be checked out into the Coin source code directory, which
   will be detected at configure-time and linked statically into Coin and used
   instead of the GLU libraries on the host system.
 
   In addition to these libraries, Coin will use \b AGL on Mac OS X, \b
-  WGL on MS Windows, and \b GLX on X Windows Systems for offscreen
+  WGL on Microsoft Windows, and \b GLX on X Window Systems for offscreen
   rendering purposes.
 
   We now move on to libraries that are not related to OpenGL.
 
   Coin uses \b libz (aka \b zlib) and \b libbzip2 to read and/or write
   files compressed with either of those compression techniques.  Both
-  libraries can ble linked with Coin at linktime or loaded at runtime,
+  libraries can be linked with Coin at linktime or loaded at runtime,
   and this is controlled at configure-time.  They can also be disabled
-  if compressed file input/output is not wanted.  The libz library is
+  if compressed file input/output is not wanted.  The \b libz library is
   likely to be pulled in as a dependency from other libraries as well,
   especially graphics libraries.
 
   For font support, Coin uses \b Fontconfig or \b FreeType in addition
-  to native platform APIs for font reading.  Freetype can be loaded at
-  runtime instead of linked at linktime if desired, but FreeType is
-  only used if Fontconfig is not found at configure-time anyway,
+  to native platform APIs for font reading.  \b FreeType can be loaded at
+  runtime instead of linked at linktime if desired, but \b FreeType is
+  only used if \b Fontconfig is not found at configure-time anyway,
   unless the library builder overrides this behaviour.
 
   For JavaScript support in VRML97, Coin uses \b SpiderMonkey.
-  SpiderMonkey can also be loaded at runtime instead of linked at
+  \b SpiderMonkey can also be loaded at runtime instead of linked at
   linktime.
 
-  For sound support in VRML97, Coin uses \b OpenAL. OpenAL is loaded
-  at runtime or linked at linktime. BTW, some versions of the OpenAL
-  library delivered with installers from Creative on MS Windows have
+  For sound support in VRML97, Coin uses \b OpenAL. \b OpenAL is loaded
+  at runtime or linked at linktime. By the way, some versions of the \b OpenAL
+  library delivered with installers from Creative on Microsoft Windows have
   been known to crash/freeze Coin-applications when loaded, so if you
   experience something like that, that's one thing to investigate.
 
   For threading support, Coin uses POSIX threads (\b pthread library)
-  or the native Win32 API on MS Windows. You can use pthread on MS
+  or the native Win32 API on Microsoft Windows. You can use pthread on MS
   Windows as well instead of the native threads by setting this at
   configure-time.
 
@@ -270,11 +270,11 @@ Type cstyle_cast(FARPROC procaddr)
   in the boost headers and therefore do not require a link library to
   pull their implementation from at runtime.
 
-  For XML reading, Coin uses the \b expat library, which has also been
+  For XML reading, Coin uses the \b Expat library, which has also been
   integrated directly into Coin, so also here there are no extra
-  linktime or runtime dependencies to other libraries. The expat API
+  linktime or runtime dependencies to other libraries. The \b Expat API
   is not exposed in the Coin API, it is hidden, but Coin provides its
-  own XML DOM API that is a wrapper over the expat engine.
+  own XML DOM API that is a wrapper over the \b Expat engine.
 
   The last thing to mention here is hardly a library, but we mention
   it anyway. Coin uses \b flex and \b bison to generate some parsers
@@ -282,9 +282,9 @@ Type cstyle_cast(FARPROC procaddr)
   the calculator language in the SoCalculator engine). This is code
   that has been generated by 3rd party parser generators and
   integrated into Coin. The generated code is distributed with the
-  source code, so neither flex nor bison is needed to build Coin.
+  source code, so neither \b flex nor \b bison are needed to build Coin.
 
-  And last but definitely not least, Coin uses \b simage...
+  And last but definitely not least, Coin uses \b simage .
 
   \section simage The simage library
 
@@ -298,37 +298,33 @@ Type cstyle_cast(FARPROC procaddr)
   Simage is loaded at runtime or (if specified) linked at linktime
   with Coin.
 
-  Simage can use QImage from \b Qt to add support for the file formats
-  Qt supports.
+  Simage can use:
 
-  Simage can use \b GDI+ (gdiplus) under MS Windows to add support for
-  the file formats supported by GDI+.
+  \li \b QImage from \b Qt to add support for the file formats Qt supports.
 
-  Simage can use \b QuickTime under Mac OS X to add support for the file
-  formats QuickTime supports.
+  \li \b GDI+ (gdiplus) under Microsoft Windows to add support for the file formats supported by GDI+.
 
-  Simage can use \b libungif or \b giflib for GIF file support.
+  \li \b QuickTime under Mac OS X to add support for the file formats QuickTime supports.
 
-  Simage can use \b libjpeg for JPEG file support.
+  \li \b libungif or \b giflib for GIF file support.
 
-  Simage can use \b libpng for PNG file support.  This will also require that
-  \b zlib is used.
+  \li \b libjpeg for JPEG file support.
 
-  Simage can use \b libtiff for TIFF file support.
+  \li \b libpng for PNG file support.  This will also require that \b zlib is used.
 
-  Simage can use \b JASPER support for JPEG 2000 file support.
+  \li \b libtiff for TIFF file support.
 
-  Simage can use \b mpeg2enc for MPEG2 encoding.
+  \li \b JASPER support for JPEG 2000 file support.
 
-  Simage can use \b vfw (Video for Windows) for AVI video encoding.
+  \li \b mpeg2enc for MPEG2 encoding.
 
-  Simage can use \b libogg, \b libvorbis and \b libvorbisfile for Ogg
-  Vorbis support.  This is for VRML97 sound support in Coin.
+  \li \b vfw (Video for Windows) for AVI video encoding.
 
-  Simage can use \b libsndfile for VRML97 sound support in Coin.
+  \li \b libogg, \b libvorbis and \b libvorbisfile for Ogg Vorbis support.  This is for VRML97 sound support in Coin.
 
-  Simage can use \b libguile for a Guile (Scheme) binding for the
-  Simage library API.
+  \li \b libsndfile for VRML97 sound support in Coin.
+
+  \li \b libguile for a Guile (Scheme) binding for the Simage library API.
 
 */
 
@@ -376,7 +372,7 @@ cc_dirname(const char *path) {
   /* FIXME: dirname() is not confirming to neither ISO/ANSI C nor
      POSIX, which means we could run into this problem on other
      platforms than just Mac OS 10.1. We should have it implemented in
-     a manner compatible with DOS filenames aswell as UNIX-style
+     a manner compatible with DOS filenames as well as UNIX-style
      paths, and move the implementation to either src/tidbits.c or
      (better) into a cc_file ADT. 20030804 mortene. */
 
@@ -565,12 +561,12 @@ cc_find_file(const char * file)
 
 #endif /* HAVE_DYLD_RUNTIME_BINDING */
 
-/* Returns TRUE if run-time linking to dynamic libraries can be
-   done. So far, these ways of doing run-time linking are supported:
+/* Returns TRUE if runtime linking to dynamic libraries can be
+   done. So far, these ways of doing runtime linking are supported:
 
    \li libdl.so: for Linux, SGI IRIX, Solaris, and other *nix & *BSD systems
    \li LoadLibrary() et al: from the Win32 API
-   \li libdld.so: for HP-UX (which also has libdl.so, BTW)
+   \li libdld.so: for HP-UX (which also has libdl.so, by the way)
    \li dyld: for Mac OS X (with NSLookupAndBindSymbol() et al)
 */
 SbBool
@@ -688,7 +684,7 @@ cc_dl_open(const char * filename)
 #elif defined (HAVE_WINDLL_RUNTIME_BINDING)
 
   /* We don't want to call LoadLibrary(NULL) because this causes a
-     crash on some Windows platforms (Crashes on Windows2000 has been
+     crash on some Windows platforms (Crashes on Windows2000 have been
      reported). 20021101 thammer.
   */
   if (filename != NULL) {
@@ -707,7 +703,7 @@ cc_dl_open(const char * filename)
     if (cc_dl_debugging() && (h->nativehnd == NULL)) {
       cc_string funcstr;
       cc_string_construct(&funcstr);
-      cc_string_sprintf(&funcstr, "LoadLibrary(\"%s\")", filename ? filename : "(null)");
+      cc_string_sprintf(&funcstr, "LoadLibrary(\"%s\")", filename);
       cc_win32_print_error("cc_dl_open", cc_string_get_text(&funcstr), GetLastError());
       cc_string_clean(&funcstr);
     }

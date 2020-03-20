@@ -39,13 +39,14 @@
 /*!
   \class SoTransformerManip SoTransformerManip.h Inventor/manips/SoTransformerManip.h
   \brief The SoTransformerManip wraps an SoTransformerDragger for convenience.
+
   \ingroup manips
 
   The manipulator class takes care of wrapping up the
   SoTransformerDragger in a simple and convenient API for the
   application programmer, making it automatically surround the
   geometry it influences and taking care of the book-keeping routines
-  for it's interaction with the relevant fields of an SoTransformation
+  for its interaction with the relevant fields of an SoTransformation
   node.
 
   <center>
@@ -71,7 +72,9 @@ public:
 SO_NODE_SOURCE(SoTransformerManip);
 
 
-// doc in super
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoTransformerManip::initClass(void)
 {
@@ -81,7 +84,7 @@ SoTransformerManip::initClass(void)
 /*!
   Default constructor. Allocates an SoTransformerDragger and an
   SoSurroundScale node to surround the geometry within our part of the
-  scenegraph.
+  scene graph.
 */
 SoTransformerManip::SoTransformerManip(void)
 {

@@ -33,6 +33,7 @@
 /*!
   \class SoFaceDetail SoFaceDetail.h Inventor/details/SoFaceDetail.h
   \brief The SoFaceDetail class is for storing detailed polygon information.
+
   \ingroup details
 
   Instances of this class are used among other things for storing
@@ -47,7 +48,7 @@
 
 #include <Inventor/details/SoFaceDetail.h>
 #include <Inventor/SbName.h>
-#include <stddef.h>
+#include <cstddef>
 
 SO_DETAIL_SOURCE(SoFaceDetail);
 
@@ -73,7 +74,9 @@ SoFaceDetail::~SoFaceDetail()
   delete [] this->pointsarray;
 }
 
-// doc in super
+/*!
+  \copybrief SoDetail::initClass(void)
+*/
 void
 SoFaceDetail::initClass(void)
 {
@@ -107,7 +110,7 @@ SoFaceDetail::getNumPoints(void) const
 
 /*!
   Returns a pointer into the array of vertices, starting at the \a
-  idx'th vertice of the polygon.
+  idx'th vertex of the polygon.
 
   The array will contain (SoFaceDetail::getNumPoints() - \a idx)
   elements.
@@ -120,7 +123,7 @@ SoFaceDetail::getPoint(const int idx) const
 }
 
 /*!
-  Returns the full array of vertice details for the polygon. The array
+  Returns the full array of vertices details for the polygon. The array
   will contain SoFaceDetail::getNumPoints() elements.
  */
 SoPointDetail *

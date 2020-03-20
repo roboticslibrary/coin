@@ -39,8 +39,9 @@
 */
 
 /*!
-  \class SoCache Inventor/caches/SoCache.h
+  \class SoCache SoCache.h Inventor/caches/SoCache.h
   \brief The SoCache class is the superclass for all internal cache classes.
+
   \ingroup caches
 
   It organizes reference counting to make it possible to share cache
@@ -50,7 +51,7 @@
 
   The cache element test algorithm in Coin works like this:
 
-  Every element that is read before it's written when a cache is
+  Every element that is read before it is written when a cache is
   created is stored in the SoCache's element list. This is done to
   detect when something outside the cache changes.
 
@@ -69,7 +70,7 @@
   a cache to make the cache dependencies work. Basically you have to
   do it like this:
   
-  \verbatim
+  \code
   SbBool storedinvalid = SoCacheElement::setInvalid(FALSE);
   state->push();
   SoMyCache * cache = new SoMyCache(state);
@@ -78,7 +79,7 @@
   buildMyCache();
   state->pop();
   SoCacheElement::setInvalid(storedinvalid);
-  \endverbatim
+  \endcode
   
   First you reset and store the old value of the cache
   invalid-flag. Then you push the state so that the cache can detect
@@ -262,7 +263,7 @@ SoCache::isValid(const SoState * state) const
 /*!
   Returns the element that caused the invalidation. Returns \e NULL
   if the cache is valid, or if the cache was not invalidated
-  bacause of an element.
+  because of an element.
 */
 const SoElement *
 SoCache::getInvalidElement(const SoState * const state) const

@@ -33,6 +33,7 @@
 /*!
   \class SoTriangleStripSet SoTriangleStripSet.h Inventor/nodes/SoTriangleStripSet.h
   \brief The SoTriangleStripSet class is used to render and control non-indexed triangle strips.
+
   \ingroup nodes
 
   Triangle strips are specified using the numVertices field.
@@ -52,9 +53,9 @@
   from coordinates 3, 4, 5 and 6, a triangle strip from coordinates 7,
   8, 9, 10 and 11 and finally a triangle from coordinates 12, 13, 14.
 
-  Or to put it another way: in a tristrip there will always be two
+  Or to put it another way: in a triangle strip there will always be two
   vertices more than there are triangles.  Realize that you are
-  handling data on the vertex level (not polygon-level), and that the
+  handling data on the vertex level (not polygon level), and that the
   triangles are laid out like this, given 5 vertices:
 
   \verbatim
@@ -91,7 +92,7 @@
 
   Strips are converted into triangles the way OpenGL does it, of
   course, so for the dirty details, check out the documentation of
-  OpenGL's \c GL_TRIANGLE_STRIP primitive rendering type.
+  the OpenGL \c GL_TRIANGLE_STRIP primitive rendering type.
 
   Binding PER_PART (per strip), PER_VERTEX, PER_FACE or OVERALL can be
   set for material, and normals. The default material binding is
@@ -377,7 +378,9 @@ namespace { namespace SoGL { namespace TriStripSet {
 
 } } } // namespace
 
-// doc from parent
+/*!
+  \copydetails SoEngine::initClass(void)
+*/
 void
 SoTriangleStripSet::initClass(void)
 {

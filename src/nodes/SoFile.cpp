@@ -33,6 +33,7 @@
 /*!
   \class SoFile SoFile.h Inventor/nodes/SoFile.h
   \brief The SoFile class is node container for another model file.
+
   \ingroup nodes
 
   This node provides a way to split your models into a set of
@@ -40,7 +41,7 @@
 
   Just provide the name of the model file to include in the
   SoFile::name field, and it will automatically be loaded and have its
-  nodes inserted into the scenegraph at the point of the SoFile node.
+  nodes inserted into the scene graph at the point of the SoFile node.
 
   You can also set the SoFile::name field manually. Such an action
   will then automatically trigger an invocation of a read operation
@@ -59,7 +60,7 @@
 #include <Inventor/nodes/SoFile.h>
 #include "coindefs.h"
 
-#include <string.h>
+#include <cstring>
 
 #include <Inventor/C/tidbits.h>
 #include <Inventor/SoDB.h>
@@ -79,7 +80,7 @@
 /*!
   \var SoSFString SoFile::name
 
-  Filename for model file to insert in the scenegraph at the location
+  Filename for model file to insert in the scene graph at the location
   of the SoFile node.
 */
 
@@ -125,7 +126,9 @@ SoFile::~SoFile()
   delete this->children;
 }
 
-// Doc from superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoFile::initClass(void)
 {
@@ -285,7 +288,7 @@ SoFile::readNamedFile(SoInput * in)
       SbString dummy;
       while (!in->eof() && in->read(dummy)) {
         if (fileerrors_termination < 1) {
-          SoReadError::post(in, "Erroneous character(s) after end of scenegraph: \"%s\". "
+          SoReadError::post(in, "Erroneous character(s) after end of scene graph: \"%s\". "
                             "This message will only be shown once for this file, "
                             "but more errors might be present", dummy.getString());
         }

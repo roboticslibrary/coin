@@ -75,7 +75,7 @@ public:
   {
     delete [] this->targettype; this->targettype = NULL;
     delete [] this->targetname; this->targetname = NULL;
-    if (event) { delete this->event; this->event = NULL; }
+    delete this->event; this->event = NULL;
   }
 
   char * targettype;
@@ -220,10 +220,10 @@ ScXMLEventTarget::registerEventTarget(ScXMLEventTarget * target, const char * se
     if (target == sessionit->second) {
       // already registered
       SoDebugError::post("ScXMLEventTarget::registerEventTarget",
-                         "type/name/session touple already registered for this target");
+                         "type/name/session tuple already registered for this target");
     } else {
       SoDebugError::post("ScXMLEventTarget::registerEventTarget",
-                         "type/name/session touple already registered for another target");
+                         "type/name/session tuple already registered for another target");
     }
   } else {
     SessionMapEntry entry(targetsessionid.getString(), target);
@@ -442,7 +442,7 @@ ScXMLEventTarget::setEventTargetName(const char * targetnamestr)
 
 /*!
   Queues an ScXMLEvent event.
-  The event is copied, and can be deleted as soon as the function return.
+  The event is copied, and can be deleted as soon as the function returns.
 */
 void
 ScXMLEventTarget::queueEvent(const ScXMLEvent * event)

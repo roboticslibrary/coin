@@ -54,7 +54,7 @@
 #include <Inventor/VRMLnodes/SoVRMLVertexPoint.h>
 #include "coindefs.h"
 
-#include <stddef.h>
+#include <cstddef>
 
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
 #include <Inventor/VRMLnodes/SoVRMLCoordinate.h>
@@ -64,7 +64,9 @@
 
 SO_NODE_ABSTRACT_SOURCE(SoVRMLVertexPoint);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLVertexPoint::initClass(void)
 {

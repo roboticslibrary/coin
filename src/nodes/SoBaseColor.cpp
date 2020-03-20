@@ -33,6 +33,7 @@
 /*!
   \class SoBaseColor SoBaseColor.h Inventor/nodes/SoBaseColor.h
   \brief The SoBaseColor class provides a node type for convenient setting of the base material color.
+
   \ingroup nodes
 
   If you want to just set the diffuse color of the following geometry,
@@ -71,7 +72,7 @@
 /*!
   \var SoMFColor SoBaseColor::rgb
 
-  Color values. Default value of field is to have a single grey color.
+  Color values. Default value of field is to have a single gray color.
 */
 
 #ifndef DOXYGEN_SKIP_THIS
@@ -140,7 +141,9 @@ SoBaseColor::~SoBaseColor()
   delete PRIVATE(this);
 }
 
-// Doc from superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoBaseColor::initClass(void)
 {

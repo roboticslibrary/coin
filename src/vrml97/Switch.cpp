@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLSwitch SoVRMLSwitch.h Inventor/VRMLnodes/SoVRMLSwitch.h
   \brief The SoVRMLSwitch class is a group node for traversing selected children.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -52,7 +53,7 @@
 
   The Switch grouping node traverses zero or one of the nodes
   specified in the choice field.  4.6.5, Grouping and children nodes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.5>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.5>),
   describes details on the types of nodes that are legal values for
   choice.
 
@@ -75,15 +76,15 @@
 /*!
   \var SoSFInt32 SoVRMLSwitch::whichChoice
 
-  Selected choice. Can be a positive number from 0 to <num
-  children-1>, or one of the constants SO_SWITCH_NODE, SO_SWITCH_ALL or
+  Selected choice. Can be a positive number from 0 to &lt;numchildren-1&gt;,
+  or one of the constants SO_SWITCH_NODE, SO_SWITCH_ALL or
   SO_SWITCH_INHERIT.  Default value is SO_SWITCH_NONE.
 
 */
 
 #include <Inventor/VRMLnodes/SoVRMLSwitch.h>
 
-#include <stddef.h>
+#include <cstddef>
 
 #include <Inventor/SoOutput.h>
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
@@ -133,7 +134,9 @@ SO_NODE_SOURCE(SoVRMLSwitch);
 
 // *************************************************************************
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLSwitch::initClass(void)
 {

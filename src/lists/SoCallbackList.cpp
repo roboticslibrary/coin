@@ -33,6 +33,7 @@
 /*!
   \class SoCallbackList SoCallbackList.h Inventor/lists/SoCallbackList.h
   \brief The SoCallbackList is a container for callback function pointers.
+
   \ingroup general
 
   This list stores callback function pointers (along with
@@ -40,7 +41,7 @@
   method for triggering the callback functions.
 */
 
-/*! \file SoCallbackList.h */
+/*! \file Inventor/lists/SoCallbackList.h */
 #include <Inventor/lists/SoCallbackList.h>
 
 #if COIN_DEBUG
@@ -105,7 +106,7 @@ SoCallbackList::removeCallback(SoCallbackListCB * f, void * userdata)
   // already exists, else do nothing"? 20050723 kyrah.
   if (idx == -1) {
     SoDebugError::post("SoCallbackList::removeCallback",
-                       "Tried to remove non-existant callback function.");
+                       "Tried to remove non-existent callback function.");
     return;
   }
 #endif // COIN_DEBUG

@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLPointLight SoVRMLPointLight.h Inventor/VRMLnodes/SoVRMLPointLight.h
   \brief The SoVRMLPointLight class is used to represent a point light.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -61,7 +62,7 @@
   omnidirectional. PointLight nodes are specified in the local
   coordinate system and are affected by ancestor transformations.
   Subclause 4.6.6, Light sources
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.6>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.6>),
   contains a detailed description of the ambientIntensity, color, and
   intensity fields.
 
@@ -79,7 +80,7 @@
   identical to (1, 0, 0). Attenuation values shall be greater than or
   equal to zero. A detailed description of VRML's lighting equations
   is contained in 4.14, Lighting model
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.14>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.14>).
 
 */
 
@@ -114,7 +115,9 @@
 
 SO_NODE_SOURCE(SoVRMLPointLight);
 
-// doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLPointLight::initClass(void)
 {

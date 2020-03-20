@@ -33,29 +33,30 @@
 /*!
   \class SoTextureCoordinateNormalMap SoTextureCoordinateNormalMap.h Inventor/nodes/SoTextureCoordinateNormalMap.h
   \brief The SoTextureCoordinateNormalMap class generates texture coordinates by projecting onto a surrounding texture.
+
   \ingroup nodes
 
-  The texture specifying the enviroment will be mapped around the 
-  scenegraph below this node using a sphere. The texture will be mapped
-  onto the scenegraph taking camera position into account. This will
-  lead to an object reflecting its enviroment.
+  The texture specifying the environment will be mapped around the 
+  scene graph below this node using a sphere. The texture will be mapped
+  onto the scene graph taking camera position into account. This will
+  lead to an object reflecting its environment.
 
-  Here is a scenegraph example showing how enviroment mapping can be
+  Here is a scene graph example showing how environment mapping can be
   applied to an object:
 
-  <code>
+  \code
   #Inventor V2.1 ascii
 
   Separator {
 
     Texture2 {
-      filename "ocean.jpg" # the enviroment, in this case ocean
+      filename "ocean.jpg" # the environment, in this case ocean
     }
     TextureCoordinateNormalMap {}
 
-    Cube {} # the enviromentally mapped object
+    Cube {} # the environmentally mapped object
   }
-  </code>
+  \endcode
 
   <b>FILE FORMAT/DEFAULTS:</b>
   \code
@@ -71,8 +72,8 @@
 #include <Inventor/nodes/SoTextureCoordinateNormalMap.h>
 #include "coindefs.h"
 
-#include <stdlib.h>
-#include <float.h>
+#include <cstdlib>
+#include <cfloat>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -124,6 +125,9 @@ SoTextureCoordinateNormalMap::~SoTextureCoordinateNormalMap()
 }
 
 // doc in super
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoTextureCoordinateNormalMap::initClass(void)
 {

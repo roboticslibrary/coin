@@ -34,6 +34,7 @@
   \class SoDetail SoDetail.h Inventor/details/SoDetail.h
   \brief The SoDetail class is the superclass for all classes storing
   detailed information about particular shapes.
+
   \ingroup details
 
   Detail information about shapes is used in relation to picking
@@ -78,7 +79,7 @@
   \fn SoType SoDetail::getTypeId(void) const
 
   Returns the type identification of a detail derived from a class
-  inheriting SoDetail.  This is used for run-time type checking and
+  inheriting SoDetail.  This is used for runtime type checking and
   "downward" casting.
 
   Usage example:
@@ -100,7 +101,7 @@
   detail classes: this method needs to be overridden in \e all
   subclasses. This is typically done as part of setting up the full
   type system for extension classes, which is usually accomplished by
-  using the pre-defined macros available through
+  using the predefined macros available through
   Inventor/nodes/SoSubDetail.h: SO_DETAIL_SOURCE and
   SO_DETAIL_INIT_CLASS.
 */
@@ -135,7 +136,7 @@ SoDetail::isOfType(const SoType type) const
 }
 
 /*!
-  Returns the type for this class.
+  Returns the type identification for this class.
 */
 SoType
 SoDetail::getClassTypeId(void)

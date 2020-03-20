@@ -74,7 +74,7 @@
 
 #include <Inventor/nodes/SoFrustumCamera.h>
 
-#include <math.h>
+#include <cmath>
 
 #include <Inventor/errors/SoDebugError.h>
 #include <Inventor/SbSphere.h>
@@ -104,6 +104,9 @@ SoFrustumCamera::~SoFrustumCamera(void)
 }
 
 // Doc in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoFrustumCamera::initClass(void)
 {

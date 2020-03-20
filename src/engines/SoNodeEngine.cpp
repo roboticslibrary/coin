@@ -33,6 +33,7 @@
 /*!
   \class SoNodeEngine SoNodeEngine.h Inventor/engines/SoNodeEngine.h
   \brief SoNodeEngine is the base class for Coin node engines.
+
   \ingroup engines
 
   Node engines have the same functionality as normal engines, except
@@ -136,7 +137,9 @@ SoNodeEngine::destroy(void)
 #endif // debug
 }
 
-// Doc from superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoNodeEngine::initClass(void)
 {
@@ -144,7 +147,9 @@ SoNodeEngine::initClass(void)
     SoType::createType(SoNode::getClassTypeId(), SbName("NodeEngine"));
 }
 
-// Documented in superclass.
+/*!
+  \copydetails SoEngine::getClassTypeId(void)
+*/
 SoType
 SoNodeEngine::getClassTypeId(void)
 {
@@ -186,7 +191,7 @@ SoNodeEngine::getOutput(const SbName & outputname) const
 }
 
 /*!
-  Sets \outputname to the name of \a output. Returns \c FALSE if no
+  Sets \a outputname to the name of \a output. Returns \c FALSE if no
   such output is contained within the engine instance.
 */
 SbBool

@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLCoordinate SoVRMLCoordinate.h Inventor/VRMLnodes/SoVRMLCoordinate.h
   \brief The SoVRMLCoordinate class is used to define 3D coordinates for shapes.
+
   \ingroup VRMLnodes
   
   \WEB3DCOPYRIGHT
@@ -82,7 +83,9 @@ class SoVRMLCoordinateP {
   SoVBO * vbo;
 };
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLCoordinate::initClass(void) // static
 {

@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLAnchor SoVRMLAnchor.h Inventor/VRMLnodes/SoVRMLAnchor.h
   \brief The SoVRMLAnchor class is used for linking to other URL resources.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -72,11 +73,11 @@
   children are chosen. A description of how multiple Anchors and
   pointing-device sensors are resolved on activation is contained in
   4.6.7, Sensor nodes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.7>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.7>).
 
   More details on the children, addChildren, and removeChildren fields
   and eventIns can be found in 4.6.5, Grouping and children nodes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.5>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.5>).
 
   The description field in the Anchor node specifies a textual
   description of the Anchor node. This may be used by browser-specific
@@ -114,13 +115,13 @@
   loaded using the default Viewpoint node binding stack rules (see
   VRMLViewpoint).  If the url field is specified in the form
   "#ViewpointName" (i.e. no file name), the Viewpoint node with the
-  given name ("ViewpointName") in the Anchor's run-time name scope(s)
+  given name ("ViewpointName") in the Anchor's runtime name scope(s)
   shall be bound (set_bind TRUE).  The results are undefined if there
-  are multiple Viewpoints with the same name in the Anchor's run-time
+  are multiple Viewpoints with the same name in the Anchor's runtime
   name scope(s). The results are undefined if the Anchor node is not
-  part of any run-time name scope or is part of more than one run-time
-  name scope. See 4.4.6, Run-time name scope, for a description of
-  run-time name scopes. See VRMLViewpoint, for the Viewpoint
+  part of any runtime name scope or is part of more than one runtime
+  name scope. See 4.4.6, Runtime name scope, for a description of
+  runtime name scopes. See VRMLViewpoint, for the Viewpoint
   transition rules that specify how browsers shall interpret the
   transition from the old Viewpoint node to the new one. For example:
 
@@ -139,7 +140,7 @@
   the Viewpoint is not found, no action occurs on activation.  More
   details on the url field are contained in 4.5, VRML and the World
   Wide Web
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.5>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.5>).
   The bboxCenter and bboxSize fields specify a bounding box
   that encloses the Anchor's children. This is a hint that may be used
   for optimization purposes. The results are undefined if the
@@ -148,7 +149,7 @@
   implies that the bounding box is not specified and if needed shall
   be calculated by the browser. More details on the bboxCenter and
   bboxSize fields can be found in 4.6.4, Bounding boxes
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.4>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.4>).
 
 */
 
@@ -185,7 +186,7 @@
 /*! \file SoVRMLAnchor.h */
 #include <Inventor/VRMLnodes/SoVRMLAnchor.h>
 
-#include <stdlib.h>
+#include <cstdlib>
 
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
 #include <Inventor/misc/SoState.h>
@@ -201,7 +202,9 @@ void * SoVRMLAnchor::userdata;
 
 SO_NODE_SOURCE(SoVRMLAnchor);
 
-// doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLAnchor::initClass(void) // static
 {

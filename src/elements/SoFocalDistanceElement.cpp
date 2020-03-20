@@ -33,6 +33,7 @@
 /*!
   \class SoFocalDistanceElement Inventor/elements/SoFocalDistanceElement.h
   \brief The SoFocalDistanceElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -46,8 +47,7 @@
 SO_ELEMENT_SOURCE(SoFocalDistanceElement);
 
 /*!
-  This static method initializes static data for the
-  SoFocalDistanceElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -57,14 +57,17 @@ SoFocalDistanceElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoFocalDistanceElement::~SoFocalDistanceElement(void)
 {
 }
 
-//! FIXME: write doc.
+/*!
+  Initializes the element to its default value. The default
+  value is 5.0.
+*/
 
 void
 SoFocalDistanceElement::init(SoState * state)

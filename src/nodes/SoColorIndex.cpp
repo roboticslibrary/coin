@@ -33,16 +33,17 @@
 /*!
   \class SoColorIndex SoColorIndex.h Inventor/nodes/SoColorIndex.h
   \brief The SoColorIndex class is used to specify color indices for subsequent shapes.
+
   \ingroup nodes
 
-  This node should only be used in OpenGL color-index mode, and only
+  This node should only be used in OpenGL color index mode, and only
   when the current light model is set to SoLightModel::BASE_COLOR.
 
-  OpenGL colorindex mode is where the colors for individual pixels are
+  OpenGL color index mode is where the colors for individual pixels are
   fetched from a color lookup table ("CLUT"). The usual thing to do is
-  to set up a canvas in RGBA truecolor mode.
+  to set up a canvas in RGBA true color mode.
 
-  One common use for colorindex mode OpenGL canvases is to use one in
+  One common use for color index mode OpenGL canvases is to use one in
   the overlay planes (which are usually limited to only 2 or 4
   available colors), if supported by the OpenGL hardware and / or
   driver.
@@ -56,7 +57,7 @@
 */
 
 // FIXME: couldn't we check for the above mentioned pre-conditions
-// (colorindex mode, SoLightModel::BASE_COLOR) and assert() or
+// (color index mode, SoLightModel::BASE_COLOR) and assert() or
 // SoDebugError::post() if any of the two is not met?
 //
 // UPDATE: use glGetBooleanv(GL_RGBA_MODE, ...) or
@@ -99,7 +100,9 @@ SoColorIndex::~SoColorIndex()
 {
 }
 
-// doc in parent
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoColorIndex::initClass(void)
 {

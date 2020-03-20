@@ -31,8 +31,9 @@
 \**************************************************************************/
 
 /*!
-  \class SoTextureCoordinateBundle include/Inventor/bundles/SoTextureCoordinateBundle.h
+  \class SoTextureCoordinateBundle SoTextureCoordinateBundle.h Inventor/bundles/SoTextureCoordinateBundle.h
   \brief The SoTextureCoordinateBundle class simplifies texture coordinate handling.
+
   \ingroup bundles
 
   It is unlikely that application programmers should need to know how
@@ -173,7 +174,7 @@ SoTextureCoordinateBundle::~SoTextureCoordinateBundle()
 }
 
 /*!
-  Returns \e TRUE if texture coordinates is needed during rendering.
+  Returns \e TRUE if texture coordinates are needed during rendering.
 */
 SbBool
 SoTextureCoordinateBundle::needCoordinates() const

@@ -33,10 +33,11 @@
 /*!
   \class SoMFPlane SoMFPlane.h Inventor/fields/SoMFPlane.h
   \brief The SoMFPlane class is a container for SbPlane values.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store multiple 3D plane definitions.
+  need to store multiple 3D plane definitions.
 
   \sa SoSFPlane
 */
@@ -56,7 +57,9 @@ SO_MFIELD_SOURCE(SoMFPlane, SbPlane, const SbPlane &);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFPlane::initClass(void)
 {

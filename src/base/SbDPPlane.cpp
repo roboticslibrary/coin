@@ -33,6 +33,7 @@
 /*!
   \class SbDPPlane SbDPPlane.h Inventor/SbLinear.h
   \brief The SbDPPlane class represents a plane in 3D space.
+
   \ingroup base
 
   SbDPPlane is used by many other classes in Coin.  It provides a way of
@@ -245,7 +246,7 @@ SbDPPlane::isInHalfSpace(const SbVec3d & point) const
 
 /*!
   Return the distance from \a point to plane. Positive distance means
-  the point is in the plane's half space.
+  the point is in the plane's halfspace.
 
   This method is an extension specific to Coin versus the original SGI
   Inventor API.
@@ -356,7 +357,7 @@ operator ==(const SbDPPlane & p1, const SbDPPlane & p2)
 /*!
   \relates SbDPPlane
 
-  Check the two given planes for unequality.
+  Check the two given planes for inequality.
 */
 int
 operator !=(const SbDPPlane & p1, const SbDPPlane & p2)
@@ -365,7 +366,7 @@ operator !=(const SbDPPlane & p1, const SbDPPlane & p2)
 }
 
 /*!
-  Dump the state of this object to the \a file stream. Only works in
+  Dump the state of this object to the \a fp file stream. Only works in
   debug version of library, method does nothing in an optimized build.
 */
 void
@@ -438,24 +439,25 @@ BOOST_AUTO_TEST_CASE(signCorrect)
 BOOST_AUTO_TEST_CASE(equalityToFloatPlane)
 {
   const float delX = 1;
-  const float delY = .1;
+  const float delY = .1f;
 
-  const float XMax = pow(2,FLT_MAX_EXP/3);
+  const float XMax = pow(2.f,FLT_MAX_EXP/3);
   const float XMin = -XMax;
 
-  const float YMax = pow(2,FLT_MAX_EXP/3);
+  const float YMax = pow(2.f,FLT_MAX_EXP/3);
   const float YMin = -YMax;
 
 #ifdef TEST_SUITE_QUICK
-  const int XSteps = 6;
-  const int YSteps = 6;
+  const int XSteps = 4;
+  const int YSteps = 4;
 #endif //TEST_SUITE_QUICK
 #ifdef TEST_SUITE_THOROUG
-  const int XSteps = 10;
-  const int YSteps = 10;
+  const int XSteps = 6;
+  const int YSteps = 6;
 #endif //TEST_SUITE_THOROUG
 #ifdef TEST_SUITE_EXPANSIVE
-  const int XSteps = 100;
+  const int XSteps = 10;
+  const int YSteps = 10;
 #endif //TEST_SUITE_EXPANSIVE
 
   int count=0;
@@ -489,7 +491,7 @@ BOOST_AUTO_TEST_CASE(equalityToFloatPlane)
                 //A bit arbitrary, this holds
                 const float tol = .03f;
                 BOOST_CHECK_MESSAGE(
-                                    floatEquals(fp1.getDistance(fv2),dp1.getDistance(dv2),tol)||
+                                    floatEquals(fp1.getDistance(fv2),(float)dp1.getDistance(dv2),tol)||
                                     fabs(fp1.getDistance(fv2)-dp1.getDistance(dv2))/fabs(dp1.getDistanceFromOrigin())<tol,
                                     "Distance from plane is significantly different");
                 for (int y4=0;y4<YSteps;++y4) {

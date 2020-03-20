@@ -34,7 +34,7 @@
   \class SoShaderObject SoShaderObject.h Inventor/nodes/SoShaderObject.h
   \brief The SoShaderObject class is the superclass for all shader classes in Coin.
 
-  See \link coin_shaders Shaders in Coin \endlink for more information
+  See \ref coin_shaders "Shaders in Coin" for more information
   on how to set up a scene graph with shaders.
 
   \ingroup shaders
@@ -104,7 +104,7 @@
 
 #include <Inventor/nodes/SoShaderObject.h>
 
-#include <assert.h>
+#include <cassert>
 
 #include <Inventor/actions/SoGLRenderAction.h>
 #include <Inventor/actions/SoSearchAction.h>
@@ -233,7 +233,9 @@ SO_NODE_ABSTRACT_SOURCE(SoShaderObject);
 
 // *************************************************************************
 
-// doc from parent
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void SoShaderObject::initClass(void)
 {
   SO_NODE_INTERNAL_INIT_ABSTRACT_CLASS(SoShaderObject,
@@ -329,7 +331,7 @@ SoShaderObject::readInstance(SoInput * in, unsigned short flags)
 }
 
 /*!
-  Returns the shader type detected in sourceProgram.
+  Returns the shader type detected in source program.
 */
 SoShaderObject::SourceType
 SoShaderObject::getSourceType(void) const
@@ -346,7 +348,7 @@ SbString SoShaderObject::getSourceProgram(void) const
 }
 
 /*!
-  Used internally to update shader paramters.
+  Used internally to update shader parameters.
 */
 void
 SoShaderObject::updateParameters(SoState * state)
@@ -433,13 +435,13 @@ SoShaderObjectP::GLRender(SoGLRenderAction * action)
 
     switch (this->cachedSourceType) {
     case SoShaderObject::ARB_PROGRAM:
-      shaderobject = (SoGLShaderObject *)new SoGLARBShaderObject(cachecontext);
+      shaderobject = new SoGLARBShaderObject(cachecontext);
       break;
     case SoShaderObject::CG_PROGRAM:
-      shaderobject = (SoGLShaderObject*) new SoGLCgShaderObject(cachecontext);
+      shaderobject = new SoGLCgShaderObject(cachecontext);
       break;
     case SoShaderObject::GLSL_PROGRAM:
-      shaderobject = (SoGLShaderObject*) new SoGLSLShaderObject(cachecontext);
+      shaderobject = new SoGLSLShaderObject(cachecontext);
       break;
     default:
       assert(FALSE && "This shouldn't happen!");
@@ -520,7 +522,7 @@ SoShaderObjectP::checkType(void)
   this->cachedSourceType = SoShaderObject::FILENAME;
 }
 
-// read the file if neccessary and assign content to this->cachedSourceProgram
+// read the file if necessary and assign content to this->cachedSourceProgram
 void
 SoShaderObjectP::readSource(void)
 {

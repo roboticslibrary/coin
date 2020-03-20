@@ -39,6 +39,7 @@
 /*!
   \class SoHandleBoxManip SoHandleBoxManip.h Inventor/manips/SoHandleBoxManip.h
   \brief The SoHandleBoxManip class wraps an SoHandleBoxDragger for manipulating a transformation.
+
   \ingroup manips
 
   A manipulator is used by replacing the node you want to edit in the
@@ -67,7 +68,9 @@ public:
 
 SO_NODE_SOURCE(SoHandleBoxManip);
 
-// Doc in super.
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoHandleBoxManip::initClass(void)
 {
@@ -97,7 +100,7 @@ SoHandleBoxManip::SoHandleBoxManip(void)
 
 /*!
   Protected destructor. (SoHandleBoxManip is automatically destructed
-  when it's reference count goes to 0.)
+  when its reference count goes to 0.)
 */
 SoHandleBoxManip::~SoHandleBoxManip()
 {

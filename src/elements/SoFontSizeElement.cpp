@@ -33,6 +33,7 @@
 /*!
   \class SoFontSizeElement Inventor/elements/SoFontSizeElement.h
   \brief The SoFontSizeElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -46,8 +47,7 @@
 SO_ELEMENT_SOURCE(SoFontSizeElement);
 
 /*!
-  This static method initializes static data for the SoFontSizeElement
-  class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -57,7 +57,7 @@ SoFontSizeElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoFontSizeElement::~SoFontSizeElement(// virtual protected
@@ -65,7 +65,10 @@ SoFontSizeElement::~SoFontSizeElement(// virtual protected
 {
 }
 
-//! FIXME: write doc.
+/*!
+  Initializes the element to its default value. The default
+  value is 12.0.
+*/
 
 void
 SoFontSizeElement::init(SoState * state)

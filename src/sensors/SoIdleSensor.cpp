@@ -33,6 +33,7 @@
 /*!
   \class SoIdleSensor SoIdleSensor.h Inventor/sensors/SoIdleSensor.h
   \brief The SoIdleSensor class is a sensor which will trigger as soon as the application is idle.
+
   \ingroup sensors
 
   An SoIdleSensor differs from an SoOneShotSensor in that it will not
@@ -43,7 +44,7 @@
 */
 
 #include <Inventor/sensors/SoIdleSensor.h>
-#include <assert.h>
+#include <cassert>
 
 /*!
   Default constructor.
@@ -54,7 +55,7 @@ SoIdleSensor::SoIdleSensor(void)
 
 /*!
   Constructor taking as parameters the sensor callback function and
-  the userdata which will be passed the callback.
+  the userdata which will be passed to the callback.
 
   \sa setFunction(), setData()
  */

@@ -33,10 +33,11 @@
 /*!
   \class SoMFColor SoMFColor.h Inventor/fields/SoMFColor.h
   \brief The SoMFColor class is a container for SbColor values.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store multiple color values (i.e. "Red Green Blue"
+  need to store multiple color values (i.e. "Red Green Blue"
   triplets).
 
   This field supports application data sharing through a
@@ -66,7 +67,9 @@ SO_MFIELD_SOURCE(SoMFColor, SbColor, const SbColor &);
 SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFColor, SbColor, float);
 SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFColor, SbColor, SbColor);
 
-// Override from parent.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFColor::initClass(void)
 {

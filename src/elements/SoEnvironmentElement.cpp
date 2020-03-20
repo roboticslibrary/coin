@@ -33,6 +33,7 @@
 /*!
   \class SoEnvironmentElement Inventor/elements/SoEnvironmentElement.h
   \brief The SoEnvironmentElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -96,8 +97,7 @@
 SO_ELEMENT_SOURCE(SoEnvironmentElement);
 
 /*!
-  This static method initializes static data for the
-  SoEnvironmentElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -107,7 +107,7 @@ SoEnvironmentElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoEnvironmentElement::~SoEnvironmentElement(void)
@@ -264,7 +264,18 @@ SoEnvironmentElement::print(FILE * file) const
   fprintf(file, "SoEnvironmentElement[%p]\n", this);
 }
 
-//! FIXME: write doc.
+/*!
+  Initializes the element to its default value. The defaults
+  for the environment settings are:
+
+    SoEnvironmentElement::ambientIntensity = 0.2
+    SoEnvironmentElement::ambientColor = SbColor(1.0, 1.0, 1.0)
+    SoEnvironmentElement::attenuation = SbVec3f(0.0, 0.0, 1.0)
+    SoEnvironmentElement::fogType = SoEnvironmentElement::NONE
+    SoEnvironmentElement::fogColor = SbColor(1.0, 1.0, 1.0)
+    SoEnvironmentElement::fogVisibility = 0.0
+    SoEnvironmentElement::fogStart = 0.0
+*/
 
 void
 SoEnvironmentElement::init(SoState * state)

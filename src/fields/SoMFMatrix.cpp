@@ -33,6 +33,7 @@
 /*!
   \class SoMFMatrix SoMFMatrix.h Inventor/fields/SoMFMatrix.h
   \brief The SoMFMatrix class is a container for SbMatrix values.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
@@ -60,7 +61,9 @@ SO_MFIELD_SOURCE(SoMFMatrix, SbMatrix, const SbMatrix &);
 
 // *************************************************************************
 
-// Override from parent.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFMatrix::initClass(void)
 {

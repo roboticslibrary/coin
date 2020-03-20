@@ -33,6 +33,7 @@
 /*!
   \class SoConeDetail SoConeDetail.h Inventor/details/SoConeDetail.h
   \brief The SoConeDetail class contains information about the parts of a SoCone shape.
+
   \ingroup details
 
   Instances of this class are used for storing information about hit
@@ -67,7 +68,9 @@ SoConeDetail::~SoConeDetail()
 {
 }
 
-// doc in super
+/*!
+  \copybrief SoDetail::initClass(void)
+*/
 void
 SoConeDetail::initClass(void)
 {

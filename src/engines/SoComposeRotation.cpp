@@ -33,6 +33,7 @@
 /*!
   \class SoComposeRotation SoComposeRotation.h Inventor/engines/SoComposeRotation.h
   \brief The SoComposeRotation class is used to compose rotations from angle and axis.
+
   \ingroup engines
 
   Simple usage example:
@@ -91,7 +92,9 @@ SoComposeRotation::SoComposeRotation()
   SO_ENGINE_ADD_OUTPUT(rotation,SoMFRotation);
 }
 
-// Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoComposeRotation::initClass()
 {

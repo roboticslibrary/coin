@@ -33,6 +33,7 @@
 /*!
   \class SoSceneTexture2 SoSceneTexture2.h Inventor/nodes/SoSceneTexture2.h
   \brief The SoSceneTexture2 class is used to create a 2D texture from a Coin scene graph.
+
   \ingroup nodes
 
   Lets the rendering of a scene graph be specified as a texture image
@@ -84,7 +85,7 @@
 /*!
   \enum SoSceneTexture2::Model
 
-  Texture mapping model, for deciding how to "merge" the texturemap
+  Texture mapping model, for deciding how to "merge" the texture map
   with the object it is mapped onto.
 */
 /*!
@@ -121,7 +122,7 @@
   \enum SoSceneTexture2::Wrap
 
   Enumeration of wrapping strategies which can be used when the
-  texturemap doesn't cover the full extent of the geometry.
+  texture map doesn't cover the full extent of the geometry.
 */
 /*!
   \var SoSceneTexture2::Wrap SoSceneTexture2::REPEAT
@@ -130,6 +131,10 @@
 /*!
   \var SoSceneTexture2::Wrap SoSceneTexture2::CLAMP
   Clamp coordinate between 0 and 1.
+*/
+/*!
+  \var SoSceneTexture2::Wrap SoSceneTexture2::CLAMP_TO_BORDER
+  Clamp coordinate to range [1/2N, 1 - 1/2N], where N is the size of the texture in the direction of clamping.
 */
 
 /*!
@@ -160,7 +165,7 @@
 /*!
   \var SoSFEnum SoSceneTexture2::wrapS
 
-  Wrapping strategy for the S coordinate when the texturemap is
+  Wrapping strategy for the S coordinate when the texture map is
   narrower than the object to map onto.
 
   Default value is SoSceneTexture2::REPEAT.
@@ -168,7 +173,7 @@
 /*!
   \var SoSFEnum SoSceneTexture2::wrapT
 
-  Wrapping strategy for the T coordinate when the texturemap is
+  Wrapping strategy for the T coordinate when the texture map is
   shorter than the object to map onto.
 
   Default value is SoSceneTexture2::REPEAT.
@@ -176,7 +181,7 @@
 /*!
   \var SoSFEnum SoSceneTexture2::model
 
-  Texturemapping model for how the texturemap is "merged" with the
+  Texture mapping model for how the texture map is "merged" with the
   polygon primitives it is applied to. Default value is
   SoSceneTexture2::MODULATE.
 */
@@ -209,7 +214,7 @@
   \var SoSFNode SoSceneTexture2::sceneTransparencyType
 
   Used for overriding the transparency type for the sub scene graph.
-  Should contain an instance of the SoTransparecyType node, or NULL to
+  Should contain an instance of the SoTransparencyType node, or NULL to
   inherit the transparency type from the current viewer.
 
   Please note that if you want to render the texture using frame
@@ -258,8 +263,8 @@
 #include <Inventor/nodes/SoSceneTexture2.h>
 #include "coindefs.h"
 
-#include <assert.h>
-#include <string.h>
+#include <cassert>
+#include <cstring>
 
 #include <Inventor/errors/SoDebugError.h>
 #include <Inventor/sensors/SoFieldSensor.h>
@@ -424,6 +429,9 @@ public:
 SO_NODE_SOURCE(SoSceneTexture2);
 
 // Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoSceneTexture2::initClass(void)
 {
@@ -918,11 +926,9 @@ SoSceneTexture2P::updatePBuffer(SoState * state, const float quality)
       this->glcontextsize.setValue(-1,-1);
       this->glcontext = NULL;
     }
-    if (this->glaction) {
-      // Note: Recreating the glaction (below) will also get us a new contextid.
-      delete this->glaction;
-      this->glaction = NULL;
-    }
+    // Note: Recreating the glaction (below) will also get us a new contextid.
+    delete this->glaction;
+    this->glaction = NULL;
     this->glimagevalid = FALSE;
   }
   if (size == SbVec2s(0,0)) return;

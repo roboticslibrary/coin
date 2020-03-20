@@ -33,6 +33,7 @@
 /*!
   \class SoSFEnum SoSFEnum.h Inventor/fields/SoSFEnum.h
   \brief The SoSFEnum class is a container for an enum value.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
@@ -42,7 +43,7 @@
   name, rather than the actual integer value.
 
   SoSFEnum instances are initialized on an instance basis, usually in
-  the constructor of the fieldcontainer with the macros
+  the constructor of the field container with the macros
   SO_NODE_DEFINE_ENUM_VALUE(enumtype, symbolvalue) and
   SO_NODE_SET_SF_ENUM_TYPE(enumfield, enumtype) for nodes, or for
   engines; SO_ENGINE_DEFINE_ENUM_VALUE() and
@@ -130,7 +131,9 @@ SoSFEnum::operator=(const SoSFEnum & field)
 #endif // DOXYGEN_SKIP_THIS
 
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFEnum::initClass(void)
 {

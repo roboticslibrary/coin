@@ -33,6 +33,7 @@
 /*!
   \class SoDebugError SoDebugError.h Inventor/errors/SoDebugError.h
   \brief The SoDebugError class is the internal debugging message passing mechanism.
+
   \ingroup errors
 
   This class basically serves two purposes:
@@ -41,7 +42,7 @@
   conditions are passed to the programmer which is using the Coin
   library API for building applications.  These messages are generated
   when API methods are used in an incorrect manner, or if actions on
-  the library has caused it to enter an inconsistent state. Coin
+  the library have caused it to enter an inconsistent state. Coin
   programmers should then quickly be able to trace down errors in
   their application code.
 
@@ -58,8 +59,8 @@
   Coin supports an environment variable to set conditional
   breakpoints.  The COIN_DEBUG_BREAK environment variable can be set
   to any number of functions in the form of a list separated by commas
-  or spaces.  The functionnames must be given as
-  "classname::functioname" (ie without return type, parenthesis or
+  or spaces.  The function names must be given as
+  "classname::functionname" (i.e. without return type, parenthesis or
   argument types or names).  If a debug message is posted from one of
   those functions, your program will be stopped (using assert(0)).
 
@@ -119,7 +120,7 @@ using std::memcpy;
       #include <signal.h>
       #define COIN_DEBUGGER_BREAK(x) ::raise(SIGINT)
     #else
-      #define COIN_DEBUGGER_BREAK(x) assert(0 && x)
+      #define COIN_DEBUGGER_BREAK(x) assert(0 && (x))
     #endif
   #endif
 #endif
@@ -134,7 +135,7 @@ void * SoDebugError::callbackData = NULL;
 
 #if COIN_DEBUG
 
-// variables for run-time breakpoints
+// variables for runtime breakpoints
 static int num_breakpoints = 0;
 static char ** breakpoints = NULL;
 
@@ -160,9 +161,23 @@ debug_break_cleanup(void)
 
   Specifies the available severity levels of the debug messages.
 */
+/*!
+  \var SoDebugError::Severity SoDebugError::ERROR
+  Severity level for errors.
+*/
+/*!
+  \var SoDebugError::Severity SoDebugError::WARNING
+  Severity level for warnings.
+*/
+/*!
+  \var SoDebugError::Severity SoDebugError::INFO
+  Severity level for additional information.
+*/
 
 
-// Documented for parent class.
+/*!
+  \copydetails SoError::initClass(void)
+*/
 void
 SoDebugError::initClass(void)
 {
@@ -245,7 +260,9 @@ SoDebugError::callbackForwarder(const struct cc_debugerror * error,
   SoDebugError::callback(&wrappederr, SoDebugError::callbackData);
 }
 
-// Documented for parent class.
+/*!
+  \copydetails SoError::setHandlerCallback(SoErrorCB * const function, void * const data)
+*/
 void
 SoDebugError::setHandlerCallback(SoErrorCB * const function, void * const data)
 {
@@ -262,21 +279,27 @@ SoDebugError::setHandlerCallback(SoErrorCB * const function, void * const data)
   SoDebugError::callbackData = data;
 }
 
-// Documented for parent class.
+/*!
+  \copydetails SoError::getHandlerCallback(void)
+*/
 SoErrorCB *
 SoDebugError::getHandlerCallback(void)
 {
   return SoDebugError::callback;
 }
 
-// Documented for parent class.
+/*!
+  \copydetails SoError::getHandlerData(void)
+*/
 void *
 SoDebugError::getHandlerData(void)
 {
   return SoDebugError::callbackData;
 }
 
-// Documented for parent class.
+/*!
+  \copydetails SoError::getClassTypeId(void)
+*/
 SoType
 SoDebugError::getClassTypeId(void)
 {

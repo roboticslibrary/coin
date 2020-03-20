@@ -33,6 +33,7 @@
 /*!
   \class SoGLShadowCullingElement SoGLShadowCullingElement.h Inventor/annex/FXViz/elements/SoGLShadowCullingElement.h
   \brief The SoGLShadowCullingElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -41,7 +42,7 @@
 */
 
 #include <Inventor/annex/FXViz/elements/SoGLShadowCullingElement.h>
-#include <assert.h>
+#include <cassert>
 #include <Inventor/system/gl.h>
 #include "coindefs.h"
 
@@ -53,7 +54,9 @@
 
 SO_ELEMENT_SOURCE(SoGLShadowCullingElement);
 
-// doc in parent
+/*!
+  \copydetails SoElement::initClass(void)
+*/
 void
 SoGLShadowCullingElement::initClass(void)
 {
@@ -61,7 +64,7 @@ SoGLShadowCullingElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoGLShadowCullingElement::~SoGLShadowCullingElement(void)
@@ -78,7 +81,10 @@ SoGLShadowCullingElement::set(SoState * const state,
   SoInt32Element::set(classStackIndex, state, node, mode);
 }
 
-//! FIXME: write doc.
+/*!
+  Initializes the element to its default value. The default
+  value is SoGLShadowCullingElement::AS_IS_CULLING.
+*/
 
 void
 SoGLShadowCullingElement::init(SoState * state)

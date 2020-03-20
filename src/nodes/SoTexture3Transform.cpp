@@ -33,6 +33,7 @@
 /*!
   \class SoTexture3Transform SoTexture3Transform.h Inventor/nodes/SoTexture3Transform.h
   \brief The SoTexture3Transform class is used to define 3D texture transformations.
+
   \ingroup nodes
 
   Textures applied to shapes in the scene can be transformed by
@@ -40,7 +41,7 @@
   type. Translations, rotations and scaling in 3D can all be done.
 
   The default settings of this node's fields equals a "null
-  transform", ie no transformation.
+  transform", i.e. no transformation.
 
   \COIN_CLASS_EXTENSION
 
@@ -85,8 +86,8 @@
 /*!
   \var SoSFRotation SoTexture3Transform::rotation
 
-  Texture coordinate rotation (s is x-axis, t is y-axis and r is
-  z-axis).  Defaults to an identity rotation (ie zero rotation).
+  Texture coordinate rotation (s is X-axis, t is Y-axis and r is
+  Z-axis).  Defaults to an identity rotation (i.e. zero rotation).
 */
 /*!
   \var SoSFVec3f SoTexture3Transform::scaleFactor
@@ -97,7 +98,7 @@
   \var SoSFRotation SoTexture3Transform::scaleOrientation
 
   The orientation the texture is set to before scaling.  Defaults to
-  an identity rotation (ie zero rotation).
+  an identity rotation (i.e. zero rotation).
 */
 /*!
   \var SoSFVec3f SoTexture3Transform::center
@@ -131,6 +132,9 @@ SoTexture3Transform::~SoTexture3Transform()
 }
 
 // Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoTexture3Transform::initClass(void)
 {

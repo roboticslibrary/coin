@@ -33,6 +33,7 @@
 /*!
   \class SoMemoryError SoMemoryError.h Inventor/errors/SoMemoryError.h
   \brief The SoMemoryError class is used to inform of problems with memory allocation.
+
   \ingroup errors
 
   Modern operating systems takes care of handling most out of memory
@@ -54,7 +55,7 @@
   certain things which could happen within the library which are best
   taken care of by internally handling failed attempts at memory
   allocation. An example: the user tries to load a model file which
-  contains a filename pointer to a huge bitmapfile with a texture
+  contains a filename pointer to a huge bitmap file with a texture
   map. The end-user's system does not provide enough memory to load
   the file and prepare the texture image for rendering, though. This
   is a case where it is possible to just emit a warning and
@@ -81,7 +82,9 @@ void * SoMemoryError::callbackData = NULL;
 
 // *************************************************************************
 
-// Documented for parent class.
+/*!
+  \copydetails SoError::initClass(void)
+*/
 void
 SoMemoryError::initClass(void)
 {
@@ -91,7 +94,9 @@ SoMemoryError::initClass(void)
     SoType::createType(SoError::getClassTypeId(), "MemoryError");
 }
 
-// Documented for parent class.
+/*!
+  \copydetails SoError::getClassTypeId(void)
+*/
 SoType
 SoMemoryError::getClassTypeId(void)
 {
@@ -105,7 +110,9 @@ SoMemoryError::getTypeId(void) const
   return SoMemoryError::classTypeId;
 }
 
-// Documented for parent class.
+/*!
+  \copydetails SoError::setHandlerCallback(SoErrorCB * const function, void * const data)
+*/
 void
 SoMemoryError::setHandlerCallback(SoErrorCB * const function,
                                   void * const data)
@@ -119,14 +126,18 @@ SoMemoryError::setHandlerCallback(SoErrorCB * const function,
   SoMemoryError::callbackData = data;
 }
 
-// Documented for parent class.
+/*!
+  \copydetails SoError::getHandlerCallback(void)
+*/
 SoErrorCB *
 SoMemoryError::getHandlerCallback(void)
 {
   return SoMemoryError::callback;
 }
 
-// Documented for parent class.
+/*!
+  \copydetails SoError::getHandlerData(void)
+*/
 void *
 SoMemoryError::getHandlerData(void)
 {

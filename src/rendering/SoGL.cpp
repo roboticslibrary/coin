@@ -38,9 +38,9 @@
 #include "rendering/SoGL.h"
 #include "coindefs.h"
 
-#include <assert.h>
-#include <stdio.h>
-#include <string.h>
+#include <cassert>
+#include <cstdio>
+#include <cstring>
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -2356,7 +2356,7 @@ static int SOGL_AUTOCACHE_LOCAL_MAX = 1000000;
 static int SOGL_AUTOCACHE_VBO_LIMIT = 65536;
 
 /*!
-  Called by each shape during rendering. Will enable/disable autocaching
+  Called by each shape during rendering. Will enable/disable auto caching
   based on the number of primitives.
 */
 void

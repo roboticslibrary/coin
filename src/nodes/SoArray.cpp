@@ -33,6 +33,7 @@
 /*!
   \class SoArray SoArray.h Inventor/nodes/SoArray.h
   \brief The SoArray class is a group node for setting up regular arrays of subgraphs.
+
   \ingroup nodes
 
   SoArray presents a convenient way of duplicating a node (typically a
@@ -84,7 +85,7 @@
 /*!
   \var SoSFEnum SoArray::origin
 
-  Where the origin of the array should be set, ie how the array
+  Where the origin of the array should be set, i.e. how the array
   elements will be distributed from the local origo.
 
   Default value is SoArray::FIRST.
@@ -92,34 +93,34 @@
 
 /*!
   \var SoSFShort SoArray::numElements1
-  Number of duplicates for each X axis row. Default 1.
+  Number of duplicates for each X-axis row. Default 1.
 */
 /*!
   \var SoSFShort SoArray::numElements2
-  Number of duplicates for each Y axis row. Default 1.
+  Number of duplicates for each Y-axis row. Default 1.
 */
 /*!
   \var SoSFShort SoArray::numElements3
-  Number of duplicates for each Z axis row. Default 1.
+  Number of duplicates for each Z-axis row. Default 1.
 */
 
 /*!
   \var SoSFVec3f SoArray::separation1
 
   Distance in current units between the center point of each element
-  along the X axis. Default [1.0, 0.0, 0.0].
+  along the X-axis. Default [1.0, 0.0, 0.0].
 */
 /*!
   \var SoSFVec3f SoArray::separation2
 
   Distance in current units between the center point of each element
-  along the Y axis. Default [0.0, 1.0, 0.0].
+  along the Y-axis. Default [0.0, 1.0, 0.0].
 */
 /*!
   \var SoSFVec3f SoArray::separation3
 
   Distance in current units between the center point of each element
-  along the Z axis. Default [0.0, 0.0, 1.0].
+  along the Z-axis. Default [0.0, 0.0, 1.0].
 */
 
 // *************************************************************************
@@ -156,6 +157,9 @@ SoArray::~SoArray()
 }
 
 // Doc in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoArray::initClass(void)
 {

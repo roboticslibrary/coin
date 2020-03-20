@@ -33,6 +33,7 @@
 /*!
   \class SoTextOutlineEnabledElement Inventor/elements/SoTextOutlineEnabledElement.h
   \brief The SoTextOutlineEnabledElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -48,8 +49,7 @@
 SO_ELEMENT_SOURCE(SoTextOutlineEnabledElement);
 
 /*!
-  This static method initializes static data for the
-  SoTextOutlinedEnabledElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -59,7 +59,7 @@ SoTextOutlineEnabledElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoTextOutlineEnabledElement::~SoTextOutlineEnabledElement(void)
@@ -106,7 +106,10 @@ SoTextOutlineEnabledElement::getDefault(void)
   return FALSE;
 }
 
-//! FIXME: write doc.
+/*!
+  Initializes the element to its default value. The default
+  value is FALSE.
+*/
 
 void
 SoTextOutlineEnabledElement::init(SoState * state)

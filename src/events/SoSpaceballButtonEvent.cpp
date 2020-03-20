@@ -34,11 +34,12 @@
   \class SoSpaceballButtonEvent SoSpaceballButtonEvent.h Inventor/events/SoSpaceballButtonEvent.h
   \brief The SoSpaceballButtonEvent class contains information about
   spaceball button interaction.
+
   \ingroup events
 
   When the user presses any buttons on a spaceball device, these will
   be translated from a system specific event into a Coin event and
-  sent to the scenegraph by using instances of this class.
+  sent to the scene graph by using instances of this class.
 
   \sa SoEvent, SoButtonEvent, SoMouseButtonEvent, SoKeyboardEvent
   \sa SoEventCallback, SoHandleEventAction */
@@ -54,6 +55,46 @@
   \enum SoSpaceballButtonEvent::Button
   This enum contains all spaceball buttons detected by Coin.
  */
+/*!
+  \var SoSpaceballButtonEvent::Button SoSpaceballButtonEvent::ANY
+  Any of the buttons.
+*/
+/*!
+  \var SoSpaceballButtonEvent::Button SoSpaceballButtonEvent::BUTTON1
+  Spaceball button 1.
+*/
+/*!
+  \var SoSpaceballButtonEvent::Button SoSpaceballButtonEvent::BUTTON2
+  Spaceball button 2.
+*/
+/*!
+  \var SoSpaceballButtonEvent::Button SoSpaceballButtonEvent::BUTTON3
+  Spaceball button 3.
+*/
+/*!
+  \var SoSpaceballButtonEvent::Button SoSpaceballButtonEvent::BUTTON4
+  Spaceball button 4.
+*/
+/*!
+  \var SoSpaceballButtonEvent::Button SoSpaceballButtonEvent::BUTTON5
+  Spaceball button 5.
+*/
+/*!
+  \var SoSpaceballButtonEvent::Button SoSpaceballButtonEvent::BUTTON6
+  Spaceball button 6.
+*/
+/*!
+  \var SoSpaceballButtonEvent::Button SoSpaceballButtonEvent::BUTTON7
+  Spaceball button 7.
+*/
+/*!
+  \var SoSpaceballButtonEvent::Button SoSpaceballButtonEvent::BUTTON8
+  Spaceball button 8.
+*/
+/*!
+  \var SoSpaceballButtonEvent::Button SoSpaceballButtonEvent::PICK
+  Spaceball pick button.
+*/
 
 /*!
   \def SO_SPACEBALL_PRESS_EVENT(EVENT, BUTTON)

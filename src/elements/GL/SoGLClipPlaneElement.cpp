@@ -33,6 +33,7 @@
 /*!
   \class SoGLClipPlaneElement Inventor/elements/SoGLClipPlaneElement.h
   \brief The SoGLClipPlaneElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -56,8 +57,7 @@ SO_ELEMENT_SOURCE(SoGLClipPlaneElement);
 // *************************************************************************
 
 /*!
-  This static method initializes static data for the SoGLClipPlaneElement
-  class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -67,7 +67,7 @@ SoGLClipPlaneElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoGLClipPlaneElement::~SoGLClipPlaneElement(void)

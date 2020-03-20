@@ -16,7 +16,7 @@
 m4_define([COIN_MAJOR], [4])
 m4_define([COIN_MINOR], [0])
 m4_define([COIN_MICRO], [0])
-m4_define([COIN_BETA], [a])
+m4_define([COIN_BETA], [])
 
 # This is probably a more correct setup, but will be harder to keep if
 # we want major and minor to grow slowly (but is that any point?)
@@ -31,7 +31,7 @@ m4_define([SO_NUMBER], [m4_eval(COIN_MAJOR*20)])
 # For Mac OS X Compiler Frameworks:
 m4_define([MAC_FRAMEWORK_NAME_DEFAULT], [Inventor])
 m4_define([MAC_FRAMEWORK_PREFIX_DEFAULT], [/Library/Frameworks])
-m4_define([MAC_FRAMEWORK_VERSION_DEFAULT], [C])
+m4_define([MAC_FRAMEWORK_VERSION_DEFAULT], [D])
 
 # **************************************************************************
 
@@ -1374,6 +1374,15 @@ if $coin_can_do_runtime_linking; then
                      [should be defined if there is some way of doing dynamic linking])
 fi
 
+# *******************************************************************
+# * Check for Boost headers (up to now only header only libraries are
+# * used in Coin.
+# *******************************************************************
+
+AX_BOOST_BASE([1.45.0], [
+  CPPFLAGS="$CPPFLAGS $BOOST_CPPFLAGS"
+  COIN_EXTRA_CPPFLAGS="$COIN_EXTRA_CPPFLAGS $BOOST_CPPFLAGS"
+], [])
 
 # *******************************************************************
 # * Set us up for using the simage library (if wanted, and if
@@ -1728,6 +1737,13 @@ else
   ],[
     SIM_AC_CONFIGURATION_SETTING([bzip2 support], [No])
   ])
+fi
+
+# *******************************************************************
+# * EXPAT specific stuff.
+# *******************************************************************
+if test x"$sim_ac_have_win32_api" = x"false" && test x"$sim_ac_enable_system_expat" = x"false"; then
+  AC_DEFINE([XML_DEV_URANDOM], 1, [Define to extract entropy from /dev/urandom])
 fi
 
 # *******************************************************************
@@ -2349,7 +2365,6 @@ AC_CONFIG_FILES([
         include/Inventor/C/glue/Makefile
         include/Inventor/C/threads/Makefile
         include/Inventor/VRMLnodes/Makefile
-        include/Inventor/XML/Makefile
         include/Inventor/actions/Makefile
         include/Inventor/bundles/Makefile
         include/Inventor/caches/Makefile

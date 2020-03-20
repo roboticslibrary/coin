@@ -33,6 +33,7 @@
 /*!
   \class SbSphereProjector SbSphereProjector.h Inventor/projectors/SbSphereProjector.h
   \brief The SbSphereProjector class is the abstract base class for mapping to spherical surfaces.
+
   \ingroup projectors
 
   The sphere projectors map 2D points to various surface types based
@@ -46,7 +47,7 @@
 /*!
   \fn SbRotation SbSphereProjector::getRotation(const SbVec3f & point1, const SbVec3f & point2)
 
-  Returns rotation on the projection surface which re-orients \a
+  Returns rotation on the projection surface which reorients \a
   point1 to \a point2.
 */
 
@@ -184,7 +185,7 @@ SbSphereProjector::isFront(void) const
 }
 
 /*!
-  Check if \a point is on the frontside or the backside of the
+  Check if \a point is on the front side or the back side of the
   cylinder.
 */
 SbBool

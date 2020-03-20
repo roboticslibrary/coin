@@ -50,12 +50,13 @@
   \class SbVec4d SbVec4d.h Inventor/SbVec4d.h
   \brief The SbVec4d class is a 4 dimensional vector with double precision
   floating point coordinates.
+
   \ingroup base
 
   This vector class is not by many other classes in
-  Coin. It provides storage for a 3 dimensional homogeneoues
+  Coin. It provides storage for a 3 dimensional homogeneous
   vector (with the 4 components usually referred to as <x, y, z, w>)
-  aswell as simple double precision floating point arithmetic operations.
+  as well as simple double precision floating point arithmetic operations.
 
   \sa SbVec2s, SbVec2f, SbVec2d, SbVec3s, SbVec3f, SbVec3d, SbVec4f.
 */
@@ -315,7 +316,7 @@ SbVec4d::setValue(const SbVec4i32 & v)
 */
 
 /*!
-  SbVec4d & SbVec4d::operator /= (double d)
+  \fn SbVec4d & SbVec4d::operator /= (double d)
 
   Divides components of vector with value \a d. Returns reference to self.
 */
@@ -399,8 +400,8 @@ SbVec4d::setValue(const SbVec4i32 & v)
 */
 
 /*!
-  Dump the state of this object to the \a file stream. Only works in
-  debug version of library, method does nothing in an optimized compile.
+  Dump the state of this object to the \a fp file stream. Only works in
+  debug version of library, method does nothing in an optimized build.
  */
 void
 SbVec4d::print(FILE * fp) const

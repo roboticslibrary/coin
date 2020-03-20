@@ -49,46 +49,7 @@ DIST_COMMON = README $(am__configure_deps) \
 	cfg/missing cfg/mkinstalldirs cfg/texinfo.tex
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/../simacros/bin/../cfg/m4/bz2.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_debug.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_exceptions.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_functionname.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_profiling.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_rtti.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_symbols.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_warnings.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compiler_capabilities.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/configuration_summary.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/cpp_search_order.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/dates.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/dl.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/doxygen_detection.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/errors.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/exit.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/fontconfig.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/freetype.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/gendsp.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/general.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/mac.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/macro_quoting.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/mathlib.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/misc_compiler.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/nprintf.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/openal.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/opengl.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/packagemaker.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/project.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/pthread.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/sim.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/simage.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/sourcedir.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/spidermonkey.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/uniqify_option_list.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/w32api.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/wrapmsvc.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/x11.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/zlib.m4 \
-	$(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
@@ -136,6 +97,8 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+BOOST_CPPFLAGS = @BOOST_CPPFLAGS@
+BOOST_LDFLAGS = @BOOST_LDFLAGS@
 BUILD_3DS_CAPABILITIES_FALSE = @BUILD_3DS_CAPABILITIES_FALSE@
 BUILD_3DS_CAPABILITIES_TRUE = @BUILD_3DS_CAPABILITIES_TRUE@
 BUILD_HTMLPAGES_FALSE = @BUILD_HTMLPAGES_FALSE@
@@ -1393,6 +1356,7 @@ EXTRA_DIST = \
 	docs/ChangeLog.v3.1.0 \
 	docs/ChangeLog.v3.1.1 \
 	docs/ChangeLog.v3.1.2 \
+	docs/ChangeLog.v4.0.0 \
 	docs/HACKING \
 	docs/announcement-2_0_0.txt \
 	docs/announcement-2_0_1.txt \
@@ -1511,12 +1475,12 @@ EXTRA_DIST = \
 	build/msvc6/data/shaders/lights/SpotLight.h \
 	build/msvc6/data/shaders/lights/DirSpotLight.h \
 	build/msvc6/data/shaders/vsm/VsmLookup.h \
-	build/msvc6/docs/coin3.doxygen \
-	build/msvc6/coin3.dsp \
-	build/msvc6/coin3.dsw \
-	build/msvc6/coin3_install.dsp \
-	build/msvc6/coin3_uninstall.dsp \
-	build/msvc6/coin3_docs.dsp \
+	build/msvc6/docs/coin4.doxygen \
+	build/msvc6/coin4.dsp \
+	build/msvc6/coin4.dsw \
+	build/msvc6/coin4_install.dsp \
+	build/msvc6/coin4_uninstall.dsp \
+	build/msvc6/coin4_docs.dsp \
 	build/msvc6/include/Inventor/C/basic.h \
 	build/msvc6/include/Inventor/system/gl-headers.h \
 	build/msvc6/include/Inventor/system/inttypes.h \
@@ -1550,12 +1514,12 @@ EXTRA_DIST = \
 	build/msvc7/data/shaders/lights/SpotLight.h \
 	build/msvc7/data/shaders/lights/DirSpotLight.h \
 	build/msvc7/data/shaders/vsm/VsmLookup.h \
-	build/msvc7/docs/coin3.doxygen \
-	build/msvc7/coin3.sln \
-	build/msvc7/coin3.vcproj \
-	build/msvc7/coin3_install.vcproj \
-	build/msvc7/coin3_uninstall.vcproj \
-	build/msvc7/coin3_docs.vcproj \
+	build/msvc7/docs/coin4.doxygen \
+	build/msvc7/coin4.sln \
+	build/msvc7/coin4.vcproj \
+	build/msvc7/coin4_install.vcproj \
+	build/msvc7/coin4_uninstall.vcproj \
+	build/msvc7/coin4_docs.vcproj \
 	build/msvc7/include/Inventor/C/basic.h \
 	build/msvc7/include/Inventor/system/gl-headers.h \
 	build/msvc7/include/Inventor/system/inttypes.h \
@@ -1589,12 +1553,12 @@ EXTRA_DIST = \
 	build/msvc8/data/shaders/lights/SpotLight.h \
 	build/msvc8/data/shaders/lights/DirSpotLight.h \
 	build/msvc8/data/shaders/vsm/VsmLookup.h \
-	build/msvc8/docs/coin3.doxygen \
-	build/msvc8/coin3.sln \
-	build/msvc8/coin3.vcproj \
-	build/msvc8/coin3_install.vcproj \
-	build/msvc8/coin3_uninstall.vcproj \
-	build/msvc8/coin3_docs.vcproj \
+	build/msvc8/docs/coin4.doxygen \
+	build/msvc8/coin4.sln \
+	build/msvc8/coin4.vcproj \
+	build/msvc8/coin4_install.vcproj \
+	build/msvc8/coin4_uninstall.vcproj \
+	build/msvc8/coin4_docs.vcproj \
 	build/msvc8/include/Inventor/C/basic.h \
 	build/msvc8/include/Inventor/system/gl-headers.h \
 	build/msvc8/include/Inventor/system/inttypes.h \
@@ -1628,12 +1592,12 @@ EXTRA_DIST = \
 	build/msvc9/data/shaders/lights/SpotLight.h \
 	build/msvc9/data/shaders/lights/DirSpotLight.h \
 	build/msvc9/data/shaders/vsm/VsmLookup.h \
-	build/msvc9/docs/coin3.doxygen \
-	build/msvc9/coin3.sln \
-	build/msvc9/coin3.vcproj \
-	build/msvc9/coin3_install.vcproj \
-	build/msvc9/coin3_uninstall.vcproj \
-	build/msvc9/coin3_docs.vcproj \
+	build/msvc9/docs/coin4.doxygen \
+	build/msvc9/coin4.sln \
+	build/msvc9/coin4.vcproj \
+	build/msvc9/coin4_install.vcproj \
+	build/msvc9/coin4_uninstall.vcproj \
+	build/msvc9/coin4_docs.vcproj \
 	build/msvc9/include/Inventor/C/basic.h \
 	build/msvc9/include/Inventor/system/gl-headers.h \
 	build/msvc9/include/Inventor/system/inttypes.h \
@@ -1895,7 +1859,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/../simacros/bin/../cfg/m4 $(distdir)/build/misc $(distdir)/build/msvc6 $(distdir)/build/msvc6/data/draggerDefaults $(distdir)/build/msvc6/data/shaders/lights $(distdir)/build/msvc6/data/shaders/vsm $(distdir)/build/msvc6/docs $(distdir)/build/msvc6/include/Inventor/C $(distdir)/build/msvc6/include/Inventor/system $(distdir)/build/msvc6/src $(distdir)/build/msvc7 $(distdir)/build/msvc7/data/draggerDefaults $(distdir)/build/msvc7/data/shaders/lights $(distdir)/build/msvc7/data/shaders/vsm $(distdir)/build/msvc7/docs $(distdir)/build/msvc7/include/Inventor/C $(distdir)/build/msvc7/include/Inventor/system $(distdir)/build/msvc7/src $(distdir)/build/msvc8 $(distdir)/build/msvc8/data/draggerDefaults $(distdir)/build/msvc8/data/shaders/lights $(distdir)/build/msvc8/data/shaders/vsm $(distdir)/build/msvc8/docs $(distdir)/build/msvc8/include/Inventor/C $(distdir)/build/msvc8/include/Inventor/system $(distdir)/build/msvc8/src $(distdir)/build/msvc9 $(distdir)/build/msvc9/data/draggerDefaults $(distdir)/build/msvc9/data/shaders/lights $(distdir)/build/msvc9/data/shaders/vsm $(distdir)/build/msvc9/docs $(distdir)/build/msvc9/include/Inventor/C $(distdir)/build/msvc9/include/Inventor/system $(distdir)/build/msvc9/src $(distdir)/cfg $(distdir)/data/shaders $(distdir)/docs $(distdir)/docs/doxygen $(distdir)/examples/bindings $(distdir)/include $(distdir)/packaging/debian $(distdir)/packaging/macosx $(distdir)/packaging/macosx/inst-dmg-files $(distdir)/packaging/macosx/noinst-dmg-files $(distdir)/packaging/macosx/support $(distdir)/packaging/redhat $(distdir)/src $(distdir)/testsuite
+	$(mkdir_p) $(distdir)/build/misc $(distdir)/build/msvc6 $(distdir)/build/msvc6/data/draggerDefaults $(distdir)/build/msvc6/data/shaders/lights $(distdir)/build/msvc6/data/shaders/vsm $(distdir)/build/msvc6/docs $(distdir)/build/msvc6/include/Inventor/C $(distdir)/build/msvc6/include/Inventor/system $(distdir)/build/msvc6/src $(distdir)/build/msvc7 $(distdir)/build/msvc7/data/draggerDefaults $(distdir)/build/msvc7/data/shaders/lights $(distdir)/build/msvc7/data/shaders/vsm $(distdir)/build/msvc7/docs $(distdir)/build/msvc7/include/Inventor/C $(distdir)/build/msvc7/include/Inventor/system $(distdir)/build/msvc7/src $(distdir)/build/msvc8 $(distdir)/build/msvc8/data/draggerDefaults $(distdir)/build/msvc8/data/shaders/lights $(distdir)/build/msvc8/data/shaders/vsm $(distdir)/build/msvc8/docs $(distdir)/build/msvc8/include/Inventor/C $(distdir)/build/msvc8/include/Inventor/system $(distdir)/build/msvc8/src $(distdir)/build/msvc9 $(distdir)/build/msvc9/data/draggerDefaults $(distdir)/build/msvc9/data/shaders/lights $(distdir)/build/msvc9/data/shaders/vsm $(distdir)/build/msvc9/docs $(distdir)/build/msvc9/include/Inventor/C $(distdir)/build/msvc9/include/Inventor/system $(distdir)/build/msvc9/src $(distdir)/cfg $(distdir)/data/shaders $(distdir)/docs $(distdir)/docs/doxygen $(distdir)/examples/bindings $(distdir)/include $(distdir)/packaging/debian $(distdir)/packaging/macosx $(distdir)/packaging/macosx/inst-dmg-files $(distdir)/packaging/macosx/noinst-dmg-files $(distdir)/packaging/macosx/support $(distdir)/packaging/redhat $(distdir)/src $(distdir)/testsuite
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \

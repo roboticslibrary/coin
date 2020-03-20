@@ -30,6 +30,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 \**************************************************************************/
 
+/*!
+  \class SoProfilerOverlayKit SoProfilerOverlayKit.h Inventor/annex/Profiler/nodekits/SoProfilerOverlayKit.h
+  \brief The SoProfilerOverlayKit element class is yet to be documented.
+
+  \ingroup profiler
+*/
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif // HAVE_CONFIG_H
@@ -133,14 +140,14 @@ SoProfilerOverlayKit::SoProfilerOverlayKit(void)
 }
 
 /*!
-  Desctructor.
+  Destructor.
  */
 SoProfilerOverlayKit::~SoProfilerOverlayKit(void)
 {
 }
 
 /*!
-  Display profiling scenegraph on top of the regular viewport.
+  Display profiling scene graph on top of the regular viewport.
 
   \param node Scene graph to display
  */

@@ -32,10 +32,11 @@
 
 /*!
   \class SoLineWidthElement Inventor/elements/SoLineWidthElement.h
-  \brief The SoLineWidthElement class changes the linewidth setting of the render state.
+  \brief The SoLineWidthElement class changes the line width setting of the render state.
+
   \ingroup elements
 
-  Requests from the scenegraph to change the linewidth when rendering
+  Requests from the scene graph to change the line width when rendering
   line primitives will be made through this element, which forwards it
   to the appropriate native call in the underlying rendering library.
 
@@ -50,7 +51,10 @@
 
 SO_ELEMENT_SOURCE(SoLineWidthElement);
 
-// doc in super
+/*!
+  \copydetails SoElement::initClass(void)
+*/
+
 void
 SoLineWidthElement::initClass(void)
 {
@@ -64,7 +68,10 @@ SoLineWidthElement::~SoLineWidthElement()
 {
 }
 
-// doc in super
+/*!
+  Initializes the element to its default value. The default
+  value is 0.0.
+*/
 void
 SoLineWidthElement::init(SoState * state)
 {
@@ -101,7 +108,7 @@ SoLineWidthElement::get(SoState * const state)
 }
 
 /*!
-  Returns the default linewidth value if no value has been set
+  Returns the default line width value if no value has been set
   explicitly.
  */
 float

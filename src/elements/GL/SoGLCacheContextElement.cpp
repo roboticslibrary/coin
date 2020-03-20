@@ -33,12 +33,12 @@
 /*!
   \class SoGLCacheContextElement Inventor/elements/SoGLCacheContextElement.h
   \brief The SoGLCacheContextElement class handles the OpenGL cache for a context.
+
   \ingroup elements
 */
 
 // *************************************************************************
 
-/*! \file SoGLCacheContextElement.h */
 #include "coindefs.h"
 #include <Inventor/elements/SoGLCacheContextElement.h>
 
@@ -161,7 +161,10 @@ SoGLCacheContextElement::cleanupContext(uint32_t contextid, void * COIN_UNUSED_A
 
 // *************************************************************************
 
-// doc from parent
+/*!
+  \copydetails SoElement::initClass(void)
+*/
+
 void
 SoGLCacheContextElement::initClass(void)
 {
@@ -297,7 +300,7 @@ SoGLCacheContextElement::getExtID(const char * str)
 /*!
   Returns TRUE if the extension is supported for the current context.
   \a extid must be an id returned from getExtId(). The test result
-  is cached so this method is pretty fast and can be used run-time.
+  is cached so this method is pretty fast and can be used at runtime.
 */
 SbBool
 SoGLCacheContextElement::extSupported(SoState * state, int extid)

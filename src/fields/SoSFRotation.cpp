@@ -33,10 +33,11 @@
 /*!
   \class SoSFRotation SoSFRotation.h Inventor/fields/SoSFRotation.h
   \brief The SoSFRotation class is a container for an SbRotation.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a single rotation definition.
+  need to store a single rotation definition.
 
   Fields of this type stores their value to file as a rotation axis
   vector plus a rotation angle: "axis0 axis1 axis2 angle".
@@ -81,7 +82,9 @@ SO_SFIELD_SOURCE(SoSFRotation, SbRotation, const SbRotation &);
 
 // *************************************************************************
 
-// Override from parent.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFRotation::initClass(void)
 {

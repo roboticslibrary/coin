@@ -31,8 +31,9 @@
 \**************************************************************************/
 
 /*!
-  \class SoTempPath Inventor/misc/SoTempPath.h
+  \class SoTempPath SoTempPath.h Inventor/misc/SoTempPath.h
   \brief The SoTempPath class is used to store temporary paths.
+
   \ingroup general
 
   The path simply turns off auditing in the constructor, and leaves
@@ -71,7 +72,7 @@ SoTempPath::simpleAppend(SoNode * const node, const int index)
 /*!  
   Replace the tail of this path. The node is specified by \a node
   and parent child \a index. This method is only available in
-  SoTempPath,, since it will not consider auditing or hidden children.  
+  SoTempPath, since it will not consider auditing or hidden children.
 */
 void 
 SoTempPath::replaceTail(SoNode * const node, const int index)

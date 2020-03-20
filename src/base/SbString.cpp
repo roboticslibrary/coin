@@ -33,6 +33,7 @@
 /*!
   \class SbString SbString.h Inventor/SbString.h
   \brief The SbString class is a string class with convenience functions for string operations.
+
   \ingroup base
 
   This is the class used for storing and working with character
@@ -134,7 +135,7 @@ SbString::find(const SbString & strarg) const
 }
 
 /*!
-  All occurences of \a str is represented in \a found as indices to
+  All occurrences of \a str is represented in \a found as indices to
   the characters where \a str starts. If 1 or more is found, \c TRUE
   is returned, else \c FALSE is returned.
 
@@ -209,9 +210,8 @@ SbString::upper() const
 }
 
 /*!
-  Dump the state of this object to the \a file stream. Only works in
-  debug version of library, method does nothing in an optimized
-  compile.
+  Dump the state of this object to the \a fp file stream. Only works in
+  debug version of library, method does nothing in an optimized build.
 */
 void
 SbString::print(std::FILE * fp) const
@@ -530,6 +530,17 @@ SbString::print(std::FILE * fp) const
   replacing the current contents.  The control characters within \a
   formatstr and the arguments of the \a args argument list should
   follow the conventions of the printf() call.
+
+  Note that this function is not part of the original Open Inventor
+  API.
+*/
+
+/*!
+  \fn void SbString::apply(char (*func)(char input))
+
+  Apply the conversion function \a func to every character of the
+  current string.  \a func is a pointer to a function that takes a
+  character as input and returns a (probably converted) character.
 
   Note that this function is not part of the original Open Inventor
   API.

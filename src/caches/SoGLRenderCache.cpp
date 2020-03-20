@@ -31,8 +31,9 @@
 \**************************************************************************/
 
 /*!
-  \class SoGLRenderCache Inventor/caches/SoGLRenderCache.h
+  \class SoGLRenderCache SoGLRenderCache.h Inventor/caches/SoGLRenderCache.h
   \brief The SoGLRenderCache class is used to cache OpenGL calls.
+
   \ingroup caches
 */
 

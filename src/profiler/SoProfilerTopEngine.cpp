@@ -30,10 +30,19 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 \**************************************************************************/
 
+/*!
+  \class SoProfilerTopEngine Inventor/annex/Profiler/engines/SoProfilerTopEngine.h
+  \brief The SoProfilerTopEngine class is yet to be documented.
+
+  \ingroup elements
+
+  FIXME: write doc.
+*/
+
 #include <Inventor/annex/Profiler/engines/SoProfilerTopEngine.h>
 
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 
 #include <Inventor/errors/SoDebugError.h>
 
@@ -52,14 +61,10 @@ class SoProfilerTopEngineP {
 public:
   SoProfilerTopEngineP(void) : datasize(0), data(NULL) { }
   ~SoProfilerTopEngineP(void) {
-    if (data) {
-      delete [] data;
-      data = NULL;
-    }
-    //if (tmpdata) {
-    //  delete [] tmpdata;
-    //  tmpdata = NULL;
-    //}
+    delete [] data;
+    data = NULL;
+    //delete [] tmpdata;
+    //tmpdata = NULL;
   }
 
   struct StatDataItem {
@@ -460,10 +465,8 @@ SoProfilerTopEngine::evaluate(void)
     SO_ENGINE_OUTPUT(this->prettyText, SoMFString, set1Value(c, entryline));
   }
 
-  if (olddata) {
-    delete [] olddata;
-    // olddata = NULL;
-  }
+  delete [] olddata;
+  // olddata = NULL;
 }
 
 #undef PRIVATE

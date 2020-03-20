@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLAppearance SoVRMLAppearance.h Inventor/VRMLnodes/SoVRMLAppearance.h
   \brief The SoVRMLAppearance class specifies visual properties for shapes.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -58,9 +59,9 @@
   type.  The material field, if specified, shall contain a VRMLMaterial
   node. If the material field is NULL or unspecified, lighting is off
   (all lights are ignored during rendering of the object that
-  references this Appearance) and the unlit object colour is (1, 1,
+  references this Appearance) and the unlit object color is (1, 1,
   1). Details of the VRML lighting model are in 4.14, Lighting model
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.14>).
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.14>).
 
   The texture field, if specified, shall contain one of the various
   types of texture nodes (VRMLImageTexture, VRMLMovieTexture, or
@@ -89,7 +90,7 @@
 
 #include <Inventor/VRMLnodes/SoVRMLAppearance.h>
 
-#include <stddef.h>
+#include <cstddef>
 
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
 #include <Inventor/VRMLnodes/SoVRMLParent.h>
@@ -135,7 +136,9 @@ SO_NODE_SOURCE(SoVRMLAppearance);
 
 // *************************************************************************
 
-// doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLAppearance::initClass(void)
 {

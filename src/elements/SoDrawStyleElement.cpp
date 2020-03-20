@@ -33,6 +33,7 @@
 /*!
   \class SoDrawStyleElement Inventor/elements/SoDrawStyleElement.h
   \brief The SoDrawStyleElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -54,8 +55,7 @@
 SO_ELEMENT_SOURCE(SoDrawStyleElement);
 
 /*!
-  This static method initializes static data for the
-  SoDrawStyleElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -65,7 +65,7 @@ SoDrawStyleElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoDrawStyleElement::~SoDrawStyleElement(void)

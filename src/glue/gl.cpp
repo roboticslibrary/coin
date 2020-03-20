@@ -35,7 +35,7 @@
   ===============================================
 
   Creating portable OpenGL applications can be a complicated matter
-  since you have to have both compile-time and run-time tests for
+  since you have to have both compile-time and runtime tests for
   OpenGL version, and what extensions are available. In addition, you
   might not have an entry point to the (extension) function in
   question on your build system.  The cc_glglue abstraction is here
@@ -45,8 +45,8 @@
 
   The cc_glglue interface is part of the public API of Coin, but is
   not documented on the public documentation pages at
-  http://doc.coin3d.org yet. The status for client application usage
-  is "unofficial, use at own risk, interface may change without
+  https://coin3d.github.io/Coin/html/ yet. The status for client application
+  usage is "unofficial, use at own risk, interface may change without
   warning for major version number upgrade releases".
 
   Coin programmer's responsibilities
@@ -117,7 +117,7 @@
   influencing the OpenGL binding:
 
   - COIN_DEBUG_GLGLUE: set equal to "1" to make the wrapper
-    initalization spit out lots of info about the underlying OpenGL
+    initialization spit out lots of info about the underlying OpenGL
     implementation.
 
   - COIN_PREFER_GLPOLYGONOFFSET_EXT: when set to "1" and both
@@ -135,9 +135,9 @@
     prefer a "better safe than sorry" strategy.
 
     We might consider changing this strategy to allow it by default,
-    and provide an envvar to turn it off instead -- if we can get
-    confirmation that the assumed NVidia driver bug is indeed NVidia's
-    problem.
+    and provide an environment variable to turn it off instead -- if
+    we can get confirmation that the assumed NVidia driver bug is
+    indeed NVidia's problem.
 
   - COIN_FORCE_GL1_0_ONLY: set to "1" to disallow use of OpenGL1.1+
     and extensions under all circumstances.
@@ -211,10 +211,10 @@
 
 // *************************************************************************
 
-#include <assert.h>
-#include <stdlib.h>
-#include <string.h>
-#include <limits.h> /* SHRT_MAX */
+#include <cassert>
+#include <cstdlib>
+#include <cstring>
+#include <climits> /* SHRT_MAX */
 
 #ifdef HAVE_AGL
 #include <AGL/agl.h>
@@ -272,7 +272,7 @@ static int COIN_USE_AGL = -1;
 /* Sanity checks for enum extension value assumed to be equal to the
  * final / "proper" / standard OpenGL enum values. (If not, we could
  * end up with hard-to-find bugs because of mismatches with the
- * compiled values versus the run-time values.)
+ * compiled values versus the runtime values.)
  *
  * This doesn't really _fix_ anything, it is just meant as an aid to
  * smoke out platforms where we're getting unexpected enum values.
@@ -767,7 +767,7 @@ coin_glglue_extension_available(const char * extensions, const char * ext)
   start = extensions;
   extlen = strlen(ext);
 
-  while (1) {
+  while (start) {
     const char * where = strstr(start, ext);
     if (!where) goto done;
 
@@ -951,9 +951,9 @@ glglue_resolve_symbols(cc_glglue * w)
   */
   /*
      FIXME: we've found a bug prevalent in drivers for the "Intel
-     Solano" graphcis chipset / driver. It manifests itself in the way
+     Solano" graphics chipset / driver. It manifests itself in the way
      that visual artifacts are seen when multi-textured polygons are
-     partly outside the canvas view.
+     partially outside the canvas view.
 
      The SoGuiExamples/nodes/textureunit example can be used to
      reproduce the error. The driver info from one confirmed affected
@@ -1974,7 +1974,7 @@ glglue_resolve_symbols(cc_glglue * w)
   }
 
   /*
-     Option to disable FBO feature even if it's available.
+     Option to disable FBO feature even if it is available.
      FIXME: FBO rendering fails in at least one application. To fix it properly
      we need to reproduce this bug in a minimal testcase. jkg, 2007-09-28
   */
@@ -2187,7 +2187,7 @@ glglue_check_driver(const char * vendor, const char * renderer,
     ------8<---- [snip] -----------8<---- [snip] -----
 
     I observe a bit of strange behaviour on my NT4 systems. I have an
-    appliction which uses the the following bit of code:
+    appliction which uses the following bit of code:
 
     // Define line width
     SoDrawStyle *drawStyle = new SoDrawStyle;
@@ -2245,11 +2245,11 @@ glglue_check_driver(const char * vendor, const char * renderer,
     ------8<---- [snip] -----------8<---- [snip] -----
 
     [The client] works with two screens. One of the screen works as it
-    should, while the otherone has erronious apperance (see uploaded
+    should, while the other one has erroneous appearance (see uploaded
     image). The errors are the stripes on the texture (It should be
-    one continious texture). The texture is wrapped on a rectangle
+    one continuous texture). The texture is wrapped on a rectangle
     (i.e. two large triangles). It is not only the OpenGl part of the
-    window that is weired.  Some buttons are missing and other buttons
+    window that is weird.  Some buttons are missing and other buttons
     have wrong colors++.
 
     ------8<---- [snip] -----------8<---- [snip] -----
@@ -2421,50 +2421,50 @@ cc_glglue_instance(int contextid)
     gi->rendererstr = (const char *)glGetString(GL_RENDERER);
     gi->extensionsstr = (const char *)glGetString(GL_EXTENSIONS);
 
-	/* Randall O'Reilly reports that the above call is deprecated from OpenGL 3.0
-	   onwards and may, particularly on some Linux systems, return NULL.
+    /* Randall O'Reilly reports that the above call is deprecated from OpenGL 3.0
+       onwards and may, particularly on some Linux systems, return NULL.
 
-	   The recommended method is to use glGetStringi to get each string in turn.
-	   The following code, supplied by Randall, implements this to end up with the
-	   same result as the old method.
-	*/
-	if (gi->extensionsstr == NULL) {
-	  COIN_PFNGLGETSTRINGIPROC glGetStringi = NULL;
-	  glGetStringi = (COIN_PFNGLGETSTRINGIPROC)cc_glglue_getprocaddress(gi, "glGetStringi");
-	  if (glGetStringi != NULL) {
-	    GLint num_strings = 0;
-		glGetIntegerv(GL_NUM_EXTENSIONS, &num_strings);
-		if (num_strings > 0) {
-		  int buffer_size = 1024;
-		  char *ext_strings_buffer = (char *)malloc(buffer_size * sizeof (char));
-		  int buffer_pos = 0;
-		  for (int i_string = 0 ; i_string < num_strings ; i_string++) {
-			const char * extension_string = (char *)glGetStringi (GL_EXTENSIONS, i_string);
-			int extension_string_length = strlen(extension_string);
-			if (buffer_pos + extension_string_length + 1 > buffer_size) {
-			  buffer_size += 1024;
-			  ext_strings_buffer = (char *)realloc(ext_strings_buffer, buffer_size * sizeof (char));
-			}
-			strcpy(ext_strings_buffer + buffer_pos, extension_string);
-			buffer_pos += extension_string_length;
-			ext_strings_buffer[buffer_pos++] = ' '; // space separated, overwrites NULL
-		  }
-		  ext_strings_buffer[++buffer_pos] = '\0'; // NULL terminate
-		  gi->extensionsstr = ext_strings_buffer;
-		  // FIXME: ext_strings_buffer needs to be freed
-		} else {
-		  cc_debugerror_postwarning ("cc_glglue_instance",
-			                         "glGetIntegerv(GL_NUM_EXTENSIONS) did not return a value, "
-									 "so unable to get extensions for this GL driver, ",
-								     "version: %s, vendor: %s", gi->versionstr, gi->vendorstr);
-		}
-	  } else {
-		cc_debugerror_postwarning ("cc_glglue_instance",
-			                       "glGetString(GL_EXTENSIONS) returned null, but glGetStringi "
-								   "procedure not found, so unable to get extensions for this GL driver, "
-								   "version: %s, vendor: %s", gi->versionstr, gi->vendorstr);
-	  }
-	}
+       The recommended method is to use glGetStringi to get each string in turn.
+       The following code, supplied by Randall, implements this to end up with the
+       same result as the old method.
+    */
+    if (gi->extensionsstr == NULL) {
+      COIN_PFNGLGETSTRINGIPROC glGetStringi = NULL;
+      glGetStringi = (COIN_PFNGLGETSTRINGIPROC)cc_glglue_getprocaddress(gi, "glGetStringi");
+      if (glGetStringi != NULL) {
+        GLint num_strings = 0;
+        glGetIntegerv(GL_NUM_EXTENSIONS, &num_strings);
+        if (num_strings > 0) {
+          int buffer_size = 1024;
+          char *ext_strings_buffer = (char *)malloc(buffer_size * sizeof (char));
+          int buffer_pos = 0;
+          for (int i_string = 0 ; i_string < num_strings ; i_string++) {
+            const char * extension_string = (char *)glGetStringi (GL_EXTENSIONS, i_string);
+            int extension_string_length = (int)strlen(extension_string);
+            if (buffer_pos + extension_string_length + 1 > buffer_size) {
+              buffer_size += 1024;
+              ext_strings_buffer = (char *)realloc(ext_strings_buffer, buffer_size * sizeof (char));
+            }
+            strcpy(ext_strings_buffer + buffer_pos, extension_string);
+            buffer_pos += extension_string_length;
+            ext_strings_buffer[buffer_pos++] = ' '; // Space separated, overwrites NULL.
+          }
+          ext_strings_buffer[++buffer_pos] = '\0';  // NULL terminate.
+          gi->extensionsstr = ext_strings_buffer;   // Handing over ownership, don't free here.
+        } else {
+          cc_debugerror_postwarning ("cc_glglue_instance",
+                                     "glGetIntegerv(GL_NUM_EXTENSIONS) did not return a value, "
+                                     "so unable to get extensions for this GL driver, ",
+                                     "version: %s, vendor: %s", gi->versionstr, gi->vendorstr);
+        }
+      } else {
+        cc_debugerror_postwarning ("cc_glglue_instance",
+                                   "glGetString(GL_EXTENSIONS) returned null, but glGetStringi "
+                                   "procedure not found, so unable to get extensions for this GL driver, "
+                                   "version: %s, vendor: %s", gi->versionstr, gi->vendorstr);
+      }
+    }
+
     /* read some limits */
 
     glGetIntegerv(GL_MAX_TEXTURE_SIZE, &gltmp);
@@ -2619,7 +2619,7 @@ cc_glglue_isdirect(const cc_glglue * w)
 
 
 /*!
-  Whether glPolygonOffset() is availble or not: either we're on OpenGL
+  Whether glPolygonOffset() is available or not: either we're on OpenGL
   1.1 or the GL_EXT_polygon_offset extension is available.
 
   Method then available for use:
@@ -2735,7 +2735,7 @@ cc_glglue_glPolygonOffset(const cc_glglue * w,
     if (!isbias) units = 0.000001f;
 
     /* FIXME: shouldn't there be an attempt to convert the other way
-       around too? Ie, if it *is* a "bias" value and we're using the
+       around too? I.e., if it *is* a "bias" value and we're using the
        "real" 1.1 glPolygonOffset() function, try to convert it into a
        valid "units" value? 20020919 mortene. */
   }
@@ -4453,7 +4453,7 @@ cc_glglue_glXGetCurrentDisplay(const cc_glglue * w)
 /*** Offscreen buffer handling. *********************************************/
 
 /*
-  Below is a stand-alone example that can be compiled and linked with
+  Below is a standalone example that can be compiled and linked with
   the Coin library for testing that the context handling interface
   works:
  */
@@ -4461,8 +4461,8 @@ cc_glglue_glXGetCurrentDisplay(const cc_glglue * w)
   #include <Inventor/C/glue/gl.h>
   #include <Inventor/elements/SoGLCacheContextElement.h>
   #include <Inventor/SoDB.h>
-  #include <assert.h>
-  #include <stdio.h>
+  #include <cassert>
+  #include <cstdio>
 
   int
   main(void)
@@ -4691,7 +4691,7 @@ cc_glglue_context_max_dimensions(unsigned int * width, unsigned int * height)
        dimension settings to be sure.
     */
 
-    /* FIXME: should make a stand-alone test-case (not dependent
+    /* FIXME: should make a standalone test-case (not dependent
        on Coin, only GL, GLX & X11) that demonstrates this problem
        for a) submitting to <linux-bugs@nvidia.com>, and b) to
        test which versions of the NVidia drivers are affected --
@@ -4765,7 +4765,7 @@ cc_glglue_context_max_dimensions(unsigned int * width, unsigned int * height)
      where the driver obviously does not take into account the amount
      of memory needed to actually allocate such a large buffer.
 
-     This problem has at least been observed with the MS Windows XP
+     This problem has at least been observed with the Microsoft Windows XP
      software OpenGL renderer, which reports a maximum viewport size
      of 16k x 16k pixels.
 

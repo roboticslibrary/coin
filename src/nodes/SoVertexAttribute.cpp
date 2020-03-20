@@ -57,10 +57,10 @@
 #include "elements/SoVertexAttributeData.h"
 
 /*!
-  \class SoVertexAttribute Inventor/nodes/SoVertexAttribute.h
+  \class SoVertexAttribute SoVertexAttribute.h Inventor/nodes/SoVertexAttribute.h
   \brief A generic node for providing GL vertex attributes of various types.
 
-  The SoVertexAttribute nodes is used with the SoShaderProgram node to
+  The SoVertexAttribute nodes are used with the SoShaderProgram node to
   send vertex attributes to the vertex shader.
 
   \verbatim
@@ -142,6 +142,9 @@ SoVertexAttribute::getFieldData(void) const
   return PRIVATE(this)->fielddata.get();
 }
 
+/*!
+  Creates a new instance of the class type corresponding to the SoType object.
+*/
 void *
 SoVertexAttribute::createInstance(void)
 {
@@ -152,6 +155,9 @@ SoVertexAttribute::createInstance(void)
 
 SoType SoVertexAttribute::classTypeId STATIC_SOTYPE_INIT;
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoVertexAttribute::initClass(void)
 {
@@ -165,6 +171,9 @@ SoVertexAttribute::initClass(void)
   SO_ENABLE(SoGLRenderAction, SoGLVertexAttributeElement);
 }
 
+/*!
+  Constructor.
+*/
 SoVertexAttribute::SoVertexAttribute(void)
 {
   // We don't use SO_NODE_INTERNAL_CONSTRUCTOR(SoVertexAttribute) here because
@@ -192,12 +201,18 @@ SoVertexAttribute::SoVertexAttribute(void)
   PRIVATE(this)->attributedata->vbo = NULL;
 }
 
+/*!
+  Destructor.
+*/
 SoVertexAttribute::~SoVertexAttribute(void)
 {
   delete PRIVATE(this)->attributedata;
 }
 
-// Doc in superclass
+/*!
+  This static method returns the SoType object associated with
+  objects of this class.
+*/
 SoType
 SoVertexAttribute::getClassTypeId(void)
 {
@@ -254,7 +269,7 @@ SoVertexAttribute::GLRender(SoGLRenderAction * action)
   }
 
   // check if there was an SoShaderProgram node before this node in
-  // the scenegraph
+  // the scene graph
   SoGLShaderProgram * shaderprogram =
     static_cast<SoGLShaderProgram *>(SoGLShaderProgramElement::get(state));
 

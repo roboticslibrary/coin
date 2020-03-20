@@ -43,10 +43,10 @@
 
 #include <Inventor/misc/SoGLCubeMapImage.h>
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <assert.h>
+#include <cstdlib>
+#include <cstdio>
+#include <cstring>
+#include <cassert>
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -197,6 +197,7 @@ SoGLCubeMapImage::~SoGLCubeMapImage()
   delete PRIVATE(this);
 }
 
+// Doc in superclass.
 void
 SoGLCubeMapImage::unref(SoState * state)
 {
@@ -209,7 +210,7 @@ SoGLCubeMapImage::unref(SoState * state)
 }
 
 /*!
-  \COININTERNAL
+  This static method initializes static data for the SoGLCubeMapImage class.
 */
 void
 SoGLCubeMapImage::initClass(void)
@@ -223,9 +224,9 @@ SoGLCubeMapImage::initClass(void)
   coin_atexit((coin_atexit_f*)SoGLCubeMapImage::cleanupClass, CC_ATEXIT_NORMAL);
 }
 
-//
-// called by atexit()
-//
+/*!
+  This static method cleans up static data for the SoGLCubeMapImage class.
+*/
 void
 SoGLCubeMapImage::cleanupClass(void)
 {
@@ -236,7 +237,10 @@ SoGLCubeMapImage::cleanupClass(void)
   SoGLCubeMapImageP::classTypeId STATIC_SOTYPE_INIT;
 }
 
-// Doc in superclass.
+/*!
+  This static method returns the SoType object associated with
+  objects of this class.
+*/
 SoType
 SoGLCubeMapImage::getClassTypeId(void)
 {

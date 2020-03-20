@@ -33,6 +33,7 @@
 /*!
   \class SoDecimationTypeElement Inventor/elements/SoDecimationTypeElement.h
   \brief The SoDecimationTypeElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -50,8 +51,19 @@
 SO_ELEMENT_SOURCE(SoDecimationTypeElement);
 
 /*!
-  This static method initializes static data for the
-  SoDecimationTypeElement class.
+  \fn static SoType SoDecimationTypeElement::getClassTypeId(void)
+
+  This static method returns the class type.
+*/
+
+/*!
+  \fn static int SoDecimationTypeElement::getClassStackIndex(void)
+
+  This static method returns the state stack index for the class.
+*/
+
+/*!
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -61,7 +73,7 @@ SoDecimationTypeElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoDecimationTypeElement::~SoDecimationTypeElement(void)

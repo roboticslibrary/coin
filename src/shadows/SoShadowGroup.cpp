@@ -33,9 +33,10 @@
 /*!
   \class SoShadowGroup SoShadowGroup.h FXViz/nodes/SoShadowGroup.h
   \brief The SoShadowGroup node is a group node used for shadow rendering.
+
   \ingroup fxviz
 
-  Children of this node can recieve shadows, and cast shadows on other children.
+  Children of this node can receive shadows, and cast shadows on other children.
   Use the SoShadowStyle node to control shadow casters and shadow receivers.
 
   Please note that all shadow casters will be rendered twice. Once to
@@ -45,7 +46,7 @@
 
   The algorithm used to render the shadows is Variance Shadow Maps
   (http://www.punkuser.net/vsm/). As an extra bonus, all geometry
-  rendered with shadows can also be rendered with per fragment phong
+  rendered with shadows can also be rendered with per fragment Phong
   lighting.
 
   This node will search its subgraph and calculate shadows for all
@@ -163,8 +164,8 @@
   \var SoSFFloat SoShadowGroup::quality
 
   Can be used to tune the shader program complexity. A higher value
-  will mean that more calculations are done per-fragment instead of
-  per-vertex. Default value is 0.5.
+  will mean that more calculations are done per fragment instead of
+  per vertex. Default value is 0.5.
 
 */
 
@@ -199,7 +200,7 @@
 /*!
   \var SoSFEnum SoShadowGroup::visibilityFlag
 
-  Determines how visibilityRadius and visibilitNearRadius is used to
+  Determines how visibilityRadius and visibilitNearRadius are used to
   calculate near and far clipping planes for the shadow volume.
 */
 
@@ -212,14 +213,14 @@
 /*!
   SoShadowGroup::VisibilityFlag SoShadowGroup::LONGEST_BBOX_EDGE_FACTOR
 
-  The longest bbox edge will be used to determine near and far clipping planes.
+  The longest bounding box edge will be used to determine near and far clipping planes.
 
 */
 
 /*!
   SoShadowGroup::VisibilityFlag SoShadowGroup::PROJECTED_BBOX_DEPTH_FACTOR
 
-  The bbox depth (projected to face the camera) will be used to calculate the clipping planes.
+  The bounding box depth (projected to face the camera) will be used to calculate the clipping planes.
 
 */
 
@@ -232,7 +233,7 @@
   Used to add shadow border smoothing. This is currently done as a
   post processing step on the shadow map. The algorithm used is Gauss
   Smoothing, but in the future we'll probably change this, and use a
-  summed area sampling merhod instead. The value should be a
+  summed area sampling method instead. The value should be a
   number between 0 (no smoothing), and 1 (max smoothing).
 
   If you want to enable smoothing, choosing a low value (~0.1) works
@@ -275,7 +276,7 @@
 #include <FXViz/nodes/SoShadowGroup.h>
 #include "coindefs.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <Inventor/nodes/SoSpotLight.h>
 #include <Inventor/nodes/SoPointLight.h>
@@ -510,7 +511,7 @@ public:
     unsigned char tmp[2];
     tmp[0] = (unsigned char)(val >> 8);
     tmp[1] = (unsigned char)(val & 0xff);
-    return fwrite(&tmp, 2, 1, fp);
+    return (int)fwrite(&tmp, 2, 1, fp);
   }
 
   int dumpBitmap(const char * filename) const {
@@ -551,7 +552,7 @@ public:
 
     memset(buf, 0, 500);
     buf[7] = 255; /* set maximum pixel value to 255 */
-    strcpy((char *)buf+8, "http://www.coin3d.org");
+    strcpy((char *)buf+8, "https://github.com/coin3d/");
     fwrite(buf, 1, 500, fp);
 
     tmpbuf = (unsigned char *) malloc(width);
@@ -699,7 +700,7 @@ public:
     this->shadowlights.truncate(0);
   }
 
-  static bool supported(const cc_glglue * glctx, SbString reason);
+  static bool supported(const cc_glglue * glctx, SbString& reason);
 
   static void shader_enable_cb(void * closure,
                                SoState * state,
@@ -794,7 +795,9 @@ SoShadowGroup::~SoShadowGroup()
   delete PRIVATE(this);
 }
 
-// Doc from superclass.
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoShadowGroup::initClass(void)
 {
@@ -919,7 +922,7 @@ SoShadowGroup::notify(SoNotList * nl)
 
   By default, the SoShadowGroup node will search its subgraph for new
   spot lights whenever a group node under it is touched. However, this
-  might lead to bad performance in some cases so it's possible to
+  might lead to bad performance in some cases so it is possible to
   disable this feature using this method. If you do disable this
   feature, make sure you enable it again before inserting a new spot
   light, or insert all spot lights in the scene graph before you
@@ -1507,7 +1510,6 @@ SoShadowGroupP::setVertexShader(SoState * state)
   }
   for (i = 0; i < numshadowlights; i++) {
     SoShadowLightCache * cache = this->shadowlights[i];
-    SbString str;
     str.sprintf("shadowCoord%d = gl_TextureMatrix[%d] * pos;\n", i, cache->texunit); // in light space
     gen.addMainStatement(str);
 
@@ -1642,9 +1644,9 @@ SoShadowGroupP::setFragmentShader(SoState * state)
     }
   }
 
-  SbString str;
   if (numshadowlights) {
 #ifdef DISTRIBUTE_FACTOR
+    SbString str;
     str.sprintf("const float DISTRIBUTE_FACTOR = %.1f;\n", DISTRIBUTE_FACTOR);
     gen.addDeclaration(str, FALSE);
 #endif
@@ -1900,8 +1902,9 @@ SoShadowGroupP::setFragmentShader(SoState * state)
   }
   SoShaderParameter1i * texmap =
     new SoShaderParameter1i();
-  str.sprintf("textureMap0");
-  texmap->name = str;
+  SbString str0;
+  str0.sprintf("textureMap0");
+  texmap->name = str0;
   texmap->value = 0;
 
   SoShaderParameter1i * texmap1 = NULL;
@@ -1921,7 +1924,8 @@ SoShadowGroupP::setFragmentShader(SoState * state)
       this->texunit1->value = 0;
     }
     texmap1 = new SoShaderParameter1i();
-    str.sprintf("textureMap1");
+	SbString str;
+	str.sprintf("textureMap1");
     texmap1->name = str;
     texmap1->value = 1;
   }
@@ -2102,7 +2106,7 @@ SoShadowGroupP::shader_enable_cb(void * closure,
 }
 
 bool
-SoShadowGroupP::supported(const cc_glglue * glue, SbString reason)
+SoShadowGroupP::supported(const cc_glglue * glue, SbString& reason)
 {
   const bool supported =
     cc_glglue_glversion_matches_at_least(glue, 2, 0, 0) &&

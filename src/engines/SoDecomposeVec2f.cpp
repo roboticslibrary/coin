@@ -33,6 +33,7 @@
 /*!
   \class SoDecomposeVec2f SoDecomposeVec2f.h Inventor/engines/SoDecomposeVec2f.h
   \brief The SoDecomposeVec2f class is used to decompose 2D vectors into two floats.
+
   \ingroup engines
 */
 
@@ -70,7 +71,9 @@ SoDecomposeVec2f::SoDecomposeVec2f()
   SO_ENGINE_ADD_OUTPUT(y,SoMFFloat);
 }
 
-// Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoDecomposeVec2f::initClass()
 {

@@ -33,6 +33,7 @@
 /*!
   \class SoNurbsCurve SoNurbsCurve.h Inventor/nodes/SoNurbsCurve.h
   \brief The SoNurbsCurve class is a node for representing smooth curves.
+
   \ingroup nodes
 
   A general explanation of NURBS is beyond the scope of the Coin
@@ -43,10 +44,10 @@
   "The Inventor Mentor".
 
   Note that knot values should be specified as [0, 1, 2,..., a] rather
-  than [0, 1/a, 2/a,..., 1] to avoid tesselation errors due to
+  than [0, 1/a, 2/a,..., 1] to avoid tessellation errors due to
   floating point precision problems. (Even if the rendered curve
   <i>looks</i> correct, such issues might surface when e.g. doing
-  picking, since the tesselated representation used internally is not
+  picking, since the tessellated representation used internally is not
   the same as the one you see rendered by OpenGL on-screen.)
 
   Each control point has a weight that changes the shape of its basis function.
@@ -137,7 +138,7 @@
   The knot vector.
 
   Values should be specified as [0, 1, 2,..., a] rather than [0, 1/a,
-  2/a,..., 1] to avoid tesselation errors due to floating point
+  2/a,..., 1] to avoid tessellation errors due to floating point
   precision problems.
 */
 
@@ -197,7 +198,9 @@ SoNurbsCurve::~SoNurbsCurve()
   delete PRIVATE(this);
 }
 
-// Doc from parent class.
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoNurbsCurve::initClass(void)
 {

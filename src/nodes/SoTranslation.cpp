@@ -33,6 +33,7 @@
 /*!
   \class SoTranslation SoTranslation.h Inventor/nodes/SoTranslation.h
   \brief The SoTranslation class is a node type for specifying geometry translations.
+
   \ingroup nodes
 
   For simply translating some geometry in a scene graph, you can use
@@ -85,6 +86,9 @@ SoTranslation::~SoTranslation()
 }
 
 // Doc in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoTranslation::initClass(void)
 {

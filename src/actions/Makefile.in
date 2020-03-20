@@ -45,46 +45,7 @@ subdir = src/actions
 DIST_COMMON = $(libactionsinc_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/../simacros/bin/../cfg/m4/bz2.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_debug.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_exceptions.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_functionname.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_profiling.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_rtti.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_symbols.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compile_warnings.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/compiler_capabilities.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/configuration_summary.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/cpp_search_order.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/dates.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/dl.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/doxygen_detection.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/errors.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/exit.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/fontconfig.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/freetype.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/gendsp.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/general.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/mac.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/macro_quoting.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/mathlib.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/misc_compiler.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/nprintf.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/openal.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/opengl.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/packagemaker.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/project.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/pthread.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/sim.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/simage.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/sourcedir.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/spidermonkey.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/uniqify_option_list.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/w32api.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/wrapmsvc.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/x11.m4 \
-	$(top_srcdir)/../simacros/bin/../cfg/m4/zlib.m4 \
-	$(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/cfg/mkinstalldirs
@@ -95,7 +56,7 @@ LIBRARIES = $(noinst_LIBRARIES)
 ARFLAGS = cru
 actions_lst_AR = $(AR) $(ARFLAGS)
 actions_lst_LIBADD =
-am__actions_lst_SOURCES_DIST = SoAction.cpp \
+am__actions_lst_SOURCES_DIST = SoAction.cpp SoActionP.cpp \
 	SoBoxHighlightRenderAction.cpp SoCallbackAction.cpp \
 	SoGLRenderAction.cpp SoGetBoundingBoxAction.cpp \
 	SoGetMatrixAction.cpp SoGetPrimitiveCountAction.cpp \
@@ -104,7 +65,7 @@ am__actions_lst_SOURCES_DIST = SoAction.cpp \
 	SoSearchAction.cpp SoSimplifyAction.cpp SoToVRMLAction.cpp \
 	SoToVRML2Action.cpp SoWriteAction.cpp SoAudioRenderAction.cpp \
 	all-actions-cpp.cpp
-am__objects_1 = SoAction.$(OBJEXT) \
+am__objects_1 = SoAction.$(OBJEXT) SoActionP.$(OBJEXT) \
 	SoBoxHighlightRenderAction.$(OBJEXT) \
 	SoCallbackAction.$(OBJEXT) SoGLRenderAction.$(OBJEXT) \
 	SoGetBoundingBoxAction.$(OBJEXT) SoGetMatrixAction.$(OBJEXT) \
@@ -120,7 +81,7 @@ am__objects_2 = all-actions-cpp.$(OBJEXT)
 @HACKING_COMPACT_BUILD_TRUE@am__objects_3 = $(am__objects_2)
 am_actions_lst_OBJECTS = $(am__objects_3)
 am__EXTRA_actions_lst_SOURCES_DIST = SoActionP.h SoSubActionP.h \
-	all-actions-cpp.cpp SoAction.cpp \
+	all-actions-cpp.cpp SoAction.cpp SoActionP.cpp \
 	SoBoxHighlightRenderAction.cpp SoCallbackAction.cpp \
 	SoGLRenderAction.cpp SoGetBoundingBoxAction.cpp \
 	SoGetMatrixAction.cpp SoGetPrimitiveCountAction.cpp \
@@ -133,7 +94,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libactionsincdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES) $(noinst_LTLIBRARIES)
 libactions_la_LIBADD =
-am__libactions_la_SOURCES_DIST = SoAction.cpp \
+am__libactions_la_SOURCES_DIST = SoAction.cpp SoActionP.cpp \
 	SoBoxHighlightRenderAction.cpp SoCallbackAction.cpp \
 	SoGLRenderAction.cpp SoGetBoundingBoxAction.cpp \
 	SoGetMatrixAction.cpp SoGetPrimitiveCountAction.cpp \
@@ -142,7 +103,7 @@ am__libactions_la_SOURCES_DIST = SoAction.cpp \
 	SoSearchAction.cpp SoSimplifyAction.cpp SoToVRMLAction.cpp \
 	SoToVRML2Action.cpp SoWriteAction.cpp SoAudioRenderAction.cpp \
 	all-actions-cpp.cpp
-am__objects_6 = SoAction.lo SoBoxHighlightRenderAction.lo \
+am__objects_6 = SoAction.lo SoActionP.lo SoBoxHighlightRenderAction.lo \
 	SoCallbackAction.lo SoGLRenderAction.lo \
 	SoGetBoundingBoxAction.lo SoGetMatrixAction.lo \
 	SoGetPrimitiveCountAction.lo SoHandleEventAction.lo \
@@ -155,7 +116,7 @@ am__objects_7 = all-actions-cpp.lo
 @HACKING_COMPACT_BUILD_TRUE@am__objects_8 = $(am__objects_7)
 am_libactions_la_OBJECTS = $(am__objects_8)
 am__EXTRA_libactions_la_SOURCES_DIST = SoActionP.h SoSubActionP.h \
-	all-actions-cpp.cpp SoAction.cpp \
+	all-actions-cpp.cpp SoAction.cpp SoActionP.cpp \
 	SoBoxHighlightRenderAction.cpp SoCallbackAction.cpp \
 	SoGLRenderAction.cpp SoGetBoundingBoxAction.cpp \
 	SoGetMatrixAction.cpp SoGetPrimitiveCountAction.cpp \
@@ -166,17 +127,17 @@ am__EXTRA_libactions_la_SOURCES_DIST = SoActionP.h SoSubActionP.h \
 libactions_la_OBJECTS = $(am_libactions_la_OBJECTS)
 libactions@SUFFIX@LINKHACK_la_LIBADD =
 am__libactions@SUFFIX@LINKHACK_la_SOURCES_DIST = SoAction.cpp \
-	SoBoxHighlightRenderAction.cpp SoCallbackAction.cpp \
-	SoGLRenderAction.cpp SoGetBoundingBoxAction.cpp \
-	SoGetMatrixAction.cpp SoGetPrimitiveCountAction.cpp \
-	SoHandleEventAction.cpp SoLineHighlightRenderAction.cpp \
-	SoPickAction.cpp SoRayPickAction.cpp SoReorganizeAction.cpp \
-	SoSearchAction.cpp SoSimplifyAction.cpp SoToVRMLAction.cpp \
-	SoToVRML2Action.cpp SoWriteAction.cpp SoAudioRenderAction.cpp \
-	all-actions-cpp.cpp
+	SoActionP.cpp SoBoxHighlightRenderAction.cpp \
+	SoCallbackAction.cpp SoGLRenderAction.cpp \
+	SoGetBoundingBoxAction.cpp SoGetMatrixAction.cpp \
+	SoGetPrimitiveCountAction.cpp SoHandleEventAction.cpp \
+	SoLineHighlightRenderAction.cpp SoPickAction.cpp \
+	SoRayPickAction.cpp SoReorganizeAction.cpp SoSearchAction.cpp \
+	SoSimplifyAction.cpp SoToVRMLAction.cpp SoToVRML2Action.cpp \
+	SoWriteAction.cpp SoAudioRenderAction.cpp all-actions-cpp.cpp
 am_libactions@SUFFIX@LINKHACK_la_OBJECTS = $(am__objects_8)
 am__EXTRA_libactions@SUFFIX@LINKHACK_la_SOURCES_DIST = SoActionP.h \
-	SoSubActionP.h all-actions-cpp.cpp SoAction.cpp \
+	SoSubActionP.h all-actions-cpp.cpp SoAction.cpp SoActionP.cpp \
 	SoBoxHighlightRenderAction.cpp SoCallbackAction.cpp \
 	SoGLRenderAction.cpp SoGetBoundingBoxAction.cpp \
 	SoGetMatrixAction.cpp SoGetPrimitiveCountAction.cpp \
@@ -189,7 +150,8 @@ libactions@SUFFIX@LINKHACK_la_OBJECTS =  \
 depcomp = $(SHELL) $(top_srcdir)/cfg/depcomp
 am__depfiles_maybe = depfiles
 @AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/SoAction.Plo \
-@AMDEP_TRUE@	./$(DEPDIR)/SoAction.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/SoAction.Po ./$(DEPDIR)/SoActionP.Plo \
+@AMDEP_TRUE@	./$(DEPDIR)/SoActionP.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/SoAudioRenderAction.Plo \
 @AMDEP_TRUE@	./$(DEPDIR)/SoAudioRenderAction.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/SoBoxHighlightRenderAction.Plo \
@@ -266,6 +228,8 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+BOOST_CPPFLAGS = @BOOST_CPPFLAGS@
+BOOST_LDFLAGS = @BOOST_LDFLAGS@
 BUILD_3DS_CAPABILITIES_FALSE = @BUILD_3DS_CAPABILITIES_FALSE@
 BUILD_3DS_CAPABILITIES_TRUE = @BUILD_3DS_CAPABILITIES_TRUE@
 BUILD_HTMLPAGES_FALSE = @BUILD_HTMLPAGES_FALSE@
@@ -511,6 +475,7 @@ LinkHackSources = \
 
 RegularSources = \
 	SoAction.cpp \
+	SoActionP.cpp \
 	SoBoxHighlightRenderAction.cpp \
 	SoCallbackAction.cpp \
 	SoGLRenderAction.cpp \
@@ -658,6 +623,8 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SoAction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SoAction.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SoActionP.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SoActionP.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SoAudioRenderAction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SoAudioRenderAction.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SoBoxHighlightRenderAction.Plo@am__quote@

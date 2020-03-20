@@ -61,7 +61,7 @@
 
 #include <Inventor/VRMLnodes/SoVRMLVertexLine.h>
 
-#include <stddef.h>
+#include <cstddef>
 
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
 #include <Inventor/actions/SoGLRenderAction.h>
@@ -70,7 +70,9 @@
 
 SO_NODE_ABSTRACT_SOURCE(SoVRMLVertexLine);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLVertexLine::initClass(void)
 {

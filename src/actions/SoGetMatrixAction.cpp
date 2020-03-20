@@ -33,6 +33,7 @@
 /*!
   \class SoGetMatrixAction SoGetMatrixAction.h Inventor/actions/SoGetMatrixAction.h
   \brief The SoGetMatrixAction class is an action for accumulating the transformation matrix of a subgraph.
+
   \ingroup actions
 
   This action makes it easy to calculate and convert to and from the
@@ -49,7 +50,7 @@
 
   \code
 
-  // First get hold of an SoPath through the scenegraph down to the
+  // First get hold of an SoPath through the scene graph down to the
   // node ("mynode") you want to query about its current world space
   // transformation(s).
 
@@ -104,7 +105,9 @@ public:
 SO_ACTION_SOURCE(SoGetMatrixAction);
 
 
-// Overridden from parent.
+/*!
+  \copybrief SoAction::initClass(void)
+*/
 void
 SoGetMatrixAction::initClass(void)
 {

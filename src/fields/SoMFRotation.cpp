@@ -33,10 +33,11 @@
 /*!
   \class SoMFRotation SoMFRotation.h Inventor/fields/SoMFRotation.h
   \brief The SoMFRotation class is a container for SbRotation values.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store multiple rotation definitions.
+  need to store multiple rotation definitions.
 
   \sa SoSFRotation
 */
@@ -56,7 +57,9 @@ SO_MFIELD_SOURCE(SoMFRotation, SbRotation, const SbRotation &);
 
 // *************************************************************************
 
-// Override parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFRotation::initClass(void)
 {

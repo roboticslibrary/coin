@@ -33,10 +33,11 @@
 /*!
   \class SoSFBool SoSFBool.h Inventor/fields/SoSFBool.h
   \brief The SoSFBool class is a container for an SbBool value.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a boolean on/off or TRUE/FALSE value, like for
+  need to store a boolean on/off or TRUE/FALSE value, like for
   instance as the "on" field of the SoPointLight, SoSpotLight and
   SoDirectionalLight node classes.
 
@@ -61,7 +62,9 @@ SO_SFIELD_SOURCE(SoSFBool, SbBool, SbBool);
 
 // *************************************************************************
 
-// Override from parent.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFBool::initClass(void)
 {

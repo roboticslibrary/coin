@@ -31,7 +31,7 @@
 \**************************************************************************/
 
 // The purpose of the class in this file is to try to aid in detecting
-// when multiple Coin DLLs are loaded into the same run-time process
+// when multiple Coin DLLs are loaded into the same runtime process
 // image under Windows.
 //
 // This is useful because linking with multiple instances of Coin, for
@@ -47,8 +47,8 @@
 
 #include "CoinStaticObjectInDLL.h"
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -151,7 +151,7 @@ CoinStaticObjectInDLL::CoinStaticObjectInDLL(void)
                "Detected two instances of the Coin library in the same\n"
                "process image!!\n\n"
 
-               "Application can not continue without errors, and\n"
+               "Application cannot continue without errors, and\n"
                "will exit when you quit this dialog box.\n\n"
 
                "This is an indication of a serious problem with the\n"
@@ -166,13 +166,12 @@ CoinStaticObjectInDLL::CoinStaticObjectInDLL(void)
 
                "The depends.exe program that comes with VisualC++ is a\n"
                "good tool for tracking things like this down. Make sure\n"
-               "you inspect the complete path of each loaded dll.\n\n"
+               "you inspect the complete path of each loaded DLL.\n\n"
 
                "If you are completely lost as how to find and fix\n"
                "this problem on your own, try the\n"
-               "<coin-discuss@coin3d.org> mailing list (or the support\n"
-               "address <coin-support@coin3d.org> if you hold a Coin\n"
-               "Professional Edition License).\n",
+               "<https://groups.google.com/forum/#!forum/coin3d-discuss>\n"
+               "mailing list (or the support address <coin-support@coin3d.org>).\n",
 
 
                "Fatal error!", MB_OK | MB_ICONERROR | MB_TASKMODAL);

@@ -39,6 +39,7 @@
 /*!
   \class SoAppearanceKit SoAppearanceKit.h Inventor/nodekits/SoAppearanceKit.h
   \brief The SoAppearanceKit class is a node kit catalog that collects miscellaneous appearance node types.
+
   \ingroup nodekits
 
   \NODEKIT_PRE_DIAGRAM
@@ -120,7 +121,9 @@ SoAppearanceKit::~SoAppearanceKit()
 {
 }
 
-// Documented in superclass.
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoAppearanceKit::initClass(void)
 {

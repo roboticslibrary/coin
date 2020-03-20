@@ -40,6 +40,7 @@
 /*!
   \class SoMFNode SoMFNode.h Inventor/fields/SoMFNode.h
   \brief The SoMFNode class is a container for nodes.
+
   \ingroup fields
 
   This field container stores an array of pointers to nodes. It takes
@@ -84,13 +85,15 @@ SO_MFIELD_REQUIRED_SOURCE(SoMFNode);
 SO_MFIELD_CONSTRUCTOR_SOURCE(SoMFNode);
 SO_MFIELD_MALLOC_SOURCE(SoMFNode, SoNode *);
 // Note that we're using the MALLOC versions (which just does
-// bit-copying) of the macros, and not the the ALLOC versions (which
+// bit-copying) of the macros, and not the ALLOC versions (which
 // allocates with "new", so constructors are run). The reason for this
-// is that it's node/engine/path *pointers* that are simply bit-wise
+// is that its node/engine/path *pointers* that are simply bit-wise
 // copied.
 
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFNode::initClass(void)
 {
@@ -267,7 +270,7 @@ void
 SoMFNode::deleteValues(int start, int numarg)
 {
   // Note: this function overrides the one in SoMField, so if you do
-  // any changes here, take a look at that method aswell.
+  // any changes here, take a look at that method as well.
 
   if (numarg == -1) numarg = this->num - start;
   for (int i=start; i < start+numarg; i++) {
@@ -417,7 +420,7 @@ SoMFNode::countWriteRefs(SoOutput * out) const
 //    - copyFrom() is called (typically from SoFieldData::overlay())
 //    - copyFrom() calls operator=()
 //    - operator=() calls setValues()
-//    - we have a local copy (ie not from SoSubField.h) of setValues()
+//    - we have a local copy (i.e. not from SoSubField.h) of setValues()
 //      that sets up auditing and references the array items
 //
 // <mortene@sim.no>

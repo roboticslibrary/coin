@@ -39,10 +39,10 @@
 #define GLUWRAPPER_ASSUME_GLU 1
 #endif /* !HAVE_CONFIG_H */
 
-#include <assert.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
+#include <cassert>
+#include <cstdlib>
+#include <cstring>
+#include <cstdio>
 
 #include <Inventor/C/glue/dl.h>
 #include <Inventor/C/errors/debugerror.h>
@@ -52,7 +52,7 @@
 #include "threads/threadsutilp.h"
 
 /* need this before superglu.h, since that file includes GL/gl.h
-   without any windows.h, which may fail on MS Windows dev systems */
+   without any windows.h, which may fail on Microsoft Windows dev systems */
 #include <Inventor/system/gl.h>
 
 #ifdef HAVE_SUPERGLU
@@ -160,7 +160,7 @@ GLUWrapper_set_version(const GLubyte * versionstr)
                        "Invalid GLU versionstring: \"%s\"\n", versionstr);
   }
 
-  { /* Run-time help for debugging GLU problems on remote sites. */
+  { /* Runtime help for debugging GLU problems on remote sites. */
 #ifdef HAVE_SUPERGLU
     const SbBool superglu = TRUE;
 #else
@@ -195,7 +195,7 @@ GLUWrapper_set_version(const GLubyte * versionstr)
 
       cc_debugerror_postinfo("GLUWrapper_set_version",
                              "linking with GLU at %s",
-                             runtime ? "run-time" : "build-time ");
+                             runtime ? "runtime" : "build-time ");
     }
   }
 }
@@ -297,7 +297,7 @@ GLUWrapper_gluNurbsSurface(void * nurb, /* this is really of type "GLUnurbs *" *
   }
 
   cc_string_sprintf(&tmp,
-                    "(sKnotCount - sOrder) × (tKnotCount - tOrder) => %d control points\n",
+                    "(sKnotCount - sOrder) * (tKnotCount - tOrder) => %d control points\n",
                     (sKnotCount - sOrder) * (tKnotCount - tOrder));
   cc_string_append_string(&s, &tmp);
 
@@ -365,7 +365,7 @@ GLUWrapper(void)
 #ifdef GLU_RUNTIME_LINKING
 
   {
-    char * libname;
+    const char * libname;
 
 #ifndef GLU_IS_PART_OF_GL
 
@@ -373,7 +373,7 @@ GLUWrapper(void)
        Autoconf check? 20000930 mortene. */
     const char * possiblelibnames[] = {
       NULL, /* is set below */
-      /* MSWindows DLL name for the GLU library */
+      /* Microsoft Windows DLL name for the GLU library */
       "glu32",
 
       /* UNIX-style names */
@@ -390,7 +390,7 @@ GLUWrapper(void)
       GLU_libhandle = cc_dl_open(possiblelibnames[idx]);
       idx++;
     }
-    libname = (char *)possiblelibnames[idx-1];
+    libname = possiblelibnames[idx-1];
 
 #elif (defined HAVE_OPENGL_GLU_H)
 

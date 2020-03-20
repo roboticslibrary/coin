@@ -33,6 +33,7 @@
 /*!
   \class SoTriggerAny SoTriggerAny.h Inventor/engines/SoTriggerAny.h
   \brief The SoTriggerAny class is a fan-in engine for triggers.
+
   \ingroup engines
 
   When any one of the input triggers are "pulsed", any field connected
@@ -95,7 +96,9 @@
 
 SO_ENGINE_SOURCE(SoTriggerAny);
 
-// Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoTriggerAny::initClass(void)
 {

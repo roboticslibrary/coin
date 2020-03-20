@@ -33,10 +33,11 @@
 /*!
   \class SoSFMatrix SoSFMatrix.h Inventor/fields/SoSFMatrix.h
   \brief The SoSFMatrix class is a container for an SbMatrix.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a 4x4 matrix.
+  need to store a 4x4 matrix.
 
   Fields of this type stores their value to file as a set of 16
   floating point values, written from the matrix in row-major mode.
@@ -59,7 +60,9 @@ SO_SFIELD_SOURCE(SoSFMatrix, SbMatrix, const SbMatrix &);
 
 // *************************************************************************
 
-// Override from parent.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFMatrix::initClass(void)
 {

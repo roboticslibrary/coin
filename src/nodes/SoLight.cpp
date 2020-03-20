@@ -33,6 +33,7 @@
 /*!
   \class SoLight SoLight.h Inventor/nodes/SoLight.h
   \brief The SoLight class is the base class for light emitting nodes.
+
   \ingroup nodes
 
   This node type is abstract and does not in itself provide any light
@@ -54,7 +55,7 @@
 
   \code
       #include <Inventor/elements/SoGLLightIdElement.h>
-#include <Inventor/nodes/SoSubNodeP.h>
+      #include <Inventor/nodes/SoSubNodeP.h>
       // ...[snip]...
       int nrlights = SoGLLightIdElement::getMaxGLSources();
   \endcode
@@ -121,7 +122,9 @@ SoLight::~SoLight()
 {
 }
 
-// Doc from superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoLight::initClass(void)
 {

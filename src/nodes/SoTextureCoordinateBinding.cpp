@@ -33,6 +33,7 @@
 /*!
   \class SoTextureCoordinateBinding SoTextureCoordinateBinding.h Inventor/nodes/SoTextureCoordinateBinding.h
   \brief The SoTextureCoordinateBinding class says how texture coordinates should be bound to shapes.
+
   \ingroup nodes
 
   SoTextureCoordinateBinding binds current coordinates to subsequent
@@ -89,8 +90,8 @@
 /*!
   \var SoSFEnum SoTextureCoordinateBinding::value
 
-  Type of texturemap binding for subsequent shape nodes in the
-  scenegraph. Default field value is
+  Type of texture map binding for subsequent shape nodes in the
+  scene graph. Default field value is
   SoTextureCoordinateBinding::PER_VERTEX_INDEXED.
 */
 
@@ -122,6 +123,9 @@ SoTextureCoordinateBinding::~SoTextureCoordinateBinding()
 }
 
 // Documented in superclass.
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoTextureCoordinateBinding::initClass(void)
 {

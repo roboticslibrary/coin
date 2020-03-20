@@ -32,7 +32,8 @@
 
 /*!
   \class SoInteraction SoInteraction.h Inventor/SoInteraction.h
-  \brief The SoInteraction class takes care of initalizing internal classes.
+  \brief The SoInteraction class takes care of initializing internal classes.
+
   \ingroup general
 
   SoInteraction is present for the sole purpose of providing an
@@ -105,7 +106,7 @@ static void interaction_cleanup(void)
   Application programmers should usually not have to invoke this method
   directly from application code, as it is indirectly called from the
   GUI-binding libraries' init()-functions.  Only if you are using your own
-  GUI-binding (and not one of Kongsberg Oil & Gas Technologies's SoQt, SoGtk,
+  GUI-binding (and not one of Kongsberg Oil & Gas Technologies SoQt, SoGtk,
   SoXt, SoWin, Sc21 etc. libraries) do you have to explicitly call
   SoInteraction::init().
 

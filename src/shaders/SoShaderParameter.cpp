@@ -65,7 +65,7 @@
   uniform float shininess;
   \endverbatim
 
-  See \link coin_shaders Shaders in Coin \endlink for more information.
+  See \ref coin_shaders "Shaders in Coin" for more information.
 
   \ingroup shaders
 */
@@ -79,6 +79,7 @@
   \class SoShaderParameter1f SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameter1f class is used to define a floating point value as
          shader parameter.
+
   \ingroup shaders
 */
 
@@ -92,6 +93,7 @@
   \class SoShaderParameter1i SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameter1i class is used to define an integer value as
          shader parameter.
+
   \ingroup shaders
 */
 
@@ -105,6 +107,7 @@
   \class SoShaderParameter2f SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameter2f class is used to define a two-dimensional floating
          point value as shader parameter.
+
   \ingroup shaders
 */
 
@@ -118,6 +121,7 @@
   \class SoShaderParameter2i SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameter2i class is used to define a two-dimensional integer
          value as shader parameter.
+
   \ingroup shaders
 */
 
@@ -131,6 +135,7 @@
   \class SoShaderParameter3f SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameter3f class is used to define a three-dimensional floating
          point value as shader parameter.
+
   \ingroup shaders
 */
 
@@ -144,6 +149,7 @@
   \class SoShaderParameter3i SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameter3i class is used to define a three-dimensional integer
          value as shader parameter.
+
   \ingroup shaders
 */
 
@@ -157,6 +163,7 @@
   \class SoShaderParameter4f SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameter4f class is used to define a four-dimensional floating
          point value as shader parameter.
+
   \ingroup shaders
 */
 
@@ -170,6 +177,7 @@
   \class SoShaderParameter4i SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameter4i class is used to define a four-dimensional integer
          value as shader parameter.
+
   \ingroup shaders
 */
 
@@ -183,6 +191,7 @@
   \class SoShaderParameterArray1f SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameterArray1f class is used to define a floating point array as
          shader parameter.
+
   \ingroup shaders
 */
 
@@ -196,6 +205,7 @@
   \class SoShaderParameterArray1i SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameterArray1i class is used to define an integer array as 
          shader parameter.
+
   \ingroup shaders
 */
 
@@ -209,6 +219,7 @@
   \class SoShaderParameterArray2f SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameterArray2f class is used to define a two-dimensional floating
          point array as shader parameter.
+
   \ingroup shaders
 */
 
@@ -222,6 +233,7 @@
   \class SoShaderParameterArray2i SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameterArray2i class is used to define a two-dimensional integer
          array as shader parameter.
+
   \ingroup shaders
 */
 
@@ -235,6 +247,7 @@
   \class SoShaderParameterArray3f SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameterArray3f class is used to define a three-dimensional floating
          point array as shader parameter.
+
   \ingroup shaders
 */
 
@@ -248,6 +261,7 @@
   \class SoShaderParameterArray3i SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameterArray3i class is used to define a three-dimensional integer
          array as shader parameter.
+
   \ingroup shaders
 */
 
@@ -261,6 +275,7 @@
   \class SoShaderParameterArray4f SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameterArray4f class is used to define a four-dimensional floating
          point array as shader parameter.
+
   \ingroup shaders
 */
 
@@ -274,6 +289,7 @@
   \class SoShaderParameterArray4i SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameterArray4i class is used to define a four-dimensional integer
          array as shader parameter.
+
   \ingroup shaders
 */
 
@@ -286,6 +302,7 @@
 /*!
   \class SoShaderParameterMatrix SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameterMatrix class is used to define a matrix as shader parameter.
+
   \ingroup shaders
 */
 
@@ -299,6 +316,7 @@
   \class SoShaderParameterMatrixArray SoShaderParameter.h Inventor/nodes/SoShaderParameter.h
   \brief The SoShaderParameterMatrixArray class is used to define a matrix array as 
          shader parameter.
+
   \ingroup shaders
 */
 
@@ -354,7 +372,7 @@
 #include <Inventor/elements/SoGLMultiTextureMatrixElement.h>
 #include <Inventor/elements/SoTextureUnitElement.h>
 
-#include <assert.h>
+#include <cassert>
 
 #include "nodes/SoSubNodeP.h"
 #include "misc/SbHash.h"
@@ -369,7 +387,9 @@
 
 SO_NODE_ABSTRACT_SOURCE(SoShaderParameter);
 
-// doc from parent
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoShaderParameter::initClass(void)
 {
@@ -422,6 +442,9 @@ public:
 
 SO_NODE_ABSTRACT_SOURCE(SoUniformShaderParameter);
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoUniformShaderParameter::initClass(void)
 {
@@ -474,6 +497,9 @@ SoUniformShaderParameter::getGLShaderParameter(const uint32_t cachecontext)
 
 SO_NODE_SOURCE(SoShaderParameter1f);
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void SoShaderParameter1f::initClass(void)
 {
   SO_NODE_INTERNAL_INIT_CLASS(SoShaderParameter1f,
@@ -507,6 +533,9 @@ SoShaderParameter1f::updateParameter(SoGLShaderObject *shader)
 
 SO_NODE_SOURCE(SoShaderParameter2f);
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void SoShaderParameter2f::initClass(void)
 {
   SO_NODE_INTERNAL_INIT_CLASS(SoShaderParameter2f,
@@ -539,6 +568,9 @@ void SoShaderParameter2f::updateParameter(SoGLShaderObject *shader)
 
 SO_NODE_SOURCE(SoShaderParameter3f);
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void SoShaderParameter3f::initClass(void)
 {
   SO_NODE_INTERNAL_INIT_CLASS(SoShaderParameter3f,
@@ -571,6 +603,9 @@ void SoShaderParameter3f::updateParameter(SoGLShaderObject *shader)
 
 SO_NODE_SOURCE(SoShaderParameter4f);
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void SoShaderParameter4f::initClass(void)
 {
   SO_NODE_INTERNAL_INIT_CLASS(SoShaderParameter4f,
@@ -602,6 +637,9 @@ void SoShaderParameter4f::updateParameter(SoGLShaderObject *shader)
 
 SO_NODE_SOURCE(SoShaderStateMatrixParameter);
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void SoShaderStateMatrixParameter::initClass(void)
 {
   SO_NODE_INTERNAL_INIT_CLASS(SoShaderStateMatrixParameter,
@@ -736,6 +774,9 @@ SoShaderStateMatrixParameter::updateValue(SoState *state)
 
 SO_NODE_SOURCE(SoShaderParameterArray1f);
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void SoShaderParameterArray1f::initClass(void)
 {
   SO_NODE_INTERNAL_INIT_CLASS(SoShaderParameterArray1f,
@@ -768,6 +809,9 @@ void SoShaderParameterArray1f::updateParameter(SoGLShaderObject *shader)
 
 SO_NODE_SOURCE(SoShaderParameterArray2f);
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void SoShaderParameterArray2f::initClass(void)
 {
   SO_NODE_INTERNAL_INIT_CLASS(SoShaderParameterArray2f,
@@ -803,7 +847,7 @@ void SoShaderParameterArray2f::updateParameter(SoGLShaderObject *shader)
         ->set2fv(shader, num, buffer,
                  this->name.getValue().getString(),
                  this->identifier.getValue());
-  if (buffer) delete[] buffer;
+  delete[] buffer;
 }
 
 /* **************************************************************************
@@ -812,6 +856,9 @@ void SoShaderParameterArray2f::updateParameter(SoGLShaderObject *shader)
 
 SO_NODE_SOURCE(SoShaderParameterArray3f);
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void SoShaderParameterArray3f::initClass(void)
 {
   SO_NODE_INTERNAL_INIT_CLASS(SoShaderParameterArray3f,
@@ -847,7 +894,7 @@ void SoShaderParameterArray3f::updateParameter(SoGLShaderObject *shader)
   this->getGLShaderParameter(shader->getCacheContext())->set3fv(shader, num, buffer,
                                                                 this->name.getValue().getString(),
                                                                 this->identifier.getValue());
-  if (buffer) delete[] buffer;
+  delete[] buffer;
 }
 
 /* **************************************************************************
@@ -856,6 +903,9 @@ void SoShaderParameterArray3f::updateParameter(SoGLShaderObject *shader)
 
 SO_NODE_SOURCE(SoShaderParameterArray4f);
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void SoShaderParameterArray4f::initClass(void)
 {
   SO_NODE_INTERNAL_INIT_CLASS(SoShaderParameterArray4f,
@@ -885,7 +935,7 @@ void SoShaderParameterArray4f::updateParameter(SoGLShaderObject *shader)
       buffer[4*i+0] = this->value[i][0];
       buffer[4*i+1] = this->value[i][1];
       buffer[4*i+2] = this->value[i][2];
-      buffer[4*i+3] = this->value[i][2];
+      buffer[4*i+3] = this->value[i][3];
     }
   }
 
@@ -893,7 +943,7 @@ void SoShaderParameterArray4f::updateParameter(SoGLShaderObject *shader)
         ->set4fv(shader, num, buffer,
                  this->name.getValue().getString(),
                  this->identifier.getValue());
-  if (buffer) delete[] buffer;
+  delete[] buffer;
 }
 
 /* **************************************************************************
@@ -902,6 +952,9 @@ void SoShaderParameterArray4f::updateParameter(SoGLShaderObject *shader)
 
 SO_NODE_SOURCE(SoShaderParameterMatrix);
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void SoShaderParameterMatrix::initClass(void)
 {
   SO_NODE_INTERNAL_INIT_CLASS(SoShaderParameterMatrix,
@@ -936,6 +989,9 @@ void SoShaderParameterMatrix::updateParameter(SoGLShaderObject *shader)
 
 SO_NODE_SOURCE(SoShaderParameterMatrixArray);
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void SoShaderParameterMatrixArray::initClass(void)
 {
   SO_NODE_INTERNAL_INIT_CLASS(SoShaderParameterMatrixArray,
@@ -976,7 +1032,7 @@ void SoShaderParameterMatrixArray::updateParameter(SoGLShaderObject *shader)
                          this->name.getValue().getString(),
                          this->identifier.getValue());
 
-  if (buffer) delete[] buffer;
+  delete[] buffer;
 }
 
 
@@ -987,6 +1043,9 @@ void SoShaderParameterMatrixArray::updateParameter(SoGLShaderObject *shader)
 
 SO_NODE_SOURCE(SoShaderParameter1i);
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void SoShaderParameter1i::initClass(void)
 {
   SO_NODE_INTERNAL_INIT_CLASS(SoShaderParameter1i,
@@ -1029,6 +1088,9 @@ SoShaderParameter2i::~SoShaderParameter2i()
 {
 }
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoShaderParameter2i::initClass()
 {
@@ -1062,6 +1124,9 @@ SoShaderParameter3i::~SoShaderParameter3i()
 {
 }
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoShaderParameter3i::initClass()
 {
@@ -1095,6 +1160,9 @@ SoShaderParameter4i::~SoShaderParameter4i()
 {
 }
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoShaderParameter4i::initClass()
 {
@@ -1128,6 +1196,9 @@ SoShaderParameterArray1i::~SoShaderParameterArray1i()
 {
 }
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoShaderParameterArray1i::initClass()
 {
@@ -1162,6 +1233,9 @@ SoShaderParameterArray2i::~SoShaderParameterArray2i()
 {
 }
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoShaderParameterArray2i::initClass()
 {
@@ -1196,6 +1270,9 @@ SoShaderParameterArray3i::~SoShaderParameterArray3i()
 {
 }
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoShaderParameterArray3i::initClass()
 {
@@ -1230,6 +1307,9 @@ SoShaderParameterArray4i::~SoShaderParameterArray4i()
 {
 }
 
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoShaderParameterArray4i::initClass()
 {

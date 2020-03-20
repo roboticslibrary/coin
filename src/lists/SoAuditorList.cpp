@@ -33,6 +33,7 @@
 /*!
   \class SoAuditorList SoAuditorList.h Inventor/lists/SoAuditorList.h
   \brief The SoAuditorList class is used to keep track of auditors for certain object classes.
+
   \ingroup general
 
   This class is mainly for internal use (from SoBase) and it should
@@ -205,7 +206,7 @@ SoAuditorList::notify(SoNotList * l)
     // do this (it is for instance useful and tempting to do it upon
     // changes in engines). pederb, 2001-11-06
     assert(num == this->getLength() &&
-           "auditors can not be removed during the notification loop");
+           "auditors cannot be removed during the notification loop");
   }
 }
 

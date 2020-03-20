@@ -41,7 +41,7 @@
 
 #include <Inventor/annex/Profiler/elements/SoProfilerElement.h>
 
-#include <assert.h>
+#include <cassert>
 
 #include <Inventor/actions/SoGLRenderAction.h>
 #include <Inventor/errors/SoDebugError.h>
@@ -52,6 +52,9 @@
 
 SO_ELEMENT_SOURCE(SoProfilerElement);
 
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoProfilerElement::initClass(void)
 {

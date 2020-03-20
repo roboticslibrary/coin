@@ -34,6 +34,7 @@
   \class SbBox2s SbBox2s.h Inventor/SbBox2s.h
   \brief The SbBox2s class is a 2 dimensional box with short
   integer coordinates.
+
   \ingroup base
 
   This box class is used by other classes in Coin for data
@@ -80,6 +81,30 @@
 
   The coordinates of \a min should be less than the coordinates of
   \a max if you want to make a valid box.
+*/
+
+/*!
+  \fn SbBox2s::SbBox2s(const SbBox2i32 & box)
+
+  Constructs an SbBox2s instance from the value in an SbBox2i32 instance.
+
+  \since Coin 2.5
+*/
+
+/*!
+  \fn SbBox2s::SbBox2s(const SbBox2f & box)
+
+  Constructs an SbBox2s instance from the value in an SbBox2f instance.
+
+  \since Coin 2.5
+*/
+
+/*!
+  \fn SbBox2s::SbBox2s(const SbBox2d & box)
+
+  Constructs an SbBox2s instance from the value in an SbBox2d instance.
+
+  \since Coin 2.5
 */
 
 /*!
@@ -181,10 +206,35 @@ SbBox2s::makeEmpty(void)
 }
 
 /*!
+  \fn SbBool SbBox2s::isEmpty(void) const
+
+  Check if this has been marked as an empty box.
+
+  \sa makeEmpty().
+*/
+
+/*!
+  \fn SbBool SbBox2s::hasArea(void) const
+
+  Check if the box has been correctly specified and by that virtue
+  has "positive" area, i.e. all coordinates of its upper right corner
+  (the maximum point) are greater than the corresponding coordinates 
+  of its lower left corner (the minimum point).
+*/
+
+/*!
   \fn const SbVec2s & SbBox2s::getMin(void) const
 
   Returns the minimum point. This should usually be the lower left corner
   point of the box.
+
+  \sa getOrigin(), getMax().
+*/
+
+/*!
+  \fn SbVec2s & SbBox2s::getMin(void)
+
+  Returns the lower left corner of the box.
 
   \sa getOrigin(), getMax().
 */
@@ -196,6 +246,20 @@ SbBox2s::makeEmpty(void)
   point of the box.
 
   \sa getMin().
+*/
+
+/*!
+  \fn SbVec2s & SbBox2s::getMax(void)
+
+  Returns the upper right corner of the box.
+
+  \sa getMin().
+*/
+
+/*!
+  \fn SbVec2s SbBox2s::getCenter(void) const
+
+  Returns the center point of the box.
 */
 
 /*!
@@ -239,7 +303,7 @@ SbBox2s::intersect(const SbVec2s & point) const
 }
 
 /*!
-  Check if \a box lies wholly or partly within the boundaries
+  Check if \a box lies entirely or partially within the boundaries
   of this box.
 */
 SbBool
@@ -283,6 +347,14 @@ SbBox2s::intersect(const SbBox2s & box) const
 */
 
 /*!
+  \fn SbVec2s SbBox2s::getSize(void) const
+
+  Returns width and height of box as a 2D vector.
+
+  \since Coin 3.0
+*/
+
+/*!
   \fn float SbBox2s::getAspectRatio(void) const
 
   Returns aspect ratio of box, which is defined as box width divided on
@@ -305,6 +377,11 @@ SbBox2s::intersect(const SbBox2s & box) const
 
 /*!
   \fn SbBool SbBox2s::hasArea(void) const
+
+  Check if the box has been correctly specified and by that virtue
+  has "positive" area, i.e. all coordinates of its upper right corner
+  (the maximum point) are greater than the corresponding coordinates 
+  of its lower left corner (the minimum point).
 */
 
 #ifdef COIN_TEST_SUITE

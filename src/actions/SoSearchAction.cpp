@@ -33,6 +33,7 @@
 /*!
   \class SoSearchAction SoSearchAction.h Inventor/actions/SoSearchAction.h
   \brief The SoSearchAction class provides methods for searching through scene graphs.
+
   \ingroup actions
 
   Nodes can be searched for by pointer, type, and name, or a
@@ -56,7 +57,7 @@
   you're not careful. Since SoSearchAction keeps a list of the path(s)
   found in the latest search, the nodes in these paths will be
   unref'ed when the SoSearchAction stack instance is destructed at the
-  end of your function. If the root of your scene-graph then has
+  end of your function. If the root of your scene graph then has
   ref-count zero (it is often useful to do a unrefNoDelete() before
   returning a node from a function to leave the referencing to the
   caller), the root node will be destructed! It might be better to
@@ -84,12 +85,36 @@
   Specify the search criterion. This can be a bitwise combination of
   the available values.
 */
+/*!
+  \var SoSearchAction::LookFor SoSearchAction::NODE
+  Search for a node by pointer.
+*/
+/*!
+  \var SoSearchAction::LookFor SoSearchAction::TYPE
+  Search for a node by type.
+*/
+/*!
+  \var SoSearchAction::LookFor SoSearchAction::NAME
+  Search for a node by name.
+*/
 
 /*!
   \enum SoSearchAction::Interest
 
-  Values used when specifiying what node(s) we are interested in: the
+  Values used when specifying what node(s) we are interested in: the
   first one found, the last one or all of them.
+*/
+/*!
+  \var SoSearchAction::Interest SoSearchAction::FIRST
+  Return the path to the first node found.
+*/
+/*!
+  \var SoSearchAction::Interest SoSearchAction::LAST
+  Return the path to the last node found.
+*/
+/*!
+  \var SoSearchAction::Interest SoSearchAction::ALL
+  Return paths to all nodes found.
 */
 
 /*!
@@ -117,7 +142,9 @@ SO_ACTION_SOURCE(SoSearchAction);
 SbBool SoSearchAction::duringSearchAll = FALSE;
 
 
-// Overridden from parent class.
+/*!
+  \copydetails SoAction::initClass(void)
+*/
 void
 SoSearchAction::initClass(void)
 {
@@ -334,7 +361,7 @@ SoSearchAction::getPath(void) const
 }
 
 /*!
-  Returns a pathlist of all nodes that matched the search criterions.
+  Returns a path list of all nodes that matched the search criterions.
 
   Note that if interest were only \c FIRST or \c LAST,
   SoSearchAction::getPath() should be used instead of this method.
@@ -396,7 +423,7 @@ SoSearchAction::isFound(void) const
   \COININTERNAL
 
   Sets the path, or adds the path to the path list, depending on the
-  interest configuration.  The path is not copied, so it can not be
+  interest configuration.  The path is not copied, so it cannot be
   modified after being added without side effects.
 */
 void

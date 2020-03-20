@@ -33,6 +33,7 @@
 /*!
   \class SoGLUpdateAreaElement Inventor/elements/SoGLUpdateAreaElement.h
   \brief The SoGLUpdateAreaElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -62,8 +63,7 @@
 SO_ELEMENT_SOURCE(SoGLUpdateAreaElement);
 
 /*!
-  This static method initializes static data for the
-  SoGLUpdateAreaElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -73,7 +73,7 @@ SoGLUpdateAreaElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoGLUpdateAreaElement::~SoGLUpdateAreaElement()

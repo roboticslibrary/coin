@@ -34,6 +34,7 @@
 /*!
   \class SoNotRec SoNotRec.h Inventor/misc/SoNotification.h
   \brief The SoNotRec class specifies records for notification lists.
+
   \ingroup general
 
   \sa SoNotification
@@ -49,13 +50,13 @@
 /*!
   \enum SoNotRec::OperationType
 
-  This enum is used to specify the type of the scenegraph operation
+  This enum is used to specify the type of the scene graph operation
   causing the notification.
 */
 
 #include <Inventor/misc/SoNotRec.h>
 #include <Inventor/errors/SoDebugError.h>
-#include <assert.h>
+#include <cassert>
 
 #if COIN_DEBUG  // for SoNotRec::print() method
 #include <Inventor/misc/SoBase.h>

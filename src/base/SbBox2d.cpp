@@ -31,9 +31,10 @@
 \**************************************************************************/
 
 /*!
-  \class SbBox2d Inventor/SbBox2d.h
+  \class SbBox2d SbBox2d.h Inventor/SbBox2d.h
   \brief The SbBox2d class is a 2 dimensional box with double precision
   corner coordinates.
+
   \ingroup base
 
   This box class is used by many other classes in Coin for data
@@ -82,6 +83,30 @@
 
   The coordinates of \a min should be less than the coordinates of
   \a max if you want to make a valid box.
+*/
+
+/*!
+  \fn SbBox2d::SbBox2d(const SbBox2f & box)
+
+  Constructs an SbBox2d instance from the value in an SbBox2f instance.
+
+  \since Coin 2.5
+*/
+
+/*!
+  \fn SbBox2d::SbBox2d(const SbBox2s & box)
+
+  Constructs an SbBox2d instance from the value in an SbBox2s instance.
+
+  \since Coin 2.5
+*/
+
+/*!
+  \fn SbBox2d::SbBox2d(const SbBox2i32 & box)
+
+  Constructs an SbBox2d instance from the value in an SbBox2i32 instance.
+
+  \since Coin 2.5
 */
 
 /*!
@@ -190,8 +215,10 @@ SbBox2d::makeEmpty(void)
 /*!
   \fn SbBool SbBox2d::hasArea(void) const
 
-  Check if the box has "positive" area, i.e. the lower left corner is
-  actually lower and more to the left than the other corner point.
+  Check if the box has been correctly specified and by that virtue
+  has "positive" area, i.e. all coordinates of its upper right corner
+  (the maximum point) are greater than the corresponding coordinates 
+  of its lower left corner (the minimum point).
 */
 
 /*!
@@ -273,7 +300,7 @@ SbBox2d::intersect(const SbVec2d & point) const
 }
 
 /*!
-  Check if \a box lies wholly or partly within the boundaries
+  Check if \a box lies entirely or partially within the boundaries
   of this box.
 */
 SbBool
@@ -313,7 +340,7 @@ SbBox2d::findIntersection(const SbVec2d & a, const SbVec2d & b, SbVec2d & ia, Sb
   else blocka += 2;
   if ( a[1] < this->minpt[1] ) blocka += 0;
   else if ( a[1] <= this->maxpt[1] ) blocka += 3;
-  else blocka = +6;
+  else blocka += 6;
   if ( b[0] < this->minpt[0] ) blockb += 0;
   else if ( b[0] <= this->maxpt[0] ) blockb += 1;
   else blockb += 2;
@@ -485,6 +512,14 @@ SbBox2d::getClosestPoint(const SbVec2d & p) const
   \fn void SbBox2d::getSize(double & sizeX, double & sizeY) const
 
   Returns width and height of box.
+*/
+
+/*!
+  \fn SbVec2d SbBox2d::getSize(void) const
+
+  Returns width and height of box as a 2D vector.
+
+  \since Coin 3.0
 */
 
 /*!

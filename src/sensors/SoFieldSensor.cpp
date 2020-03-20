@@ -33,6 +33,7 @@
 /*!
   \class SoFieldSensor SoFieldSensor.h Inventor/sensors/SoFieldSensor.h
   \brief The SoFieldSensor class detects changes to a field.
+
   \ingroup sensors
 
   Attach a field to a sensor of this type to put it under
@@ -56,7 +57,7 @@ SoFieldSensor::SoFieldSensor(void)
 
 /*!
   Constructor taking as parameters the sensor callback function and
-  the userdata which will be passed the callback.
+  the userdata which will be passed to the callback.
 
   \sa setFunction(), setData()
  */

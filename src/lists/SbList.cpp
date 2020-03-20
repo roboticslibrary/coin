@@ -33,6 +33,7 @@
 /*!
   \class SbList SbList.h Inventor/lists/SbList.h
   \brief The SbList class is a template container class for lists.
+
   \ingroup base
 
   SbList is an extension of the Coin library versus the original Open
@@ -127,7 +128,7 @@
   \fn void SbList<Type>::fit(void)
 
   Fit the allocated array exactly around the length of the list,
-  descarding memory spent on unused pre-allocated array cells.
+  discarding memory spent on unused pre-allocated array cells.
 
   You should normally not need or want to call this method, and it is
   only available for the sake of having the option to optimize memory

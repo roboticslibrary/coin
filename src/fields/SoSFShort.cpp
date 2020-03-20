@@ -33,10 +33,11 @@
 /*!
   \class SoSFShort SoSFShort.h Inventor/fields/SoSFShort.h
   \brief The SoSFShort class is a container for a short integer value.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a single short integer value.
+  need to store a single short integer value.
 
   \sa SoMFShort
 */
@@ -57,7 +58,9 @@ SO_SFIELD_SOURCE(SoSFShort, short, short);
 
 // *************************************************************************
 
-// Override parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFShort::initClass(void)
 {

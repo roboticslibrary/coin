@@ -30,19 +30,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 \**************************************************************************/
 
-/*! \file spidermonkey.h */
-#include <Inventor/C/glue/spidermonkey.h>
-
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif /* !HAVE_CONFIG_H */
 
 #ifdef COIN_HAVE_JAVASCRIPT
 
-#include <assert.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
+#include <cassert>
+#include <cstdlib>
+#include <cstring>
+#include <cstdio>
                                                       
 #if !defined(SPIDERMONKEY_RUNTIME_LINKING) && defined(HAVE_SPIDERMONKEY_VIA_LINKTIME_LINKING)
 #ifdef _WIN32
@@ -57,6 +54,9 @@
 #endif
 #include <jsapi.h>
 #endif /* !defined(SPIDERMONKEY_RUNTIME_LINKING) && defined(HAVE_SPIDERMONKEY_VIA_LINKTIME_LINKING) */
+
+/*! \file spidermonkey.h */
+#include <Inventor/C/glue/spidermonkey.h>
 
 #include <Inventor/C/glue/dl.h>
 #include <Inventor/C/errors/debugerror.h>
@@ -137,7 +137,7 @@ spidermonkey(void)
   /* Be optimistic. */
   sm->available = 1;
 
-#if SPIDERMONKEY_RUNTIME_LINKING
+#ifdef SPIDERMONKEY_RUNTIME_LINKING
 
   {
     unsigned int idx;
@@ -145,7 +145,7 @@ spidermonkey(void)
     /* FIXME: there's a configure mortene. */
     const char * possiblelibnames[] = {
       NULL, /* is set below */
-      /* MSWindows DLL name */
+      /* Microsoft Windows DLL name */
       "js32",
 
       /* UNIX-style names (SpiderMonkey compiled from source) */

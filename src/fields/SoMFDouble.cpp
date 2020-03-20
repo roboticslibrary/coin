@@ -33,10 +33,11 @@
 /*!
   \class SoMFDouble SoMFDouble.h Inventor/fields/SoMFDouble.h
   \brief The SoMFDouble class is a container for double float precision point values.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a group of multiple floating point values.
+  need to store a group of multiple floating point values.
 
   This field supports application data sharing through a
   setValuesPointer() method. See SoMField documentation for
@@ -66,7 +67,9 @@ SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFDouble, double, double);
 
 // *************************************************************************
 
-// Override from parent.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFDouble::initClass(void)
 {

@@ -33,6 +33,7 @@
 /*!
   \class SoGLRenderPassElement Inventor/elements/SoGLRenderPassElement.h
   \brief The SoGLRenderPassElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -49,8 +50,7 @@
 SO_ELEMENT_SOURCE(SoGLRenderPassElement);
 
 /*!
-  This static method initializes static data for the
-  SoGLRenderPassElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -60,7 +60,7 @@ SoGLRenderPassElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoGLRenderPassElement::~SoGLRenderPassElement(void)

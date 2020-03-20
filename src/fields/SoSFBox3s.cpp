@@ -33,10 +33,11 @@
 /*!
   \class SoSFBox3s SoSFBox3s.h Inventor/fields/SoSFBox3s.h
   \brief The SoSFBox3s class is a container for an SbBox3s vector.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a box.
+  need to store a box.
 
   \COIN_CLASS_EXTENSION
 
@@ -60,7 +61,9 @@ SO_SFIELD_SOURCE(SoSFBox3s, SbBox3s, const SbBox3s &);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFBox3s::initClass(void)
 {

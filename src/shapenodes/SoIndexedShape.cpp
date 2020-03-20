@@ -33,11 +33,12 @@
 /*!
   \class SoIndexedShape SoIndexedShape.h Inventor/nodes/SoIndexedShape.h
   \brief The SoIndexedShape class is the superclass for all indexed vertex shapes.
+
   \ingroup nodes
 
   This is an abstract class which contains storage for four fields for
   indices to coordinates, normals, materials and texture coordinates
-  for it's subclasses.
+  for its subclasses.
 */
 
 #include <Inventor/nodes/SoIndexedShape.h>
@@ -94,7 +95,9 @@ SoIndexedShape::~SoIndexedShape()
 {
 }
 
-// Documented in superclass.
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoIndexedShape::initClass(void)
 {

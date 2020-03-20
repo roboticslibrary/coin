@@ -33,6 +33,7 @@
 /*!
   \class SoBumpMapElement Inventor/elements/SoBumpMapElement.h
   \brief The SoBumpMapElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -46,8 +47,7 @@
 SO_ELEMENT_SOURCE(SoBumpMapElement);
 
 /*!
-  This static method initializes static data for the
-  SoBumpMapElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -57,7 +57,7 @@ SoBumpMapElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoBumpMapElement::~SoBumpMapElement()

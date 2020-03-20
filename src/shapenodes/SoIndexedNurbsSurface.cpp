@@ -33,9 +33,10 @@
 /*!
   \class SoIndexedNurbsSurface SoIndexedNurbsSurface.h Inventor/nodes/SoIndexedNurbsSurface.h
   \brief The SoIndexedNurbsSurface class can be used to render NURBS surfaces.
+
   \ingroup nodes
 
-  It is very similar to the SoNurbsSurface class, but controlpoints
+  It is very similar to the SoNurbsSurface class, but control points
   can be specified using indices.
 
   <b>FILE FORMAT/DEFAULTS:</b>
@@ -189,7 +190,9 @@ SoIndexedNurbsSurface::~SoIndexedNurbsSurface()
   delete PRIVATE(this);
 }
 
-// doc from parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoIndexedNurbsSurface::initClass(void)
 {

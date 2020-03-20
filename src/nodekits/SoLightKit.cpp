@@ -39,6 +39,7 @@
 /*!
   \class SoLightKit SoLightKit.h Inventor/nodekits/SoLightKit.h
   \brief The SoLightKit class provides a kit with a transform, a light and a shape or subgraph.
+
   \ingroup nodekits
 
   \NODEKIT_PRE_DIAGRAM
@@ -111,7 +112,9 @@ SoLightKit::~SoLightKit()
 {
 }
 
-// Documented in superclass.
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoLightKit::initClass(void)
 {

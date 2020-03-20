@@ -33,6 +33,7 @@
 /*!
   \class SoInput SoInput.h Inventor/SoInput.h
   \brief The SoInput class is an abstraction of file import functionality.
+
   \ingroup general
 
   This class takes care of most of the chores of doing data import in Coin.
@@ -40,7 +41,7 @@
   transparent for the rest of the Coin code whether or not we're reading
   from a file, from a memory buffer or from stdin.
 
-  SoInput also takes care of checking file validity, aswell as handling
+  SoInput also takes care of checking file validity, as well as handling
   information about features in the various file formats which are
   supported.
 
@@ -67,11 +68,11 @@
 
 
   Important note: there are several public and protected methods which
-  makes it possible to pass in or get returned FILE* structures in
+  make it possible to pass in or get returned FILE* structures in
   this class. Do \e not use these methods when the Coin library has
-  been compiled as an MSWindows DLL, as passing FILE* instances back
-  or forth to DLLs is dangerous and will most likely cause a
-  crash. This is an intrinsic limitation for MSWindows DLLs.
+  been compiled as an Microsoft Windows DLL, as passing FILE* instances
+  back or forth to DLLs is dangerous and will most likely cause a
+  crash. This is an intrinsic limitation for Microsoft Windows DLLs.
 
 
   This class supports one environment variable called
@@ -80,7 +81,7 @@
   resolving USE keywords. This makes it possible to reference nodes in
   other files. The reason for introducing this feature is that the
   SoFile node rereads the file whenever the name field changes.  The
-  first time the file is read, it's possible to reference nodes in the
+  first time the file is read, it is possible to reference nodes in the
   parent file, using the USE keyword. But, when the file is reread
   this is no longer possible, since the reading now starts at the
   SoFile node, with an empty dictionary.
@@ -92,9 +93,9 @@
 #include "config.h"
 #endif // HAVE_CONFIG_H
 
-#include <errno.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cerrno>
+#include <cstdlib>
+#include <cstring>
 
 #include <sys/stat.h>
 #ifdef HAVE_UNISTD_H
@@ -104,10 +105,10 @@
 /* According to Coin user Ralf Corsepius, at least SunOS4 needs to
    include sys/types.h before netinet/in.h. There have also been a
    problem report for FreeBSD which seems to indicate that the same
-   dependency exists on that platform aswell. */
+   dependency exists on that platform as well. */
 #include <sys/types.h>
 #endif // HAVE_SYS_TYPES_H
-#include <ctype.h>
+#include <cctype>
 
 #include <Inventor/SoInput.h>
 
@@ -133,9 +134,9 @@
 // files for MSVC++ 6.0.
 #ifndef S_ISDIR
  // The _S_IFDIR bitpattern is not in the POSIX standard, but MSVC++
- // header files has it.
+ // header files have it.
  #ifdef _S_IFDIR
- #define S_ISDIR(s) (s & _S_IFDIR)
+ #define S_ISDIR(s) ((s) & _S_IFDIR)
  #else // Ai.
  #error Can neither find nor make an S_ISDIR macro to test stat structures.
  #endif // !_S_IFDIR
@@ -174,300 +175,12 @@ soinput_destruct_tls_data(void * closure)
 
 // *************************************************************************
 
-SbBool
-SoInputP::debug(void)
-{
-  static int dbg = -1;
-  if (dbg == -1) {
-    const char * env = coin_getenv("COIN_DEBUG_IMPORT");
-    dbg = (env && (atoi(env) > 0)) ? 1 : 0;
-  }
-  return dbg;
-}
-
-SbBool
-SoInputP::debugBinary(void)
-{
-  static int debug = -1;
-  if (debug == -1) {
-    const char * env = coin_getenv("COIN_DEBUG_BINARY_INPUT");
-    debug = (env && (atoi(env) > 0)) ? 1 : 0;
-  }
-  return debug ? TRUE : FALSE;
-}
-
-// *************************************************************************
-/*
-  Important note: Up until Coin 3.1.1 we used to have a bug in SoInput
-  when reading files from other files (SoFile/SoVRMLInline++). The SoInput
-  dictionary was global for all files pushed onto the SoInput filestack,
-  and DEFs in extra files could therefore overwrite DEFs in the original
-  file. This minimal case reproduces this bug:
-
-  #Inventor V2.1 ascii
-
-  Switch {
-    whichChild -1
-    DEF cube Cube {}
-  }
-
-  File { name "minimal_ref.iv" }
-  USE cube
-
-  minimal_ref.iv looks something like this:
-
-  #Inventor V2.1 ascii
-  DEF cube Info {}
-
-  In older versions of Coin you'll not see the Cube when loading the first
-  file.
-
- */
-// *************************************************************************
-
-
-// Helper function that pops the stack when the current file is at
-// EOF.  Then it returns the file at the top of the stack.
-SoInput_FileInfo *
-SoInputP::getTopOfStackPopOnEOF(void)
-{
-  SoInput_FileInfo * fi = owner->getTopOfStack();
-  assert(fi); // Should always have a top of stack, because the last
-              // element on the stack is never removed until the
-              // SoInput is closed
-
-  // Pop the stack if end of current file
-  if (fi->isEndOfFile()) {
-    (void) owner->popFile(); // Only pops if more than one file is on
-                             // the stack.
-    fi = owner->getTopOfStack();
-    assert(fi);
-  }
-
-  return fi;
-}
-
-// Helperfunctions to handle different filetypes (Inventor, VRML 1.0
-// and VRML 2.0).
-//
-// VRML 1.0 identifiers are defined as:
-//
-//  VRML 1.0 Node names must not begin with a digit, and must
-//  not contain spaces or control characters, single or double
-//  quote characters, backslashes, curly braces, the sharp (#)
-//  character, the plus (+) character or the period character.
-//
-//  Field names start with lower case letters, Node types start
-//  with upper case. The remainder of the characters may be any
-//  printable ascii (21H-7EH) except curly braces {}, square
-//  brackets [], single ' or double " quotes, sharp #, backslash
-//  \\ plus +, period . or ampersand &.
-//
-//  In addition to this, we found ',' to be an invalid character in
-//  VRML 1.0 names. This was made apparent when reading the following
-//  fields on an unknown node:
-//
-//   fields [SFString test, SFFloat length]
-//
-//  If ',' is to be a valid character in a name, then the name
-//  of the first field would become 'test,', and not just 'test'
-//
-// The grammar for VRML2 identifiers is:
-//
-//  nodeNameId ::= Id ;
-//  nodeTypeId ::= Id ;
-//  fieldId ::= Id ;
-//
-//  Id ::= IdFirstChar | IdFirstChar IdRestChars ;
-//
-//  IdFirstChar ::= Any ISO-10646 character encoded using UTF-8
-//  except: 0x30-0x39, 0x0-0x20, 0x22, 0x23, 0x27, 0x2b, 0x2c,
-//  0x2d, 0x2e, 0x5b, 0x5c, 0x5d, 0x7b, 0x7d, 0x7f ;
-//
-//  IdRestChars ::= Any number of ISO-10646 characters except:
-//  0x0-0x20, 0x22, 0x23, 0x27, 0x2c, 0x2e, 0x5b, 0x5c, 0x5d,
-//  0x7b, 0x7d, 0x7f ;
-
-SbBool
-SoInputP::isNameStartChar(unsigned char c, SbBool validIdent)
-{
-  if (validIdent) return SbName::isIdentStartChar(c);
-  return (c > 0x20); // Not control characters
-}
-
-SbBool
-SoInputP::isNameStartCharVRML1(unsigned char c, SbBool validIdent)
-{
-  static unsigned char invalid_vrml1_table[256];
-  static unsigned char valid_ident_invalid_vrml1_table[256];
-
-  static int isNameStartCharVRML1Initialized = FALSE;
-  if (!isNameStartCharVRML1Initialized) {
-    const unsigned char invalid_vrml1[] = {
-      0x22, 0x23, 0x27, 0x2b, 0x2c, 0x2e, 0x5c, 0x7b, 0x7d, 0x00 }; // 0x7d = 125
-    //'"',  '#',  ''',  '+',  ',',  '.',  '\',  '{',  '}'
-
-    // Differences from invalid_vrml1: '&' , '[', and ']' are now invalid
-    const unsigned char valid_ident_invalid_vrml1[] = {
-      0x22, 0x23, 0x26, 0x27, 0x2b, 0x2c, 0x2e, 0x5b, 0x5c, 0x5d, 0x7b, 0x7d, 0x00 }; // 0x7d = 125
-    //'"',  '#',   '&', ''',  '+',  ',',  '.',  '[',  '\',   ']',  '{',  '}'
-
-    for (int c = 0; c < 256; ++c) {
-      invalid_vrml1_table[c] = 0;
-      valid_ident_invalid_vrml1_table[c] = 0;
-    }
-
-    const unsigned char * ptr = invalid_vrml1;
-    while (*ptr) { invalid_vrml1_table[*ptr] = 1; ++ptr; }
-    ptr = valid_ident_invalid_vrml1;
-    while (*ptr) { valid_ident_invalid_vrml1_table[*ptr] = 1; ++ptr; }
-
-    isNameStartCharVRML1Initialized = TRUE;
-  }
-
-  if (c <= 0x20) return FALSE; // Control characters
-  if (c >= 0x30 && c <= 0x39) return FALSE; // Digits
-
-  if (validIdent) return (valid_ident_invalid_vrml1_table[c] == 0);
-  return (invalid_vrml1_table[c] == 0);
-}
-
-SbBool
-SoInputP::isNameStartCharVRML2(unsigned char c, SbBool validIdent)
-{
-  static unsigned char invalid_vrml2_table[256];
-  static unsigned char valid_ident_invalid_vrml2_table[256];
-
-  static int isNameStartCharVRML2Initialized = FALSE;
-  if (!isNameStartCharVRML2Initialized) {
-    const unsigned char invalid_vrml2[] = {
-      0x22, 0x23, 0x27, 0x2b, 0x2c, 0x2d, 0x2e, 0x5b, 0x5c, 0x5d, 0x7b, 0x7d, 0x7f, 0x00 }; // 0x7f = 127
-    //'"',  '#',  ''',  '+',  ',',  '-',  '.',  '[',  '\',  ']',  '{',  '}',  ''
-
-    const unsigned char * valid_ident_invalid_vrml2 = invalid_vrml2;
-
-    for (int c = 0; c < 256; ++c) {
-      invalid_vrml2_table[c] = 0;
-      valid_ident_invalid_vrml2_table[c] = 0;
-    }
-
-    const unsigned char * ptr = invalid_vrml2;
-    while (*ptr) { invalid_vrml2_table[*ptr] = 1; ++ptr; }
-    ptr = valid_ident_invalid_vrml2;
-    while (*ptr) { valid_ident_invalid_vrml2_table[*ptr] = 1; ++ptr; }
-
-    isNameStartCharVRML2Initialized = TRUE;
-  }
-
-  if (c <= 0x20) return FALSE; // Control characters
-  if (c >= 0x30 && c <= 0x39) return FALSE; // Digits
-
-  if (validIdent) return (valid_ident_invalid_vrml2_table[c] == 0);
-
-  // For Coin to be able to load VRML97 (invalid) files that have
-  // been generated with illegal names, '+' is considered a valid
-  // startcharacter.
-  static int non_strict = -1;
-  if (non_strict == -1) {
-    const char * env = coin_getenv("COIN_NOT_STRICT_VRML97");
-    non_strict = env && (atoi(env) > 0);
-  }
-
-  if (c == '+' && non_strict) // '+' is considered valid
-    return TRUE;
-
-  return (invalid_vrml2_table[c] == 0);
-}
-
-// Helperfunction to handle different filetypes (Inventor, VRML 1.0
-// and VRML 2.0).
-//
-// See SoInputP::isIdentStartChar for more information
-SbBool
-SoInputP::isNameChar(unsigned char c, SbBool validIdent)
-{
-  if (validIdent) return SbName::isIdentChar(c);
-  return (c > 0x20); // Not control characters
-}
-
-SbBool
-SoInputP::isNameCharVRML1(unsigned char c, SbBool validIdent)
-{
-  static unsigned char invalid_vrml1_table[256];
-  static unsigned char valid_ident_invalid_vrml1_table[256];
-
-  static int isNameCharVRML1Initialized = FALSE;
-  if (!isNameCharVRML1Initialized) {
-    const unsigned char invalid_vrml1[] = {
-      0x22, 0x23, 0x27, 0x2b, 0x2c, 0x2e, 0x5c, 0x7b, 0x7d, 0x00 }; // 0x7d = 125
-    //'"',  '#',  ''',  '+',  ',',  '.',  '\',  '{',  '}'
-
-    // Differences from invalid_vrml1: '&' , '[', and ']' are now invalid
-    const unsigned char valid_ident_invalid_vrml1[] = {
-      0x22, 0x23, 0x26, 0x27, 0x2b, 0x2c, 0x2e, 0x5b, 0x5c, 0x5d, 0x7b, 0x7d, 0x00 }; // 0x7d = 125
-    //'"',  '#',   '&', ''',  '+',  ',',  '.',  '[',  '\',   ']',  '{',  '}'
-
-    for (int c = 0; c < 256; ++c) {
-      invalid_vrml1_table[c] = 0;
-      valid_ident_invalid_vrml1_table[c] = 0;
-    }
-
-    const unsigned char * ptr = invalid_vrml1;
-    while (*ptr) { invalid_vrml1_table[*ptr] = 1; ++ptr; }
-    ptr = valid_ident_invalid_vrml1;
-    while (*ptr) { valid_ident_invalid_vrml1_table[*ptr] = 1; ++ptr; }
-
-    isNameCharVRML1Initialized = TRUE;
-  }
-
-  if (c <= 0x20) return FALSE; // Control characters
-
-  if (validIdent) return (valid_ident_invalid_vrml1_table[c] == 0);
-  return (invalid_vrml1_table[c] == 0);
-}
-
-SbBool
-SoInputP::isNameCharVRML2(unsigned char c, SbBool validIdent)
-{
-  static unsigned char invalid_vrml2_table[256];
-  static unsigned char valid_ident_invalid_vrml2_table[256];
-
-  static int isNameCharVRML2Initialized = FALSE;
-  if (!isNameCharVRML2Initialized) {
-    // Compared to isIdentStartChar, '+' and '-' have now become valid characters.
-    const unsigned char invalid_vrml2[] = {
-      0x22, 0x23, 0x27, 0x2c, 0x2e, 0x5b, 0x5c, 0x5d, 0x7b, 0x7d, 0x7f, 0x00 }; // 0x7f = 127
-    //'"',  '#',  ''',  ',',  '.',  '[',  '\',  ']',  '{',  '}',  ''
-
-    const unsigned char * valid_ident_invalid_vrml2 = invalid_vrml2;
-
-    for (int c = 0; c < 256; ++c) {
-      invalid_vrml2_table[c] = 0;
-      valid_ident_invalid_vrml2_table[c] = 0;
-    }
-
-    const unsigned char * ptr = invalid_vrml2;
-    while (*ptr) { invalid_vrml2_table[*ptr] = 1; ++ptr; }
-    ptr = valid_ident_invalid_vrml2;
-    while (*ptr) { valid_ident_invalid_vrml2_table[*ptr] = 1; ++ptr; }
-
-    isNameCharVRML2Initialized = TRUE;
-  }
-
-  if (c <= 0x20) return FALSE; // Control characters
-
-  if (validIdent) return (valid_ident_invalid_vrml2_table[c] == 0);
-  return (invalid_vrml2_table[c] == 0);
-}
-
-// *************************************************************************
-
 #define PRIVATE(obj) (obj->pimpl)
 
 // *************************************************************************
 
 /*!
-  Constructor. If no filepointer is set, input will be read from stdin.
+  Constructor. If no file pointer is set, input will be read from stdin.
  */
 SoInput::SoInput(void)
 {
@@ -500,7 +213,7 @@ SoInput::constructorsCommon(void)
   // invoked from app code, as it is common to just have an SoInput on
   // the stack of the main() function.
   //
-  // But since SoInput uses threads, which needs to be initialized, we
+  // But since SoInput uses threads, which need to be initialized, we
   // need to check for SoDB::init() here, and invoke it if it was not
   // yet called.
   if (!SoDB::isInitialized()) { SoDB::init(); }
@@ -559,8 +272,8 @@ SoInput::~SoInput(void)
 }
 
 /*!
-  Adds a ROUTE from /a fromnode's \fromfield, to \a tonode's
-  tofield. This makes it possible to defines ROUTEs in files
+  Adds a ROUTE from \a fromnode's \a fromfield, to \a tonode's
+  \a tofield. This makes it possible to define ROUTEs in files
   before the \a fromnode or \a tonode is parsed.
 
   \COIN_FUNCTION_EXTENSION
@@ -595,7 +308,7 @@ SoInput::findProto(const SbName & name)
 }
 
 /*!
-  Adds a Proto which should be active in the current scope.
+  Adds a PROTO \a proto which should be active in the current scope.
 
   \COIN_FUNCTION_EXTENSION
 
@@ -611,7 +324,7 @@ SoInput::addProto(SoProto * proto)
 }
 
 /*!
-  Pushed a Proto onto the Proto stack. The Proto stack is used during
+  Pushed a PROTO \a proto onto the PROTO stack. The PROTO stack is used during
   VRML2 file parsing.
 
   \COIN_FUNCTION_EXTENSION
@@ -628,7 +341,7 @@ SoInput::pushProto(SoProto * proto)
 }
 
 /*!
-  Pops a Proto off the Proto stack.
+  Pops a PROTO off the PROTO stack.
 
   \COIN_FUNCTION_EXTENSION
 
@@ -644,7 +357,7 @@ SoInput::popProto(void)
 }
 
 /*!
-  Returns the Proto at the top of the Proto stack.
+  Returns the PROTO at the top of the PROTO stack.
 
   \COIN_FUNCTION_EXTENSION
 
@@ -662,7 +375,7 @@ SoInput::getCurrentProto(void) const
 /*!
   Checks if the next bytes in \a in is the IS keyword. Returns \c TRUE
   if the IS keyword was found, \a readok will be set to \c FALSE if
-  some error occured while searching for the IS keyword.
+  some error occurred while searching for the IS keyword.
 
   \COIN_FUNCTION_EXTENSION
 
@@ -732,13 +445,13 @@ SoInput::checkISReference(SoFieldContainer * container,
 
 /*!
   Uses the given file pointer as the input file. The input stack of
-  files will be emptied first. Closing a file passed in by it's file
+  files will be emptied first. Closing a file passed in by its file
   pointer is the library user's responsibility.
 
   Important note: do \e not use this method when the Coin library has
-  been compiled as an MSWindows DLL, as passing FILE* instances back
+  been compiled as a Microsoft Windows DLL, as passing FILE* instances back
   or forth to DLLs is dangerous and will most likely cause a
-  crash. This is an intrinsic limitation for MSWindows DLLs.
+  crash. This is an intrinsic limitation for Microsoft Windows DLLs.
 
   Note that it is not allowed to pass a FILE* to a gzip-compressed
   file under Mac OS X.
@@ -815,14 +528,14 @@ SoInput::openFile(const char * fileName, SbBool okIfNotFound)
 SbBool
 SoInput::pushFile(const char * filename)
 {
-  // Get rid of default stdin filepointer if it has not yet been read
+  // Get rid of default stdin file pointer if it has not yet been read
   // from. The reason for this is that <stdin> is put on the stack as
   // the default reader by the constructor.  If pushFile is called
   // before <stdin> is read from, it should not be used for reading,
   // so we remove it.  This case happens e.g. when running the code:
   //
   // SoFile * f = new SoFile;
-  // f->name = "nonexistant.iv";
+  // f->name = "nonexistent.iv";
   //
   // The name-field has a callback function that calls
   // File::readNamedFile, which calls pushFile. No other files than
@@ -926,9 +639,9 @@ SoInput::isValidBuffer(void)
   "file" is actually a memory buffer, returns \c NULL.
 
   Important note: do \e not use this method when the Coin library has
-  been compiled as an MSWindows DLL, as passing FILE* instances back
+  been compiled as an Microsoft Windows DLL, as passing FILE* instances back
   or forth to DLLs is dangerous and will most likely cause a
-  crash. This is an intrinsic limitation for MSWindows DLLs.
+  crash. This is an intrinsic limitation for Microsoft Windows DLLs.
 
   \sa getCurFileName()
 */
@@ -942,7 +655,7 @@ SoInput::getCurFile(void) const
 
 /*!
   Returns the name of the file on top of the input stack. \c NULL will
-  be returned if the toplevel "file" is a memory buffer.
+  be returned if the top level "file" is a memory buffer.
 
   \sa getCurFile()
 */
@@ -1135,7 +848,7 @@ SoInput::getASCIIFile(char & c)
 }
 
 /*!
-  Reads an  unsigned integer in hexidecimal format from the current stream.
+  Reads an unsigned integer in hexadecimal format from the current stream.
   Note that no error checking is done to see if it actually is a hex
   format value.
 
@@ -1408,12 +1121,14 @@ SoInput::read(SbName & n, SbBool validIdent)
         for (int i = 1; i < strlength; i++)
           if (!SoInputP::isNameCharVRML1(s[i], validIdent)) return FALSE;
       }
+      break;
     case VRML2:
       if (validIdent && strlength > 0) {
         if (!SoInputP::isNameStartCharVRML2(s[0], validIdent)) return FALSE;
         for (int i = 1; i < strlength; i++)
           if (!SoInputP::isNameCharVRML2(s[i], validIdent)) return FALSE;
       }
+      break;
     default:
       assert(!"invalid code path");
       break;
@@ -1883,14 +1598,14 @@ SoInput::removeReference(const SbName & name)
 }
 
 /*!
-  Finds an SoBase derived object which has been mapped to \a name earlier
+  Finds a SoBase derived object which has been mapped to \a name earlier
   during the import process.
 
   The Coin library will by default only search through the previously
   loaded nodes from the \e same file. By setting the environment
   variable \c COIN_SOINPUT_SEARCH_GLOBAL_DICT to "1", you can force
   the import process to search for USE-references through \e all nodes
-  that has been loaded or otherwise instantiated.
+  that have been loaded or otherwise instantiated.
 
   \sa addReference(), removeReference()
  */
@@ -1972,7 +1687,7 @@ SoInput::addDirectoryIdx(const int idx, const char * dirName)
 
   SbString * ns = new SbString(dirName);
   if (idx == -1) dirs->append(ns);
-  else if (idx != -1) dirs->insert(ns, idx);
+  else dirs->insert(ns, idx);
 }
 
 /*!
@@ -2119,9 +1834,9 @@ SoInput::clearDirectories(void)
 }
 
 /*!
-  Returns the list of directories which'll be searched upon loading
+  Returns the list of directories which will be searched upon loading
   Coin and VRML format files. Directory searches will be done whenever
-  any external references appears in a file, for instance to texture images.
+  any external references appears in a file, for instance for texture images.
  */
 const SbStringList &
 SoInput::getDirectories(void)
@@ -2275,7 +1990,7 @@ test_filename(const SbString & filename)
   search, returns the full name of the file found.
 
   In addition to looking at the root of each directory in \a
-  directories, all \a subdirectories is also searched for each item in
+  directories, all \a subdirectories are also searched for each item in
   \a directories.
 
   If no file matching \a basename could be found in any of the
@@ -2378,7 +2093,7 @@ SoInput::initFile(FILE * /* newFP */, const char * /* fileName */,
 }
 
 /*!
-  Returns \c TRUE if the current stream has had it's header parsed.
+  Returns \c TRUE if the current stream has had its header parsed.
   If it hasn't, this method will attempt to read the header and returns
   \c TRUE if it could be done.
 
@@ -2435,7 +2150,7 @@ SoInput::skipWhiteSpace(void)
 
 /*!
   Pop the topmost file off the stack. Returns \c FALSE if there was no
-  files on the stack to pop. A file is only popped when there is more
+  file on the stack to pop. A file is only popped when there is more
   than one file on the stack.
 
   \sa pushFile(), openFile(), closeFile()
@@ -2796,9 +2511,9 @@ SoInput::getTopOfStack(void) const
   return \c NULL.
 
   Important note: do \e not use this method when the Coin library has
-  been compiled as an MSWindows DLL, as passing FILE* instances back
+  been compiled as an Microsoft Windows DLL, as passing FILE* instances back
   or forth to DLLs is dangerous and will most likely cause a
-  crash. This is an intrinsic limitation for MSWindows DLLs.
+  crash. This is an intrinsic limitation for Microsoft Windows DLLs.
  */
 FILE *
 SoInput::findFile(const char * basename, SbString & fullname)

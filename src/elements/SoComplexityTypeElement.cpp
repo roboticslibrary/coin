@@ -33,6 +33,7 @@
 /*!
   \class SoComplexityTypeElement Inventor/elements/SoComplexityTypeElement.h
   \brief The SoComplexityTypeElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -55,8 +56,19 @@
 SO_ELEMENT_SOURCE(SoComplexityTypeElement);
 
 /*!
-  This static method initializes static data for the SoComplexityTypeElement
-  class.
+  \fn static SoType SoComplexityTypeElement::getClassTypeId(void)
+
+  This static method returns the class type.
+*/
+
+/*!
+  \fn static int SoComplexityTypeElement::getClassStackIndex(void)
+
+  This static method returns the state stack index for the class.
+*/
+
+/*!
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -66,7 +78,7 @@ SoComplexityTypeElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoComplexityTypeElement::~SoComplexityTypeElement(void)

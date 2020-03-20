@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLImageTexture SoVRMLImageTexture.h Inventor/VRMLnodes/SoVRMLImageTexture.h
   \brief The SoVRMLImageTexture class is used for mapping a texture file onto geometry.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -62,7 +63,7 @@
   Figure 6.9.
 
   <center>
-  <img src="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/Images/ImageTexture.gif">
+  <img src="http://www.web3d.org/documents/specifications/14772/V2.0/Images/ImageTexture.gif">
   Figure 6.9
   </center>
 
@@ -77,11 +78,11 @@
   Wide Web.
 
   See 4.6.11, Texture maps
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.6.11>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.6.11>),
   for a general description of texture maps.
 
   See 4.14, Lighting model
-  (<http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.14>),
+  (<http://www.web3d.org/documents/specifications/14772/V2.0/part1/concepts.html#4.14>),
   for a description of lighting equations and the interaction between
   textures, materials, and geometry appearance.
 
@@ -96,7 +97,7 @@
 
   \ENDWEB3D
 
-  One common flaw with many programs that has support for exporting
+  One common flaw with many programs that have support for exporting
   VRML or Inventor files, is that the same texture file is exported
   several times, but as different nodes. This can cause excessive
   texture memory usage and slow rendering. Below is an example program
@@ -113,7 +114,7 @@
   #include <Inventor/SoDB.h>
   #include <Inventor/SoInput.h>
   #include <Inventor/SoOutput.h>
-  #include <assert.h>
+  #include <cassert>
 
   int main(int argc, char ** argv)
   {
@@ -185,7 +186,7 @@
 #include <Inventor/VRMLnodes/SoVRMLImageTexture.h>
 #include "coindefs.h"
 
-#include <assert.h>
+#include <cassert>
 
 #include <Inventor/SbImage.h>
 #include <Inventor/SoInput.h>
@@ -310,7 +311,9 @@ SO_NODE_SOURCE(SoVRMLImageTexture);
 
 // *************************************************************************
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLImageTexture::initClass(void) // static
 {
@@ -572,7 +575,7 @@ SoVRMLImageTexture::readInstance(SoInput * in,
   this->setReadStatus((int) ret);
   if (ret) {
     // need to copy the SoInput directories, so that the texture is
-    // found again if it's thrown out of memory (can happen when it's
+    // found again if it is thrown out of memory (can happen when it's
     // a long time since it has been used)
     PRIVATE(this)->setSearchDirs(SoInput::getDirectories());
     if (!this->loadUrl()) {
@@ -751,7 +754,7 @@ SoVRMLImageTexture::image_read_cb(const SbString & filename, SbImage * image, vo
   }
   else {
     // schedule a sensor to read the image as soon as the delay sensor
-    // queue is processed (typically when the run-time system is idle)
+    // queue is processed (typically when the runtime system is idle)
     SoOneShotSensor * sensor = new SoOneShotSensor(oneshot_readimage_cb, data);
     sensor->schedule();
   }

@@ -33,18 +33,19 @@
 /*!
   \class SoGetPrimitiveCountAction SoGetPrimitiveCountAction.h Inventor/actions/SoGetPrimitiveCountAction.h
   \brief The SoGetPrimitiveCountAction class counts the primitives in a scene.
+
   \ingroup actions
 
   Apply this action to a scene if you need to know the number of
-  primitives present in a scenegraph, or parts of a scenegraph.
+  primitives present in a scene graph, or parts of a scene graph.
 
 
   One common mistake to make when using this action is to think that
   it traverses just the parts currently in view, like SoGLRenderAction
-  does. (SoGLRenderAction culls away the scenegraph parts outside the
+  does. (SoGLRenderAction culls away the scene graph parts outside the
   camera view volume and does not traverse those.) Like most other
   action classes, SoGetPrimitiveCountAction actually traverses the
-  complete scenegraph, not just the parts currently in view.
+  complete scene graph, not just the parts currently in view.
 
   \since Coin 1.0
   \since TGS Inventor 2.5
@@ -69,7 +70,9 @@ public:
 SO_ACTION_SOURCE(SoGetPrimitiveCountAction);
 
 
-// Override from parent class.
+/*!
+  \copydetails SoAction::initClass(void)
+*/
 void
 SoGetPrimitiveCountAction::initClass(void)
 {
@@ -137,7 +140,7 @@ SoGetPrimitiveCountAction::getLineCount(void) const
 
   Note that by "point", it is meant an actual point primitive (for
   rendering), such as in the SoPointSet shape node, not a polygon
-  vertice. For counting the total number of polygon vertices in a
+  vertex. For counting the total number of polygon vertices in a
   scene (sub) graph, use instead the SoCallbackAction with the
   appropriate callback.
 */

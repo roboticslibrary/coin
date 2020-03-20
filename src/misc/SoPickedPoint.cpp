@@ -33,6 +33,7 @@
 /*!
   \class SoPickedPoint SoPickedPoint.h Inventor/SoPickedPoint.h
   \brief The SoPickedPoint class is used for specifying picked points.
+
   \ingroup general
 
   It holds miscellaneous information about the picked point, such
@@ -45,7 +46,7 @@
 
 #include <Inventor/SoPickedPoint.h>
 
-#include <assert.h>
+#include <cassert>
 
 #include <Inventor/actions/SoGetMatrixAction.h>
 #include <Inventor/elements/SoViewportRegionElement.h>
@@ -269,7 +270,7 @@ SoPickedPoint::getImageToObject(const SoNode * const node) const
   the point was actually picked will be used (this is what one would
   usually be interested in).
 
-  \a node can be any node in the scenegraph.
+  \a node can be any node in the scene graph.
 */
 SbVec3f
 SoPickedPoint::getObjectPoint(const SoNode * const node) const

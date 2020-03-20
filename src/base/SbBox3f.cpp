@@ -33,6 +33,7 @@
 /*!
   \class SbBox3f SbBox3f.h Inventor/SbBox3f.h
   \brief The SbBox3f class is an abstraction for an axis aligned 3 dimensional box.
+
   \ingroup base
 
   This box abstraction class is used by other entities in the Coin
@@ -77,6 +78,30 @@
 
   The coordinates of \a min should be less than the coordinates of
   \a max if you want to make a valid box.
+*/
+
+/*!
+  \fn SbBox3f::SbBox3f(const SbBox3d & box)
+
+  Constructs an SbBox3f instance from the value in an SbBox3d instance.
+
+  \since Coin 2.5
+*/
+
+/*!
+  \fn SbBox3f::SbBox3f(const SbBox3s & box)
+
+  Constructs an SbBox3f instance from the value in an SbBox3s instance.
+
+  \since Coin 2.5
+*/
+
+/*!
+  \fn SbBox3f::SbBox3f(const SbBox3i32 & box)
+
+  Constructs an SbBox3f instance from the value in an SbBox3i32 instance.
+
+  \since Coin 2.5
 */
 
 /*!
@@ -187,13 +212,13 @@ SbBox3f::setBounds(const SbBox3i32 & box)
 /*!
   \fn SbVec3f & SbBox3f::getMin(void)
 
-  Returns a modifiable reference the minimum point.
+  Returns a modifiable reference to the minimum point.
 */
 
 /*!
   \fn SbVec3f & SbBox3f::getMax(void)
 
-  Returns a modifiable reference the maximum point.
+  Returns a modifiable reference to the maximum point.
 */
 
 /*!
@@ -258,7 +283,7 @@ SbBox3f::intersect(const SbVec3f & point) const
 }
 
 /*!
-  Check if the given \a box lies wholly or partly within the boundaries
+  Check if the given \a box lies entirely or partially within the boundaries
   of this box.
  */
 SbBool
@@ -335,14 +360,15 @@ SbBox3f::makeEmpty(void)
   \fn SbBool SbBox3f::hasVolume(void) const
 
   Check if the box has been correctly specified and by that virtue
-  has volume.
+  has "positive" volume, i.e. all coordinates of its upper right corner
+  (the maximum point) are greater than the corresponding coordinates 
+  of its lower left corner (the minimum point).
 */
 
 /*!
   \fn float SbBox3f::getVolume(void) const
 
-  Check if the box has "positive" volume, i.e. the lower left corner is
-  actually lower and more left than the maximum point.
+  Returns the volume of the box.
 */
 
 /*!
@@ -427,8 +453,8 @@ SbBox3f::transform(const SbMatrix & matrix)
 }
 
 /*!
-  Dump the state of this object to the \a file stream. Only works in
-  debug version of library, method does nothing in an optimized compile.
+  Dump the state of this object to the \a fp file stream. Only works in
+  debug version of library, method does nothing in an optimized build.
  */
 void
 SbBox3f::print(FILE * fp) const

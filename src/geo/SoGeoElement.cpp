@@ -31,8 +31,9 @@
 \**************************************************************************/
 
 /*!
-  \class SoGeoElement Inventor/elements/SoGeoElement.h
+  \class SoGeoElement SoGeoElement.h Inventor/elements/SoGeoElement.h
   \brief The SoGeoElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -42,7 +43,7 @@
 
 #include <Inventor/elements/SoGeoElement.h>
 #include <Inventor/nodes/SoGeoOrigin.h>
-#include <assert.h>
+#include <cassert>
 
 
 class SoGeoElementP {
@@ -55,8 +56,7 @@ public:
 SO_ELEMENT_CUSTOM_CONSTRUCTOR_SOURCE(SoGeoElement);
 
 /*!
-  This static method initializes static data for the
-  SoGeoElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -65,6 +65,9 @@ SoGeoElement::initClass(void)
   SO_ELEMENT_INIT_CLASS(SoGeoElement, inherited);
 }
 
+/*!
+  Constructor.
+*/
 
 SoGeoElement::SoGeoElement(void)
 {
@@ -76,7 +79,7 @@ SoGeoElement::SoGeoElement(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoGeoElement::~SoGeoElement()
@@ -109,7 +112,7 @@ SoGeoElement::get(SoState * const state)
   return PRIVATE(element)->origin;
 }
 
-//! FIXME: write doc.
+// Doc from superclass
 
 void
 SoGeoElement::init(SoState * state)

@@ -48,13 +48,13 @@
 /*!
   \fn SoSoundElement::sceneGraphHasSoundNode
 
-  The sceneGraphHasSoundNode flag is used to stop the SoAudioRenderAction in SoSeparator and SoVRMLGroup nodes for cases where the sub-graph doesn not contain any SoVRMLSound nodes.
+  The sceneGraphHasSoundNode flag is used to stop the SoAudioRenderAction in SoSeparator and SoVRMLGroup nodes for cases where the sub-graph does not contain any SoVRMLSound nodes.
 */
 
 /*!
   \fn SoSoundElement::isPartOfActiveSceneGraph
 
-  The isPartOfActiveSceneGraph flag is used to make SoVRMLSound that are below inactive parts of the scenegraph (i.e. below a SoSwitch or SoLOD node) stop playing.
+  The isPartOfActiveSceneGraph flag is used to make SoVRMLSound that are below inactive parts of the scene graph (i.e. below a SoSwitch or SoLOD node) stop playing.
 */
 
 /*!
@@ -66,8 +66,7 @@
 SO_ELEMENT_SOURCE(SoSoundElement);
 
 /*!
-  This static method initializes static data for the
-  SoSoundElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -77,7 +76,7 @@ SoSoundElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoSoundElement::~SoSoundElement(void)
@@ -85,7 +84,7 @@ SoSoundElement::~SoSoundElement(void)
 }
 
 /*!
-  Initializes the element to it's default value.
+  Initializes the element to its default value.
 */
 
 void

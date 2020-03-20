@@ -33,11 +33,12 @@
 /*!
   \class SoListenerPositionElement Inventor/elements/SoListenerPositionElement.h
   \brief The SoListenerPositionElement holds the position of the current listener.
+
   \ingroup elements
 
   This position is set by SoListener nodes and SoCamera Nodes during audio
   rendering. When a SoListener is visited by the SoAudioRenderAction,
-  it will add a new SoListenerPositionElement to the state, holding it's
+  it will add a new SoListenerPositionElement to the state, holding its
   position and with the setbylistener flag set. When a SoCamera is visited
   by SoAudioRenderAction, it will add a new SoListenerPositionElement only
   if there are no previous elements with the setbylistener flag set.
@@ -67,8 +68,7 @@
 SO_ELEMENT_SOURCE(SoListenerPositionElement);
 
 /*!
-  This static method initializes static data for the
-  SoListenerPositionElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -78,7 +78,7 @@ SoListenerPositionElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoListenerPositionElement::~SoListenerPositionElement(void)
@@ -86,8 +86,8 @@ SoListenerPositionElement::~SoListenerPositionElement(void)
 }
 
 /*!
-  Initializes the element to it's default value. The default
-  value for the position is (0.0f, 0.0f, 0.0f) and the
+  Initializes the element to its default value. The default
+  value for the position is (0.0, 0.0, 0.0) and the
   default value for the setByListener flag is FALSE.
 */
 

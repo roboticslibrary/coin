@@ -35,6 +35,7 @@
   \brief The SoBBoxModelMatrixElement class keeps track of the current model
   matrix during a scene graph traversal.  It is used by amongst others the
   SoGetBoundingBoxAction class.
+
   \ingroup elements
 */
 
@@ -44,8 +45,7 @@
 SO_ELEMENT_SOURCE(SoBBoxModelMatrixElement);
 
 /*!
-  This static method initializes static data for the
-  SoBBoxModelMatrixElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -55,7 +55,7 @@ SoBBoxModelMatrixElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoBBoxModelMatrixElement::~SoBBoxModelMatrixElement()

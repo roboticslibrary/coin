@@ -33,6 +33,7 @@
 /*!
   \class SoLineSet SoLineSet.h Inventor/nodes/SoLineSet.h
   \brief The SoLineSet class is used to render and organize non-indexed polylines.
+
   \ingroup nodes
 
   Polylines are specified using the numVertices field. Coordinates,
@@ -66,7 +67,7 @@
 
   The width of the rendered lines can be controlled through the
   insertion of an SoDrawStyle node in front of SoLineSet node(s) in
-  the scenegraph.
+  the scene graph.
 
   <b>FILE FORMAT/DEFAULTS:</b>
   \code
@@ -369,7 +370,9 @@ namespace { namespace SoGL { namespace LineSet {
 
 } } } // namespace
 
-// doc from parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoLineSet::initClass(void)
 {

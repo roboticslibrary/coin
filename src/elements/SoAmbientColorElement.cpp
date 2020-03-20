@@ -33,6 +33,7 @@
 /*!
   \class SoAmbientColorElement Inventor/elements/SoAmbientColorElement.h
   \brief The SoAmbientColorElement class is yet to be documented.
+
   \ingroup elements
 */
 
@@ -50,8 +51,7 @@
 SO_ELEMENT_SOURCE(SoAmbientColorElement);
 
 /*!
-  This static method initializes static data for the
-  SoAmbientColorElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -70,7 +70,7 @@ SoAmbientColorElement::init(SoState * stateptr)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoAmbientColorElement::~SoAmbientColorElement()

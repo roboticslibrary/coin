@@ -33,6 +33,7 @@
 /*!
   \class SoTransformVec3f SoTransformVec3f.h Inventor/engines/SoTransformVec3f.h
   \brief The SoTransformVec3f class transforms 3D vectors by a matrix.
+
   \ingroup engines
 */
 
@@ -64,7 +65,9 @@
 
 SO_ENGINE_SOURCE(SoTransformVec3f);
 
-// doc in parent
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoTransformVec3f::initClass(void)
 {

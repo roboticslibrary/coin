@@ -73,7 +73,7 @@
 
 #include <Inventor/VRMLnodes/SoVRMLVertexShape.h>
 
-#include <stddef.h>
+#include <cstddef>
 
 #include <Inventor/VRMLnodes/SoVRMLMacros.h>
 #include <Inventor/VRMLnodes/SoVRMLNormal.h>
@@ -114,7 +114,9 @@ SO_NODE_ABSTRACT_SOURCE(SoVRMLVertexShape);
 
 // *************************************************************************
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLVertexShape::initClass(void)
 {

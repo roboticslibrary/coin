@@ -33,6 +33,7 @@
 /*!
   \class SoLocateHighlight SoLocateHighlight.h Inventor/nodes/SoLocateHighlight.h
   \brief The SoLocateHighlight class highlights geometry under the cursor.
+
   \ingroup nodes
 
   Note: this node is supposed to draw to the front buffer. However, in
@@ -106,7 +107,7 @@
 */
 /*!
   \var SoLocateHighlight::Styles SoLocateHighlight::EMISSIVE_DIFFUSE
-  Highlight useing emissive and diffuse color override.
+  Highlight using emissive and diffuse color override.
 */
 
 /*!
@@ -219,6 +220,9 @@ SoLocateHighlight::~SoLocateHighlight()
 }
 
 // doc from parent
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoLocateHighlight::initClass(void)
 {

@@ -33,6 +33,7 @@
 /*!
   \class SoMFString SoMFString.h Inventor/fields/SoMFString.h
   \brief The SoMFString class is a container for SbString values.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
@@ -60,7 +61,9 @@ SO_MFIELD_SOURCE(SoMFString, SbString, const SbString &);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFString::initClass(void)
 {

@@ -33,10 +33,11 @@
 /*!
   \class SoSFBox2i32 SoSFBox2i32.h Inventor/fields/SoSFBox2i32.h
   \brief The SoSFBox2i32 class is a container for an SbBox2i32 vector.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a box.
+  need to store a box.
 
   \COIN_CLASS_EXTENSION
   \since Coin 2.5
@@ -59,7 +60,9 @@ SO_SFIELD_SOURCE(SoSFBox2i32, SbBox2i32, const SbBox2i32 &);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFBox2i32::initClass(void)
 {

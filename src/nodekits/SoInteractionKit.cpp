@@ -39,6 +39,7 @@
 /*!
   \class SoInteractionKit SoInteractionKit.h Inventor/nodekits/SoInteractionKit.h
   \brief The SoInteractionKit class is a base class for draggers.
+
   \ingroup nodekits
 
   This nodekit class makes it possible to set surrogate paths for
@@ -79,7 +80,7 @@
 
 #include <Inventor/nodekits/SoInteractionKit.h>
 
-#include <stdlib.h>
+#include <cstdlib>
 
 #include <Inventor/C/tidbits.h>
 #include <Inventor/SoDB.h>
@@ -258,7 +259,9 @@ SoInteractionKit::~SoInteractionKit()
   delete PRIVATE(this);
 }
 
-// doc in super
+/*!
+  \copybrief SoNode::initClass(void)
+*/
 void
 SoInteractionKit::initClass(void)
 {
@@ -451,7 +454,7 @@ SoInteractionKit::readInstance(SoInput * in, unsigned short flags)
   directory prefix for \a fileName, or no resource file will be loaded
   (and \a defaultBuffer will be used instead).
 
-  If both a \a fileName and a \a defaultBuffer is provided, the file
+  If both a \a fileName and a \a defaultBuffer are provided, the file
   will be attempted found and loaded first, if that fails, the
   geometry will be attempted read from the buffer.
 */
@@ -566,7 +569,7 @@ SoInteractionKit::setAnyPartAsDefault(const SbName & partname,
                                       SbBool onlyifdefault)
 {
   // FIXME: this is lame and error-prone -- default dragger-parts are
-  // actually just stored outside any scenegraph, and then picked up
+  // actually just stored outside any scene graph, and then picked up
   // like this. We should at least prefix the node names with an
   // internal namespace prefix. See also the related FIXME in
   // readDefaultParts(). 20020322 mortene.
@@ -591,7 +594,7 @@ SoInteractionKit::setAnyPartAsDefault(const SbName & partname,
 // FIXME: the API doc on setAnySurrogatePath() below stinks. Surrogate
 // parts is such a useful mechanism that it deserves proper
 // documentation. We should explain what it's good for, the details of
-// setting up a surrogate part, and add in a small usage example (ie
+// setting up a surrogate part, and add in a small usage example (i.e.
 // source code). 20021008 mortene.
 
 /*!

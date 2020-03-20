@@ -32,10 +32,11 @@
 
 /*!
   \class SoPointSizeElement Inventor/elements/SoPointSizeElement.h
-  \brief The SoPointSizeElement changes the pointsize setting of the render state.
+  \brief The SoPointSizeElement changes the point size setting of the render state.
+
   \ingroup elements
 
-  Requests from the scenegraph to change the pointsize when rendering
+  Requests from the scene graph to change the point size when rendering
   point primitives will be made through this element.
 
   The SoPointSizeElement class itself is just a generic abstraction
@@ -50,7 +51,9 @@
 
 SO_ELEMENT_SOURCE(SoPointSizeElement);
 
-// Doc in super.
+/*!
+  \copydetails SoElement::initClass(void)
+*/
 void
 SoPointSizeElement::initClass(void)
 {
@@ -64,7 +67,10 @@ SoPointSizeElement::~SoPointSizeElement(void)
 {
 }
 
-// Doc in super.
+/*!
+  Initializes the element to its default value. The default
+  value for point size is 0.0.
+*/
 void
 SoPointSizeElement::init(SoState * state)
 {
@@ -94,7 +100,7 @@ SoPointSizeElement::set(SoState * const state, const float pointSize)
 }
 
 /*!
-  Static method for returning the current pointsize setting in the
+  Static method for returning the current point size setting in the
   given traversal \a state.
 */
 float
@@ -104,7 +110,7 @@ SoPointSizeElement::get(SoState * const state)
 }
 
 /*!
-  Returns default pointsize setting.
+  Returns default point size setting.
 */
 float
 SoPointSizeElement::getDefault(void)

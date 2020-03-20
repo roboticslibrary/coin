@@ -33,6 +33,7 @@
 /*!
   \class SoShuttle SoShuttle.h Inventor/nodes/SoShuttle.h
   \brief The SoShuttle class is used to oscillate between two translations.
+
   \ingroup nodes
 
   A smooth transition between translation0 and translation1 is created
@@ -84,7 +85,7 @@
 */
 /*!
   \var SoSFBool SoShuttle::on
-  Toggles animation on or off. Defauls to \c TRUE.
+  Toggles animation on or off. Defaults to \c TRUE.
 */
 
 // *************************************************************************
@@ -133,7 +134,9 @@ SoShuttle::~SoShuttle()
   this->timer->unref();
 }
 
-// doc in parent
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoShuttle::initClass(void)
 {

@@ -30,9 +30,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 \**************************************************************************/
 
+/*! \file SbBasic.h */
 /*!
-  \class SbBool SbBasic.h Inventor/SbBasic.h
+  \typedef int SbBool
   \brief SbBool is a compiler portable boolean type.
+
   \ingroup base
 
   SbBool is meant to be a "compiler portable" way of defining a
@@ -45,9 +47,11 @@
 
 /* *********************************************************************** */
 
+/*! \file SoDB.h */
 /*!
   \class SoDB SoDB.h Inventor/SoDB.h
   \brief The SoDB class keeps track of internal global data.
+
   \ingroup general
 
   This class collects various methods for initializing, setting and
@@ -67,10 +71,10 @@
 #include "config.h"
 #endif // HAVE_CONFIG_H
 
-#include <stdlib.h>
-#include <assert.h>
-#include <string.h>
-#include <stdarg.h>
+#include <cstdlib>
+#include <cassert>
+#include <cstring>
+#include <cstdarg>
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h> // fd_set (?)
@@ -157,12 +161,14 @@ const char * SoDBP::EnvVars::COIN_PROFILER = "COIN_PROFILER";
 const char * SoDBP::EnvVars::COIN_PROFILER_OVERLAY = "COIN_PROFILER_OVERLAY";
 #endif // DOXYGEN_SKIP_THIS
 
-/*!*************************************************************************
+// *************************************************************************
+
+/*!
   \typedef void SoDBHeaderCB(void * data, SoInput * input)
 
-  The type definition for the both pre and post callback functions that may be
+  The type definition for the pre and post callback functions that may be
   specified for user defined headers. Note that for all internally defined headers
-  no callback functions are used.
+  callback functions are not used.
 */
 
 // *************************************************************************
@@ -179,7 +185,7 @@ static void cleanup_func(void)
 
 // *************************************************************************
 
-// For sanity checking that our static variables in Coin has had a
+// For sanity checking that our static variables in Coin have had a
 // chance to init themselves before the invocation of SoDB::init().
 //
 // At least under Windows, it is possible to force the compiler /
@@ -190,7 +196,7 @@ static void cleanup_func(void)
 
 // FIXME: this is probably not initialized upon system start, but
 // rather placed static in a thunk in the DLL/.so. Needs to fetch a
-// value that can not have been compiled in. 20050506 mortene.
+// value that cannot have been compiled in. 20050506 mortene.
 
 static uint32_t a_static_variable = 0xdeadbeef;
 
@@ -210,7 +216,7 @@ SoDB::init(void)
   // do is just to assert here.
   assert(sizeof(SbVec3f) == 3*sizeof(float));
 
-  // Sanity check that our static variables in Coin has had a chance
+  // Sanity check that our static variables in Coin have had a chance
   // to init themselves before the first invocation of this function
   // happens. See above documentation on the variable for more
   // information.
@@ -296,7 +302,7 @@ SoDB::init(void)
                               "(Coin not tested on this platform)");
   }
 
-  // Sanity check: if the int type is unequal to the long type, things
+  // Sanity check: if the int type is not equal to the long type, things
   // could break -- but probably not.
   assert(sizeof(int) == sizeof(long));
 
@@ -368,7 +374,7 @@ SoDB::init(void)
                        NULL, NULL, NULL);
 
   // FIXME: this is really only valid if the HAVE_VRML97 define is in
-  // place. If it's not, we should register the header in a way so
+  // place. If it is not, we should register the header in a way so
   // that we spit out a /specific/ warning about why VRML97 is not
   // supported in the configuration of the compiled libCoin. 20020808 mortene.
   SoDB::registerHeader(SbString("#VRML V2.0 utf8"), FALSE, 2.1f,
@@ -500,9 +506,9 @@ SoDB::init(void)
 
 /*!
   Invoke this method as the last call of the application code, to
-  trigger a clean-up of all static resources used by the Coin library.
+  trigger a cleanup of all static resources used by the Coin library.
 
-  This is usually not necessary for stand-alone executable
+  This is usually not necessary for standalone executable
   applications, as the operating system will take care of cleaning up
   after the process as it exits.
 
@@ -672,7 +678,7 @@ SoDB::read(SoInput * in, SoNode *& rootnode)
   relationships, as usual.
 
   The common layout for how to load, work with and then finally
-  destruct and return memory resources of scenegraphs usually goes
+  destruct and return memory resources of scene graphs usually goes
   like this:
 
   \code
@@ -693,10 +699,10 @@ SoDB::read(SoInput * in, SoNode *& rootnode)
   // Bring ref-count of root-node back to zero to cause the
   // destruction of the scene.
   root->unref();
-  // (Upon self-destructing, the root-node will also de-reference
-  // it's children nodes, so they also self-destruct, and so on
-  // recursively down the scenegraph hierarchy until the complete
-  // scenegraph has self-destructed and thereby returned all
+  // (Upon self-destructing, the root-node will also dereference
+  // its children nodes, so they also self-destruct, and so on
+  // recursively down the scene graph hierarchy until the complete
+  // scene graph has self-destructed and thereby returned all
   // memory resources it was using.)
   \endcode
 
@@ -789,7 +795,7 @@ SoDB::isValidHeader(const char * teststring)
   Callbacks \a precallback and \a postcallback will be called before
   and after importing the custom format.
 
-  If \a headerstring can not be accepted as a valid file format header
+  If \a headerstring cannot be accepted as a valid file format header
   for Coin files, \c FALSE will be returned. A valid header \e must
   start with a '#' character, and not be more than 80 characters long.
 
@@ -1222,9 +1228,9 @@ SoDB::endNotify(void)
 }
 
 /*!
-  Turn on or off the realtime sensor.
+  Turn on or off the real time sensor.
 
-  The most common use for turning the realtime sensor off is to
+  The most common use for turning the real time sensor off is to
   control the realTime global field from the user application. This is
   for instance handy when you want to take screen snapshots at fixed
   intervals. See the class documentation of SoOffscreenRenderer for
@@ -1324,7 +1330,7 @@ SoDB::readAllWrapper(SoInput * in, const SoType & grouptype)
     while (!in->eof() && in->read(dummy)) {
       if (readallerrors_termination < 1) {
         buf[0] = dummy;
-        SoReadError::post(in, "Erroneous character(s) after end of scenegraph: \"%s\". "
+        SoReadError::post(in, "Erroneous character(s) after end of scene graph: \"%s\". "
                           "This message will only be shown once for this file, "
                           "but more errors might be present", dummy != '\0' ? buf : "\\0");
       }
@@ -1487,7 +1493,7 @@ SoDB::isMultiThread(void)
   SoDB::readunlock(). If you fail to do this, you might experience
   that your application locks up.
 
-  All Coin actions has a read-lock on the global SoDB mutex while
+  All Coin actions have a read-lock on the global SoDB mutex while
   traversing the scene graph.
 
   \sa SoDB::readunlock(), SoDB::writelock()
@@ -1678,7 +1684,7 @@ SoDB::createRoute(SoNode * fromnode, const char * eventout,
 #if COIN_DEBUG
         SoDebugError::postWarning("SoDB::createRoute",
                                   "Tried to connect a ROUTE between entities "
-                                  "that can not be connected (due to lack of "
+                                  "that cannot be connected (due to lack of "
                                   "field type converter): %s.%s is of type "
                                   "%s, and %s.%s is of type %s",
                                   fromnodename.getString(), fromfieldname.getString(),

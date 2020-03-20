@@ -33,10 +33,11 @@
 /*!
   \class SoMFVec4ub SoMFVec4ub.h Inventor/fields/SoMFVec4ub.h
   \brief The SoMFVec4ub class is a container for SbVec4ub vectors.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store an array of vectors with four elements.
+  need to store an array of vectors with four elements.
 
   This field supports application data sharing through a
   setValuesPointer() method. See SoMField documentation for
@@ -68,7 +69,9 @@ SO_MFIELD_SETVALUESPOINTER_SOURCE(SoMFVec4ub, SbVec4ub, uint8_t);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoMFVec4ub::initClass(void)
 {

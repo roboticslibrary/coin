@@ -33,6 +33,7 @@
 /*!
   \class SoComputeBoundingBox SoComputeBoundingBox.h Inventor/engines/SoComputeBoundingBox.h
   \brief The SoComputeBoundingBox class is used to calculate a bounding box.
+
   \ingroup engines
 
   This engine is simply a wrapper around the SoGetBoundingBoxAction,
@@ -109,7 +110,9 @@ SoComputeBoundingBox::SoComputeBoundingBox(void)
   this->bboxaction = new SoGetBoundingBoxAction(SbViewportRegion());
 }
 
-// doc in parent
+/*!
+  \copybrief SoBase::initClass(void)
+*/
 void
 SoComputeBoundingBox::initClass(void)
 {

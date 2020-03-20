@@ -33,10 +33,11 @@
 /*!
   \class SoPointSet SoPointSet.h Inventor/nodes/SoPointSet.h
   \brief The SoPointSet class is used to display a set of 3D points.
+
   \ingroup nodes
 
   This node either uses the coordinates currently on the state
-  (typically set up by a leading SoCoordinate3 node in the scenegraph)
+  (typically set up by a leading SoCoordinate3 node in the scene graph)
   or from a SoVertexProperty node attached to this node to render a
   set of 3D points.
 
@@ -44,7 +45,7 @@
   the coordinate set which should be rendered (or otherwise handled by
   traversal actions).
 
-  Here's a simple usage example of SoPointSet in a scenegraph:
+  Here's a simple usage example of SoPointSet in a scene graph:
 
   \verbatim
   #Inventor V2.1 ascii
@@ -146,7 +147,9 @@ SoPointSet::~SoPointSet()
 {
 }
 
-// doc from parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoPointSet::initClass(void)
 {

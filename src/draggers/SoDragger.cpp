@@ -39,22 +39,23 @@
 /*!
   \class SoDragger SoDragger.h Inventor/draggers/SoDragger.h
   \brief The SoDragger class is the base class for all draggers.
+
   \ingroup draggers
 
   Draggers is a mechanism used for letting the end-users of your
   application code interact with elements in 3D, by scaling, rotating
   or translating geometry or other instances in the scene (like
-  cameras or lightsources).
+  cameras or light sources).
 
   For a very thorough introduction and tutorial to the dragger classes
-  and general concepts, we advise you to consult «The Inventor
-  Mentor», ISBN 0-201-62495-8, chapter 15.
+  and general concepts, we advise you to consult &laquo;The Inventor
+  Mentor&raquo;, ISBN 0-201-62495-8, chapter 15.
 
   This is the common superclass for all dragger classes.
 
   It holds the current motion matrix, and offers lots of convenience
-  methods to build from for it's subclasses -- that is, the
-  non-abstract dragger classes to use as nodes in your scenegraph.
+  methods to build from for its subclasses -- that is, the
+  non-abstract dragger classes to use as nodes in your scene graph.
 
   The motion matrix is used to modify the model matrix during
   traversal, and this is a common dragger mechanism -- all draggers
@@ -65,9 +66,9 @@
   SoTrackballDragger / SoTrackballManip pair.
 
   The matching manipulator class for any dragger class has basically
-  two convenient additions to the functionality of the stand-alone
+  two convenient additions to the functionality of the standalone
   dragger: 1) it makes swapping the dragger in and out of the
-  scenegraph very straightforward (something which is often done for
+  scene graph very straightforward (something which is often done for
   draggers in 3D user interfaces), 2) it wraps up the dragger with
   SoSurroundScale and SoAntiSquish nodes where applicable, so the
   dragger geometry automatically scales up or down to match the
@@ -85,7 +86,7 @@
   variable \c SO_DRAGGER_DIR to point to a directory with replacement
   geometry files. The name of the new files and the name of the nodes
   / sub-graphs with the replacement geometries must follow a rigid
-  scheme. We advise you to look at the Coin sourcecode directory
+  scheme. We advise you to look at the Coin source code directory
   Coin/data/draggerDefaults/ to see how the replacement geometry files
   should be named. Setting \c SO_DRAGGER_DIR to this directory and
   modifying the files there provides a convenient way to play around
@@ -93,7 +94,7 @@
 
 
   As mentioned above, SoDragger::setPart() can be used to modify the
-  appearance of a dragger by changing it's default geometry. One
+  appearance of a dragger by changing its default geometry. One
   common technique is for instance to take advantage of this to use
   only \e parts of a dragger, by replacing / disabling the geometry
   that you don't want the end-user to interact with. The following
@@ -105,7 +106,6 @@
   #include <Inventor/Qt/viewers/SoQtExaminerViewer.h>
   #include <Inventor/draggers/SoTransformBoxDragger.h>
   #include <Inventor/nodes/SoSeparator.h>
-
 
   int
   main(int argc, char ** argv)
@@ -470,7 +470,7 @@ SoDragger::updateElements(SoState * state)
     SoMaterialBindingElement::set(state, SoMaterialBindingElement::DEFAULT);
   }
   if (state->isElementEnabled(SoLazyElement::getClassStackIndex())) {
-    // we need phong shading for our geometry
+    // we need Phong shading for our geometry
     SoLazyElement::setLightModel(state, SoLazyElement::PHONG);
   }
 
@@ -788,7 +788,7 @@ SoDragger::unregisterChildDragger(SoDragger * child)
 }
 
 /*!
-  Should be called by compund draggers to register child draggers that
+  Should be called by compound draggers to register child draggers that
   should move independently of their parent.
 */
 void
@@ -802,7 +802,7 @@ SoDragger::registerChildDraggerMovingIndependently(SoDragger * child)
 }
 
 /*!
-  Should be called by compund draggers to unregister child draggers.
+  Should be called by compound draggers to unregister child draggers.
   \sa registerChildDraggerMovingIndependently()
 */
 void
@@ -944,7 +944,7 @@ SoDragger::transformMatrixToLocalSpace(const SbMatrix & frommatrix, SbMatrix & t
 /*!
   Sets a new current motion matrix for the dragger geometry.
 
-  Triggers value changed callbacks if \a matrix is unequal to the
+  Triggers value changed callbacks if \a matrix is not equal to the
   previous motion matrix.
 */
 void
@@ -1355,7 +1355,7 @@ SoDragger::appendTranslation(const SbMatrix & matrix, const SbVec3f & translatio
 }
 
 /*!
-  Returns \a matrix after \a scale and \a scalecenter has been
+  Returns \a matrix after \a scale and \a scalecenter have been
   appended.  If \a conversion != \c NULL it is used to transform scale
   into the space \a matrix is defined.
 */
@@ -1603,6 +1603,23 @@ SoDragger::setCameraInfo(SoAction * action)
   PRIVATE(this)->viewvolume = SoViewVolumeElement::get(state);
 }
 
+/*!
+  Interaction with the dragger will be started, if the returned
+  picked point belongs to the dragger. A derived class can override
+  this method to change the condition when the dragger starts interaction,
+  e.g. it can return the picked point on the dragger from the 
+  picked point list of the action, even if it is covered by other
+  (semi) transparent objects.
+  The default implementation returns the foremost picked point
+  from the action.
+  This method is not present in Open Inventor.
+  */
+const SoPickedPoint*
+SoDragger::getPickedPointForStart(SoHandleEventAction* action)
+{
+	return action->getPickedPoint();
+}
+
 // Documented in superclass. Overridden to detect picks on dragger.
 void
 SoDragger::handleEvent(SoHandleEventAction * action)
@@ -1638,14 +1655,14 @@ SoDragger::handleEvent(SoHandleEventAction * action)
   if (!this->isActive.getValue() &&
       (SO_KEY_PRESS_EVENT(event, LEFT_CONTROL) ||
        SO_KEY_PRESS_EVENT(event, RIGHT_CONTROL))) {
-    const SoPickedPoint * pp = action->getPickedPoint();
+    const SoPickedPoint * pp = this->getPickedPointForStart(action);
     if (pp && this->isPicked(pp->getPath())) {
       this->eventHandled(event, action);
       PRIVATE(this)->otherEventCB.invokeCallbacks(this);
     }
   }
   else if (SO_MOUSE_PRESS_EVENT(event, BUTTON1)) {
-    const SoPickedPoint * pp = action->getPickedPoint();
+    const SoPickedPoint * pp = this->getPickedPointForStart(action);
 
     SbBool didpick = FALSE;
 
@@ -1702,7 +1719,10 @@ SoDragger::handleEvent(SoHandleEventAction * action)
       this->eventHandled(event, action);
       PRIVATE(this)->didmousemove = FALSE;
     }
-    if (PRIVATE(this)->isgrabbing) this->grabEventsCleanup();
+	if (PRIVATE(this)->isgrabbing) {
+	  this->grabEventsCleanup();
+	  PRIVATE(this)->isgrabbing = FALSE;
+	}
     if (PRIVATE(this)->pickedpath) {
       PRIVATE(this)->pickedpath->unref();
       PRIVATE(this)->pickedpath = NULL;
@@ -1758,7 +1778,7 @@ SoDragger::transferMotion(SoDragger * child)
 }
 
 /*!
-  Sets whether dragger geometry should be ignored when calculating bbox.
+  Sets whether dragger geometry should be ignored when calculating bounding box.
 */
 void
 SoDragger::setIgnoreInBbox(SbBool val)
@@ -1767,7 +1787,7 @@ SoDragger::setIgnoreInBbox(SbBool val)
 }
 
 /*!
-  Returns whether dragger geometry should be ignored when calculating bbox.
+  Returns whether dragger geometry should be ignored when calculating bounding box.
 */
 SbBool
 SoDragger::isIgnoreInBbox(void)

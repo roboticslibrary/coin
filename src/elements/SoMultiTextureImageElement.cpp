@@ -33,6 +33,7 @@
 /*!
   \class SoMultiTextureImageElement Inventor/elements/SoMultiTextureImageElement.h
   \brief The SoMultiTextureImageElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -76,8 +77,7 @@ SoMultiTextureImageElement::SoMultiTextureImageElement(void)
 }
 
 /*!
-  This static method initializes static data for the
-  SoMultiTextureImageElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -87,7 +87,7 @@ SoMultiTextureImageElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoMultiTextureImageElement::~SoMultiTextureImageElement()
@@ -95,7 +95,9 @@ SoMultiTextureImageElement::~SoMultiTextureImageElement()
   delete PRIVATE(this);
 }
 
-//! FIXME: write doc.
+/*!
+  Initializes the element to its default value.
+*/
 
 void
 SoMultiTextureImageElement::init(SoState * state)
@@ -375,7 +377,7 @@ SoMultiTextureImageElement::copyMatchInfo(void) const
 
 void
 SoMultiTextureImageElement::setElt(const int unit,
-                                   const uint32_t nodeid,
+                                   const SbUniqueId nodeid,
                                    const SbVec2s &size, const int numComponents,
                                    const unsigned char * bytes,
                                    const Wrap wrapS,
@@ -402,7 +404,7 @@ SoMultiTextureImageElement::setElt(const int unit,
 */
 void
 SoMultiTextureImageElement::setElt(const int unit,
-                                   const uint32_t nodeid,
+                                   const SbUniqueId nodeid,
                                    const SbVec3s & size, const int numComponents,
                                    const unsigned char * bytes,
                                    const Wrap wrapS,

@@ -33,6 +33,7 @@
 /*!
   \class SoAnnoText3CharOrientElement Inventor/elements/SoAnnoText3CharOrientElement.h
   \brief The SoAnnoText3CharOrientElement class is yet to be documented.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -46,8 +47,7 @@
 SO_ELEMENT_SOURCE(SoAnnoText3CharOrientElement);
 
 /*!
-  This static method initializes static data for the
-  SoAnnoText3CharOrientElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -57,11 +57,10 @@ SoAnnoText3CharOrientElement::initClass(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
-SoAnnoText3CharOrientElement::~SoAnnoText3CharOrientElement(// virtual protected
-    void)
+SoAnnoText3CharOrientElement::~SoAnnoText3CharOrientElement()
 {
 }
 

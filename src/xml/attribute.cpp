@@ -36,9 +36,9 @@
 #include <config.h>
 #endif // HAVE_CONFIG_H
 
-#include <assert.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cassert>
+#include <cstdlib>
+#include <cstring>
 
 #include "utils.h"
 
@@ -101,30 +101,28 @@ void
 cc_xml_attr_delete_x(cc_xml_attr * attr)
 {
   assert(attr);
-  if (attr->name) delete [] attr->name;
-  if (attr->value) delete [] attr->value;
+  delete [] attr->name;
+  delete [] attr->value;
   delete attr;
 }
 
 // *************************************************************************
 
 /*!
-  Sets the name-part of the attribute.  Old name-information will be freed.
+  Sets the name part of the attribute.  Old name information will be freed.
   The \a name argument can be NULL to clear the setting.
 */
 
 void
 cc_xml_attr_set_name_x(cc_xml_attr * attr, const char * name)
 {
-  if (attr->name) {
-    delete [] attr->name;
-    attr->name = NULL;
-  }
+  delete [] attr->name;
+  attr->name = NULL;
   if (name) attr->name = cc_xml_strdup(name);
 }
 
 /*!
-  Returns the name-part of the attribute if one is set, and NULL otherwise.
+  Returns the name part of the attribute if one is set, and NULL otherwise.
 */
 
 const char *
@@ -134,17 +132,15 @@ cc_xml_attr_get_name(const cc_xml_attr * attr)
 }
 
 /*!
-  Sets the value-part of the attribute.  Old information will be freed.
+  Sets the value part of the attribute.  Old information will be freed.
   The \a value argument can be NULL to clear the information.
 */
 
 void
 cc_xml_attr_set_value_x(cc_xml_attr * attr, const char * value)
 {
-  if (attr->value) {
-    delete [] attr->value;
-    attr->value = NULL;
-  }
+  delete [] attr->value;
+  attr->value = NULL;
   if (value) attr->value = cc_xml_strdup(value);
 }
 

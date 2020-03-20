@@ -33,6 +33,7 @@
 /*!
   \class SoGLVBOElement Inventor/elements/SoGLVBOElement.h
   \brief The SoGLVBOElement class is used to store VBO state.
+
   \ingroup elements
 
   FIXME: write doc.
@@ -70,8 +71,7 @@ class SoGLVBOElementP {
 SO_ELEMENT_CUSTOM_CONSTRUCTOR_SOURCE(SoGLVBOElement);
 
 /*!
-  This static method initializes static data for the
-  SoMultiTextureCoordinateElement class.
+  \copydetails SoElement::initClass(void)
 */
 
 void
@@ -82,7 +82,7 @@ SoGLVBOElement::initClass()
 
 
 /*!
-  The constructor.
+  Constructor.
 */
 SoGLVBOElement::SoGLVBOElement(void)
 {
@@ -93,7 +93,7 @@ SoGLVBOElement::SoGLVBOElement(void)
 }
 
 /*!
-  The destructor.
+  Destructor.
 */
 
 SoGLVBOElement::~SoGLVBOElement()

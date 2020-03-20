@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 \**************************************************************************/
 
-/*! \file common.h */
+/*! \file Inventor/C/threads/common.h */
 
 /*!
   \struct cc_rwmutex common.h Inventor/C/threads/common.h
@@ -61,8 +61,8 @@
 /*! \file rwmutex.h */
 #include <Inventor/C/threads/rwmutex.h>
 
-#include <stdlib.h>
-#include <assert.h>
+#include <cstdlib>
+#include <cassert>
 
 #include <Inventor/C/errors/debugerror.h>
 #include <Inventor/C/threads/mutex.h>

@@ -33,6 +33,7 @@
 /*!
   \class SoActionMethodList SoActionMethodList.h Inventor/lists/SoActionMethodList.h
   \brief The SoActionMethodList class contains function pointers for action methods.
+
   \ingroup actions
 
   An SoActionMethodList contains one function pointer per node
@@ -46,7 +47,7 @@
 #include <Inventor/lists/SbList.h>
 #include <Inventor/actions/SoAction.h>
 #include <Inventor/nodes/SoNode.h>
-#include <assert.h>
+#include <cassert>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -110,8 +111,13 @@ SoActionMethodList::~SoActionMethodList()
   delete PRIVATE(this);
 }
 
-// Documented in superclass. Overridden from parent to cast from \c
-// void pointer.
+/*!
+  \copydetails SbPList::operator[](const int index) const
+
+  Overloaded from parent to return an SoActionMethod.
+
+  \sa SbPList::operator[]()
+*/ 
 SoActionMethod &
 SoActionMethodList::operator[](const int index)
 {

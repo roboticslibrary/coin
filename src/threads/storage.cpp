@@ -42,7 +42,7 @@
 
 /* ********************************************************************** */
 
-/*! \file common.h */
+/*! \file Inventor/C/threads/common.h */
 
 /*!
   \struct cc_storage common.h Inventor/C/threads/common.h
@@ -60,8 +60,8 @@
 #include <Inventor/C/threads/storage.h>
 #include "coindefs.h"
 
-#include <stdlib.h>
-#include <assert.h>
+#include <cstdlib>
+#include <cassert>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -233,6 +233,7 @@ cc_storage_thread_cleanup(unsigned long COIN_UNUSED_ARG(threadid))
 /*
   \class SbStorage Inventor/threads/SbStorage.h
   \brief The SbStorage class manages thread-local memory.
+
   \ingroup threads
 
   This class manages thread-local memory.  When different threads
@@ -289,6 +290,7 @@ cc_storage_thread_cleanup(unsigned long COIN_UNUSED_ARG(threadid))
 /*
   \class SbTypedStorage Inventor/threads/SbTypedStorage.h
   \brief The SbTypedStorage class manages generic thread-local memory.
+
   \ingroup threads
 
   This class manages thread-local memory.  When different threads

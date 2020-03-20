@@ -39,6 +39,7 @@
 /*!
   \class SoNodeKitPath SoNodeKitPath.h Inventor/SoNodeKitPath.h
   \brief The SoNodeKitPath class is a path that contains only nodekit nodes.
+
   \ingroup nodekits
 
   All other nodes are hidden from the user.
@@ -50,7 +51,7 @@
 
 #include <Inventor/SoNodeKitPath.h>
 
-#include <stdlib.h>
+#include <cstdlib>
 
 #include <Inventor/nodekits/SoBaseKit.h>
 #include <Inventor/actions/SoSearchAction.h>
@@ -203,7 +204,7 @@ SoNodeKitPath::pop(void)
 /*!
   Appends \a childKit to the path. childKit should be a part in the
   tail nodekit of this path. In effect, the path from the tail to first
-  occurrance of \a childKit will be appended to the path.
+  occurrence of \a childKit will be appended to the path.
 */
 void
 SoNodeKitPath::append(SoBaseKit * childKit)

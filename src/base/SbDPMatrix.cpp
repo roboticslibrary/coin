@@ -33,10 +33,11 @@
 /*!
   \class SbDPMatrix SbDPMatrix.h Inventor/SbDPMatrix.h
   \brief The SbDPMatrix class is a 4x4 dimensional representation of a double-precision matrix.
+
   \ingroup base
 
   This class is like the SbMatrix class, but uses double-precision
-  floating point values for its elements. For more class
+  floating-point values for its elements. For more class
   documentation, see SbMatrix.
 
   \since Coin 2.0.
@@ -86,7 +87,7 @@ using std::memcpy;
 // matrix->quaternion decomposition, which also exists in
 // SbDPRotation::setValue(SbDPMatrix&)), and 2) the remaining code
 // snippets look generally useful outside the purpose of breaking down
-// a matrix into it's transformation components). 20010114 mortene.
+// a matrix into its transformation components). 20010114 mortene.
 
 /*
  * declarations for polar_decomp algorithm from Graphics Gems IV,
@@ -127,7 +128,7 @@ SbBool SbDPMatrix_isIdentity(const double fm[][4])
   // adds up a total, as it sometimes seems from documentation). So
   // this should be very quick for non-identity matrices.
   //
-  // Also, we check the first value on it's own, to avoid the function
+  // Also, we check the first value on its own, to avoid the function
   // call for the most common case.
   return (fm[0][0]==1.0) && memcmp(&fm[0][1], &IDENTITYMATRIX[0][1], (4 * 3 + 3) * sizeof(double)) == 0;
 #endif
@@ -697,7 +698,7 @@ operator ==(const SbDPMatrix & m1, const SbDPMatrix & m2)
   \relates SbDPMatrix
 
   Compare matrices to see if they are not equal. For two matrices to not be
-  equal, it is enough that at least one of their elements are unequal.
+  equal, it is enough that at least one of their elements are not equal.
 
   \sa equals().
 */
@@ -761,7 +762,7 @@ SbDPMatrix::setScale(const SbVec3d & s)
 
 /*!
   Make this matrix into a pure translation matrix (no scale or rotation
-  components) with the given vector \t as the translation.
+  components) with the given vector \a t as the translation.
 
   \sa setRotate(), setScale().
  */
@@ -806,7 +807,7 @@ SbDPMatrix::setTransform(const SbVec3d & t, const SbDPRotation & r, const SbVec3
   scale orientation. The resulting matrix gets calculated like this:
 
   \code
-  M = Ro-¹ * S * Ro * R * T
+  M = Ro^-1 * S * Ro * R * T
   \endcode
 
   where \a Ro is the scale orientation, and \a S, \a R
@@ -841,7 +842,7 @@ SbDPMatrix::setTransform(const SbVec3d & t, const SbDPRotation & r,
   calculated like this:
 
   \code
-  M = -Tc * Ro-¹ * S * Ro * R * T * Tc
+  M = -Tc * Ro^-1 * S * Ro * R * T * Tc
   \endcode
 
   where \a Tc is the center point, \a Ro the scale orientation, \a S,
@@ -881,7 +882,7 @@ SbDPMatrix::setTransform(const SbVec3d & translation,
 
 /*!
   Factor the matrix back into its translation, rotation, scale and
-  scaleorientation components.
+  scale orientation components.
 
   \sa factor()
  */
@@ -1218,7 +1219,7 @@ SbDPMatrix::multMatrixVec(const SbVec3d & src, SbVec3d & dst) const
   Multiplication is done with the vector on the left side of the
   expression, i.e. dst = src * M.
 
-  It is safe to let \a src and \dst be the same SbVec3d instance.
+  It is safe to let \a src and \a dst be the same SbVec3d instance.
 
   \sa multMatrixVec(), multDirMatrix() and multLineMatrix().
 */
@@ -1335,7 +1336,7 @@ SbDPMatrix::print(FILE * fp) const
 // matrix->quaternion decomposition, which also exists in
 // SbDPRotation::setValue(SbDPMatrix&)), and 2) the remaining code
 // snippets look generally useful outside the purpose of breaking down
-// a matrix into it's transformation components). 20010114 mortene.
+// a matrix into its transformation components). 20010114 mortene.
 
 
 /**** Decompose.c ****/

@@ -33,10 +33,11 @@
 /*!
   \class SoSFUInt32 SoSFUInt32.h Inventor/fields/SoSFUInt32.h
   \brief The SoSFUInt32 class is a container for a 32-bit unsigned integer value.
+
   \ingroup fields
 
   This field is used where nodes, engines or other field containers
-  needs to store a single 32-bit unsigned integer value.
+  need to store a single 32-bit unsigned integer value.
 
   \sa SoMFUInt32
 */
@@ -58,7 +59,9 @@ SO_SFIELD_SOURCE(SoSFUInt32, uint32_t, uint32_t);
 
 // *************************************************************************
 
-// Override from parent class.
+/*!
+  \copydetails SoField::initClass(void)
+*/
 void
 SoSFUInt32::initClass(void)
 {

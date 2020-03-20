@@ -37,8 +37,8 @@
 #include "config.h"
 #endif /* HAVE_CONFIG_H */
 
-#include <stdlib.h>
-#include <assert.h>
+#include <cstdlib>
+#include <cassert>
 
 #include <Inventor/C/glue/gl.h>
 #include <Inventor/C/errors/debugerror.h>
@@ -291,7 +291,7 @@ wglglue_ext_supported(struct wglglue_contextdata * context, const cc_glglue * gl
    *   http://www.gamedev.net/reference/articles/article1929.asp
    *
    * ..so we try to get hold of wglGetExtensionsString[ARB|EXT]() and
-   * use that aswell.
+   * use that as well.
    */
   if (!attemptedextresolved) {
     attemptedextresolved = TRUE;

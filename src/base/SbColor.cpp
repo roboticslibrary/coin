@@ -34,6 +34,7 @@
   \class SbColor SbColor.h Inventor/SbColor.h
   \brief The SbColor class contains the red, green and blue components
   which make up a color value.
+
   \ingroup base
 
   This class is used within other classes in Coin.  It inherits the
@@ -102,7 +103,7 @@ SbColor::SbColor(const float r, const float g, const float b)
 SbColor&
 SbColor::setPackedValue(const uint32_t rgba, float& transparency)
 {
-  // Should work regardless of endianness on run-time architecture.
+  // Should work regardless of endianness on runtime architecture.
   this->setValue((rgba >> 24)/255.0f,
                  ((rgba >> 16)&0xff)/255.0f,
                  ((rgba >> 8)&0xff)/255.0f);
@@ -120,7 +121,7 @@ SbColor::setPackedValue(const uint32_t rgba, float& transparency)
 uint32_t
 SbColor::getPackedValue(const float transparency) const
 {
-  // Should work regardless of endianness on run-time architecture.
+  // Should work regardless of endianness on runtime architecture.
   return ((static_cast<uint32_t>(red()*255.0f + 0.5f) << 24) |
           (static_cast<uint32_t>(green()*255.0f + 0.5f) << 16) |
           (static_cast<uint32_t>(blue()*255.0f + 0.5f) << 8) |
@@ -130,7 +131,8 @@ SbColor::getPackedValue(const float transparency) const
 /*!
   Set the color as a \c hue, \c saturation, \c value triplet.
   The hue component should be normalized to within [0, 1] before you
-  call this method, where 0 is equal to 0° and 1 is equal to 360°.
+  call this method, where a value of 0 corresponds to 0 degrees and a value
+  of 1 corresponds to 360 degrees.
 
   \sa getHSVValue().
  */
@@ -218,7 +220,8 @@ SbColor::getHSVValue(float &h, float &s, float &v) const
 /*!
   Set the color as a \c hue, \c saturation, \c value triplet.
   The hue component should be normalized to within [0, 1] before you
-  call this method, where 0 is equal to 0° and 1 is equal to 360°.
+  call this method, where a value of 0 corresponds to 0 degrees and a value
+  of 1 corresponds to 360 degrees.
 
   \sa getHSVValue().
  */

@@ -39,6 +39,7 @@
 /*!
   \class SoVRMLWorldInfo SoVRMLWorldInfo.h Inventor/VRMLnodes/SoVRMLWorldInfo.h
   \brief The SoVRMLWorldInfo class contains information about the VRML scene.
+
   \ingroup VRMLnodes
 
   \WEB3DCOPYRIGHT
@@ -79,7 +80,9 @@
 
 SO_NODE_SOURCE(SoVRMLWorldInfo);
 
-// Doc in parent
+/*!
+  \copydetails SoNode::initClass(void)
+*/
 void
 SoVRMLWorldInfo::initClass(void)
 {
